@@ -1,0 +1,182 @@
+[
+ {
+  "match": "IndexError: list index out of range",
+  "title": "That position does not exist",
+  "plain": "You asked for a position the list does not have. Positions start at 0, so a list with 4 items only has positions 0 to 3. Asking for position 4 is too far.",
+  "fix": "Check whether your loop or index goes one step past the end. The last position is len(list) - 1."
+ },
+ {
+  "match": "IndexError: string index out of range",
+  "title": "That position does not exist in the text",
+  "plain": "You asked for a letter at a position the text does not have. Positions start at 0 and the last one is len(text) - 1.",
+  "fix": "Check for an off-by-one: are you using len(text) where you need len(text) - 1."
+ },
+ {
+  "match": "IndexError: pop from empty list",
+  "title": "Nothing left to remove",
+  "plain": "You tried to take an item out of a list that has no items.",
+  "fix": "Check that the list has something in it before you remove from it."
+ },
+ {
+  "match": "NameError: name '(.+)' is not defined",
+  "title": "Python does not know that name",
+  "plain": "You used the name {1}, but nothing has stored a value under that name yet. It may be a spelling difference, or you used it before the line that creates it.",
+  "fix": "Check the spelling and capital letters of {1}, and make sure a line above gives it a value."
+ },
+ {
+  "match": "^SyntaxError: invalid syntax$",
+  "title": "Python cannot read this line",
+  "plain": "The line is not written in a shape Python understands. Common causes: a missing colon at the end of an if, for or def line, a missing bracket or quote mark, or = used where == was meant.",
+  "fix": "Look at the line named in the message and the line just above it. Count your brackets and quotes."
+ },
+ {
+  "match": "SyntaxError: expected ':'",
+  "title": "A colon is missing",
+  "plain": "Lines that start with if, elif, else, for, while or def must end with a colon.",
+  "fix": "Add : at the end of the line."
+ },
+ {
+  "match": "SyntaxError: '\\(' was never closed|SyntaxError: unterminated string literal|SyntaxError: EOL while scanning string literal",
+  "title": "A bracket or quote mark was opened but not closed",
+  "plain": "Every opening bracket or quote mark needs a matching closing one.",
+  "fix": "Count the ( and ), and the quote marks, on the line named."
+ },
+ {
+  "match": "SyntaxError: cannot assign to (.+) here\\. Maybe you meant '==' instead of '='",
+  "title": "You used = where you meant ==",
+  "plain": "One = means store a value. Inside an if you want to ask a question, which takes two equals signs.",
+  "fix": "Change = to == in the if line."
+ },
+ {
+  "match": "SyntaxError: invalid syntax\\. Maybe you meant '==' or ':=' instead of '='\\?",
+  "title": "You used = where you meant ==",
+  "plain": "One = means store a value. Inside an if you want to ask a question, which takes two equals signs.",
+  "fix": "Change = to == in the if line."
+ },
+ {
+  "match": "IndentationError: expected an indented block",
+  "title": "The lines under this line need to be indented",
+  "plain": "After a line that ends with a colon, the lines that belong to it must be pushed in by 4 spaces.",
+  "fix": "Indent the next line by 4 spaces."
+ },
+ {
+  "match": "IndentationError: unexpected indent",
+  "title": "This line is indented but should not be",
+  "plain": "The line is pushed in further than the lines around it, and nothing above it asks for that.",
+  "fix": "Remove the extra spaces at the start of the line."
+ },
+ {
+  "match": "IndentationError: unindent does not match any outer indentation level",
+  "title": "The spacing at the start of the lines does not line up",
+  "plain": "Lines that belong together must start in exactly the same column.",
+  "fix": "Make the indents line up, using 4 spaces for each level."
+ },
+ {
+  "match": "TypeError: can only concatenate str \\(not \\\"int\\\"\\) to str",
+  "title": "You tried to add text and a number",
+  "plain": "The + sign can join text to text, or add number to number, but not text to a number.",
+  "fix": "Turn the number into text with str(...), or turn the text into a number with int(...)."
+ },
+ {
+  "match": "TypeError: unsupported operand type\\(s\\) for (.+): '(\\w+)' and '(\\w+)'",
+  "title": "Those two kinds of value do not mix",
+  "plain": "You tried to use the operator {1} between a {2} and a {3}, and Python does not know how to do that.",
+  "fix": "Check what each side holds. A common cause is input(), which gives text, not a number. Wrap it with int(...)."
+ },
+ {
+  "match": "TypeError: '(\\w+)' object is not callable",
+  "title": "You used round brackets on something that is not a function",
+  "plain": "Round brackets after a name mean run it as a function. The name holds a {1}, which cannot be run.",
+  "fix": "Check that you did not give a variable the same name as a function, such as sum or list."
+ },
+ {
+  "match": "TypeError: list indices must be integers or slices, not (\\w+)",
+  "title": "A position must be a whole number",
+  "plain": "You used a {1} between the square brackets. Positions have to be whole numbers.",
+  "fix": "Use int(...) to turn text into a whole number, or use // instead of / when dividing."
+ },
+ {
+  "match": "TypeError: string indices must be integers",
+  "title": "A position must be a whole number",
+  "plain": "You used something that is not a whole number as a position in text.",
+  "fix": "Check what is between the square brackets. Use int(...) if it came from input()."
+ },
+ {
+  "match": "TypeError: '(\\w+)' object is not subscriptable",
+  "title": "You used square brackets on something that has no positions",
+  "plain": "Square brackets pick an item by position, but a {1} has no positions.",
+  "fix": "Check that the name holds a list or text, and not a number or None."
+ },
+ {
+  "match": "TypeError: object of type '(\\w+)' has no len\\(\\)",
+  "title": "len needs something with items inside",
+  "plain": "len counts items, but a {1} does not hold a row of items.",
+  "fix": "Check the name holds a list or text. A number has no length."
+ },
+ {
+  "match": "TypeError: (\\w+)\\(\\) takes (\\d+) positional arguments? but (\\d+) (?:was|were) given",
+  "title": "Wrong number of inputs to the function",
+  "plain": "The function {1} expects {2} input(s), but you gave it {3}.",
+  "fix": "Count the inputs in the def line and the line that uses the function. They must match."
+ },
+ {
+  "match": "TypeError: (\\w+)\\(\\) missing (\\d+) required positional argument",
+  "title": "The function was not given enough inputs",
+  "plain": "The function {1} needs more inputs than you gave it.",
+  "fix": "Compare the def line with the line that uses the function."
+ },
+ {
+  "match": "ValueError: invalid literal for int\\(\\) with base 10: '(.*)'",
+  "title": "That text is not a whole number",
+  "plain": "You asked Python to turn '{1}' into a whole number, but it is not one. An empty or spaced-out piece causes this too.",
+  "fix": "If the line holds several numbers, use .split() first and turn each piece into a number."
+ },
+ {
+  "match": "ValueError: not enough values to unpack",
+  "title": "Fewer values than names",
+  "plain": "You tried to split a line into more names than it has pieces.",
+  "fix": "Check how many values the input line really has."
+ },
+ {
+  "match": "ValueError: too many values to unpack",
+  "title": "More values than names",
+  "plain": "You tried to put more values into names than you made names for.",
+  "fix": "Count the names on the left and the values on the right."
+ },
+ {
+  "match": "ZeroDivisionError",
+  "title": "Dividing by zero",
+  "plain": "Dividing by zero has no answer, so Python stops.",
+  "fix": "Check what the bottom number can be, and handle the zero case with an if."
+ },
+ {
+  "match": "EOFError",
+  "title": "The program asked for input that was not there",
+  "plain": "input() tried to read a line, but the typed input had run out. Your code is asking for more lines than the test gives.",
+  "fix": "Count how many input() calls your code makes and compare with the lines the problem says to expect."
+ },
+ {
+  "match": "AttributeError: '(\\w+)' object has no attribute '(\\w+)'",
+  "title": "That kind of value has no such tool",
+  "plain": "A {1} does not have a tool called {2}. For example, a list has append but a number does not.",
+  "fix": "Check the spelling of {2} and that the name holds the kind of value you expect."
+ },
+ {
+  "match": "UnboundLocalError: .*'(\\w+)'",
+  "title": "A name was used before it got a value inside a function",
+  "plain": "Inside the function, {1} is used before any line gives it a value there.",
+  "fix": "Give {1} a starting value inside the function before you use it."
+ },
+ {
+  "match": "KeyError: (.+)",
+  "title": "That key is not in the dictionary",
+  "plain": "You asked a dictionary for {1}, but it has nothing stored under that name.",
+  "fix": "Check the spelling, or use .get(...) which does not stop when the key is missing."
+ },
+ {
+  "match": "RecursionError",
+  "title": "A function kept calling itself forever",
+  "plain": "The function called itself over and over with no way to stop.",
+  "fix": "Make sure there is a stopping case that returns without calling again."
+ }
+]

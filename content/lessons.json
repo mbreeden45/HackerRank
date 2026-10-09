@@ -1,0 +1,675 @@
+[
+ {
+  "id": "print",
+  "title": "Showing things with print",
+  "idea": [
+   "A program is a list of instructions that Python follows from the top, one line at a time.",
+   "The instruction `print` shows something on the screen. Whatever you put inside the round brackets is what appears.",
+   "Words must sit inside quote marks. Quote marks tell Python: this is text, not an instruction. Numbers do not need quote marks."
+  ],
+  "symbols": [
+   [
+    "print( )",
+    "show what is inside the brackets, then move to a new line"
+   ],
+   [
+    "\" \"",
+    "quote marks: everything between them is text"
+   ],
+   [
+    ",",
+    "inside print, a comma puts a space between two things"
+   ]
+  ],
+  "visuals": [],
+  "example": {
+   "caption": "Watch the printed text grow on the right as each line runs. Press Next line to move one line at a time.",
+   "code": "print(\"Hello\")\nprint(7)\nprint(\"Total:\", 7)\n"
+  },
+  "predict": {
+   "code": "print(\"Hi\")\nprint(2)\nprint(\"Sum:\", 2)",
+   "options": [
+    "Hi 2 Sum: 2",
+    "Hi\n2\nSum: 2",
+    "\"Hi\"\n2\nSum: 2"
+   ],
+   "answer": 1,
+   "why": "Each print starts a new line. The quote marks are not shown, they only tell Python the thing is text. The comma adds one space."
+  }
+ },
+ {
+  "id": "variables",
+  "title": "Variables: names that hold values",
+  "idea": [
+   "A variable is a name that holds a value, like a labelled box. You choose the name.",
+   "The single equals sign `=` means store. Python works out the right side first, then puts the answer in the name on the left.",
+   "You can change what a name holds later. The old value is thrown away."
+  ],
+  "symbols": [
+   [
+    "=",
+    "store the value on the right into the name on the left"
+   ],
+   [
+    "+",
+    "add two numbers"
+   ],
+   [
+    "*",
+    "multiply two numbers"
+   ]
+  ],
+  "visuals": [],
+  "example": {
+   "caption": "Look at the trace table. Each row shows the names and what they hold after the line before it has run.",
+   "code": "apples = 3\noranges = 4\ntotal = apples + oranges\napples = 10\nprint(total)\nprint(apples)\n"
+  },
+  "predict": {
+   "code": "x = 5\ny = x + 2\nx = 1\nprint(y)",
+   "options": [
+    "3",
+    "7",
+    "1"
+   ],
+   "answer": 1,
+   "why": "`y` was worked out when x held 5, so y became 7. Changing x later does not change y."
+  }
+ },
+ {
+  "id": "equals",
+  "title": "One equals sign or two",
+  "idea": [
+   "`=` stores a value. `==` asks a question: are these two things equal. The answer is `True` or `False`.",
+   "Mixing them up is one of the most common mistakes. Say it aloud: one equals means put it in, two equals means is it the same.",
+   "`!=` asks the opposite question: are these different. `<` means less than and `>` means greater than."
+  ],
+  "symbols": [
+   [
+    "=",
+    "store a value in a name"
+   ],
+   [
+    "==",
+    "ask: are these equal. Gives True or False"
+   ],
+   [
+    "!=",
+    "ask: are these different"
+   ],
+   [
+    "<  >",
+    "less than, greater than"
+   ],
+   [
+    "True  False",
+    "the two answers to a yes or no question"
+   ]
+  ],
+  "visuals": [],
+  "example": {
+   "caption": "Notice that the stored answers are True or False, not words.",
+   "code": "a = 6\nb = 6\nsame = a == b\ndifferent = a != b\nbigger = a > 10\nprint(same)\nprint(different)\nprint(bigger)\n"
+  },
+  "predict": {
+   "code": "n = 4\nprint(n == 4)\nprint(n == 5)",
+   "options": [
+    "True\nFalse",
+    "4\n5",
+    "True\nTrue"
+   ],
+   "answer": 0,
+   "why": "n holds 4, so asking n == 4 gives True. Asking n == 5 gives False."
+  }
+ },
+ {
+  "id": "remainder",
+  "title": "The remainder with %",
+  "idea": [
+   "The symbol `%` gives the remainder after dividing. 7 % 3 is 1, because 3 goes into 7 two times (that is 6) and 1 is left over.",
+   "If a number divides exactly, the remainder is 0. So `n % 2 == 0` is the standard way to ask: is n even.",
+   "`//` divides and throws away anything after the decimal point. 7 // 2 is 3."
+  ],
+  "symbols": [
+   [
+    "%",
+    "the remainder after dividing"
+   ],
+   [
+    "//",
+    "divide and drop the decimal part"
+   ],
+   [
+    "n % 2 == 0",
+    "is n even"
+   ]
+  ],
+  "visuals": [],
+  "example": {
+   "caption": "Check the remainder column. Even numbers leave 0 when divided by 2.",
+   "code": "a = 7 % 3\nb = 8 % 2\nc = 9 % 2\nd = 7 // 2\nprint(a, b, c, d)\n"
+  },
+  "predict": {
+   "code": "print(10 % 4)\nprint(10 // 4)\nprint(12 % 4)",
+   "options": [
+    "2\n2\n0",
+    "2\n2.5\n3",
+    "0\n2\n0"
+   ],
+   "answer": 0,
+   "why": "4 goes into 10 twice (8) leaving 2, so 10 % 4 is 2 and 10 // 4 is 2. 12 divides exactly by 4, so 12 % 4 is 0."
+  }
+ },
+ {
+  "id": "ifelse",
+  "title": "Making choices with if and else",
+  "idea": [
+   "An `if` line asks a yes or no question. If the answer is True, Python runs the indented lines under it. If False, it skips them.",
+   "`else` is the plan B. It runs only when the `if` question was False. `elif` means else if: another question, asked only when the earlier ones were False.",
+   "The colon `:` at the end of the line and the indent (4 spaces) are required. The indent shows which lines belong to the choice."
+  ],
+  "symbols": [
+   [
+    ":",
+    "ends the line and says the indented lines below belong to it"
+   ],
+   [
+    "if",
+    "run the lines below only when the question is True"
+   ],
+   [
+    "elif",
+    "else if: another question, asked only if the earlier ones were False"
+   ],
+   [
+    "else",
+    "run the lines below when nothing above was True"
+   ]
+  ],
+  "visuals": [],
+  "example": {
+   "caption": "Follow which lines get highlighted. Lines inside a choice that was not taken are skipped.",
+   "code": "n = 7\nif n % 2 == 0:\n    print(\"even\")\nelif n > 5:\n    print(\"odd and big\")\nelse:\n    print(\"odd and small\")\n"
+  },
+  "predict": {
+   "code": "n = 3\nif n > 5:\n    print(\"A\")\nelif n > 1:\n    print(\"B\")\nelse:\n    print(\"C\")",
+   "options": [
+    "A",
+    "B",
+    "B\nC"
+   ],
+   "answer": 1,
+   "why": "n > 5 is False, so A is skipped. n > 1 is True, so B prints. After one choice is taken, the rest are skipped, so C does not print."
+  }
+ },
+ {
+  "id": "lists",
+  "title": "Lists: many values in one name",
+  "idea": [
+   "A list holds several values in order, written inside square brackets with commas between them.",
+   "Each value sits in its own box, and each box has a number called its position (also called its index). The first box is position 0, not 1.",
+   "`append` adds a new value to the end of the list."
+  ],
+  "symbols": [
+   [
+    "[ ]",
+    "square brackets: make a list"
+   ],
+   [
+    ",",
+    "separates the values in a list"
+   ],
+   [
+    ".append( )",
+    "add one value to the end of a list"
+   ]
+  ],
+  "visuals": [
+   {
+    "type": "boxes",
+    "title": "nums = [4, 9, 2]",
+    "items": [
+     4,
+     9,
+     2
+    ]
+   }
+  ],
+  "example": {
+   "caption": "Watch the row of boxes. Position numbers are shown above each box.",
+   "code": "nums = [4, 9, 2]\nnums.append(7)\nnums.append(1)\nprint(nums)\n",
+   "show": [
+    "nums"
+   ]
+  },
+  "predict": {
+   "code": "nums = [5, 6]\nnums.append(8)\nprint(nums)",
+   "options": [
+    "[5, 6, 8]",
+    "[8, 5, 6]",
+    "[5, 6]"
+   ],
+   "answer": 0,
+   "why": "append puts the new value at the end."
+  }
+ },
+ {
+  "id": "indexing",
+  "title": "Indexing: picking one item by position",
+  "idea": [
+   "To get one value out of a list, write the list name and the position in square brackets: `nums[0]` is the first value.",
+   "Positions start at 0. A list with 4 items has positions 0, 1, 2, 3. There is no position 4.",
+   "Negative positions count from the end. `nums[-1]` is the last item and `nums[-2]` is the one before it.",
+   "Asking for a position that does not exist stops the program with an IndexError."
+  ],
+  "symbols": [
+   [
+    "nums[2]",
+    "the item at position 2 (the third item)"
+   ],
+   [
+    "nums[-1]",
+    "the last item"
+   ],
+   [
+    "IndexError",
+    "you asked for a position the list does not have"
+   ]
+  ],
+  "visuals": [
+   {
+    "type": "boxes",
+    "title": "nums = [10, 20, 30, 40]. Top row: position from the start. Bottom row: position from the end.",
+    "items": [
+     10,
+     20,
+     30,
+     40
+    ],
+    "negative": true,
+    "pointers": {
+     "nums[2]": 2
+    }
+   }
+  ],
+  "example": {
+   "caption": "Step through and check each answer against the position numbers in the picture.",
+   "code": "nums = [10, 20, 30, 40]\nfirst = nums[0]\nthird = nums[2]\nlast = nums[-1]\nprint(first, third, last)\n",
+   "show": [
+    "nums"
+   ],
+   "negative": true
+  },
+  "predict": {
+   "code": "nums = [3, 6, 9, 12]\nprint(nums[1])\nprint(nums[-2])",
+   "options": [
+    "6\n9",
+    "3\n9",
+    "6\n12"
+   ],
+   "answer": 0,
+   "why": "Position 1 is the second box, which holds 6. Position -2 is second from the end, which holds 9."
+  }
+ },
+ {
+  "id": "slicing",
+  "title": "Slicing: copying a piece of a list",
+  "idea": [
+   "A slice copies a piece. Write `nums[a:b]`. It starts at position a and stops just before position b. The position b itself is not included.",
+   "A handy fact: `nums[a:b]` has exactly b - a items.",
+   "Leave a side empty to mean the edge: `nums[:3]` starts at the very beginning and `nums[2:]` goes to the very end. `nums[::-1]` is a reversed copy."
+  ],
+  "symbols": [
+   [
+    "nums[a:b]",
+    "items from position a up to but not including position b"
+   ],
+   [
+    "nums[:b]",
+    "from the start up to but not including b"
+   ],
+   [
+    "nums[a:]",
+    "from position a to the end"
+   ],
+   [
+    "nums[::-1]",
+    "a reversed copy"
+   ]
+  ],
+  "visuals": [
+   {
+    "type": "boxes",
+    "title": "nums = [5, 6, 7, 8, 9]. The green boxes are nums[1:4]: positions 1, 2 and 3.",
+    "items": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "hl": [
+     1,
+     4
+    ]
+   }
+  ],
+  "example": {
+   "caption": "See how the end position is left out of each slice.",
+   "code": "nums = [5, 6, 7, 8, 9]\na = nums[1:4]\nb = nums[:2]\nc = nums[3:]\nd = nums[::-1]\nprint(a)\nprint(b)\nprint(c)\n",
+   "show": [
+    "nums"
+   ]
+  },
+  "predict": {
+   "code": "nums = [1, 2, 3, 4, 5, 6]\nprint(nums[2:5])\nprint(nums[:2])",
+   "options": [
+    "[3, 4, 5]\n[1, 2]",
+    "[3, 4, 5, 6]\n[1, 2, 3]",
+    "[2, 3, 4]\n[1, 2]"
+   ],
+   "answer": 0,
+   "why": "nums[2:5] starts at position 2 (value 3) and stops before position 5, so it holds 3, 4, 5. nums[:2] is positions 0 and 1."
+  }
+ },
+ {
+  "id": "len",
+  "title": "len and the last position",
+  "idea": [
+   "`len(nums)` counts how many items are in the list. A list of 4 items has a length of 4.",
+   "Because positions start at 0, the last position is always `len(nums) - 1`. This is the heart of off-by-one mistakes: the length and the last position are different numbers.",
+   "Remember: for 4 items, length is 4, positions are 0 to 3, and the last position is 3."
+  ],
+  "symbols": [
+   [
+    "len( )",
+    "how many items are inside"
+   ],
+   [
+    "len(nums) - 1",
+    "the last position"
+   ],
+   [
+    "off-by-one",
+    "being wrong by exactly 1, often by mixing up length and last position"
+   ]
+  ],
+  "visuals": [
+   {
+    "type": "boxes",
+    "title": "nums has 4 items. len(nums) is 4. The last position is 3.",
+    "items": [
+     8,
+     6,
+     7,
+     5
+    ],
+    "pointers": {
+     "last = len - 1": 3
+    }
+   }
+  ],
+  "example": {
+   "caption": "Compare the two printed numbers. They always differ by 1.",
+   "code": "nums = [8, 6, 7, 5]\nsize = len(nums)\nlast_pos = len(nums) - 1\nlast_item = nums[last_pos]\nprint(size, last_pos, last_item)\n",
+   "show": [
+    "nums"
+   ]
+  },
+  "predict": {
+   "code": "nums = [2, 4, 6]\nprint(len(nums))\nprint(nums[len(nums) - 1])",
+   "options": [
+    "3\n6",
+    "3\n4",
+    "2\n6"
+   ],
+   "answer": 0,
+   "why": "There are 3 items so len is 3. The last position is 3 - 1 = 2, which holds 6. Writing nums[len(nums)] would be an IndexError."
+  }
+ },
+ {
+  "id": "range",
+  "title": "range: counting numbers",
+  "idea": [
+   "`range(n)` makes the numbers 0, 1, 2 and so on up to n - 1. It stops just before n, so it gives exactly n numbers.",
+   "`range(a, b)` starts at a and stops just before b. `range(a, b, step)` jumps by step each time.",
+   "Same rule as slicing: the end number is never included. To see the numbers, wrap it in `list( )`."
+  ],
+  "symbols": [
+   [
+    "range(n)",
+    "0 up to n - 1"
+   ],
+   [
+    "range(a, b)",
+    "a up to b - 1"
+   ],
+   [
+    "range(a, b, s)",
+    "start at a, jump by s, stop before b"
+   ],
+   [
+    "list( )",
+    "turns the run of numbers into a list you can see"
+   ]
+  ],
+  "visuals": [
+   {
+    "type": "boxes",
+    "title": "range(5) gives these 5 numbers. Five numbers, but the biggest is 4.",
+    "items": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ],
+  "example": {
+   "caption": "Each printed list shows what range makes.",
+   "code": "a = list(range(4))\nb = list(range(2, 6))\nc = list(range(0, 10, 3))\nprint(a)\nprint(b)\nprint(c)\n"
+  },
+  "predict": {
+   "code": "print(list(range(3)))\nprint(list(range(1, 4)))",
+   "options": [
+    "[0, 1, 2]\n[1, 2, 3]",
+    "[1, 2, 3]\n[1, 2, 3, 4]",
+    "[0, 1, 2, 3]\n[1, 2, 3]"
+   ],
+   "answer": 0,
+   "why": "range(3) is 0, 1, 2. range(1, 4) starts at 1 and stops before 4, so 1, 2, 3."
+  }
+ },
+ {
+  "id": "forloops",
+  "title": "for loops: values versus positions",
+  "idea": [
+   "A `for` loop repeats the indented lines. The name after `for` takes the next thing each time around.",
+   "There are two common shapes. Shape one, over values: `for x in nums:` gives you each item itself. Shape two, over positions: `for i in range(len(nums)):` gives you 0, 1, 2 and so on, and you write `nums[i]` to get the item.",
+   "Use shape one when you only need the items. Use shape two when you need to know where you are, or to look at neighbours like `nums[i + 1]`."
+  ],
+  "symbols": [
+   [
+    "for x in nums:",
+    "x is each item, one per round"
+   ],
+   [
+    "for i in range(len(nums)):",
+    "i is each position, one per round"
+   ],
+   [
+    "nums[i]",
+    "the item at position i"
+   ]
+  ],
+  "visuals": [],
+  "example": {
+   "caption": "Shape one, over values. The name x holds the item itself.",
+   "code": "nums = [5, 8, 3]\ntotal = 0\nfor x in nums:\n    total = total + x\nprint(total)\n",
+   "show": [
+    "nums"
+   ]
+  },
+  "example2": {
+   "caption": "Shape two, over positions. The name i holds the position, so we write nums[i] to get the item. Watch the arrow move along the boxes.",
+   "code": "nums = [5, 8, 3]\ntotal = 0\nfor i in range(len(nums)):\n    total = total + nums[i]\nprint(total)\n",
+   "show": [
+    "nums"
+   ]
+  },
+  "predict": {
+   "code": "nums = [4, 7]\nfor i in range(len(nums)):\n    print(i)",
+   "options": [
+    "0\n1",
+    "4\n7",
+    "1\n2"
+   ],
+   "answer": 0,
+   "why": "i is the position, not the item. A list of 2 items has positions 0 and 1. To print the items you would write print(nums[i])."
+  }
+ },
+ {
+  "id": "functions",
+  "title": "Functions and return",
+  "idea": [
+   "A function is a named set of steps you can use again. You make one with `def`. The names in brackets are the inputs it receives, called parameters.",
+   "`return` sends an answer back to whoever used the function, and stops the function right there.",
+   "Printing and returning are different. Print shows something on the screen. Return hands a value back so other code can use it. HackerRank functions almost always return."
+  ],
+  "symbols": [
+   [
+    "def name(a, b):",
+    "make a function called name that receives a and b"
+   ],
+   [
+    "return x",
+    "hand back x and stop"
+   ],
+   [
+    "name(3, 4)",
+    "use the function, giving it 3 and 4"
+   ]
+  ],
+  "visuals": [],
+  "example": {
+   "caption": "The function does not run when it is defined. It runs on the line that uses it.",
+   "code": "def add(a, b):\n    result = a + b\n    return result\n\nanswer = add(3, 4)\nprint(answer)\n"
+  },
+  "predict": {
+   "code": "def double(n):\n    return n * 2\n\nprint(double(5) + 1)",
+   "options": [
+    "11",
+    "10",
+    "None"
+   ],
+   "answer": 0,
+   "why": "double(5) hands back 10, and then 10 + 1 is 11."
+  }
+ },
+ {
+  "id": "input",
+  "title": "Reading input the HackerRank way",
+  "idea": [
+   "On HackerRank, the test data does not live in your code. It arrives as typed lines. `input()` reads one line, always as text.",
+   "To turn text into a whole number use `int( )`. To read a line like `3 1 4` as a list of numbers, use `list(map(int, input().split()))`. Read it in pieces: `input()` gets the line, `.split()` cuts it at spaces into separate pieces of text, `int` turns each piece into a number, and `list` collects them.",
+   "The first line often tells you how many items follow. You usually read that line and then read the next one."
+  ],
+  "symbols": [
+   [
+    "input()",
+    "read one line of typing, as text"
+   ],
+   [
+    ".split()",
+    "cut text into pieces at the spaces"
+   ],
+   [
+    "int( )",
+    "turn text into a whole number"
+   ],
+   [
+    "map(int, ...)",
+    "apply int to every piece"
+   ],
+   [
+    "list( )",
+    "collect the results into a list"
+   ]
+  ],
+  "visuals": [],
+  "example": {
+   "caption": "Here the typed input is the two lines 3 and then 5 8 2. Watch how text becomes numbers.",
+   "stdin": "3\n5 8 2\n",
+   "code": "n = int(input())\nline = input()\npieces = line.split()\nnums = list(map(int, pieces))\nprint(n, nums)\n",
+   "show": [
+    "nums"
+   ]
+  },
+  "predict": {
+   "code": "text = \"6 1 4\"\npieces = text.split()\nprint(pieces)",
+   "options": [
+    "['6', '1', '4']",
+    "[6, 1, 4]",
+    "6 1 4"
+   ],
+   "answer": 0,
+   "why": "split cuts the text into pieces, but the pieces are still text, so they keep their quote marks. int would turn them into numbers."
+  }
+ },
+ {
+  "id": "strings",
+  "title": "Strings: text is a row of letters",
+  "idea": [
+   "Text in Python is called a string. A string works like a list of letters: it has positions starting at 0, and you can index and slice it the same way.",
+   "`len(word)` counts the letters. `word[0]` is the first letter. `word[::-1]` is the word reversed.",
+   "Useful tools: `.upper()` makes capitals, `.lower()` makes small letters, and `in` asks whether one piece of text is inside another. You cannot change a letter in place, you build a new string instead."
+  ],
+  "symbols": [
+   [
+    "word[i]",
+    "the letter at position i"
+   ],
+   [
+    "len(word)",
+    "how many letters"
+   ],
+   [
+    "'a' in word",
+    "is the letter a somewhere inside word"
+   ],
+   [
+    ".upper()  .lower()",
+    "capital or small letters"
+   ]
+  ],
+  "visuals": [
+   {
+    "type": "boxes",
+    "title": "word = 'cat'",
+    "items": [
+     "c",
+     "a",
+     "t"
+    ],
+    "negative": true
+   }
+  ],
+  "example": {
+   "caption": "The letters sit in boxes just like list items.",
+   "code": "word = \"planet\"\nfirst = word[0]\nlast = word[-1]\npart = word[1:4]\nback = word[::-1]\nprint(first, last, part, back)\n",
+   "show": [
+    "word"
+   ]
+  },
+  "predict": {
+   "code": "w = \"code\"\nprint(len(w))\nprint(w[1])\nprint(\"d\" in w)",
+   "options": [
+    "4\no\nTrue",
+    "3\no\nTrue",
+    "4\nc\nFalse"
+   ],
+   "answer": 0,
+   "why": "code has 4 letters. Position 1 is the second letter, o. The letter d is inside code, so the answer is True."
+  }
+ }
+]
