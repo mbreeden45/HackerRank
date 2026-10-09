@@ -85,6 +85,7 @@ BP.practice = (function () {
         if (pass === total) s.solved = true;
         s.lesson = P.lesson; s.difficulty = P.difficulty;
       });
+      if (BP.adaptive) BP.adaptive.afterProblemRun(P.id, pass === total);
     });
     main.querySelector('#cust').onclick = () => { const b = main.querySelector('#custbox'); b.style.display = b.style.display === 'none' ? 'block' : 'none'; };
     main.querySelector('#custrun').onclick = async () => {
@@ -109,6 +110,7 @@ BP.practice = (function () {
         hd.insertAdjacentHTML('beforeend', '<div class="hint"><b>' + (shown + 1) + '. ' + HINT_NAMES[shown] + '</b><br>' + (shown === 4 ? '<pre>' + esc(P.prefix + P.solution + P.suffix) + '</pre>' + fmt(hints[4].split('\n\n')[0]) : fmt(text).replace(/\n/g, '<br>')) + '</div>');
         shown++;
         BP.store.update(() => { const s = BP.store.problem(P.id); s.hints = Math.max(s.hints, shown); });
+        if (shown === 5 && !BP.store.problem(P.id).solved && BP.adaptive) BP.adaptive.record(P.id, false);
         if (shown >= 5) hb.style.display = 'none'; else hb.textContent = 'Show hint ' + (shown + 1) + ': ' + HINT_NAMES[shown];
       };
     }

@@ -56,7 +56,7 @@ BP.sqlscreen = (function () {
           : '<div class="bad"><b>Not yet.</b> ' + esc(c.why) + '</div><div class="cmpgrid"><div><h3>Your result</h3>' + BP.sql.gridHtml(r.columns, r.rows) + '</div><div><h3>Expected result</h3>' + BP.sql.gridHtml(P.columns, P.expected) + '</div></div>';
       }
       BP.store.update(() => { const s = BP.store.problem(P.id); s.attempts++; s.lesson = P.lesson; s.difficulty = P.difficulty; s.last = ok ? 1 : 0; s.total = 1; s.best = Math.max(s.best, ok ? 1 : 0); if (ok) s.solved = true; });
-      if (BP.adaptive && BP.adaptive.record) BP.adaptive.record(P.id, ok);
+      if (BP.adaptive) BP.adaptive.afterProblemRun(P.id, ok);
     };
     main.querySelector('#reset').onclick = () => cm.setValue(start);
     if (allowHints) {
@@ -67,6 +67,7 @@ BP.sqlscreen = (function () {
         hd.insertAdjacentHTML('beforeend', '<div class="hint"><b>' + (shown + 1) + '. ' + HINT_NAMES[shown] + '</b><br>' + (shown === 4 ? '<pre>' + esc(P.solution) + '</pre>Type it in yourself rather than pasting, so it sticks.' : fmt(hints[shown])) + '</div>');
         shown++;
         BP.store.update(() => { const s = BP.store.problem(P.id); s.hints = Math.max(s.hints, shown); });
+        if (shown === 5 && !BP.store.problem(P.id).solved && BP.adaptive) BP.adaptive.record(P.id, false);
         if (shown >= 5) hb.style.display = 'none'; else hb.textContent = 'Show hint ' + (shown + 1) + ': ' + HINT_NAMES[shown];
       };
     }

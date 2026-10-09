@@ -26,6 +26,8 @@ window.BP = window.BP || {};
     const solved = C.problems.filter((p) => (d.problems[p.id] || {}).solved).length;
     let h = '<h1>Your path</h1><div class="card"><div class="row"><div><b>' + doneN + ' of ' + C.lessons.length + '</b> lessons done</div><div><b>' + solved + ' of ' + C.problems.length + '</b> problems solved</div></div><div class="bar" style="margin-top:8px"><i style="width:' + (doneN / C.lessons.length * 100) + '%"></i></div>' +
       (next ? '<p>Next up: <a class="btn primary" href="#/lesson/' + next.id + '">' + esc(next.title) + '</a></p>' : '<p>You have finished every lesson in this version. Keep practicing.</p>') + '</div>';
+    const due = BP.adaptive ? BP.adaptive.dueCount() : 0;
+    h += '<div class="card"><h2>Not sure what to do next</h2><p>The app picks one question for you: a missed one that is due for another look, or the weakest topic at a level just above what you have already done.</p><a class="btn primary" href="#/next">Next best question</a> ' + (due ? '<span class="pill">' + due + ' review' + (due === 1 ? '' : 's') + ' due now</span>' : '') + '</div>';
     const weak = weakTopics();
     if (weak.length) h += '<div class="card"><h2>Worth another look</h2>' + weak.map((w) => '<p><a href="#/lesson/' + w.id + '">' + esc(w.title) + '</a> <span class="mute">' + w.why + '</span></p>').join('') + '</div>';
     h += '<p class="mute"><a href="#/diagnostic">Retake the placement check</a></p>';

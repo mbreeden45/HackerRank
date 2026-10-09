@@ -2,7 +2,7 @@ window.BP = window.BP || {};
 BP.store = (function () {
   const KEY = 'builderPrep.v1';
   let data = null;
-  function blank() { return { diagnostic: null, lessons: {}, problems: {}, quiz: {}, exams: [], cards: {}, theme: 'light' }; }
+  function blank() { return { diagnostic: null, lessons: {}, problems: {}, quiz: {}, review: {}, exams: [], cards: {}, theme: 'light' }; }
   function load() {
     try { data = JSON.parse(localStorage.getItem(KEY)) || blank(); } catch (e) { data = blank(); }
     return data;
