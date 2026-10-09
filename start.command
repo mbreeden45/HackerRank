@@ -9,6 +9,14 @@ if ! command -v python3 >/dev/null 2>&1; then
   read -n 1 -s -r -p "Press any key to close."
   exit 1
 fi
+if lsof -nP -iTCP:$PORT -sTCP:LISTEN >/dev/null 2>&1; then
+  echo "Port $PORT is already in use by another program (probably an old study server)."
+  echo "Fix: close the other Terminal window that is running it, or run:"
+  echo "  kill \$(lsof -nP -iTCP:$PORT -sTCP:LISTEN -t)"
+  echo "Then double-click this file again. The port must stay $PORT so your saved progress is found."
+  read -n 1 -s -r -p "Press any key to close."
+  exit 1
+fi
 echo "Builder Prep is starting at http://localhost:$PORT"
 echo "Leave this window open while you study. Close it to stop."
 (sleep 1; open -a "Google Chrome" "http://localhost:$PORT" 2>/dev/null || open "http://localhost:$PORT") &
