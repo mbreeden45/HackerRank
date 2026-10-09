@@ -38,6 +38,20 @@ def prose_ok(label, text):
         t = re.sub(r'`[^`]*`', '', text)
         ok(not BANG.search(t), '%s: contains an exclamation mark: %r' % (label, text[:60]))
 
+MC_COUNT = {}
+def check_mc(file, label, options, answer, code=None):
+    """Rules for every multiple-choice item. If code is given, the marked answer must equal what the code really prints."""
+    MC_COUNT[file] = MC_COUNT.get(file, 0) + 1
+    ok(len(options) >= 3, '%s: fewer than 3 options' % label)
+    ok(len(options) == len(set(options)), '%s: two options have identical text: %r' % (label, options))
+    ok(isinstance(answer, int) and 0 <= answer < len(options), '%s: answer index %r is not one of the options' % (label, answer))
+    if code is not None:
+        rc, so, se = run_py(code)
+        ok(rc == 0, '%s: snippet crashes: %s' % (label, se.strip()[-100:]))
+        matches = [i for i, o in enumerate(options) if norm(o) == norm(so)]
+        ok(len(matches) == 1, '%s: %d options match the real output %r (need exactly 1)' % (label, len(matches), so))
+        ok(matches == [answer], '%s: marked answer %r but code really prints %r' % (label, options[answer] if isinstance(answer, int) and 0 <= answer < len(options) else answer, so))
+
 def check_problems(problems):
     print('\n== Coding problems: %d ==' % len(problems))
     for p in problems:
@@ -82,15 +96,12 @@ def check_lessons(lessons, diag):
             ok(rc == 0, '%s: second example crashes' % L['id'])
         rc, so, se = run_snippet_output(L['predict']['code'])
         ok(rc == 0, '%s: predict code crashes' % L['id'])
-        correct = L['predict']['options'][L['predict']['answer']]
-        ok(norm(so) == norm(correct), '%s: predict answer %r does not match real output %r' % (L['id'], correct, so))
-        ok(len(L['predict']['options']) == len(set(L['predict']['options'])), '%s: duplicate predict options' % L['id'])
+        check_mc('lessons.json (predict)', 'lesson ' + L['id'], L['predict']['options'], L['predict']['answer'], L['predict']['code'])
         ok(len(L['idea']) >= 2 and L['symbols'], '%s: needs idea paragraphs and a symbols table' % L['id'])
         prose_ok(L['id'], [L['title']] + L['idea'] + [s[1] for s in L['symbols']] + [L['example']['caption'], L['predict']['why']])
         print('  PASS  %s' % L['id'])
     for i, q in enumerate(diag['questions']):
-        rc, so, se = run_snippet_output(q['code'])
-        ok(rc == 0 and norm(so) == norm(q['options'][q['answer']]), 'diagnostic %d (%s): answer does not match real output %r' % (i, q['lesson'], so))
+        check_mc('diagnostic.json', 'diagnostic Q%d (%s)' % (i + 1, q['lesson']), q['options'], q['answer'], q['code'])
         ok(q['lesson'] in ids, 'diagnostic %d: unknown lesson %s' % (i, q['lesson']))
         prose_ok('diagnostic %d' % i, [q['prompt'], q['why']])
 
@@ -134,7 +145,7 @@ def check_errors(errors):
 
 def check_quiz(name, items):
     for q in items:
-        ok(0 <= q['answer'] < len(q['options']), '%s: bad answer index' % q['id'])
+        check_mc(name, q['id'], q['options'], q['answer'], q.get('code'))
         ok(q['difficulty'] in ('Easy', 'Medium', 'Hard'), '%s: bad difficulty' % q['id'])
         prose_ok(q['id'], [q['prompt'], q['why']])
 
@@ -183,6 +194,9 @@ def main():
         qids = {q['id'] for n in ('quiz_bigo.json', 'quiz_prompt.json') for q in (load(n) or [])}
         for s in mock['sections']:
             for i in s['items']: ok(i in pids or i in qids, 'mock exam references unknown item %s' % i)
+    print('\n== Multiple-choice items checked, by file ==')
+    for k in sorted(MC_COUNT): print('  %-26s %d items' % (k, MC_COUNT[k]))
+    print('  %-26s %d items' % ('TOTAL', sum(MC_COUNT.values())))
     print('\n%d checks run, %d failed.' % (checks, len(fails)))
     for f in fails: print('  FAIL:', f)
     print('RESULT:', 'ALL PASSED' if not fails else 'FAILURES FOUND')
