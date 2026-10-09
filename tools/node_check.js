@@ -29,6 +29,17 @@ const send = (m) => new Promise((res) => { const n = msgs.length; self.onmessage
     traced++;
   }
   console.log('traced', traced, 'lesson examples');
+  // flashcard examples with code must print exactly what the card says
+  const cardsFile = path.join(root, 'content/flashcards.json');
+  if (fs.existsSync(cardsFile)) {
+    const cards = JSON.parse(fs.readFileSync(cardsFile)).filter((c) => c.check && c.check.lang === 'python');
+    for (const c of cards) {
+      const r = await send({ id: ++n, type: 'run', code: c.check.code, inputs: [c.check.stdin || ''] });
+      const x = r.results[0];
+      if (x.error || x.stdout.trim() !== c.check.output.trim()) { bad++; console.log('FAIL card', c.id, JSON.stringify(x)); }
+    }
+    console.log('ran', cards.length, 'flashcard examples');
+  }
   const err = await send({ id: ++n, type: 'run', code: 'nums=[1]\nprint(nums[3])', inputs: [''] });
   console.log('error sample:', JSON.stringify(err.results[0].error.split('\n').slice(-2)));
   const loop = require('fs').readFileSync(path.join(root, 'content/lessons.json'));

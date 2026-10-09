@@ -25,6 +25,14 @@ const norm = (v) => (typeof v === 'number' ? Math.round(v * 1e6) / 1e6 : v);
     try { db.exec(b.text); q++; } catch (err) { bad++; console.log('FAIL lesson query', L.id, err.message); }
     db.close();
   }
+  const cardsFile = path.join(root, 'content/flashcards.json');
+  let cq = 0;
+  if (fs.existsSync(cardsFile)) for (const c of JSON.parse(fs.readFileSync(cardsFile))) if (c.check && c.check.lang === 'sql') {
+    const db = open(); const sets = db.exec(c.check.sql); const rows = sets.length ? sets[0].values : [];
+    if (JSON.stringify(rows) !== JSON.stringify(c.check.rows)) { bad++; console.log('FAIL card', c.id, JSON.stringify(rows), JSON.stringify(c.check.rows)); }
+    cq++; db.close();
+  }
+  console.log('ran ' + cq + ' SQL flashcard queries');
   console.log('sql.js agrees with sqlite3 on ' + (n - bad) + ' of ' + n + ' problems, and ran ' + q + ' lesson queries.');
   process.exit(bad ? 1 : 0);
 })().catch((e) => { console.error(e); process.exit(2); });

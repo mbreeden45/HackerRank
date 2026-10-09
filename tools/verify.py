@@ -210,12 +210,30 @@ def check_sql(items):
 
 def check_cards(cards):
     print('\n== Flashcards: %d ==' % len(cards))
+    ids = [c['id'] for c in cards]
+    ok(len(ids) == len(set(ids)), 'flashcard ids must be unique')
+    tables = load('sql_tables.json', {})
+    by_topic = {}
     for c in cards:
-        ok(c['front'].strip() and c['back'].strip(), 'card %s empty' % c['id'])
-        if c.get('check'):
-            rc, so, se = run_py(c['check']['code'])
-            ok(rc == 0 and norm(so) == norm(c['check']['output']), 'card %s: example output mismatch (got %r)' % (c['id'], so))
+        by_topic[c['topic']] = by_topic.get(c['topic'], 0) + 1
+        ok(c['front'].startswith('I want to ') and c['front'].endswith('.'), 'card %s: front must read "I want to ... ." : %r' % (c['id'], c['front'][:50]))
+        ok(c['back'].startswith('so I write ') and c['back'].strip() != 'so I write', 'card %s: back must start with "so I write"' % c['id'])
+        ok('`' not in c['back'] or c.get('check'), 'card %s shows code but has no executed check' % c['id'])
+        chk = c.get('check')
+        if chk and chk['lang'] == 'python':
+            rc, so, se = run_py(chk['code'], chk.get('stdin', ''))
+            ok(rc == 0 and norm(so) == norm(chk['output']), 'card %s: example prints %r, card says %r %s' % (c['id'], so, chk['output'], se.strip()[-80:]))
+        elif chk and chk['lang'] == 'sql':
+            con = sqlite3.connect(':memory:')
+            for t in tables.values(): con.executescript(t['create'])
+            try:
+                rows = [list(r) for r in con.execute(chk['sql']).fetchall()]
+                ok(rows == chk['rows'] and len(rows) >= 1, 'card %s: query rows differ from the card or are empty' % c['id'])
+            except Exception as ex:
+                ok(False, 'card %s: SQL error %s' % (c['id'], ex))
+        elif chk: ok(False, 'card %s: unknown check type' % c['id'])
         prose_ok('card ' + c['id'], [c['front'], c['back']])
+    print('  PASS  ' + ', '.join('%s %d' % (k, v) for k, v in sorted(by_topic.items())))
 
 def main():
     problems = load('problems.json', [])
@@ -240,11 +258,20 @@ def main():
     if cards: check_cards(cards)
     mock = load('mock_exam.json')
     if mock:
-        print('\n== Mock exam: %d sections ==' % len(mock['sections']))
-        pids = {p['id'] for p in problems} | {p['id'] for p in (sql or [])}
+        print('\n== Mock exam: %d sections, %d minutes ==' % (len(mock['sections']), mock['minutes']))
+        pids = {p['id'] for p in problems}; sids = {p['id'] for p in (sql or [])}
         qids = {q['id'] for n in ('quiz_bigo.json', 'quiz_prompt.json') for q in (load(n) or [])}
+        ok(sum(s['weight'] for s in mock['sections']) == 100, 'mock exam weights must add up to 100')
+        ok(mock['pass_percent'] == 60, 'mock exam pass line must be 60')
+        seen_items = []
         for s in mock['sections']:
-            for i in s['items']: ok(i in pids or i in qids, 'mock exam references unknown item %s' % i)
+            for i in s['items']:
+                ok(i in pids or i in sids or i in qids, 'mock exam references unknown item %s' % i)
+                seen_items.append(i)
+                if s['kind'] == 'python': ok(i in pids, 'mock exam: %s is not a Python problem' % i)
+                if s['kind'] == 'sql': ok(i in sids, 'mock exam: %s is not a SQL problem' % i)
+        ok(len(seen_items) == len(set(seen_items)), 'mock exam lists an item twice')
+        print('  PASS  %d items across %d sections' % (len(seen_items), len(mock['sections'])))
     print('\n== Multiple-choice items checked, by file ==')
     for k in sorted(MC_COUNT): print('  %-26s %d items' % (k, MC_COUNT[k]))
     print('  %-26s %d items' % ('TOTAL', sum(MC_COUNT.values())))

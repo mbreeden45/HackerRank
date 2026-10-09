@@ -21,11 +21,14 @@ window.BP = window.BP || {};
       main.innerHTML = '<div class="card"><h1>Welcome</h1><p>This app helps you get ready for the HackerRank Builder assessment. You need ' + PASS + ' percent to pass, and you can retake it.</p><p>We start with a short placement check so we do not waste your time on things you already know.</p><a class="btn primary" href="#/diagnostic">Start the placement check</a> <a class="btn" href="#/lessons">Skip it and see all lessons</a></div>';
       return;
     }
-    const doneN = C.lessons.filter((l) => d.lessons[l.id] && d.lessons[l.id].done).length;
-    const next = C.lessons.find((l) => !(d.lessons[l.id] && d.lessons[l.id].done));
-    const solved = C.problems.filter((p) => (d.problems[p.id] || {}).solved).length;
-    let h = '<h1>Your path</h1><div class="card"><div class="row"><div><b>' + doneN + ' of ' + C.lessons.length + '</b> lessons done</div><div><b>' + solved + ' of ' + C.problems.length + '</b> problems solved</div></div><div class="bar" style="margin-top:8px"><i style="width:' + (doneN / C.lessons.length * 100) + '%"></i></div>' +
-      (next ? '<p>Next up: <a class="btn primary" href="#/lesson/' + next.id + '">' + esc(next.title) + '</a></p>' : '<p>You have finished every lesson in this version. Keep practicing.</p>') + '</div>';
+    const everyLesson = C.lessons.map((l) => ({ l, href: '#/lesson/' + l.id })).concat(C.study.map((l) => ({ l, href: '#/study/' + l.id })));
+    const isDone = (x) => d.lessons[x.l.id] && d.lessons[x.l.id].done;
+    const doneN = everyLesson.filter(isDone).length;
+    const next = everyLesson.find((x) => !isDone(x));
+    const allProblems = C.problems.length + C.sql.length;
+    const solved = C.problems.concat(C.sql).filter((p) => (d.problems[p.id] || {}).solved).length;
+    let h = '<h1>Your path</h1><div class="card"><div class="row"><div><b>' + doneN + ' of ' + everyLesson.length + '</b> lessons done</div><div><b>' + solved + ' of ' + allProblems + '</b> problems solved</div></div><div class="bar" style="margin-top:8px"><i style="width:' + (doneN / everyLesson.length * 100) + '%"></i></div>' +
+      (next ? '<p>Next up: <a class="btn primary" href="' + next.href + '">' + esc(next.l.title) + '</a></p>' : '<p>You have finished every lesson. Keep practicing, and try a mock exam.</p>') + '</div>';
     const due = BP.adaptive ? BP.adaptive.dueCount() : 0;
     h += '<div class="card"><h2>Not sure what to do next</h2><p>The app picks one question for you: a missed one that is due for another look, or the weakest topic at a level just above what you have already done.</p><a class="btn primary" href="#/next">Next best question</a> ' + (due ? '<span class="pill">' + due + ' review' + (due === 1 ? '' : 's') + ' due now</span>' : '') + '</div>';
     const weak = weakTopics();
@@ -75,7 +78,18 @@ window.BP = window.BP || {};
       const ps = C.problems.filter((p) => p.lesson === l.id); if (!ps.length) return '';
       const st = ps.map((p) => d.problems[p.id] || {});
       return '<tr><td>' + esc(l.title) + '</td><td>' + st.filter((s) => s.solved).length + ' of ' + ps.length + '</td><td>' + st.reduce((a, s) => a + (s.attempts || 0), 0) + '</td><td>' + st.reduce((a, s) => a + (s.hints || 0), 0) + '</td></tr>';
-    }).join('') + '</table></div><button id="rst">Erase all my progress</button>';
+    }).join('') + '</table></div>';
+    const q = (name) => { const items = C.quiz[name] || []; const good = items.filter((x) => d.quiz[x.id] && typeof d.quiz[x.id] === 'object' && d.quiz[x.id].last).length; return [items.length, good]; };
+    const sqlSolved = C.sql.filter((p) => (d.problems[p.id] || {}).solved).length, sqlHints = C.sql.reduce((a, p) => a + ((d.problems[p.id] || {}).hints || 0), 0);
+    const pq = q('prompt'), bq = q('bigo'), cardsStarted = C.cards.filter((c) => d.cards && d.cards[c.id]).length, cardsDue = C.cards.filter((c) => d.cards && d.cards[c.id] && d.cards[c.id].due <= Date.now()).length;
+    h += '<div class="card"><h2>Other areas</h2><table><tr><th>Area</th><th>Where you are</th></tr>' +
+      '<tr><td>SQL problems</td><td>' + sqlSolved + ' of ' + C.sql.length + ' solved, ' + sqlHints + ' hints used</td></tr>' +
+      '<tr><td>Prompt Engineering questions</td><td>latest answer right on ' + pq[1] + ' of ' + pq[0] + '</td></tr>' +
+      '<tr><td>Big O questions</td><td>latest answer right on ' + bq[1] + ' of ' + bq[0] + '</td></tr>' +
+      '<tr><td>Flashcards</td><td>' + cardsStarted + ' of ' + C.cards.length + ' started, ' + cardsDue + ' due now</td></tr>' +
+      '<tr><td>Reviews of missed items</td><td>' + (BP.adaptive ? BP.adaptive.dueCount() : 0) + ' due now, ' + Object.keys(d.review || {}).length + ' waiting in total</td></tr></table></div>';
+    h += '<div class="card"><h2>Mock exams</h2>' + (d.exams.length ? '<table><tr><th>Date</th><th>Score</th><th>Against the ' + PASS + ' percent line</th></tr>' + d.exams.slice(-8).reverse().map((e) => '<tr><td>' + esc(new Date(e.date).toLocaleDateString()) + '</td><td>' + e.percent + '%</td><td>' + (e.percent >= PASS ? 'above' : 'below') + '</td></tr>').join('') + '</table>' : '<p>You have not taken a mock exam yet.</p>') + '<p><a href="#/mock">Mock exam page</a></p></div>';
+    h += '<button id="rst">Erase all my progress</button>';
     main.innerHTML = h;
     main.querySelector('#rst').onclick = () => { if (confirm('Erase all progress on this computer?')) { BP.store.reset(); progress(); } };
   }
@@ -87,8 +101,9 @@ window.BP = window.BP || {};
     const r = location.hash.replace(/^#\/?/, '').split('/');
     document.querySelectorAll('#nav a').forEach((a) => a.classList.toggle('on', a.dataset.r === (r[0] || 'home') || (a.dataset.r === 'practice' && r[0] === 'problem') || (a.dataset.r === 'lessons' && (r[0] === 'lesson' || r[0] === 'study')) || (a.dataset.r === 'sql' && r[0] === 'sqlproblem') || (a.dataset.r === 'quizzes' && r[0] === 'quiz')));
     window.scrollTo(0, 0);
+    if (BP.mock && r[0] !== 'mock') BP.mock.stopTimer();
     if (!r[0]) home();
-    else if (r[0] === 'diagnostic') BP.diagnostic.view(main, C.diag, C.lessons);
+    else if (r[0] === 'diagnostic') BP.diagnostic.view(main, C.diag, C.lessons.filter((l) => !l.track)); // the placement check covers the Basics only
     else if (r[0] === 'lessons') lessonsList();
     else if (r[0] === 'lesson') BP.lesson.view(main, C.lessons, C.problems, r[1]);
     else if (r[0] === 'practice') BP.practice.list(main, C.lessons, C.problems);

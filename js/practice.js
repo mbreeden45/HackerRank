@@ -5,12 +5,14 @@ BP.practice = (function () {
   const norm = (s) => String(s).split('\n').map((l) => l.replace(/\s+$/, '')).join('\n').replace(/\n+$/, '');
   const HINT_NAMES = ['Nudge', 'Bigger hint', 'Plain-English plan', 'Pseudocode', 'Full solution'];
 
-  function view(main, P, lessons, allowHints) {
+  // opts.exam: mock exam mode. No saved progress, no breadcrumb, no Run all test cases (the exam scores the code when you submit).
+  function view(main, P, lessons, allowHints, opts) {
+    opts = opts || {};
     allowHints = allowHints !== false;
     const lessonTitle = (lessons.find((l) => l.id === P.lesson) || {}).title || '';
-    const st = BP.store.problem(P.id);
+    const st = opts.exam ? {} : BP.store.problem(P.id);
     let h = '<div class="split"><div class="left"><div class="card">' +
-      '<div class="mute"><a href="#/practice">Practice</a> / ' + esc(lessonTitle) + '</div><h1>' + esc(P.title) + '</h1>' +
+      (opts.exam ? '' : '<div class="mute"><a href="#/practice">Practice</a> / ' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
       '<span class="pill ' + P.difficulty + '">' + P.difficulty + '</span> ' + (st.solved ? '<span class="pill done">solved</span>' : '') +
       P.statement.map((p) => '<p>' + fmt(p) + '</p>').join('') +
       '<h3>Input format</h3><p>' + fmt(P.input_fmt) + '</p><h3>Output format</h3><p>' + fmt(P.output_fmt) + '</p>' +
@@ -28,7 +30,8 @@ BP.practice = (function () {
     const np = P.prefix ? P.prefix.replace(/\n$/, '').split('\n').length : 0;
     const full = P.prefix + P.body + P.suffix;
     const cm = CodeMirror.fromTextArea(main.querySelector('#code'), { mode: 'python', lineNumbers: true, indentUnit: 4, matchBrackets: true, indentWithTabs: false, extraKeys: { Tab: (c) => c.replaceSelection('    ') } });
-    const saved = (BP.store.get().problems[P.id] || {}).draft;
+    const saved = opts.exam ? opts.initial : (BP.store.get().problems[P.id] || {}).draft;
+    if (opts.exam) main.querySelector('#all').style.display = 'none';
     cm.setValue(saved && saved.startsWith(P.prefix) && saved.endsWith(P.suffix) ? saved : full);
     function lock() {
       const total = cm.lineCount();
@@ -40,7 +43,10 @@ BP.practice = (function () {
     }
     lock();
     let saveT;
-    cm.on('change', () => { clearTimeout(saveT); saveT = setTimeout(() => BP.store.update(() => { BP.store.problem(P.id).draft = cm.getValue(); }), 600); });
+    cm.on('change', () => {
+      if (opts.exam) { opts.onChange && opts.onChange(cm.getValue()); return; }
+      clearTimeout(saveT); saveT = setTimeout(() => BP.store.update(() => { BP.store.problem(P.id).draft = cm.getValue(); }), 600);
+    });
     const res = main.querySelector('#res');
 
     function showResults(rs, tests, label) {

@@ -101,3 +101,25 @@ textarea.sqled{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:14p
 .cmpgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 table.resgrid td{font-family:ui-monospace,Menlo,monospace}
 @media(max-width:900px){.cmp,.cmpgrid{grid-template-columns:1fr}}
+/* mock exam */
+.examtop{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:12px;position:sticky;top:50px;z-index:4}
+.examtop button{margin-left:auto}
+.clock{font:600 20px ui-monospace,Menlo,monospace;color:var(--ink)}.clock.low{color:var(--bad)}
+.examgrid{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:start}
+.examnav{position:sticky;top:110px}
+.qn{width:34px;height:34px;padding:0;margin:2px;text-align:center}
+.qn.ans{background:var(--accent2);border-color:var(--accent)}.qn.cur{outline:2px solid var(--blue)}
+.mrow{display:flex;align-items:center;gap:10px;margin:8px 0}.mlabel{width:170px}.mpct{width:48px;text-align:right;font-variant-numeric:tabular-nums}
+.mbar{position:relative;flex:1;height:16px;background:#e6e9ee;border-radius:6px}
+.mbar>i{display:block;height:100%;background:var(--accent);border-radius:6px}.mbar>i.low{background:#d9a400}
+.line60{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+.line60.inline{position:static;display:inline-block;height:14px;vertical-align:middle;margin-right:6px}
+.mkey{font-size:13px;color:var(--mute)}
+@media(max-width:900px){.examgrid{grid-template-columns:1fr}.examnav{position:static}.mlabel{width:110px}}
+/* flashcards */
+.fcfront{font-size:22px;margin:16px 0;line-height:1.4}
+.fcback{font-size:18px;margin:10px 0;padding:10px 14px;background:#f7faf8;border:1px solid #cfe5d8;border-radius:8px}
+.grades .grade{flex:1;min-width:110px;text-align:center}
+.grade.again{border-color:#e6a19c}.grade.hard{border-color:#e6c874}.grade.good{border-color:#9fd3b8}.grade.easy{border-color:#8fb4e8}
+pre.out{background:#111827;color:#e5e7eb;border-color:#111827}
+header#top{flex-wrap:wrap}

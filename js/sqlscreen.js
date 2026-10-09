@@ -22,13 +22,15 @@ BP.sqlscreen = (function () {
       tables[n].columns.map((c) => '<tr><td><code class="k">' + esc(c[0]) + '</code></td><td>' + esc(c[1]) + '</td><td>' + esc(c[2]) + '</td></tr>').join('') + '</table></details>').join('');
   }
 
-  async function view(main, P, C, allowHints) {
+  // opts.exam: mock exam mode. No saved progress, no Check button, no hints.
+  async function view(main, P, C, allowHints, opts) {
+    opts = opts || {};
     allowHints = allowHints !== false;
-    const st = BP.store.problem(P.id);
+    const st = opts.exam ? {} : BP.store.problem(P.id);
     const lessonTitle = (C.study.find((l) => l.id === P.lesson) || {}).title || '';
     const expected = { columns: P.columns, rows: P.expected };
     main.innerHTML = '<div class="split"><div class="left"><div class="card">' +
-      '<div class="mute"><a href="#/sql">SQL practice</a> / ' + esc(lessonTitle) + '</div><h1>' + esc(P.title) + '</h1>' +
+      (opts.exam ? '' : '<div class="mute"><a href="#/sql">SQL practice</a> / ' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
       '<span class="pill ' + P.difficulty + '">' + P.difficulty + '</span> ' + (st.solved ? '<span class="pill done">solved</span>' : '') +
       P.statement.map((p) => '<p>' + fmt(p) + '</p>').join('') +
       '<h3>Tables you can use</h3>' + schemaHtml(P.tables, C.sqlTables) +
@@ -40,8 +42,12 @@ BP.sqlscreen = (function () {
       (allowHints ? '<div class="card"><h2>Need help</h2><p class="mute">Open one hint at a time. Each one gives away a little more.</p><div id="hints"></div><button id="hintbtn">Show hint 1: Nudge</button></div>' : '') + '</div></div>';
     const start = '-- Write your query here\n';
     const cm = CodeMirror.fromTextArea(main.querySelector('#code'), { mode: 'text/x-sqlite', lineNumbers: true, indentUnit: 2, indentWithTabs: false, extraKeys: { Tab: (c) => c.replaceSelection('  ') } });
-    cm.setValue(st.draft || start);
-    let t; cm.on('change', () => { clearTimeout(t); t = setTimeout(() => BP.store.update(() => { BP.store.problem(P.id).draft = cm.getValue(); }), 600); });
+    cm.setValue((opts.exam ? opts.initial : st.draft) || start);
+    if (opts.exam) main.querySelector('#check').style.display = 'none';
+    let t; cm.on('change', () => {
+      if (opts.exam) { opts.onChange && opts.onChange(cm.getValue()); return; }
+      clearTimeout(t); t = setTimeout(() => BP.store.update(() => { BP.store.problem(P.id).draft = cm.getValue(); }), 600);
+    });
     const res = main.querySelector('#res');
     main.querySelector('#run').onclick = async () => { res.innerHTML = '<div class="mute">Running.</div>'; res.innerHTML = '<h3>Your result</h3>' + await BP.sql.runToHtml(cm.getValue(), C.sqlTables); };
     main.querySelector('#check').onclick = async () => {
