@@ -72,7 +72,7 @@ BP.lesson = (function () {
     h += '<div class="card"><h2>Worked example</h2><p>' + fmt(L.example.caption) + '</p><div id="player"></div></div>';
     if (L.example2) h += '<div class="card"><h2>A second worked example</h2><p>' + fmt(L.example2.caption) + '</p><div id="player2"></div></div>';
     h += '<div class="card"><h2>Predict the output</h2><p>Read the code, decide what it prints, then pick an answer.</p><pre>' + esc(L.predict.code) + '</pre><div id="pq">' +
-      L.predict.options.map((o, i) => '<button class="opt" data-i="' + i + '">' + esc(o) + '</button>').join('') + '</div><div id="pa"></div></div>';
+      BP.vis.order(L.predict.options.length).map((i) => '<button class="opt" data-i="' + i + '">' + esc(L.predict.options[i]) + '</button>').join('') + '</div><div id="pa"></div></div>';
     const probs = problems.filter((p) => p.lesson === id);
     h += '<div class="card"><h2>Now you try</h2>' + (probs.length ? '<p>These practice problems use only what you have just seen.</p>' : '<p>This lesson has questions instead of coding problems.</p>') + (L.practice_link ? '<p><a class="btn primary" href="' + L.practice_link.href + '">' + esc(L.practice_link.text) + '</a></p>' : '') + '<div class="grid">' +
       probs.map((p) => { const st = BP.store.get().problems[p.id]; return '<a class="item ' + (st && st.solved ? 'done' : '') + '" href="#/problem/' + p.id + '"><b>' + esc(p.title) + '</b><br><span class="pill ' + p.difficulty + '">' + p.difficulty + '</span> ' + (st && st.solved ? '<span class="pill done">solved</span>' : '') + '</a>'; }).join('') + '</div></div>';
@@ -83,7 +83,7 @@ BP.lesson = (function () {
     if (L.example2) tracePlayer(main.querySelector('#player2'), L.example2, L);
     main.querySelectorAll('#pq .opt').forEach((b) => (b.onclick = () => {
       const i = Number(b.dataset.i), ok = i === L.predict.answer;
-      main.querySelectorAll('#pq .opt').forEach((x, j) => { x.disabled = true; if (j === L.predict.answer) x.classList.add('right'); else if (j === i) x.classList.add('wrong'); });
+      main.querySelectorAll('#pq .opt').forEach((x) => { const j = Number(x.dataset.i); x.disabled = true; if (j === L.predict.answer) x.classList.add('right'); else if (j === i) x.classList.add('wrong'); });
       main.querySelector('#pa').innerHTML = '<div class="' + (ok ? 'good' : 'bad') + '">' + (ok ? 'That is right. ' : 'Not quite. ') + fmt(L.predict.why) + '</div>';
       BP.store.update((d) => { d.quiz['pred-' + id] = ok; });
     }));

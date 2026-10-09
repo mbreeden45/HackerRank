@@ -12,3 +12,9 @@
 - Phase 1 has 44 problems (not about 50), 14 lessons, 13 diagnostic questions and 30 error patterns.
 - The macOS system Python is 3.9, the browser's is 3.12. Problems avoid features that differ.
 - Progress is saved in the browser's localStorage under `builderPrep.v1`. localStorage belongs to the address `127.0.0.1:8765`, so always use the same address (start.command does).
+- Phase 2 and 3 decisions: reading lessons (Prompt Engineering, SQL) use a block format in `lessons_x.json` instead of the Python trace player, because their examples are prompts and queries. SQL lesson queries are runnable in the page with sql.js.
+- Python patterns, Big O and strings lessons stay in `lessons.json` with traced examples. A `track` field groups them on the Lessons page.
+- Written Prompt Engineering answers are self-marked against a model answer and a 4 to 6 point checklist. A keyword match only adds a hint marker next to a point and never decides the score.
+- Mock exam: 90 minutes, 18 items, weights Prompt Engineering 30, Problem Solving 30, SQL Foundations 25, Big O 15. Python scores by the share of test cases passed, SQL and multiple choice are all or nothing, written answers use the learner's ticks. No 15 minute sprint.
+- Adaptive practice and flashcards keep their state in the same localStorage key (`review` and `cards`).
+- SQL answers are compared by values and column count, not column names, and by order only when the question asks for an order. Floats are compared to 6 decimal places.

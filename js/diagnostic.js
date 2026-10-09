@@ -7,7 +7,7 @@ BP.diagnostic = (function () {
     function ask() {
       const q = D.questions[i];
       main.innerHTML = '<div class="card"><div class="mute">Question ' + (i + 1) + ' of ' + D.questions.length + '</div><div class="bar"><i style="width:' + (i / D.questions.length * 100) + '%"></i></div><h2>' + fmt(q.prompt) + '</h2><pre>' + esc(q.code) + '</pre>' +
-        q.options.map((o, k) => '<button class="opt" data-k="' + k + '">' + esc(o) + '</button>').join('') +
+        BP.vis.order(q.options.length).map((k) => '<button class="opt" data-k="' + k + '">' + esc(q.options[k]) + '</button>').join('') +
         '<button class="opt plain" data-k="-1" style="color:#5d6b7c">I am not sure</button><div id="fb"></div></div>';
       main.querySelectorAll('.opt').forEach((b) => (b.onclick = () => {
         const k = Number(b.dataset.k), ok = k === q.answer;

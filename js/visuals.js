@@ -87,5 +87,7 @@ BP.vis = (function () {
     });
     return h || '<div class="mute">No list to draw yet.</div>';
   }
-  return { boxes, grid, dictv, table, forStep, show, esc };
+  // Option order for a multiple-choice question: a random order, so the right answer is not always the first one.
+  function order(n) { const a = []; for (let i = 0; i < n; i++) a.push(i); for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  return { boxes, grid, dictv, table, forStep, show, esc, order };
 })();
