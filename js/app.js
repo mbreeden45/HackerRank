@@ -8,8 +8,10 @@ window.BP = window.BP || {};
 
   async function load() {
     const get = (f) => fetch('content/' + f).then((r) => r.json());
-    const [lessons, problems, diag, errors] = await Promise.all([get('lessons.json'), get('problems.json'), get('diagnostic.json'), get('errors.json')]);
-    C = { lessons, problems, diag, errors };
+    const opt = (f) => fetch('content/' + f).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    const [lessons, problems, diag, errors, bigo, prompt, studyX, sqlP, sqlT, cards, mock] = await Promise.all([get('lessons.json'), get('problems.json'), get('diagnostic.json'), get('errors.json'),
+      opt('quiz_bigo.json'), opt('quiz_prompt.json'), opt('lessons_x.json'), opt('sql_problems.json'), opt('sql_tables.json'), opt('flashcards.json'), opt('mock_exam.json')]);
+    C = { lessons, problems, diag, errors, quiz: { bigo, prompt }, study: studyX || [], sql: sqlP || [], sqlTables: sqlT || {}, cards: cards || [], mock };
     BP.explain.setErrors(errors);
   }
 
@@ -43,8 +45,19 @@ window.BP = window.BP || {};
   }
   function lessonsList() {
     const d = BP.store.get();
-    main.innerHTML = '<h1>Lessons</h1><p class="mute">Follow them in order. Each one has an idea, a picture, a step-by-step example and practice.</p><div class="grid">' +
-      C.lessons.map((l, i) => { const dn = d.lessons[l.id]; return '<a class="item ' + (dn && dn.done ? 'done' : '') + '" href="#/lesson/' + l.id + '"><span class="mute">Lesson ' + (i + 1) + '</span><br><b>' + esc(l.title) + '</b>' + (dn && dn.done ? '<br><span class="pill done">' + (dn.auto ? 'known from placement' : 'done') + '</span>' : '') + '</a>'; }).join('') + '</div>';
+    const order = ['Basics', 'Patterns', 'Strings and parsing', 'Big O', 'Prompt Engineering', 'SQL Foundations'];
+    const all = C.lessons.map((l, i) => ({ l, n: i + 1, href: '#/lesson/' + l.id, track: l.track || 'Basics' }))
+      .concat(C.study.map((l) => ({ l, n: 0, href: '#/study/' + l.id, track: l.track })));
+    let h = '<h1>Lessons</h1><p class="mute">Follow each group in order. Each lesson has an idea, a worked example and practice.</p>';
+    order.forEach((t) => {
+      const group = all.filter((x) => x.track === t);
+      if (!group.length) return;
+      h += '<h2 style="margin-top:18px">' + esc(t) + '</h2><div class="grid">' + group.map((x, k) => {
+        const dn = d.lessons[x.l.id];
+        return '<a class="item ' + (dn && dn.done ? 'done' : '') + '" href="' + x.href + '"><span class="mute">' + (x.n ? 'Lesson ' + x.n : 'Lesson ' + (k + 1) + ' of ' + group.length) + '</span><br><b>' + esc(x.l.title) + '</b>' + (dn && dn.done ? '<br><span class="pill done">' + (dn.auto ? 'known from placement' : 'done') + '</span>' : '') + '</a>';
+      }).join('') + '</div>';
+    });
+    main.innerHTML = h;
   }
   function explainPage() {
     main.innerHTML = '<h1>Explain a line</h1><p>Paste one line of Python to see it in plain English, or paste an error message to see what it means.</p><div class="card"><div class="lbl">A line of code</div><textarea class="custom" id="ln" placeholder="for i in range(len(nums)):"></textarea><button class="primary" id="b1" style="margin:6px 0">What does this line mean</button><div id="o1"></div></div>' +
@@ -65,9 +78,12 @@ window.BP = window.BP || {};
     main.querySelector('#rst').onclick = () => { if (confirm('Erase all progress on this computer?')) { BP.store.reset(); progress(); } };
   }
 
+  // Other modules add handlers to BP.routeHandlers: fn(r, main, C) returns true when it drew the page.
+  BP.extraRoute = (r, main, C) => (BP.routeHandlers || []).some((f) => f(r, main, C));
+
   function route() {
     const r = location.hash.replace(/^#\/?/, '').split('/');
-    document.querySelectorAll('#nav a').forEach((a) => a.classList.toggle('on', a.dataset.r === (r[0] || 'home') || (a.dataset.r === 'practice' && r[0] === 'problem') || (a.dataset.r === 'lessons' && r[0] === 'lesson')));
+    document.querySelectorAll('#nav a').forEach((a) => a.classList.toggle('on', a.dataset.r === (r[0] || 'home') || (a.dataset.r === 'practice' && r[0] === 'problem') || (a.dataset.r === 'lessons' && (r[0] === 'lesson' || r[0] === 'study')) || (a.dataset.r === 'sql' && r[0] === 'sqlproblem') || (a.dataset.r === 'quizzes' && r[0] === 'quiz')));
     window.scrollTo(0, 0);
     if (!r[0]) home();
     else if (r[0] === 'diagnostic') BP.diagnostic.view(main, C.diag, C.lessons);
@@ -77,7 +93,7 @@ window.BP = window.BP || {};
     else if (r[0] === 'problem') { const p = C.problems.find((x) => x.id === r[1]); p ? BP.practice.view(main, p, C.lessons) : (main.innerHTML = 'Problem not found.'); }
     else if (r[0] === 'explain') explainPage();
     else if (r[0] === 'progress') progress();
-    else if (BP.extraRoute && BP.extraRoute(r, main, C)) { /* handled */ }
+    else if (BP.extraRoute(r, main, C)) { /* handled */ }
     else home();
   }
   BP.app = { PASS, get C() { return C; }, route, weakTopics };

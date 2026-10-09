@@ -4,6 +4,8 @@ BP.lesson = (function () {
   const fmt = (t) => esc(t).replace(/`([^`]+)`/g, '<code class="k">$1</code>');
 
   function staticVisual(v) {
+    if (v.type === 'dict') return BP.vis.dictv(v.pairs, { title: v.title });
+    if (v.type === 'table') return BP.vis.table(v.head, v.rows, { title: v.title });
     if (v.type === 'grid') return BP.vis.grid(v.rows, { title: v.title, r: v.r, c: v.c });
     return BP.vis.boxes(v.items, { title: v.title, pointers: v.pointers, hl: v.hl, negative: v.negative });
   }
@@ -72,7 +74,7 @@ BP.lesson = (function () {
     h += '<div class="card"><h2>Predict the output</h2><p>Read the code, decide what it prints, then pick an answer.</p><pre>' + esc(L.predict.code) + '</pre><div id="pq">' +
       L.predict.options.map((o, i) => '<button class="opt" data-i="' + i + '">' + esc(o) + '</button>').join('') + '</div><div id="pa"></div></div>';
     const probs = problems.filter((p) => p.lesson === id);
-    h += '<div class="card"><h2>Now you try</h2><p>These practice problems use only what you have just seen.</p><div class="grid">' +
+    h += '<div class="card"><h2>Now you try</h2>' + (probs.length ? '<p>These practice problems use only what you have just seen.</p>' : '<p>This lesson has questions instead of coding problems.</p>') + (L.practice_link ? '<p><a class="btn primary" href="' + L.practice_link.href + '">' + esc(L.practice_link.text) + '</a></p>' : '') + '<div class="grid">' +
       probs.map((p) => { const st = BP.store.get().problems[p.id]; return '<a class="item ' + (st && st.solved ? 'done' : '') + '" href="#/problem/' + p.id + '"><b>' + esc(p.title) + '</b><br><span class="pill ' + p.difficulty + '">' + p.difficulty + '</span> ' + (st && st.solved ? '<span class="pill done">solved</span>' : '') + '</a>'; }).join('') + '</div></div>';
     h += '<div class="row"><button class="primary" id="fin">' + (done ? 'Lesson marked complete' : 'Mark lesson complete') + '</button>' +
       (idx + 1 < lessons.length ? '<a class="btn" href="#/lesson/' + lessons[idx + 1].id + '">Next lesson: ' + esc(lessons[idx + 1].title) + '</a>' : '') + '</div>';

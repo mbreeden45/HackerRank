@@ -48,6 +48,18 @@ BP.vis = (function () {
     });
     return h + '</table></div>';
   }
+  function dictv(pairs, opts) {
+    opts = opts || {};
+    let h = '<div class="vis">' + (opts.title ? '<div class="t">' + esc(opts.title) + '</div>' : '') + '<table class="dictv"><tr><th>key</th><th>value</th></tr>';
+    pairs.forEach((p) => (h += '<tr><td>' + esc(show(p[0])) + '</td><td>' + esc(show(p[1])) + '</td></tr>'));
+    if (!pairs.length) h += '<tr><td colspan="2" class="mute">empty</td></tr>';
+    return h + '</table></div>';
+  }
+  function table(head, rows, opts) {
+    opts = opts || {};
+    return '<div class="vis">' + (opts.title ? '<div class="t">' + esc(opts.title) + '</div>' : '') + '<table><tr>' + head.map((x) => '<th>' + esc(x) + '</th>').join('') + '</tr>' +
+      rows.map((r) => '<tr>' + r.map((x) => '<td>' + esc(x) + '</td>').join('') + '</tr>').join('') + '</table></div>';
+  }
   const PTR_NAMES = ['i', 'j', 'k', 'idx', 'index', 'pos', 'left', 'right', 'lo', 'hi', 'start', 'end', 'first', 'last'];
   // Draw the picture for one trace step: every list / string as boxes, every grid as a grid
   function forStep(vars, lesson) {
@@ -67,11 +79,13 @@ BP.vis = (function () {
           if (lesson && lesson.window && typeof vars[lesson.window[0]] === 'number' && typeof vars[lesson.window[1]] === 'number') hl = [vars[lesson.window[0]], vars[lesson.window[1]] + 1];
           h += boxes(v.v, { title: name, pointers: ptrs, hl: hl, negative: lesson && lesson.negative, showOff: true });
         }
+      } else if (v && typeof v === 'object' && v.t === 'dict') {
+        h += dictv(v.v, { title: name });
       } else if (typeof v === 'string' && wanted && wanted.indexOf(name) >= 0) {
         h += boxes(v.split(''), { title: name, pointers: ptrs, negative: lesson && lesson.negative, showOff: true });
       }
     });
     return h || '<div class="mute">No list to draw yet.</div>';
   }
-  return { boxes, grid, forStep, show, esc };
+  return { boxes, grid, dictv, table, forStep, show, esc };
 })();

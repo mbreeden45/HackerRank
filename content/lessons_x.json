@@ -1,0 +1,766 @@
+[
+ {
+  "id": "pe_extract",
+  "track": "Prompt Engineering",
+  "title": "Prompts for extraction and summarization",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "A prompt is the instruction you give a language model. The model cannot see your goal. It only sees your words, so anything you leave out, it has to guess. Most weak prompts fail because they leave out the same few things."
+   },
+   {
+    "t": "h",
+    "text": "The five parts of a strong prompt"
+   },
+   {
+    "t": "table",
+    "head": [
+     "Part",
+     "What it answers",
+     "Example"
+    ],
+    "rows": [
+     [
+      "Task",
+      "What should the model do? Use one clear verb.",
+      "Extract the customer name and order number."
+     ],
+     [
+      "Input",
+      "Where is the text to work on? Mark it with delimiters, which are marks that show where it starts and ends.",
+      "The email is between triple quotes."
+     ],
+     [
+      "Rules",
+      "What to include, what to leave out, how long.",
+      "Use only the text. Maximum 2 sentences."
+     ],
+     [
+      "Output format",
+      "What shape should the answer take?",
+      "A JSON object with the keys name and order_number."
+     ],
+     [
+      "Missing information",
+      "What to do when something is not in the text.",
+      "Write null. Do not guess."
+     ]
+    ]
+   },
+   {
+    "t": "p",
+    "text": "You will not always need all five, but ask yourself about each one before you send a prompt."
+   },
+   {
+    "t": "h",
+    "text": "Extraction: pulling facts out of text"
+   },
+   {
+    "t": "p",
+    "text": "Extraction means finding specific facts in a piece of text, such as a name, a date or an amount. Name every field exactly. Say what to do when a field is missing. If you do not, the model will often invent a plausible value, because it tries to be helpful."
+   },
+   {
+    "t": "compare",
+    "badLabel": "Weaker prompt",
+    "goodLabel": "Stronger prompt",
+    "bad": "Get the info from this email: {email}",
+    "badWhy": "Which info? In what shape? What if something is missing? The model has to guess all three.",
+    "good": "Extract the customer name and the order number from the email between the triple quotes.\nIf either one is missing, write null for it. Do not guess.\nReturn only a JSON object with the keys name and order_number.\n\n\"\"\"\n{email}\n\"\"\"",
+    "goodWhy": "It names the task, the two fields, the missing rule, the format, and it marks the input with delimiters."
+   },
+   {
+    "t": "callout",
+    "text": "Curly brackets such as `{email}` are a placeholder. In real use, your program replaces them with the actual text before sending the prompt."
+   },
+   {
+    "t": "h",
+    "text": "Summarization: shorter, but still true"
+   },
+   {
+    "t": "p",
+    "text": "A summary is a shorter version that keeps what matters. What matters depends on the reader. A busy manager wants decisions and dates. A support agent wants the problem and what was already tried. So say who the summary is for, how long it should be, and what to keep."
+   },
+   {
+    "t": "compare",
+    "badLabel": "Weaker prompt",
+    "goodLabel": "Stronger prompt",
+    "bad": "Summarize this.",
+    "badWhy": "No reader, no length, no focus. The result could be one line or one page.",
+    "good": "Summarize the meeting notes between the triple quotes for a manager who has two minutes.\nWrite exactly 3 bullet points. Keep decisions, owners and dates. Leave out small talk.\nUse only what is in the notes. If something is not stated, do not add it.\n\n\"\"\"\n{notes}\n\"\"\"",
+    "goodWhy": "It names the reader, the length, what to keep and what to leave out, and it forbids invention."
+   },
+   {
+    "t": "warn",
+    "text": "Language models can state things that are not in the text, and they sound sure when they do. This is called a hallucination. The best defence is a rule such as: use only the information in the text, and if it is not stated, say it is not stated."
+   },
+   {
+    "t": "h",
+    "text": "A quick checklist before you send a prompt"
+   },
+   {
+    "t": "steps",
+    "items": [
+     "Did I say what the task is, with one clear verb?",
+     "Did I mark the input text with delimiters such as triple quotes or tags?",
+     "Did I name the exact fields, or the length and focus of the summary?",
+     "Did I say what to do when something is missing?",
+     "Did I say what the answer should look like?",
+     "Did I say what to do rather than only what not to do? Positive instructions are easier to follow."
+    ]
+   }
+  ],
+  "after": {
+   "text": "Try the questions on extraction and summarization. Some ask you to pick the better prompt and some ask you to write one.",
+   "href": "#/quiz/prompt",
+   "button": "Open the Prompt Engineering questions"
+  }
+ },
+ {
+  "id": "pe_validate",
+  "track": "Prompt Engineering",
+  "title": "Completeness and validation prompts",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "Sometimes you do not want facts out of the text. You want to know whether the text is complete and correct. For example: does this support request include an order number, a description of the problem and a way to contact the customer? Does this form follow the rules?"
+   },
+   {
+    "t": "p",
+    "text": "That is a validation task. The model must compare the text against a list of requirements and report what is there and what is missing."
+   },
+   {
+    "t": "h",
+    "text": "Make the requirements an explicit list"
+   },
+   {
+    "t": "p",
+    "text": "Words like good, valid or complete mean nothing until you define them. Write the requirements as a numbered list. The model will check them one by one, and so can you."
+   },
+   {
+    "t": "compare",
+    "badLabel": "Weaker prompt",
+    "goodLabel": "Stronger prompt",
+    "bad": "Is this support request complete?\n\n{request}",
+    "badWhy": "Complete according to what? The model will invent its own idea of complete, and it may change between runs.",
+    "good": "A support request is complete only if it has all three of these:\n1. An order number\n2. A description of the problem\n3. A contact email address\n\nCheck the request between the triple quotes. For each item, write present or missing, and quote the words that show it.\nThen write complete if all three are present, otherwise incomplete.\nDo not guess. If an item is only hinted at, mark it missing.\n\n\"\"\"\n{request}\n\"\"\"",
+    "goodWhy": "Three clear requirements, a result per item, a quote as evidence, a final decision rule and a no-guessing rule."
+   },
+   {
+    "t": "h",
+    "text": "Ask for evidence"
+   },
+   {
+    "t": "p",
+    "text": "Ask the model to quote the exact words that prove each item is present. If it cannot quote anything, the item is probably missing. Quotes make the answer easy to check, and they stop the model from saying yes without looking."
+   },
+   {
+    "t": "h",
+    "text": "Decide how to treat tricky cases before they happen"
+   },
+   {
+    "t": "table",
+    "head": [
+     "Tricky case",
+     "Example",
+     "A rule you can write"
+    ],
+    "rows": [
+     [
+      "Vague value",
+      "I will send the date soon.",
+      "Treat words such as soon or later as missing. Accept only a real calendar date."
+     ],
+     [
+      "Blank or placeholder",
+      "Order number: N/A",
+      "Treat N/A, none and blank as missing."
+     ],
+     [
+      "Wrong format",
+      "Email: ana at example dot com",
+      "Accept only the form name@domain."
+     ],
+     [
+      "Conflicting values",
+      "Two different delivery dates",
+      "Report both values and set conflict to true. Do not pick one silently."
+     ],
+     [
+      "Extra information",
+      "Details nobody asked for",
+      "Ignore anything that is not on the requirements list."
+     ]
+    ]
+   },
+   {
+    "t": "h",
+    "text": "A fixed answer shape makes results easy to use"
+   },
+   {
+    "t": "p",
+    "text": "If a program reads the answer, tell the model exactly what words to use for the decision, for example complete or incomplete, in lower case, and nothing else on that line."
+   },
+   {
+    "t": "code",
+    "label": "A short example you can include in the prompt",
+    "text": "Example request: \"Hi, my package never came. Please email me at lee@example.com\"\nExample answer:\norder number: missing\nproblem description: present (\"my package never came\")\ncontact email: present (\"lee@example.com\")\nresult: incomplete"
+   },
+   {
+    "t": "callout",
+    "text": "One or two worked examples, called few-shot examples, show the model the exact style you want. Include one tricky example, like the one above where an item is missing."
+   }
+  ],
+  "after": {
+   "text": "Practise choosing and writing completeness prompts.",
+   "href": "#/quiz/prompt",
+   "button": "Open the Prompt Engineering questions"
+  }
+ },
+ {
+  "id": "pe_structured",
+  "track": "Prompt Engineering",
+  "title": "Structured output: answers a program can read",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "When a person reads the answer, loose sentences are fine. When a program reads the answer, the shape must be exactly the same every time. Structured output means asking the model for an answer in a strict, predictable format. The most common format is JSON."
+   },
+   {
+    "t": "h",
+    "text": "What JSON looks like"
+   },
+   {
+    "t": "code",
+    "label": "A JSON object",
+    "text": "{\n  \"name\": \"Ana Lopez\",\n  \"order_number\": \"A1042\",\n  \"quantity\": 3,\n  \"gift\": false,\n  \"notes\": null\n}"
+   },
+   {
+    "t": "p",
+    "text": "Curly brackets hold an object. Each entry is a key in double quotes, a colon, and a value. Values can be text (in double quotes), numbers, true or false, null (meaning nothing), lists in square brackets, or another object. JSON does not allow single quotes, comments, or a comma after the last entry."
+   },
+   {
+    "t": "h",
+    "text": "Describe the format in the prompt"
+   },
+   {
+    "t": "compare",
+    "badLabel": "Weaker prompt",
+    "goodLabel": "Stronger prompt",
+    "bad": "Give me the order details as JSON: {email}",
+    "badWhy": "Which keys? Which types? What about missing values? The key names could change every run.",
+    "good": "Extract the order details from the email between the triple quotes.\nReturn only a JSON object with exactly these keys:\n  \"name\": text\n  \"order_number\": text\n  \"quantity\": whole number\n  \"gift\": true or false\nIf a value is not stated, use null. Do not add other keys.\nWrite nothing before or after the JSON.\n\n\"\"\"\n{email}\n\"\"\"",
+    "goodWhy": "It lists the exact keys and types, says what to do with missing values, forbids extra keys, and forbids extra text."
+   },
+   {
+    "t": "h",
+    "text": "Rules that keep the output readable by code"
+   },
+   {
+    "t": "steps",
+    "items": [
+     "Name every key and its type. Say which values may be null.",
+     "Always return every key, even when a value is missing. Use null so the shape never changes.",
+     "Pick one style for each kind of value. For example: dates as YYYY-MM-DD, prices as plain numbers such as 12.5 with no currency symbol, yes or no questions as true or false.",
+     "If a value must be one of a few words (an enum), list them: the label must be exactly one of urgent, normal or low.",
+     "Say: return only the JSON, with no text before or after it and no code fences. A reply that begins with Sure, here is the JSON cannot be parsed.",
+     "Show a small example of a correct answer."
+    ]
+   },
+   {
+    "t": "warn",
+    "text": "Common mistakes in JSON: single quotes instead of double quotes, a comma after the last item, a comment inside the JSON, and text before or after it. Any one of these makes a program fail when it tries to read the reply."
+   },
+   {
+    "t": "h",
+    "text": "Checking the output with Python"
+   },
+   {
+    "t": "p",
+    "text": "Python can test whether a reply is valid JSON with the json module. If loads raises an error, the reply was not valid."
+   },
+   {
+    "t": "code",
+    "label": "Python",
+    "text": "import json\nreply = '{\"name\": \"Ana\", \"quantity\": 3}'\ndata = json.loads(reply)\nprint(data[\"quantity\"] + 1)"
+   },
+   {
+    "t": "p",
+    "text": "Lists work too. If you want many items, such as every action item in a set of notes, ask for a JSON list of objects, and say that an empty list means there were none."
+   },
+   {
+    "t": "compare",
+    "badLabel": "Weaker output request",
+    "goodLabel": "Stronger output request",
+    "bad": "List the action items.",
+    "badWhy": "The shape could be bullets, a paragraph or a table, and it can change each run.",
+    "good": "Return a JSON list. Each entry is an object with the keys \"owner\" (text or null), \"task\" (text) and \"due\" (YYYY-MM-DD or null).\nIf there are no action items, return an empty list: []",
+    "goodWhy": "Same shape every time, with a clear rule for missing owners, missing dates and no items at all."
+   }
+  ],
+  "after": {
+   "text": "Practise with the structured output questions.",
+   "href": "#/quiz/prompt",
+   "button": "Open the Prompt Engineering questions"
+  }
+ },
+ {
+  "id": "sql_select",
+  "track": "SQL Foundations",
+  "title": "SELECT and WHERE: asking a table for rows",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "SQL (said as sequel or S-Q-L) is the language for asking questions of a database. A database stores information in tables. A table is a grid: each row is one thing (one employee, one order) and each column is one fact about it (a name, a salary)."
+   },
+   {
+    "t": "p",
+    "text": "You do not tell SQL how to find the answer. You describe the answer you want, and the database works out the rest. That makes SQL short, but the words must be in the right order."
+   },
+   {
+    "t": "h",
+    "text": "The tables used in this app"
+   },
+   {
+    "t": "p",
+    "text": "Every practice problem uses the same four small tables: `employees`, `customers`, `orders` and `accounts`. Here are the first rows of `employees`. You can see every table with its columns on each practice screen."
+   },
+   {
+    "t": "table",
+    "head": [
+     "id",
+     "name",
+     "department",
+     "salary",
+     "manager_id",
+     "hire_year"
+    ],
+    "rows": [
+     [
+      1,
+      "Ava",
+      "Sales",
+      52000,
+      "NULL",
+      2015
+     ],
+     [
+      2,
+      "Ben",
+      "Sales",
+      48000,
+      1,
+      2018
+     ],
+     [
+      4,
+      "Dev",
+      "Engineering",
+      90000,
+      "NULL",
+      2014
+     ]
+    ],
+    "title": "employees (first three of twelve rows)"
+   },
+   {
+    "t": "h",
+    "text": "SELECT ... FROM: choose columns"
+   },
+   {
+    "t": "p",
+    "text": "`SELECT` says which columns you want. `FROM` says which table. The star `*` means all columns. Press Run to try it. You can edit any query on this page and run it again."
+   },
+   {
+    "t": "sql",
+    "label": "All columns, all rows",
+    "text": "SELECT * FROM employees;"
+   },
+   {
+    "t": "sql",
+    "label": "Only two columns",
+    "text": "SELECT name, salary FROM employees;"
+   },
+   {
+    "t": "callout",
+    "text": "Keywords such as SELECT and FROM are usually written in capitals so they stand out. SQL does not mind either way. A semicolon at the end finishes the query."
+   },
+   {
+    "t": "h",
+    "text": "WHERE: choose rows"
+   },
+   {
+    "t": "p",
+    "text": "`WHERE` keeps only the rows where a condition is true. Compare with `=` (equal), `<>` (not equal), `<`, `>`, `<=` and `>=`. In SQL a single `=` does the comparing. Text goes in single quotes: `'Sales'`. Numbers do not."
+   },
+   {
+    "t": "sql",
+    "label": "Rows that match one condition",
+    "text": "SELECT name, salary FROM employees WHERE department = 'Sales';"
+   },
+   {
+    "t": "sql",
+    "label": "Numbers need no quotes",
+    "text": "SELECT name FROM employees WHERE salary > 70000;"
+   },
+   {
+    "t": "h",
+    "text": "Combining conditions"
+   },
+   {
+    "t": "p",
+    "text": "`AND` needs both conditions to be true. `OR` needs at least one. `NOT` flips a condition. Use brackets when you mix AND and OR, because AND is worked out first."
+   },
+   {
+    "t": "sql",
+    "label": "AND",
+    "text": "SELECT name, salary FROM employees WHERE department = 'Engineering' AND salary < 80000;"
+   },
+   {
+    "t": "h",
+    "text": "More ways to filter"
+   },
+   {
+    "t": "table",
+    "head": [
+     "Tool",
+     "Meaning",
+     "Example"
+    ],
+    "rows": [
+     [
+      "IN (a, b)",
+      "equals one of several values",
+      "product IN ('Mouse', 'Keyboard')"
+     ],
+     [
+      "BETWEEN a AND b",
+      "from a to b, both ends included",
+      "amount BETWEEN 100 AND 300"
+     ],
+     [
+      "LIKE",
+      "text pattern: % means any run of characters",
+      "name LIKE '%a' means ends with a"
+     ],
+     [
+      "IS NULL",
+      "the value is missing (NULL means no value)",
+      "manager_id IS NULL"
+     ],
+     [
+      "DISTINCT",
+      "remove repeated rows from the result",
+      "SELECT DISTINCT city FROM customers"
+     ]
+    ]
+   },
+   {
+    "t": "warn",
+    "text": "NULL is not zero and not an empty text. It means unknown or missing. You cannot test it with `= NULL`. Always write `IS NULL` or `IS NOT NULL`."
+   },
+   {
+    "t": "sql",
+    "label": "A missing value",
+    "text": "SELECT name FROM employees WHERE manager_id IS NULL;"
+   },
+   {
+    "t": "sql",
+    "label": "Remove repeats",
+    "text": "SELECT DISTINCT city FROM customers;"
+   }
+  ],
+  "after": {
+   "text": "Practise SELECT and WHERE with real queries.",
+   "href": "#/sql",
+   "button": "Open the SQL practice list"
+  }
+ },
+ {
+  "id": "sql_order",
+  "track": "SQL Foundations",
+  "title": "ORDER BY and LIMIT: sorting and trimming",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "A query result has no guaranteed order unless you ask for one. `ORDER BY` sorts the rows. `LIMIT` keeps only the first few rows. Together they answer questions such as who are the top three earners."
+   },
+   {
+    "t": "sql",
+    "label": "Smallest salary first (ASC is the default)",
+    "text": "SELECT name, salary FROM employees ORDER BY salary;"
+   },
+   {
+    "t": "sql",
+    "label": "Biggest salary first: DESC means descending",
+    "text": "SELECT name, salary FROM employees ORDER BY salary DESC;"
+   },
+   {
+    "t": "h",
+    "text": "Sorting by more than one column"
+   },
+   {
+    "t": "p",
+    "text": "Separate the columns with commas. SQL sorts by the first column, and only uses the second to break ties, and so on. Each column can have its own ASC or DESC."
+   },
+   {
+    "t": "sql",
+    "label": "Department A to Z, and inside each department the highest salary first",
+    "text": "SELECT department, name, salary FROM employees ORDER BY department, salary DESC;"
+   },
+   {
+    "t": "h",
+    "text": "LIMIT: keep only the first rows"
+   },
+   {
+    "t": "p",
+    "text": "`LIMIT 3` keeps the first three rows of the sorted result. Always put it last in the query. Without ORDER BY, LIMIT gives an arbitrary three rows, so use them together."
+   },
+   {
+    "t": "sql",
+    "label": "The three highest paid",
+    "text": "SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 3;"
+   },
+   {
+    "t": "h",
+    "text": "Calculated columns and AS"
+   },
+   {
+    "t": "p",
+    "text": "You can calculate a new column with plain arithmetic, and give it a name with `AS`."
+   },
+   {
+    "t": "sql",
+    "label": "Yearly pay for a 5 percent raise",
+    "text": "SELECT name, salary * 105 / 100 AS new_salary FROM employees ORDER BY new_salary DESC LIMIT 5;"
+   },
+   {
+    "t": "callout",
+    "text": "Order of the words matters: SELECT, FROM, WHERE, ORDER BY, LIMIT. Mixing them up is the most common beginner error."
+   },
+   {
+    "t": "p",
+    "text": "Dates stored as text in the form YYYY-MM-DD sort correctly in plain alphabetical order, so `ORDER BY order_date DESC` puts the newest order first."
+   },
+   {
+    "t": "sql",
+    "label": "The three newest orders",
+    "text": "SELECT id, order_date FROM orders ORDER BY order_date DESC LIMIT 3;"
+   }
+  ],
+  "after": {
+   "text": "Practise sorting and limiting.",
+   "href": "#/sql",
+   "button": "Open the SQL practice list"
+  }
+ },
+ {
+  "id": "sql_join",
+  "track": "SQL Foundations",
+  "title": "JOIN: combining two tables",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "Databases split information into several tables so that nothing is stored twice. An order does not repeat the customer's name. It stores `customer_id`, a number that matches one row in the customers table. A column like that is called a key."
+   },
+   {
+    "t": "table",
+    "head": [
+     "orders.id",
+     "orders.customer_id",
+     "orders.product"
+    ],
+    "rows": [
+     [
+      1,
+      1,
+      "Laptop"
+     ],
+     [
+      3,
+      2,
+      "Desk"
+     ]
+    ],
+    "title": "orders (some rows)"
+   },
+   {
+    "t": "table",
+    "head": [
+     "customers.id",
+     "customers.name"
+    ],
+    "rows": [
+     [
+      1,
+      "Alice"
+     ],
+     [
+      2,
+      "Bruno"
+     ]
+    ],
+    "title": "customers (some rows)"
+   },
+   {
+    "t": "p",
+    "text": "Order 1 has customer_id 1, and customer 1 is Alice. A `JOIN` lines the rows up like that and gives you one wide row with facts from both tables."
+   },
+   {
+    "t": "h",
+    "text": "INNER JOIN ... ON"
+   },
+   {
+    "t": "p",
+    "text": "`ON` says which columns must match. When two tables have a column with the same name, write the table name first and a dot: `orders.id`. Short nicknames called aliases save typing: `FROM orders o` lets you write `o.id`."
+   },
+   {
+    "t": "sql",
+    "label": "Each order with the customer's name",
+    "text": "SELECT c.name, o.product, o.amount\nFROM orders o\nJOIN customers c ON o.customer_id = c.id;"
+   },
+   {
+    "t": "p",
+    "text": "A plain JOIN is an inner join: it keeps only rows that have a match on both sides. A customer with no orders disappears from the result."
+   },
+   {
+    "t": "h",
+    "text": "LEFT JOIN: keep everything from the left table"
+   },
+   {
+    "t": "p",
+    "text": "`LEFT JOIN` keeps every row from the table before the word JOIN, even when nothing matches. The columns from the other table are NULL for those rows. That lets you find things that have no match at all."
+   },
+   {
+    "t": "sql",
+    "label": "Customers who have never ordered",
+    "text": "SELECT c.name\nFROM customers c\nLEFT JOIN orders o ON o.customer_id = c.id\nWHERE o.id IS NULL;"
+   },
+   {
+    "t": "h",
+    "text": "Watch out for repeated rows"
+   },
+   {
+    "t": "p",
+    "text": "If one customer has three orders, a join gives that customer three rows. To list each customer once, add DISTINCT, or group the rows (next lesson)."
+   },
+   {
+    "t": "sql",
+    "label": "Customers with at least one returned order, each listed once",
+    "text": "SELECT DISTINCT c.name\nFROM customers c\nJOIN orders o ON o.customer_id = c.id\nWHERE o.status = 'returned';"
+   },
+   {
+    "t": "h",
+    "text": "Joining a table to itself"
+   },
+   {
+    "t": "p",
+    "text": "In `employees`, manager_id holds the id of another row in the same table. To show each employee next to their manager's name, join the table to itself and give each copy its own alias."
+   },
+   {
+    "t": "sql",
+    "label": "Employee and manager",
+    "text": "SELECT e.name AS employee, m.name AS manager\nFROM employees e\nJOIN employees m ON e.manager_id = m.id;"
+   }
+  ],
+  "after": {
+   "text": "Practise joins.",
+   "href": "#/sql",
+   "button": "Open the SQL practice list"
+  }
+ },
+ {
+  "id": "sql_group",
+  "track": "SQL Foundations",
+  "title": "GROUP BY and HAVING: totals per group",
+  "blocks": [
+   {
+    "t": "p",
+    "text": "So far each result row came from one table row. To answer questions such as how many employees are in each department, you collapse many rows into one per group. Functions that collapse rows are called aggregates."
+   },
+   {
+    "t": "table",
+    "head": [
+     "Function",
+     "What it gives"
+    ],
+    "rows": [
+     [
+      "COUNT(*)",
+      "how many rows"
+     ],
+     [
+      "SUM(col)",
+      "the total of a column"
+     ],
+     [
+      "AVG(col)",
+      "the average"
+     ],
+     [
+      "MIN(col) / MAX(col)",
+      "the smallest / biggest value"
+     ]
+    ]
+   },
+   {
+    "t": "sql",
+    "label": "One aggregate over the whole table",
+    "text": "SELECT COUNT(*) AS employees, MAX(salary) AS top_pay FROM employees;"
+   },
+   {
+    "t": "h",
+    "text": "GROUP BY: one result row per group"
+   },
+   {
+    "t": "p",
+    "text": "`GROUP BY department` puts all rows with the same department in one pile, and the aggregates are worked out for each pile. Every column in SELECT must be either in GROUP BY or inside an aggregate."
+   },
+   {
+    "t": "sql",
+    "label": "Headcount per department",
+    "text": "SELECT department, COUNT(*) AS headcount\nFROM employees\nGROUP BY department;"
+   },
+   {
+    "t": "sql",
+    "label": "Average pay, rounded to a whole number",
+    "text": "SELECT department, ROUND(AVG(salary)) AS average_pay\nFROM employees\nGROUP BY department;"
+   },
+   {
+    "t": "h",
+    "text": "WHERE or HAVING"
+   },
+   {
+    "t": "p",
+    "text": "`WHERE` filters rows before they are grouped. `HAVING` filters groups after the totals are worked out. Use WHERE for facts about single rows (status is shipped). Use HAVING for facts about the totals (more than 3 people)."
+   },
+   {
+    "t": "sql",
+    "label": "Only departments with more than three people",
+    "text": "SELECT department, COUNT(*) AS headcount\nFROM employees\nGROUP BY department\nHAVING COUNT(*) > 3;"
+   },
+   {
+    "t": "sql",
+    "label": "WHERE first, then group: only shipped orders",
+    "text": "SELECT customer_id, SUM(amount) AS total\nFROM orders\nWHERE status = 'shipped'\nGROUP BY customer_id;"
+   },
+   {
+    "t": "callout",
+    "text": "The full order of the words is: SELECT, FROM, JOIN, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT. The database does not run them in that order, but you must write them in it."
+   },
+   {
+    "t": "warn",
+    "text": "`COUNT(*)` counts rows. `COUNT(column)` counts only rows where that column is not NULL. They can give different numbers."
+   },
+   {
+    "t": "sql",
+    "label": "Joining and grouping together: total spent per customer",
+    "text": "SELECT c.name, SUM(o.amount) AS total\nFROM customers c\nJOIN orders o ON o.customer_id = c.id\nGROUP BY c.name\nORDER BY total DESC;"
+   }
+  ],
+  "after": {
+   "text": "Practise grouping and totals.",
+   "href": "#/sql",
+   "button": "Open the SQL practice list"
+  }
+ }
+]

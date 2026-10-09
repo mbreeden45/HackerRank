@@ -144,10 +144,48 @@ def check_errors(errors):
     print('  PASS  %d real error messages translate correctly' % len(ERROR_SNIPPETS))
 
 def check_quiz(name, items):
+    ids = [q['id'] for q in items]
+    ok(len(ids) == len(set(ids)), '%s: duplicate item ids' % name)
+    written = 0
     for q in items:
-        check_mc(name, q['id'], q['options'], q['answer'], q.get('code'))
         ok(q['difficulty'] in ('Easy', 'Medium', 'Hard'), '%s: bad difficulty' % q['id'])
-        prose_ok(q['id'], [q['prompt'], q['why']])
+        if q.get('type') == 'written':
+            written += 1
+            ok(q['model'].strip(), '%s: written item has no model answer' % q['id'])
+            ok(4 <= len(q['rubric']) <= 6, '%s: rubric needs 4 to 6 points, has %d' % (q['id'], len(q['rubric'])))
+            for r in q['rubric']:
+                ok(r['point'].strip() and len(r['keywords']) >= 1 and all(k.strip() for k in r['keywords']), '%s: rubric point needs text and keywords: %r' % (q['id'], r))
+            prose_ok(q['id'], [q['prompt'], q['model']] + [r['point'] for r in q['rubric']])
+        else:
+            check_mc(name, q['id'], q['options'], q['answer'], q.get('code'))
+            for o in q['options']:
+                ok(not re.search(r'\b(above|all of these|none of these|both of these)\b', o, re.I), '%s: option refers to other options, but options are shuffled: %r' % (q['id'], o[:40]))
+            prose_ok(q['id'], [q['prompt'], q['why']])
+    return written
+
+def check_study(lessons, sqltables):
+    print('\n== Reading lessons: %d ==' % len(lessons))
+    kinds = {'p', 'h', 'code', 'callout', 'warn', 'steps', 'table', 'compare', 'sql'}
+    seen = set()
+    for L in lessons:
+        ok(L['id'] not in seen, 'duplicate study lesson id %s' % L['id']); seen.add(L['id'])
+        ok(L.get('track'), '%s: missing track' % L['id'])
+        for b in L['blocks']:
+            ok(b['t'] in kinds, '%s: unknown block type %s' % (L['id'], b['t']))
+            if b['t'] in ('p', 'h', 'callout', 'warn'): prose_ok(L['id'], b['text'])
+            if b['t'] == 'steps': prose_ok(L['id'], b['items'])
+            if b['t'] == 'table':
+                ok(all(len(r) == len(b['head']) for r in b['rows']), '%s: table row length does not match header' % L['id'])
+                prose_ok(L['id'], [c for r in b['rows'] for c in r if isinstance(c, str)])
+            if b['t'] == 'compare':
+                ok(b['bad'] != b['good'] and b['badWhy'].strip() and b['goodWhy'].strip(), '%s: compare block incomplete' % L['id'])
+                prose_ok(L['id'], [b['badWhy'], b['goodWhy']])
+            if b['t'] == 'sql':
+                con = sqlite3.connect(':memory:')
+                for t in sqltables.values(): con.executescript(t['create'])
+                try: con.execute(b['text']).fetchall()
+                except Exception as ex: ok(False, '%s: SQL block fails: %s' % (L['id'], ex))
+        print('  PASS  %s' % L['id'])
 
 def check_sql(items):
     print('\n== SQL problems: %d ==' % len(items))
@@ -164,7 +202,11 @@ def check_sql(items):
         except Exception as ex:
             ok(False, '%s: SQL error %s' % (p['id'], ex))
         prose_ok(p['id'], [p['title']] + p['statement'] + p['hints'])
-        ok(len(p['hints']) == 4, '%s: needs 4 hints' % p['id'])
+        ok(len(p['hints']) == 4 and all(h.strip() for h in p['hints']), '%s: needs 4 hints' % p['id'])
+        ok(len(p['expected']) == p['expect_count'], '%s: has %d rows but the hand-counted number is %d' % (p['id'], len(p['expected']), p['expect_count']))
+        ok(not p['ordered'] or 'ORDER BY' in p['solution'].upper(), '%s: marked ordered but the solution has no ORDER BY' % p['id'])
+        ok(all(t in tables and t in p['solution'] for t in p['tables']), '%s: tables list does not match the solution' % p['id'])
+        ok(p['difficulty'] in ('Easy', 'Medium', 'Hard'), '%s: bad difficulty' % p['id'])
 
 def check_cards(cards):
     print('\n== Flashcards: %d ==' % len(cards))
@@ -182,9 +224,18 @@ def main():
     check_errors(load('errors.json', []))
     for name in ('quiz_bigo.json', 'quiz_prompt.json'):
         d = load(name)
-        if d: print('\n== %s: %d questions ==' % (name, len(d))); check_quiz(name, d)
+        if d:
+            w = check_quiz(name, d)
+            print('\n== %s: %d questions (%d written) ==' % (name, len(d), w))
+    study = load('lessons_x.json')
+    if study: check_study(study, load('sql_tables.json', {}))
     sql = load('sql_problems.json')
-    if sql: check_sql(sql)
+    if sql:
+        check_sql(sql)
+        every = [p['id'] for p in problems] + [p['id'] for p in sql] + [q['id'] for n in ('quiz_bigo.json', 'quiz_prompt.json') for q in (load(n) or [])]
+        ok(len(every) == len(set(every)), 'item ids must be unique across Python problems, SQL problems and quiz items')
+        lessons_x = {l['id'] for l in (load('lessons_x.json') or [])}
+        for p in sql: ok(p['lesson'] in lessons_x, '%s: unknown lesson %s' % (p['id'], p['lesson']))
     cards = load('flashcards.json')
     if cards: check_cards(cards)
     mock = load('mock_exam.json')

@@ -19,6 +19,16 @@ const send = (m) => new Promise((res) => { const n = msgs.length; self.onmessage
     r.results.forEach((x, i) => { const ok = !x.error && x.stdout.trim() === tests[i][1].trim(); if (!ok) { bad++; console.log('FAIL', p.id, JSON.stringify(tests[i][0]), JSON.stringify(x)); } });
     console.log('ran', p.id, r.results.length, 'tests');
   }
+  // every lesson example must trace cleanly and fit inside the 300-step limit
+  const lessons = JSON.parse(fs.readFileSync(path.join(root, 'content/lessons.json')));
+  let traced = 0;
+  for (const Ls of lessons) for (const ex of [Ls.example, Ls.example2].filter(Boolean)) {
+    const tr = await send({ id: ++n, type: 'trace', code: ex.code, stdin: ex.stdin || '' });
+    const t = tr.trace;
+    if (t.err || t.steps.length >= 300) { bad++; console.log('FAIL lesson trace', Ls.id, t.err, t.steps.length); }
+    traced++;
+  }
+  console.log('traced', traced, 'lesson examples');
   const err = await send({ id: ++n, type: 'run', code: 'nums=[1]\nprint(nums[3])', inputs: [''] });
   console.log('error sample:', JSON.stringify(err.results[0].error.split('\n').slice(-2)));
   const loop = require('fs').readFileSync(path.join(root, 'content/lessons.json'));
