@@ -32,7 +32,7 @@ Content is written in `tools/c_*.py` and built into `content/*.json`. Do not edi
 python3 tools/build_content.py && python3 tools/verify.py
 node tools/node_check.js all
 node tools/node_sql_check.js
-node tools/test_adaptive.js && node tools/test_cards.js
+node tools/test_adaptive.js && node tools/test_cards.js && node tools/test_explain.js
 python3 tools/brute_check.py
 ```
 See `HANDOFF.md` and `DECISIONS.md` for how it is put together and why.

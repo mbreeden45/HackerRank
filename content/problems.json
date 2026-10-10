@@ -25,7 +25,7 @@
    "Each print makes its own line.",
    "You need two print lines. Words need quote marks, numbers do not.",
    "Line one: print the text Hello. Line two: print the number 42.",
-   "print of \"Hello\", then print of 42."
+   "print(\"Hello\") on one line, then print(42) on the next."
   ],
   "hidden": [
    {
@@ -61,7 +61,7 @@
    "print can show two things at once.",
    "Put a comma between two things inside the print brackets. The comma adds the space for you.",
    "Print the text \"Hi,\" and the variable name together.",
-   "print of \"Hi,\", comma, name."
+   "print(\"Hi,\", name)."
   ],
   "hidden": [
    {
@@ -104,7 +104,7 @@
    "You can give print more than one thing.",
    "Write both names inside one print, separated by a comma.",
    "One print line that holds a and b.",
-   "print of a, comma, b."
+   "print(a, b)."
   ],
   "hidden": [
    {
@@ -147,7 +147,7 @@
    "The + sign adds numbers.",
    "You can do the adding inside the print brackets.",
    "Print the answer of a plus b.",
-   "print of a + b."
+   "print(a + b)."
   ],
   "hidden": [
    {
@@ -191,7 +191,7 @@
    "Work out each answer and store it in a name first.",
    "Make a name called area, and a name called perimeter. Then print each.",
    "area is width times height. perimeter is 2 times the sum of width and height. Print area, then print perimeter.",
-   "area = width * height; perimeter = 2 * (width + height); print area; print perimeter."
+   "area = width * height; perimeter = 2 * (width + height); print(area); print(perimeter)."
   ],
   "hidden": [
    {
@@ -235,7 +235,7 @@
    "Think of two cups of juice that you want to swap. You need a third empty cup.",
    "Store the old a in a new name before you change a.",
    "1. Save a in a new name called temp. 2. Put b into a. 3. Put temp into b. 4. Print a and b.",
-   "temp = a; a = b; b = temp; print a; print b."
+   "temp = a; a = b; b = temp; print(a); print(b)."
   ],
   "hidden": [
    {
@@ -284,7 +284,7 @@
    "The answer to print is already a True or False answer.",
    "Ask the question a == b inside the print.",
    "Print the answer to the question: is a equal to b.",
-   "print of a == b."
+   "print(a == b)."
   ],
   "hidden": [
    {
@@ -329,7 +329,7 @@
    "Each line is its own print.",
    "Three print lines. Each holds one question.",
    "Print a == b. Print a < b. Print a > b.",
-   "print a == b; print a < b; print a > b."
+   "print(a == b); print(a < b); print(a > b)."
   ],
   "hidden": [
    {
@@ -378,7 +378,7 @@
    "The word you compare against needs quote marks.",
    "Compare the variable word with the text \"builder\" using two equals signs.",
    "Print the answer to: is word equal to the text builder.",
-   "print of word == \"builder\"."
+   "print(word == \"builder\")."
   ],
   "hidden": [
    {
@@ -427,7 +427,7 @@
    "Use % with the number 2.",
    "Ask whether the remainder after dividing by 2 equals 0.",
    "Print the answer to: is n % 2 equal to 0.",
-   "print of n % 2 == 0."
+   "print(n % 2 == 0)."
   ],
   "hidden": [
    {
@@ -475,7 +475,7 @@
    "Dividing by 10 and looking at the remainder isolates the last digit.",
    "Use % 10 for the first line and // 10 for the second.",
    "Print n % 10. Then print n // 10.",
-   "print n % 10; print n // 10."
+   "print(n % 10); print(n // 10)."
   ],
   "hidden": [
    {
@@ -518,7 +518,7 @@
    "Whole weeks is a division with the decimal part dropped. Leftover days is a remainder.",
    "Use // 7 for weeks and % 7 for leftover days.",
    "Print days // 7. Then print days % 7.",
-   "print days // 7; print days % 7."
+   "print(days // 7); print(days % 7)."
   ],
   "hidden": [
    {
@@ -570,7 +570,7 @@
    "You need a choice with two outcomes.",
    "Use if with the question n % 2 == 0, and else for the other outcome.",
    "If the remainder after dividing by 2 is 0, print even. Otherwise print odd.",
-   "if n % 2 == 0: print even; else: print odd. Remember the colons and the indents."
+   "if n % 2 == 0: print(\"even\"); else: print(\"odd\"). Remember the colons and the indents."
   ],
   "hidden": [
    {

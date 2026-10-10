@@ -94,6 +94,48 @@ BP.explain = (function () {
     [/^(break)$/, () => 'Leaves the loop right now.'],
     [/^(continue)$/, () => 'Skips the rest of this round and jumps to the next round of the loop.'],
   ];
+  // ---------- piece-by-piece breakdown of function calls, read from the inside out ----------
+  const FUNCS = {
+    print: (a) => `shows ${a || 'an empty line'} on the screen, then moves to a new line`,
+    sum: (a) => `adds up all the numbers inside ${a}`,
+    max: (a) => `finds the biggest value in ${a}`,
+    min: (a) => `finds the smallest value in ${a}`,
+    len: (a) => `counts how many items are in ${a}`,
+    sorted: (a) => `makes a new list from ${a} in order, smallest first`,
+    int: (a) => `turns ${a} into a whole number`,
+    str: (a) => `turns ${a} into text`,
+    list: (a) => `makes a list out of ${a}`,
+    map: (a) => `applies the first tool to each item of the second thing (${a})`,
+    range: (a) => `makes the run of whole numbers described by ${a}`,
+    input: () => 'waits for one line of typing and gives it back as text',
+    abs: (a) => `drops the minus sign of ${a}, so it is never negative`,
+    round: (a) => `rounds ${a} to the nearest whole number`,
+    split: (a) => `cuts the text at the spaces into a list of pieces${a ? ' (it cuts at ' + a + ' instead of spaces)' : ''}`,
+    append: (a) => `adds ${a} to the end of the list`,
+  };
+  const KEYWORDS = new Set(['for', 'in', 'if', 'else', 'elif', 'while', 'and', 'or', 'not', 'return', 'def', 'True', 'False', 'None', 'range', 'print']);
+  function breakdown(line) {
+    let work = line, k = 0;
+    const steps = [], placeholders = {};
+    const re = /([A-Za-z_][\w.]*)\(([^()]*)\)/;
+    let m;
+    while ((m = re.exec(work)) && k < 12) {
+      const name = m[1].split('.').pop(), arg = m[2].trim().replace(/@(\d+)/g, (_, n) => placeholders[n].shown);
+      const f = FUNCS[name];
+      const id = k++;
+      const shown = m[0].replace(/@(\d+)/g, (_, n) => placeholders[n].shown);
+      placeholders[id] = { shown };
+      steps.push({ code: shown, text: f ? `${name} ${f(arg)}.` : `${name} is a tool (a function). The brackets hold what it is given: ${arg || 'nothing'}.`, name });
+      work = work.slice(0, m.index) + '@' + id + work.slice(m.index + m[0].length);
+    }
+    const names = [];
+    line.replace(/"[^"]*"|'[^']*'/g, ' ').replace(/[A-Za-z_]\w*(?!\w*\()/g, (w, off, str) => {
+      if (str[off + w.length] === '(' || str[off - 1] === '.' || KEYWORDS.has(w) || FUNCS[w] || names.indexOf(w) >= 0) return;
+      names.push(w);
+    });
+    return { steps, names };
+  }
+
   function explainLine(raw) {
     const line = strip(raw);
     if (!line) return { text: 'This line is empty or only a comment. Python ignores it.', gloss: [] };
@@ -102,11 +144,17 @@ BP.explain = (function () {
     if (!text) text = 'This line asks Python to work something out. Read the symbols listed below to see what each part does.';
     const gloss = [];
     GLOSS.forEach(([re, sym, mean]) => { if (re.test(line)) gloss.push([sym, mean]); });
-    return { text, gloss };
+    const calls = breakdown(line);
+    if (calls.steps.length) {
+      gloss.push(['( )', 'brackets after a tool name hold what you hand to that tool. The tool works on what is inside them']);
+    }
+    return { text, gloss, steps: calls.steps, names: calls.names };
   }
   function lineHtml(raw) {
     const x = explainLine(raw);
-    return '<div class="callout"><b>In plain English:</b> ' + esc(x.text) + '</div>' +
+    const parts = (x.steps && x.steps.length ? '<p><b>Piece by piece, from the inside out:</b></p><ol>' + x.steps.map((st) => '<li><code class="k">' + esc(st.code) + '</code> ' + esc(st.text) + '</li>').join('') + '</ol>' : '') +
+      (x.names && x.names.length ? '<p><b>Names in this line:</b> ' + x.names.map((n) => '<code class="k">' + esc(n) + '</code>').join(', ') + '. A name is a label for a value stored earlier in the program, so the line uses that value.</p>' : '');
+    return '<div class="callout"><b>In plain English:</b> ' + esc(x.text) + '</div>' + parts +
       (x.gloss.length ? '<table class="sym"><tr><th>Symbol</th><th>What it does</th></tr>' + x.gloss.map((g) => '<tr><td>' + esc(g[0]) + '</td><td>' + esc(g[1]) + '</td></tr>').join('') + '</table>' : '');
   }
   return { setErrors, explainError, errorHtml, explainLine, lineHtml };

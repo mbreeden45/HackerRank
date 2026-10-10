@@ -47,7 +47,7 @@ How things fit together:
 python3 tools/build_content.py && python3 tools/verify.py
 node tools/node_check.js all        # every Python solution, lesson trace and flashcard example through the shipped Pyodide
 node tools/node_sql_check.js        # every SQL solution, lesson query and SQL card through the shipped sql.js
-node tools/test_adaptive.js && node tools/test_cards.js
+node tools/test_adaptive.js && node tools/test_cards.js && node tools/test_explain.js
 python3 tools/brute_check.py        # hard solutions against slow brute-force versions on random input
 ```
 Last result: 4056 verify checks, 0 failed. 96 Python problems, 32 SQL problems, 71 multiple-choice items checked, 88 flashcards, 18 mock exam items.

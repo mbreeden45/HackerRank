@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Runs every reference solution against its own test cases, and checks the content rules.
 Usage: python3 tools/verify.py      (exit code 0 means everything passed)"""
-import json, os, re, sqlite3, subprocess, sys, tempfile
+import ast, json, os, re, sqlite3, subprocess, sys, tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C = os.path.join(ROOT, 'content')
 fails, checks = [], 0
@@ -38,6 +38,14 @@ def prose_ok(label, text):
         t = re.sub(r'`[^`]*`', '', text)
         ok(not BANG.search(t), '%s: contains an exclamation mark: %r' % (label, text[:60]))
 
+def syntax_ok(label, code):
+    """Every piece of Python shown to the learner must be valid Python 3. Catches Python 2 style print statements."""
+    try:
+        ast.parse(code)
+        return ok(True, '')
+    except SyntaxError as e:
+        return ok(False, '%s: not valid Python 3 (line %s: %s): %r' % (label, e.lineno, e.msg, (e.text or '').strip()[:60]))
+
 MC_COUNT = {}
 def check_mc(file, label, options, answer, code=None):
     """Rules for every multiple-choice item. If code is given, the marked answer must equal what the code really prints."""
@@ -68,8 +76,19 @@ def check_problems(problems):
         ok(len(p['hints']) == 4 and all(h.strip() for h in p['hints']), '%s: needs 4 hints' % pid)
         ok(all(s['explanation'].strip() for s in p['samples']), '%s: sample explanation missing' % pid)
         stub = p['prefix'] + p['body'] + p['suffix']
-        try: compile(stub, pid, 'exec')
-        except SyntaxError as e: ok(False, '%s: starting stub does not compile: %s' % (pid, e))
+        syntax_ok(pid + ' starting stub', stub)
+        syntax_ok(pid + ' solution', full)
+        # the open section must be a clear Write-your-code-here area with no solution in it, and no solution line may sit in the locked parts
+        body_lines = [l.strip() for l in p['body'].split('\n') if l.strip()]
+        ok('# Write your code here' in body_lines, '%s: the open section needs a "# Write your code here" line' % pid)
+        ok(all(l == 'pass' or l.startswith('#') for l in body_lines), '%s: the open section contains code: %r' % (pid, body_lines))
+        locked = {l.strip() for l in (p['prefix'] + p['suffix']).split('\n') if l.strip()}
+        leaked = [l.strip() for l in p['solution'].split('\n') if l.strip() and l.strip() in locked and l.strip() not in ('else:', 'pass')]
+        ok(not leaked, '%s: a solution line is already in the locked part: %r' % (pid, leaked[:2]))
+        # with the open section empty, the program must not already pass every test
+        empty = p['prefix'] + ('    pass\n' if p['body'].startswith('    ') else '') + p['suffix']
+        empty_pass = sum(1 for inp, exp, kind in tests if (lambda r: r[0] == 0 and norm(r[1]) == norm(exp))(run_py(empty, inp)))
+        ok(empty_pass < len(tests), '%s: with the open section empty, the program already passes every test' % pid)
         ok(len(set(h['output'] for h in p['hidden']) | set(s['output'] for s in p['samples'])) >= 2 or len(p['hidden']) <= 2, '%s: all tests have the same answer, a hard-coded print would pass' % pid)
         # the untouched stub must NOT already pass everything
         passed = 0
@@ -94,6 +113,8 @@ def check_lessons(lessons, diag):
         if 'example2' in L:
             rc, so, se = run_snippet_output(L['example2']['code'], L['example2'].get('stdin', ''))
             ok(rc == 0, '%s: second example crashes' % L['id'])
+        for key in ('example', 'example2', 'predict'):
+            if key in L: syntax_ok('lesson %s %s' % (L['id'], key), L[key]['code'])
         rc, so, se = run_snippet_output(L['predict']['code'])
         ok(rc == 0, '%s: predict code crashes' % L['id'])
         check_mc('lessons.json (predict)', 'lesson ' + L['id'], L['predict']['options'], L['predict']['answer'], L['predict']['code'])
@@ -101,6 +122,7 @@ def check_lessons(lessons, diag):
         prose_ok(L['id'], [L['title']] + L['idea'] + [s[1] for s in L['symbols']] + [L['example']['caption'], L['predict']['why']])
         print('  PASS  %s' % L['id'])
     for i, q in enumerate(diag['questions']):
+        syntax_ok('diagnostic Q%d' % (i + 1), q['code'])
         check_mc('diagnostic.json', 'diagnostic Q%d (%s)' % (i + 1, q['lesson']), q['options'], q['answer'], q['code'])
         ok(q['lesson'] in ids, 'diagnostic %d: unknown lesson %s' % (i, q['lesson']))
         prose_ok('diagnostic %d' % i, [q['prompt'], q['why']])
@@ -149,6 +171,8 @@ def check_quiz(name, items):
     written = 0
     for q in items:
         ok(q['difficulty'] in ('Easy', 'Medium', 'Hard'), '%s: bad difficulty' % q['id'])
+        if q.get('snippet'): syntax_ok(q['id'] + ' snippet', q['snippet'])
+        if q.get('code'): syntax_ok(q['id'] + ' code', q['code'])
         if q.get('type') == 'written':
             written += 1
             ok(q['model'].strip(), '%s: written item has no model answer' % q['id'])
@@ -173,6 +197,7 @@ def check_study(lessons, sqltables):
         for b in L['blocks']:
             ok(b['t'] in kinds, '%s: unknown block type %s' % (L['id'], b['t']))
             if b['t'] in ('p', 'h', 'callout', 'warn'): prose_ok(L['id'], b['text'])
+            if b['t'] == 'code' and str(b.get('label', '')).startswith('Python'): syntax_ok(L['id'] + ' code block', b['text'])
             if b['t'] == 'steps': prose_ok(L['id'], b['items'])
             if b['t'] == 'table':
                 ok(all(len(r) == len(b['head']) for r in b['rows']), '%s: table row length does not match header' % L['id'])
@@ -221,6 +246,7 @@ def check_cards(cards):
         ok('`' not in c['back'] or c.get('check'), 'card %s shows code but has no executed check' % c['id'])
         chk = c.get('check')
         if chk and chk['lang'] == 'python':
+            syntax_ok('card %s example' % c['id'], chk['code'])
             rc, so, se = run_py(chk['code'], chk.get('stdin', ''))
             ok(rc == 0 and norm(so) == norm(chk['output']), 'card %s: example prints %r, card says %r %s' % (c['id'], so, chk['output'], se.strip()[-80:]))
         elif chk and chk['lang'] == 'sql':
