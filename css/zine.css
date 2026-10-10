@@ -1,0 +1,110 @@
+/* Punk zine theme: photocopied paper, black ink, hot pink and acid green. Loaded after app.css. Delete the link in index.html to go back to the plain look. */
+:root{--bg:#f3efe3;--card:#fffdf7;--ink:#111;--mute:#444;--line:#111;--accent:#ff2e93;--accent2:#c9ffb5;--bad:#111;--bad2:#ffc9e1;--warn:#fff;--blue:#111;--blue2:#e6ffdc;
+ --pink:#ff2e93;--pink2:#ffc9e1;--green:#39ff14;--green2:#c9ffb5;
+ --display:Impact,Haettenschweiler,"Arial Narrow Bold","Franklin Gothic Heavy",sans-serif;--type:"American Typewriter","Courier New",Courier,monospace}
+body{background-color:var(--bg);background-image:radial-gradient(rgba(0,0,0,.13) 1px,transparent 1.3px),radial-gradient(rgba(255,46,147,.10) 1px,transparent 1.3px);background-size:7px 7px,13px 13px;background-position:0 0,3px 4px}
+::selection{background:var(--pink);color:#111}
+a{color:#111;text-decoration:underline wavy var(--pink);text-underline-offset:3px}
+a.btn,a.item,.brand,#nav a{text-decoration:none}
+
+/* header */
+header#top{background:#111;border-bottom:5px solid var(--pink);gap:14px;padding:10px 18px}
+.brand{font:400 26px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;color:#111;background:var(--green);padding:3px 10px;transform:rotate(-2.5deg);box-shadow:3px 3px 0 var(--pink)}
+#nav a{color:#fff;font:700 13px var(--type);text-transform:uppercase;letter-spacing:.06em;padding:4px 7px;margin-right:4px;border:2px solid transparent}
+#nav a:hover{border-color:var(--pink)}
+#nav a.on{background:var(--pink);color:#111;border-color:#111;font-weight:700;border-bottom:2px solid #111;transform:rotate(-1.5deg)}
+.engine{font-family:var(--type);color:#aaa}.engine.ready{color:var(--green)}
+
+/* type */
+h1,h2{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1.05}
+h1{font-size:40px;display:block;text-shadow:3px 3px 0 var(--pink);margin-bottom:12px}
+h2{font-size:25px;background:linear-gradient(transparent 62%,var(--green) 62%,var(--green) 92%,transparent 92%);display:inline-block;padding-right:6px}
+h3{font-family:var(--type);text-transform:uppercase;letter-spacing:.05em;font-size:14px;border-bottom:3px solid #111;display:inline-block;padding-bottom:1px}
+.lbl,th,.pill,.mute.lbl{font-family:var(--type);letter-spacing:.06em}
+.mute{color:var(--mute)}
+code.k{background:var(--pink2);color:#111;border:1px solid #111;padding:0 5px;border-radius:0}
+
+/* cards: pasted-on paper with a hard shadow, tape on the top ones */
+.card{background:var(--card);border:3px solid #111;border-radius:0;box-shadow:7px 7px 0 #111;position:relative}
+main>.card{margin-bottom:24px}
+main>.card:nth-of-type(odd){transform:rotate(-.35deg)}
+main>.card:nth-of-type(even){transform:rotate(.3deg)}
+main>.card::before{content:"";position:absolute;top:-13px;left:26px;width:92px;height:24px;background:rgba(57,255,20,.78);border:1px solid rgba(0,0,0,.25);transform:rotate(-3deg);pointer-events:none}
+main>.card:nth-of-type(even)::before{left:auto;right:30px;background:rgba(255,46,147,.72);transform:rotate(2.5deg)}
+.card.inner{box-shadow:4px 4px 0 #111;transform:none!important}
+.card.inner::before{display:none}
+.left>.card::before,.right>.card::before,.examgrid .card::before{display:none}
+.examgrid .card,.left>.card,.right>.card{transform:none!important}
+
+/* buttons */
+button,.btn{font:700 13px var(--type);text-transform:uppercase;letter-spacing:.05em;background:#fff;color:#111;border:3px solid #111;border-radius:0;box-shadow:3px 3px 0 #111;padding:7px 13px;transition:transform .05s,box-shadow .05s}
+button:hover,.btn:hover{background:var(--green);transform:translate(-1px,-1px);box-shadow:4px 4px 0 #111}
+button:active,.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 #111}
+button.primary,.btn.primary{background:var(--pink);color:#111;border-color:#111}
+button.primary:hover,.btn.primary:hover{background:var(--green)}
+button:disabled{opacity:.4;box-shadow:none}
+
+/* pills */
+.pill{border:2px solid #111;border-radius:0;background:#fff;color:#111;font-weight:700;text-transform:uppercase;font-size:11px;padding:0 7px;transform:rotate(-1deg)}
+.pill.Easy{background:var(--green);color:#111;border-color:#111}
+.pill.Medium{background:var(--pink2);color:#111;border-color:#111}
+.pill.Hard{background:#111;color:var(--pink);border-color:#111}
+.pill.done{background:var(--green);color:#111;border-color:#111}
+
+/* tiles */
+.item{border:3px solid #111;border-radius:0;box-shadow:4px 4px 0 #111;background:#fff;transition:transform .06s}
+.item:hover{border-color:#111;background:var(--pink2);transform:translate(-2px,-2px) rotate(-.4deg);box-shadow:6px 6px 0 #111}
+.item.done{background:var(--green2)}
+.bar,.mbar{border:2px solid #111;border-radius:0;background:#fff;height:14px}
+.bar>i,.mbar>i{background:var(--pink);border-radius:0;border-right:2px solid #111}
+.mbar>i.low{background:var(--pink)}.mbar>i:not(.low){background:var(--green)}
+.line60{background:var(--pink);width:5px;border:1px solid #111;top:-7px;bottom:-7px}
+
+/* messages */
+.good{background:var(--green2);border:2px solid #111;border-left:10px solid #111;border-radius:0}
+.bad{background:var(--pink2);border:2px solid #111;border-left:10px solid var(--pink);border-radius:0}
+.warnbox{background:#fff;border:2px dashed #111;border-left:10px solid var(--pink);border-radius:0}
+.callout{background:#e6ffdc;border:2px solid #111;border-left:10px solid var(--green);border-radius:0}
+.hint{background:#fff;border:2px dashed #111;border-radius:0}
+.model{background:#fff;border:2px solid #111;border-radius:0}
+
+/* tables and code */
+table{border:2px solid #111}
+td,th{border:2px solid #111}
+th{background:#111;color:var(--green);text-transform:uppercase;font-size:12px}
+.sym td:first-child{color:#111;background:var(--pink2)}
+pre{background:#fff;border:2px solid #111;border-radius:0;box-shadow:3px 3px 0 rgba(0,0,0,.25)}
+.CodeMirror{border:3px solid #111;border-radius:0;box-shadow:5px 5px 0 #111}
+.CodeMirror .locked{background:#e4e0d4;color:#555}
+.outbox,pre.out{background:#111;color:var(--green);border:2px solid #111;border-radius:0}
+.codebox{background:#fff;border:2px solid #111;border-radius:0}
+.codebox .ln.cur,.tt tr.cur td{background:var(--green)}
+.bx .v{border-color:#111}.bx.hl .v{background:var(--green);border-color:#111}.bx.cur .v{background:var(--pink2);border-color:#111}
+.bx .arrow{color:#111}
+.gridv td{border-color:#111}.gridv td.hl{background:var(--pink2);border-color:#111}
+.note{color:#111}
+
+/* answers and tests */
+.opt{border:3px solid #111;border-radius:0;box-shadow:3px 3px 0 #111;background:#fff}
+.opt:hover{background:var(--pink2)}
+.opt.sel{background:var(--pink2);border-color:#111}
+.opt.right{background:var(--green);border-color:#111}
+.opt.wrong{background:var(--pink);border-color:#111}
+.tc{border:2px solid #111;border-radius:0;background:#fff}
+.tc.pass{background:var(--green2)}.tc.fail{background:var(--pink2)}
+.tc.pass .dot{color:#111}.tc.fail .dot{color:#111}
+.tcd{border-left:4px solid #111}
+textarea.custom,textarea.sqled,textarea.wtext{border:3px solid #111;border-radius:0;background:#fff}
+.sqlblock{background:#fff;border:3px solid #111;border-radius:0;box-shadow:4px 4px 0 #111}
+.cmp-bad{background:var(--pink2);border:2px solid #111;border-radius:0}.cmp-good{background:var(--green2);border:2px solid #111;border-radius:0}
+
+/* exam and cards */
+.examtop{background:#fff;border:3px solid #111;border-radius:0;box-shadow:5px 5px 0 #111}
+.clock{font-family:var(--display);font-size:28px;letter-spacing:.05em}.clock.low{color:var(--pink);background:#111;padding:0 8px}
+.qn{padding:0}.qn.ans{background:var(--green)}.qn.cur{outline:3px solid var(--pink);outline-offset:1px}
+.fcfront{font-family:var(--display);font-size:32px;text-transform:uppercase;line-height:1.15}
+.fcback{background:#fff;border:3px solid #111;border-radius:0;box-shadow:4px 4px 0 var(--pink)}
+.grade.again{background:var(--pink2)}.grade.hard{background:#fff}.grade.good{background:var(--green2)}.grade.easy{background:var(--green)}
+.rub{border-bottom:1px dotted #111}
+
+@media(max-width:700px){main>.card,main>.card:nth-of-type(odd),main>.card:nth-of-type(even){transform:none}h1{font-size:30px}.brand{font-size:21px}}
