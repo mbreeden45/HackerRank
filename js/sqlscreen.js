@@ -30,7 +30,7 @@ BP.sqlscreen = (function () {
     const lessonTitle = (C.study.find((l) => l.id === P.lesson) || {}).title || '';
     const expected = { columns: P.columns, rows: P.expected };
     main.innerHTML = '<div class="split"><div class="left"><div class="card">' +
-      (opts.exam ? '' : '<div class="mute"><a href="#/sql">SQL practice</a> / ' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
+      (opts.exam ? '' : BP.practice.flowBar(P, 'sql') + '<div class="mute">' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
       '<span class="pill ' + P.difficulty + '">' + P.difficulty + '</span> ' + (st.solved ? '<span class="pill done">solved</span>' : '') +
       P.statement.map((p) => '<p>' + fmt(p) + '</p>').join('') +
       '<h3>Tables you can use</h3>' + schemaHtml(P.tables, C.sqlTables) +
@@ -58,7 +58,7 @@ BP.sqlscreen = (function () {
       else {
         const c = BP.sql.compare(r, expected, P.ordered);
         ok = c.ok;
-        res.innerHTML = ok ? '<div class="good"><b>Correct.</b> Your query returns the expected result. Nicely done.</div><h3>Your result</h3>' + BP.sql.gridHtml(r.columns, r.rows)
+        res.innerHTML = ok ? '<div class="good"><b>Correct.</b> Your query returns the expected result. Nicely done.</div>' + (opts.exam ? '' : BP.practice.flowDone(P, 'sql')) + '<h3>Your result</h3>' + BP.sql.gridHtml(r.columns, r.rows)
           : '<div class="bad"><b>Not yet.</b> ' + esc(c.why) + '</div><div class="cmpgrid"><div><h3>Your result</h3>' + BP.sql.gridHtml(r.columns, r.rows) + '</div><div><h3>Expected result</h3>' + BP.sql.gridHtml(P.columns, P.expected) + '</div></div>';
       }
       BP.store.update(() => { const s = BP.store.problem(P.id); s.attempts++; s.lesson = P.lesson; s.difficulty = P.difficulty; s.last = ok ? 1 : 0; s.total = 1; s.best = Math.max(s.best, ok ? 1 : 0); if (ok) s.solved = true; });

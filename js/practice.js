@@ -6,13 +6,36 @@ BP.practice = (function () {
   const HINT_NAMES = ['Nudge', 'Bigger hint', 'Plain-English plan', 'Pseudocode', 'Full solution'];
 
   // opts.exam: mock exam mode. No saved progress, no breadcrumb, no Run all test cases (the exam scores the code when you submit).
+  // Navigation between the practice problems of one lesson, and back to the lesson. kind: 'py' or 'sql'.
+  function flow(P, kind) {
+    const C = BP.app.C, sql = kind === 'sql';
+    const sibs = (sql ? C.sql : C.problems).filter((p) => p.lesson === P.lesson), i = sibs.findIndex((p) => p.id === P.id);
+    const url = (p) => (sql ? '#/sqlproblem/' : '#/problem/') + p.id;
+    const lessons = sql ? C.study.filter((l) => l.track === 'SQL Foundations') : C.lessons;
+    const li = lessons.findIndex((l) => l.id === P.lesson), L = lessons[li] || {};
+    const lessonHref = (sql ? '#/study/' : '#/lesson/') + P.lesson, nl = lessons[li + 1];
+    return { sibs, i, url, L, lessonHref, nextLesson: nl ? { href: (sql ? '#/study/' : '#/lesson/') + nl.id, title: nl.title } : null, list: sql ? '#/sql' : '#/practice' };
+  }
+  function flowBar(P, kind) {
+    const f = flow(P, kind), prev = f.sibs[f.i - 1], next = f.sibs[f.i + 1];
+    return '<div class="flowbar"><a class="btn" href="' + f.lessonHref + '">&larr; Back to the lesson</a><span class="flowpos">Problem ' + (f.i + 1) + ' of ' + f.sibs.length + '</span>' +
+      (prev ? '<a class="btn" href="' + f.url(prev) + '">&larr; Previous</a>' : '') + (next ? '<a class="btn" href="' + f.url(next) + '">Next problem &rarr;</a>' : '') +
+      '<a class="flowall" href="' + f.list + '">All practice</a></div>';
+  }
+  function flowDone(P, kind) {
+    const f = flow(P, kind), next = f.sibs[f.i + 1];
+    return '<div class="row flowdone">' + (next ? '<a class="btn primary" href="' + f.url(next) + '">Next problem: ' + esc(next.title) + ' &rarr;</a>' :
+      '<span><b>That was the last problem for this lesson.</b></span>' + (f.nextLesson ? '<a class="btn primary" href="' + f.nextLesson.href + '">Next lesson: ' + esc(f.nextLesson.title) + ' &rarr;</a>' : '')) +
+      '<a class="btn" href="' + f.lessonHref + '">Back to the lesson</a><a class="btn" href="' + f.list + '">All practice</a></div>';
+  }
+
   function view(main, P, lessons, allowHints, opts) {
     opts = opts || {};
     allowHints = allowHints !== false;
     const lessonTitle = (lessons.find((l) => l.id === P.lesson) || {}).title || '';
     const st = opts.exam ? {} : BP.store.problem(P.id);
     let h = '<div class="split"><div class="left"><div class="card">' +
-      (opts.exam ? '' : '<div class="mute"><a href="#/practice">Practice</a> / ' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
+      (opts.exam ? '' : flowBar(P, 'py') + '<div class="mute">' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
       '<span class="pill ' + P.difficulty + '">' + P.difficulty + '</span> ' + (st.solved ? '<span class="pill done">solved</span>' : '') +
       P.statement.map((p) => '<p>' + fmt(p) + '</p>').join('') +
       '<h3>Input format</h3><p>' + fmt(P.input_fmt) + '</p><h3>Output format</h3><p>' + fmt(P.output_fmt) + '</p>' +
@@ -69,7 +92,7 @@ BP.practice = (function () {
         }
       });
       out = '<h3>' + label + ': ' + pass + ' of ' + tests.length + ' passed</h3>' + out;
-      if (pass === tests.length) out += '<div class="good"><b>All test cases passed.</b> Nicely done.</div>';
+      if (pass === tests.length) out += '<div class="good"><b>All test cases passed.</b> Nicely done.</div>' + (opts.exam ? '' : flowDone(P, 'py'));
       res.innerHTML = out;
       res.querySelectorAll('.tc').forEach((el) => (el.onclick = () => { const d = res.querySelector('#d' + el.dataset.i); if (d) d.style.display = d.style.display === 'none' ? 'block' : 'none'; }));
       return pass;
@@ -135,5 +158,5 @@ BP.practice = (function () {
     });
     main.innerHTML = h;
   }
-  return { view, list, norm };
+  return { view, list, norm, flowBar, flowDone };
 })();

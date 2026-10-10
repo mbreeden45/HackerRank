@@ -29,7 +29,9 @@ BP.study = (function () {
     let h = '<div class="card"><div class="mute">' + esc(L.track) + ': lesson ' + (gi + 1) + ' of ' + group.length + '</div><h1>' + esc(L.title) + '</h1>';
     h += L.blocks.map((b, i) => block(b, i)).join('');
     h += '</div>';
-    if (L.after) h += '<div class="card"><h2>Now you try</h2><p>' + fmt(L.after.text) + '</p><a class="btn primary" href="' + L.after.href + '">' + esc(L.after.button) + '</a></div>';
+    const sqlProbs = (C.sql || []).filter((p) => p.lesson === id);
+    if (sqlProbs.length) h += '<div class="card"><h2>Now you try</h2><p>' + fmt(L.after.text) + ' This lesson has ' + sqlProbs.length + ' problems.</p><a class="btn primary" href="#/sqlproblem/' + sqlProbs[0].id + '">Start practice problem 1 of ' + sqlProbs.length + ' &rarr;</a><div class="grid" style="margin-top:12px">' + sqlProbs.map((p, k) => '<a class="item" href="#/sqlproblem/' + p.id + '"><b>' + (k + 1) + '. ' + esc(p.title) + '</b><br><span class="pill ' + p.difficulty + '">' + p.difficulty + '</span></a>').join('') + '</div></div>';
+    else if (L.after) h += '<div class="card"><h2>Now you try</h2><p>' + fmt(L.after.text) + '</p><a class="btn primary" href="' + L.after.href + '">' + esc(L.after.button) + '</a></div>';
     h += '<div class="row"><button class="primary" id="fin">' + (done ? 'Lesson marked complete' : 'Mark lesson complete') + '</button>' +
       (gi + 1 < group.length ? '<a class="btn" href="#/study/' + group[gi + 1].id + '">Next lesson: ' + esc(group[gi + 1].title) + '</a>' : '') + '</div>';
     main.innerHTML = h;

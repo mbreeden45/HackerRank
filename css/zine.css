@@ -108,3 +108,8 @@ textarea.custom,textarea.sqled,textarea.wtext{border:3px solid #111;border-radiu
 .rub{border-bottom:1px dotted #111}
 
 @media(max-width:700px){main>.card,main>.card:nth-of-type(odd),main>.card:nth-of-type(even){transform:none}h1{font-size:30px}.brand{font-size:21px}}
+
+.flowbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:3px dashed #111}
+.flowpos{font:700 13px var(--type);text-transform:uppercase;background:#111;color:var(--green);padding:3px 8px}
+.flowall{margin-left:auto;font:700 12px var(--type);text-transform:uppercase}
+.flowdone{margin-top:8px}
