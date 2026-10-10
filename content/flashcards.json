@@ -1,0 +1,1185 @@
+[
+ {
+  "id": "python-basics-01",
+  "topic": "Python basics",
+  "front": "I want to show a value on the screen.",
+  "back": "so I write `print(value)`. Several things can go in one print, separated by commas, and print puts a space between them.",
+  "check": {
+   "lang": "python",
+   "code": "print(\"Total:\", 5)",
+   "output": "Total: 5"
+  }
+ },
+ {
+  "id": "python-basics-02",
+  "topic": "Python basics",
+  "front": "I want to read one line that the user typed.",
+  "back": "so I write `line = input()`. The answer is always text, even when it looks like a number.",
+  "check": {
+   "lang": "python",
+   "code": "line = input()\nprint(line.upper())",
+   "output": "HI",
+   "stdin": "hi\n"
+  }
+ },
+ {
+  "id": "python-basics-03",
+  "topic": "Python basics",
+  "front": "I want to turn typed text into a whole number.",
+  "back": "so I write `n = int(input())`. Now n can be used in sums and comparisons.",
+  "check": {
+   "lang": "python",
+   "code": "n = int(input())\nprint(n + 1)",
+   "output": "42",
+   "stdin": "41\n"
+  }
+ },
+ {
+  "id": "python-basics-04",
+  "topic": "Python basics",
+  "front": "I want to cut a line of text into pieces at the spaces.",
+  "back": "so I write `parts = line.split()`. The result is a list of text pieces.",
+  "check": {
+   "lang": "python",
+   "code": "print(\"3 4 5\".split())",
+   "output": "['3', '4', '5']"
+  }
+ },
+ {
+  "id": "python-basics-05",
+  "topic": "Python basics",
+  "front": "I want to read several whole numbers from one line into a list.",
+  "back": "so I write `nums = list(map(int, input().split()))`. Split cuts the line, map int converts each piece, and list collects them.",
+  "check": {
+   "lang": "python",
+   "code": "nums = list(map(int, input().split()))\nprint(nums)",
+   "output": "[4, 8, 1]",
+   "stdin": "4 8 1\n"
+  }
+ },
+ {
+  "id": "python-basics-06",
+  "topic": "Python basics",
+  "front": "I want to test whether a number is even.",
+  "back": "so I write `n % 2 == 0`. The % sign gives the remainder after dividing, and an even number leaves remainder 0.",
+  "check": {
+   "lang": "python",
+   "code": "print(10 % 2 == 0, 7 % 2 == 0)",
+   "output": "True False"
+  }
+ },
+ {
+  "id": "python-basics-07",
+  "topic": "Python basics",
+  "front": "I want to do one thing when a test is true and another when it is not.",
+  "back": "so I write `if test:` then an indented block, then `else:` and another indented block.",
+  "check": {
+   "lang": "python",
+   "code": "n = 5\nif n > 3:\n    print(\"big\")\nelse:\n    print(\"small\")",
+   "output": "big"
+  }
+ },
+ {
+  "id": "python-basics-08",
+  "topic": "Python basics",
+  "front": "I want to get the last item of a list.",
+  "back": "so I write `nums[-1]`, or `nums[len(nums) - 1]`. The last position is one less than the length.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [4, 9, 7]\nprint(nums[-1], nums[len(nums) - 1])",
+   "output": "7 7"
+  }
+ },
+ {
+  "id": "python-basics-09",
+  "topic": "Python basics",
+  "front": "I want to get the first three items of a list.",
+  "back": "so I write `nums[:3]`. A slice starts at the first position and stops before position 3.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [1, 2, 3, 4, 5]\nprint(nums[:3])",
+   "output": "[1, 2, 3]"
+  }
+ },
+ {
+  "id": "python-basics-10",
+  "topic": "Python basics",
+  "front": "I want to visit every position of a list.",
+  "back": "so I write `for i in range(len(nums)):` and then use `nums[i]` inside the loop.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [5, 6]\nfor i in range(len(nums)):\n    print(i, nums[i])",
+   "output": "0 5\n1 6"
+  }
+ },
+ {
+  "id": "python-basics-11",
+  "topic": "Python basics",
+  "front": "I want to visit every value in a list when I do not need positions.",
+  "back": "so I write `for x in nums:`. Here x takes each value in turn.",
+  "check": {
+   "lang": "python",
+   "code": "for x in [5, 6]:\n    print(x)",
+   "output": "5\n6"
+  }
+ },
+ {
+  "id": "python-basics-12",
+  "topic": "Python basics",
+  "front": "I want to add up all the numbers in a list.",
+  "back": "so I write `total = 0` before the loop, and `total += x` inside it.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [1, 2, 3, 4]\ntotal = 0\nfor x in nums:\n    total += x\nprint(total)",
+   "output": "10"
+  }
+ },
+ {
+  "id": "python-basics-13",
+  "topic": "Python basics",
+  "front": "I want to find the biggest number by hand.",
+  "back": "so I write `best = nums[0]` first, then inside a loop `if x > best: best = x`.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [3, 9, 4]\nbest = nums[0]\nfor x in nums:\n    if x > best:\n        best = x\nprint(best)",
+   "output": "9"
+  }
+ },
+ {
+  "id": "python-basics-14",
+  "topic": "Python basics",
+  "front": "I want to reuse a calculation.",
+  "back": "so I write `def name(inputs):` with an indented body that ends in `return result`.",
+  "check": {
+   "lang": "python",
+   "code": "def double(n):\n    return n * 2\nprint(double(4))",
+   "output": "8"
+  }
+ },
+ {
+  "id": "python-basics-15",
+  "topic": "Python basics",
+  "front": "I want to add an item to the end of a list.",
+  "back": "so I write `items.append(x)`. It changes the list itself.",
+  "check": {
+   "lang": "python",
+   "code": "items = [1]\nitems.append(2)\nprint(items)",
+   "output": "[1, 2]"
+  }
+ },
+ {
+  "id": "python-basics-16",
+  "topic": "Python basics",
+  "front": "I want to count how many items a list or text holds.",
+  "back": "so I write `len(x)`.",
+  "check": {
+   "lang": "python",
+   "code": "print(len([4, 5, 6]), len(\"hello\"))",
+   "output": "3 5"
+  }
+ },
+ {
+  "id": "python-basics-17",
+  "topic": "Python basics",
+  "front": "I want to reverse a piece of text.",
+  "back": "so I write `s[::-1]`. A slice with step -1 walks backwards.",
+  "check": {
+   "lang": "python",
+   "code": "print(\"abc\"[::-1])",
+   "output": "cba"
+  }
+ },
+ {
+  "id": "python-basics-18",
+  "topic": "Python basics",
+  "front": "I want to check whether a value is in a list.",
+  "back": "so I write `x in nums`. It gives True or False.",
+  "check": {
+   "lang": "python",
+   "code": "print(3 in [1, 2, 3], 9 in [1, 2, 3])",
+   "output": "True False"
+  }
+ },
+ {
+  "id": "dictionaries-01",
+  "topic": "Dictionaries",
+  "front": "I want to count how often each item appears.",
+  "back": "so I write `counts[x] = counts.get(x, 0) + 1` inside a loop, with `counts = {}` before it.",
+  "check": {
+   "lang": "python",
+   "code": "counts = {}\nfor ch in \"aab\":\n    counts[ch] = counts.get(ch, 0) + 1\nprint(counts)",
+   "output": "{'a': 2, 'b': 1}"
+  }
+ },
+ {
+  "id": "dictionaries-02",
+  "topic": "Dictionaries",
+  "front": "I want to read a value from a dictionary without crashing when the key is missing.",
+  "back": "so I write `d.get(key, fallback)`. The fallback is used when the key is not there.",
+  "check": {
+   "lang": "python",
+   "code": "d = {\"a\": 1}\nprint(d.get(\"z\", 0))",
+   "output": "0"
+  }
+ },
+ {
+  "id": "dictionaries-03",
+  "topic": "Dictionaries",
+  "front": "I want to ask whether a key exists in a dictionary.",
+  "back": "so I write `key in d`. It gives True or False.",
+  "check": {
+   "lang": "python",
+   "code": "d = {\"a\": 1}\nprint(\"a\" in d, \"z\" in d)",
+   "output": "True False"
+  }
+ },
+ {
+  "id": "dictionaries-04",
+  "topic": "Dictionaries",
+  "front": "I want to spot the first value that appears twice.",
+  "back": "so I write `seen = {}`, then for each x: `if x in seen:` answer x, otherwise `seen[x] = True`.",
+  "check": {
+   "lang": "python",
+   "code": "seen = {}\nfor x in [3, 1, 3]:\n    if x in seen:\n        print(\"repeat\", x)\n    seen[x] = True",
+   "output": "repeat 3"
+  }
+ },
+ {
+  "id": "dictionaries-05",
+  "topic": "Dictionaries",
+  "front": "I want to go through a dictionary in a stable order.",
+  "back": "so I write `for key in sorted(d):` and then `d[key]` for the value.",
+  "check": {
+   "lang": "python",
+   "code": "d = {\"b\": 2, \"a\": 1}\nfor key in sorted(d):\n    print(key, d[key])",
+   "output": "a 1\nb 2"
+  }
+ },
+ {
+  "id": "dictionaries-06",
+  "topic": "Dictionaries",
+  "front": "I want to find the partner that completes a target total.",
+  "back": "so I write `need = target - nums[i]` and `if need in seen:`, then store `seen[nums[i]] = i`.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [2, 7, 11]\ntarget = 9\nseen = {}\nfor i in range(len(nums)):\n    need = target - nums[i]\n    if need in seen:\n        print(seen[need], i)\n    seen[nums[i]] = i",
+   "output": "0 1"
+  }
+ },
+ {
+  "id": "dictionaries-07",
+  "topic": "Dictionaries",
+  "front": "I want to count the blocks of neighbours that add up to k.",
+  "back": "so I write `counts = {0: 1}`, then for each x: `running += x`, `answer += counts.get(running - k, 0)`, `counts[running] = counts.get(running, 0) + 1`.",
+  "check": {
+   "lang": "python",
+   "code": "counts = {0: 1}\nrunning = 0\nanswer = 0\nfor x in [1, 1, 1]:\n    running += x\n    answer += counts.get(running - 2, 0)\n    counts[running] = counts.get(running, 0) + 1\nprint(answer)",
+   "output": "2"
+  }
+ },
+ {
+  "id": "dictionaries-08",
+  "topic": "Dictionaries",
+  "front": "I want to check whether two words use the same letters.",
+  "back": "so I write `sorted(a) == sorted(b)`, or compare two dictionaries of letter counts.",
+  "check": {
+   "lang": "python",
+   "code": "print(sorted(\"listen\") == sorted(\"silent\"))",
+   "output": "True"
+  }
+ },
+ {
+  "id": "sorting-01",
+  "topic": "Sorting",
+  "front": "I want to get the numbers in order without changing the original list.",
+  "back": "so I write `sorted(nums)`. The original list is left alone.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [3, 1, 2]\nprint(sorted(nums), nums)",
+   "output": "[1, 2, 3] [3, 1, 2]"
+  }
+ },
+ {
+  "id": "sorting-02",
+  "topic": "Sorting",
+  "front": "I want to get the biggest numbers first.",
+  "back": "so I write `sorted(nums, reverse=True)`.",
+  "check": {
+   "lang": "python",
+   "code": "print(sorted([3, 1, 2], reverse=True))",
+   "output": "[3, 2, 1]"
+  }
+ },
+ {
+  "id": "sorting-03",
+  "topic": "Sorting",
+  "front": "I want to sort words by their length.",
+  "back": "so I write `sorted(words, key=len)`. The key says what to compare.",
+  "check": {
+   "lang": "python",
+   "code": "print(sorted([\"ccc\", \"a\", \"bb\"], key=len))",
+   "output": "['a', 'bb', 'ccc']"
+  }
+ },
+ {
+  "id": "sorting-04",
+  "topic": "Sorting",
+  "front": "I want to sort by length and break ties alphabetically.",
+  "back": "so I write `sorted(words, key=lambda w: (len(w), w))`. The pair is compared left to right.",
+  "check": {
+   "lang": "python",
+   "code": "print(sorted([\"bb\", \"a\", \"aa\"], key=lambda w: (len(w), w)))",
+   "output": "['a', 'aa', 'bb']"
+  }
+ },
+ {
+  "id": "sorting-05",
+  "topic": "Sorting",
+  "front": "I want to get the three biggest values.",
+  "back": "so I write `sorted(nums, reverse=True)[:3]`.",
+  "check": {
+   "lang": "python",
+   "code": "print(sorted([4, 9, 1, 7], reverse=True)[:3])",
+   "output": "[9, 7, 4]"
+  }
+ },
+ {
+  "id": "sorting-06",
+  "topic": "Sorting",
+  "front": "I want to find the smallest gap between any two numbers.",
+  "back": "so I write `nums = sorted(nums)` and then compare each item with the one before it, `nums[i] - nums[i - 1]`.",
+  "check": {
+   "lang": "python",
+   "code": "nums = sorted([8, 3, 15, 5])\nbest = nums[1] - nums[0]\nfor i in range(1, len(nums)):\n    best = min(best, nums[i] - nums[i - 1])\nprint(best)",
+   "output": "2"
+  }
+ },
+ {
+  "id": "two-pointers-01",
+  "topic": "Two pointers",
+  "front": "I want to walk in from both ends of a list.",
+  "back": "so I write `left = 0`, `right = len(nums) - 1`, then `while left < right:` and move at least one pointer each round.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [1, 2, 3, 4]\nleft = 0\nright = len(nums) - 1\nwhile left < right:\n    print(left, right)\n    left += 1\n    right -= 1",
+   "output": "0 3\n1 2"
+  }
+ },
+ {
+  "id": "two-pointers-02",
+  "topic": "Two pointers",
+  "front": "I want to find a pair with a target total in a sorted list.",
+  "back": "so I write a total that is too small means `left += 1`, a total that is too big means `right -= 1`.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [1, 3, 4, 6, 9]\nleft = 0\nright = 4\nwhile left < right:\n    total = nums[left] + nums[right]\n    if total == 13:\n        print(\"found\", left, right)\n        break\n    elif total < 13:\n        left += 1\n    else:\n        right -= 1",
+   "output": "found 2 4"
+  }
+ },
+ {
+  "id": "two-pointers-03",
+  "topic": "Two pointers",
+  "front": "I want to swap two items in a list.",
+  "back": "so I write `nums[i], nums[j] = nums[j], nums[i]`.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [1, 2, 3]\nnums[0], nums[2] = nums[2], nums[0]\nprint(nums)",
+   "output": "[3, 2, 1]"
+  }
+ },
+ {
+  "id": "two-pointers-04",
+  "topic": "Two pointers",
+  "front": "I want to remove repeats from a sorted list in one pass.",
+  "back": "so I write a slow pointer for where the next new value goes: when `nums[fast] != nums[slow]`, do `slow += 1` and copy the value there.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [1, 1, 2, 2, 3]\nslow = 0\nfor fast in range(1, len(nums)):\n    if nums[fast] != nums[slow]:\n        slow += 1\n        nums[slow] = nums[fast]\nprint(nums[:slow + 1])",
+   "output": "[1, 2, 3]"
+  }
+ },
+ {
+  "id": "sliding-window-01",
+  "topic": "Sliding window",
+  "front": "I want to know how many items are in a window.",
+  "back": "so I write `right - left + 1`, because both ends are included.",
+  "check": {
+   "lang": "python",
+   "code": "left = 2\nright = 4\nprint(right - left + 1)",
+   "output": "3"
+  }
+ },
+ {
+  "id": "sliding-window-02",
+  "topic": "Sliding window",
+  "front": "I want to slide a fixed window one step.",
+  "back": "so I write `window = window + nums[right] - nums[right - k]`: add the new item, take away the old one.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [2, 1, 5, 1]\nk = 2\nwindow = nums[0] + nums[1]\nfor right in range(k, len(nums)):\n    window = window + nums[right] - nums[right - k]\n    print(window)",
+   "output": "6\n6"
+  }
+ },
+ {
+  "id": "sliding-window-03",
+  "topic": "Sliding window",
+  "front": "I want to shrink a window while it is still big enough.",
+  "back": "so I write `while total >= target:` record the size, then `total -= nums[left]` and `left += 1`.",
+  "check": {
+   "lang": "python",
+   "code": "nums = [2, 3, 1, 2, 4, 3]\ntarget = 7\nleft = 0\ntotal = 0\nbest = 99\nfor right in range(len(nums)):\n    total += nums[right]\n    while total >= target:\n        best = min(best, right - left + 1)\n        total -= nums[left]\n        left += 1\nprint(best)",
+   "output": "2"
+  }
+ },
+ {
+  "id": "sliding-window-04",
+  "topic": "Sliding window",
+  "front": "I want to keep a window free of repeated letters.",
+  "back": "so I write a dictionary `last[ch] = right`, and when a letter was last seen inside the window, `left = last[ch] + 1`.",
+  "check": {
+   "lang": "python",
+   "code": "s = \"abca\"\nlast = {}\nleft = 0\nfor right in range(len(s)):\n    if s[right] in last and last[s[right]] >= left:\n        left = last[s[right]] + 1\n    last[s[right]] = right\nprint(left)",
+   "output": "1"
+  }
+ },
+ {
+  "id": "grids-01",
+  "topic": "Grids",
+  "front": "I want to read one cell of a grid.",
+  "back": "so I write `grid[r][c]`: first the row, then the column, both counting from 0.",
+  "check": {
+   "lang": "python",
+   "code": "grid = [[1, 2, 3], [4, 5, 6]]\nprint(grid[1][2])",
+   "output": "6"
+  }
+ },
+ {
+  "id": "grids-02",
+  "topic": "Grids",
+  "front": "I want to get the number of rows and columns.",
+  "back": "so I write `len(grid)` for rows and `len(grid[0])` for columns.",
+  "check": {
+   "lang": "python",
+   "code": "grid = [[1, 2, 3], [4, 5, 6]]\nprint(len(grid), len(grid[0]))",
+   "output": "2 3"
+  }
+ },
+ {
+  "id": "grids-03",
+  "topic": "Grids",
+  "front": "I want to visit every cell of a grid.",
+  "back": "so I write `for r in range(len(grid)):` and inside it `for c in range(len(grid[0])):`.",
+  "check": {
+   "lang": "python",
+   "code": "grid = [[1, 2], [3, 4]]\nfor r in range(len(grid)):\n    for c in range(len(grid[0])):\n        print(r, c, grid[r][c])",
+   "output": "0 0 1\n0 1 2\n1 0 3\n1 1 4"
+  }
+ },
+ {
+  "id": "grids-04",
+  "topic": "Grids",
+  "front": "I want to visit the neighbours of a cell safely.",
+  "back": "so I write `for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:` and check `0 <= nr < rows and 0 <= nc < cols` before using the cell.",
+  "check": {
+   "lang": "python",
+   "code": "r = 0\nc = 0\nfor dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n    nr = r + dr\n    nc = c + dc\n    if 0 <= nr < 2 and 0 <= nc < 2:\n        print(nr, nc)",
+   "output": "1 0\n0 1"
+  }
+ },
+ {
+  "id": "grids-05",
+  "topic": "Grids",
+  "front": "I want to go down one column of a grid.",
+  "back": "so I write keep c fixed and loop `for r in range(len(grid)):` reading `grid[r][c]`.",
+  "check": {
+   "lang": "python",
+   "code": "grid = [[1, 2], [3, 4]]\nc = 1\nfor r in range(len(grid)):\n    print(grid[r][c])",
+   "output": "2\n4"
+  }
+ },
+ {
+  "id": "strings-and-parsing-01",
+  "topic": "Strings and parsing",
+  "front": "I want to squeeze extra spaces out of a line.",
+  "back": "so I write `\" \".join(text.split())`.",
+  "check": {
+   "lang": "python",
+   "code": "print(\" \".join(\"  a   b \".split()))",
+   "output": "a b"
+  }
+ },
+ {
+  "id": "strings-and-parsing-02",
+  "topic": "Strings and parsing",
+  "front": "I want to swap one piece of text for another.",
+  "back": "so I write `text.replace(old, new)`. It gives back new text.",
+  "check": {
+   "lang": "python",
+   "code": "print(\"a cat\".replace(\"cat\", \"dog\"))",
+   "output": "a dog"
+  }
+ },
+ {
+  "id": "strings-and-parsing-03",
+  "topic": "Strings and parsing",
+  "front": "I want to get the capital first letter of a word.",
+  "back": "so I write `word[0].upper()`.",
+  "check": {
+   "lang": "python",
+   "code": "print(\"ada\"[0].upper())",
+   "output": "A"
+  }
+ },
+ {
+  "id": "strings-and-parsing-04",
+  "topic": "Strings and parsing",
+  "front": "I want to split a pair such as age=30 into its two parts.",
+  "back": "so I write `key, value = pair.split(\"=\")`.",
+  "check": {
+   "lang": "python",
+   "code": "key, value = \"age=30\".split(\"=\")\nprint(key, value)",
+   "output": "age 30"
+  }
+ },
+ {
+  "id": "strings-and-parsing-05",
+  "topic": "Strings and parsing",
+  "front": "I want to add up numbers written with commas.",
+  "back": "so I write `for part in text.split(\",\"):` and `total += int(part)`.",
+  "check": {
+   "lang": "python",
+   "code": "total = 0\nfor part in \"3,5,10\".split(\",\"):\n    total += int(part)\nprint(total)",
+   "output": "18"
+  }
+ },
+ {
+  "id": "strings-and-parsing-06",
+  "topic": "Strings and parsing",
+  "front": "I want to read a count and then that many lines of text.",
+  "back": "so I write `n = int(input())` and then `lines = [input() for _ in range(n)]`.",
+  "check": {
+   "lang": "python",
+   "code": "n = int(input())\nlines = [input() for _ in range(n)]\nprint(lines)",
+   "output": "['ab', 'cd']",
+   "stdin": "2\nab\ncd\n"
+  }
+ },
+ {
+  "id": "strings-and-parsing-07",
+  "topic": "Strings and parsing",
+  "front": "I want to test whether a character is a digit.",
+  "back": "so I write `ch.isdigit()`. There are also `isalpha()`, `isupper()` and `islower()`.",
+  "check": {
+   "lang": "python",
+   "code": "print(\"7\".isdigit(), \"a\".isdigit())",
+   "output": "True False"
+  }
+ },
+ {
+  "id": "strings-and-parsing-08",
+  "topic": "Strings and parsing",
+  "front": "I want to find the place of a letter in the alphabet.",
+  "back": "so I write `ord(ch) - ord(\"a\")`, which gives 0 for a and 25 for z.",
+  "check": {
+   "lang": "python",
+   "code": "print(ord(\"c\") - ord(\"a\"))",
+   "output": "2"
+  }
+ },
+ {
+  "id": "strings-and-parsing-09",
+  "topic": "Strings and parsing",
+  "front": "I want to shift a letter and wrap round after z.",
+  "back": "so I write `(place + shift) % 26`, then turn it back with `chr(... + ord(\"a\"))`.",
+  "check": {
+   "lang": "python",
+   "code": "print((24 + 3) % 26)",
+   "output": "1"
+  }
+ },
+ {
+  "id": "strings-and-parsing-10",
+  "topic": "Strings and parsing",
+  "front": "I want to build new text one character at a time.",
+  "back": "so I write `result = \"\"` first, and `result += ch` inside the loop.",
+  "check": {
+   "lang": "python",
+   "code": "result = \"\"\nfor ch in \"abc\":\n    result += ch.upper()\nprint(result)",
+   "output": "ABC"
+  }
+ },
+ {
+  "id": "strings-and-parsing-11",
+  "topic": "Strings and parsing",
+  "front": "I want to test how a line begins.",
+  "back": "so I write `line.startswith(\"ERROR\")`. Or split the line and compare its first word.",
+  "check": {
+   "lang": "python",
+   "code": "print(\"ERROR disk\".startswith(\"ERROR\"))",
+   "output": "True"
+  }
+ },
+ {
+  "id": "strings-and-parsing-12",
+  "topic": "Strings and parsing",
+  "front": "I want to print the items of a list on one line with spaces.",
+  "back": "so I write `print(*items)`. The star spreads the list into separate values.",
+  "check": {
+   "lang": "python",
+   "code": "items = [1, 2, 3]\nprint(*items)",
+   "output": "1 2 3"
+  }
+ },
+ {
+  "id": "big-o-01",
+  "topic": "Big O",
+  "front": "I want to describe one loop over n items.",
+  "back": "so I write O(n), said as order n. The work grows in step with n."
+ },
+ {
+  "id": "big-o-02",
+  "topic": "Big O",
+  "front": "I want to describe a loop inside a loop over the same n items.",
+  "back": "so I write O(n^2), said as order n squared. The work grows with n times n."
+ },
+ {
+  "id": "big-o-03",
+  "topic": "Big O",
+  "front": "I want to check quickly whether a value has been seen before.",
+  "back": "so I write `x in seen` where `seen` is a dictionary or a set. That is O(1), while `x in a_list` is O(n).",
+  "check": {
+   "lang": "python",
+   "code": "seen = {3: True}\nprint(3 in seen)",
+   "output": "True"
+  }
+ },
+ {
+  "id": "big-o-04",
+  "topic": "Big O",
+  "front": "I want to describe the cost of sorting.",
+  "back": "so I write O(n log n). Python sorted is this fast, so sorting first is usually fine."
+ },
+ {
+  "id": "big-o-05",
+  "topic": "Big O",
+  "front": "I want to describe a loop that halves the problem each round.",
+  "back": "so I write O(log n). Halving is the sign of logarithmic growth."
+ },
+ {
+  "id": "prompt-engineering-01",
+  "topic": "Prompt Engineering",
+  "front": "I want to make a model pull specific facts out of text.",
+  "back": "so I write the task, the exact field names, a rule for missing values, and the output format. For example: Extract the name and order number. If either is missing, use null. Return only JSON."
+ },
+ {
+  "id": "prompt-engineering-02",
+  "topic": "Prompt Engineering",
+  "front": "I want to show the model where my input starts and ends.",
+  "back": "so I write the text between triple quotes or tags, and I say that it is the text to work on. This keeps my instructions apart from the data."
+ },
+ {
+  "id": "prompt-engineering-03",
+  "topic": "Prompt Engineering",
+  "front": "I want to stop the model from inventing facts.",
+  "back": "so I write a rule: Use only the information in the text. If something is not stated, say not stated."
+ },
+ {
+  "id": "prompt-engineering-04",
+  "topic": "Prompt Engineering",
+  "front": "I want to get a clear answer when data is missing.",
+  "back": "so I write a rule: If a value is not stated, use null. Do not guess. Missing is reported as missing."
+ },
+ {
+  "id": "prompt-engineering-05",
+  "topic": "Prompt Engineering",
+  "front": "I want to get an answer that a program can parse.",
+  "back": "so I write Return only a JSON object with exactly these keys, and write nothing before or after it. I name each key and its type."
+ },
+ {
+  "id": "prompt-engineering-06",
+  "topic": "Prompt Engineering",
+  "front": "I want to check that a text has all the required parts.",
+  "back": "so I write a numbered list of requirements, then: for each item write present or missing and quote the words that show it, then give one final decision."
+ },
+ {
+  "id": "prompt-engineering-07",
+  "topic": "Prompt Engineering",
+  "front": "I want to make the model copy the style of answer I want.",
+  "back": "so I write one or two short worked examples in the prompt, including one tricky case, so that the model can follow the pattern."
+ },
+ {
+  "id": "prompt-engineering-08",
+  "topic": "Prompt Engineering",
+  "front": "I want to get a summary that suits its reader.",
+  "back": "so I write who the reader is, how long the summary must be, what to keep, what to leave out, and a rule to use only the text."
+ },
+ {
+  "id": "sql-01",
+  "topic": "SQL",
+  "front": "I want to list the names and salaries of one department, best paid first.",
+  "back": "so I write SELECT the columns FROM the table WHERE the condition, then ORDER BY salary DESC.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT name, salary FROM employees WHERE department = 'Sales' ORDER BY salary DESC;",
+   "columns": [
+    "name",
+    "salary"
+   ],
+   "rows": [
+    [
+     "Ava",
+     52000
+    ],
+    [
+     "Ben",
+     48000
+    ],
+    [
+     "Cara",
+     45000
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-02",
+  "topic": "SQL",
+  "front": "I want to keep only rows that meet two conditions at once.",
+  "back": "so I write WHERE the first condition AND the second condition.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT name FROM employees WHERE department = 'Engineering' AND salary < 80000 ORDER BY name;",
+   "columns": [
+    "name"
+   ],
+   "rows": [
+    [
+     "Finn"
+    ],
+    [
+     "Gia"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-03",
+  "topic": "SQL",
+  "front": "I want to match a column against a short list of values.",
+  "back": "so I write WHERE column IN (value1, value2) instead of several ORs.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT id FROM orders WHERE product IN ('Mouse', 'Keyboard') ORDER BY id;",
+   "columns": [
+    "id"
+   ],
+   "rows": [
+    [
+     2
+    ],
+    [
+     7
+    ],
+    [
+     8
+    ],
+    [
+     11
+    ],
+    [
+     14
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-04",
+  "topic": "SQL",
+  "front": "I want to find text that ends with a given letter.",
+  "back": "so I write WHERE column LIKE with a percent sign, which stands for any run of characters.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT name FROM customers WHERE name LIKE '%a' ORDER BY name;",
+   "columns": [
+    "name"
+   ],
+   "rows": [
+    [
+     "Dana"
+    ],
+    [
+     "Hana"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-05",
+  "topic": "SQL",
+  "front": "I want to find rows where a value is missing.",
+  "back": "so I write WHERE column IS NULL. I never write = NULL.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT name FROM employees WHERE manager_id IS NULL ORDER BY name;",
+   "columns": [
+    "name"
+   ],
+   "rows": [
+    [
+     "Ava"
+    ],
+    [
+     "Dev"
+    ],
+    [
+     "Hugo"
+    ],
+    [
+     "Jon"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-06",
+  "topic": "SQL",
+  "front": "I want to keep numbers from 100 to 300 including both ends.",
+  "back": "so I write WHERE column BETWEEN 100 AND 300.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT id FROM orders WHERE amount BETWEEN 100 AND 300 ORDER BY id;",
+   "columns": [
+    "id"
+   ],
+   "rows": [
+    [
+     3
+    ],
+    [
+     4
+    ],
+    [
+     5
+    ],
+    [
+     9
+    ],
+    [
+     12
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-07",
+  "topic": "SQL",
+  "front": "I want to list each city once.",
+  "back": "so I write SELECT DISTINCT column FROM the table. DISTINCT removes repeated rows.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT DISTINCT city FROM customers ORDER BY city;",
+   "columns": [
+    "city"
+   ],
+   "rows": [
+    [
+     "Austin"
+    ],
+    [
+     "Boston"
+    ],
+    [
+     "Chicago"
+    ],
+    [
+     "Denver"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-08",
+  "topic": "SQL",
+  "front": "I want to get the three highest paid people.",
+  "back": "so I write ORDER BY salary DESC and then LIMIT 3, with LIMIT last.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 3;",
+   "columns": [
+    "name",
+    "salary"
+   ],
+   "rows": [
+    [
+     "Dev",
+     90000
+    ],
+    [
+     "Elle",
+     82000
+    ],
+    [
+     "Finn",
+     76000
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-09",
+  "topic": "SQL",
+  "front": "I want to show a calculated column with a name of my choice.",
+  "back": "so I write the calculation followed by AS and the new name.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT name, salary * 105 / 100 AS new_salary FROM employees ORDER BY id LIMIT 2;",
+   "columns": [
+    "name",
+    "new_salary"
+   ],
+   "rows": [
+    [
+     "Ava",
+     54600
+    ],
+    [
+     "Ben",
+     50400
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-10",
+  "topic": "SQL",
+  "front": "I want to show each order next to the customer name.",
+  "back": "so I write FROM orders JOIN customers ON orders.customer_id = customers.id, with short nicknames o and c.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT c.name, o.product FROM orders o JOIN customers c ON o.customer_id = c.id ORDER BY o.id LIMIT 3;",
+   "columns": [
+    "name",
+    "product"
+   ],
+   "rows": [
+    [
+     "Alice",
+     "Laptop"
+    ],
+    [
+     "Alice",
+     "Mouse"
+    ],
+    [
+     "Bruno",
+     "Desk"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-11",
+  "topic": "SQL",
+  "front": "I want to find customers who have never ordered.",
+  "back": "so I write FROM customers LEFT JOIN orders ON the ids match, then WHERE the order id IS NULL.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT c.name FROM customers c LEFT JOIN orders o ON o.customer_id = c.id WHERE o.id IS NULL ORDER BY c.name;",
+   "columns": [
+    "name"
+   ],
+   "rows": [
+    [
+     "Gus"
+    ],
+    [
+     "Hana"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-12",
+  "topic": "SQL",
+  "front": "I want to count the rows in each group.",
+  "back": "so I write SELECT the group column and COUNT(*), then GROUP BY the group column.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT department, COUNT(*) AS headcount FROM employees GROUP BY department ORDER BY department;",
+   "columns": [
+    "department",
+    "headcount"
+   ],
+   "rows": [
+    [
+     "Engineering",
+     4
+    ],
+    [
+     "HR",
+     2
+    ],
+    [
+     "Sales",
+     3
+    ],
+    [
+     "Support",
+     3
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-13",
+  "topic": "SQL",
+  "front": "I want to keep only the groups with a big enough count.",
+  "back": "so I write GROUP BY first, then HAVING COUNT(*) with the test. HAVING filters groups, WHERE filters rows.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT department, COUNT(*) AS headcount FROM employees GROUP BY department HAVING COUNT(*) > 3;",
+   "columns": [
+    "department",
+    "headcount"
+   ],
+   "rows": [
+    [
+     "Engineering",
+     4
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-14",
+  "topic": "SQL",
+  "front": "I want to add up a column for each group, using only some of the rows.",
+  "back": "so I write WHERE to choose rows first, then SUM(column) with GROUP BY.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT customer_id, SUM(amount) AS total FROM orders WHERE status = 'shipped' GROUP BY customer_id ORDER BY customer_id;",
+   "columns": [
+    "customer_id",
+    "total"
+   ],
+   "rows": [
+    [
+     1,
+     1285
+    ],
+    [
+     2,
+     545
+    ],
+    [
+     3,
+     230
+    ],
+    [
+     4,
+     1240
+    ],
+    [
+     6,
+     1250
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-15",
+  "topic": "SQL",
+  "front": "I want to show each employee next to their manager.",
+  "back": "so I write the employees table twice with two nicknames: FROM employees e JOIN employees m ON e.manager_id = m.id.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT e.name AS employee, m.name AS manager FROM employees e JOIN employees m ON e.manager_id = m.id ORDER BY e.id LIMIT 3;",
+   "columns": [
+    "employee",
+    "manager"
+   ],
+   "rows": [
+    [
+     "Ben",
+     "Ava"
+    ],
+    [
+     "Cara",
+     "Ava"
+    ],
+    [
+     "Elle",
+     "Dev"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-16",
+  "topic": "SQL",
+  "front": "I want to get an average rounded to a whole number.",
+  "back": "so I write ROUND(AVG(column)) with GROUP BY for one average per group.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT department, ROUND(AVG(salary)) AS average_pay FROM employees GROUP BY department ORDER BY department;",
+   "columns": [
+    "department",
+    "average_pay"
+   ],
+   "rows": [
+    [
+     "Engineering",
+     79750.0
+    ],
+    [
+     "HR",
+     48500.0
+    ],
+    [
+     "Sales",
+     48333.0
+    ],
+    [
+     "Support",
+     39667.0
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-17",
+  "topic": "SQL",
+  "front": "I want to count every row of a table.",
+  "back": "so I write SELECT COUNT(*) FROM the table.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT COUNT(*) FROM orders;",
+   "columns": [
+    "COUNT(*)"
+   ],
+   "rows": [
+    [
+     14
+    ]
+   ]
+  }
+ },
+ {
+  "id": "sql-18",
+  "topic": "SQL",
+  "front": "I want to find the biggest value in a column.",
+  "back": "so I write SELECT MAX(column) FROM the table.",
+  "check": {
+   "lang": "sql",
+   "sql": "SELECT MAX(salary) FROM employees;",
+   "columns": [
+    "MAX(salary)"
+   ],
+   "rows": [
+    [
+     90000
+    ]
+   ]
+  }
+ }
+]

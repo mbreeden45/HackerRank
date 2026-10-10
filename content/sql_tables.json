@@ -1,0 +1,127 @@
+{
+ "employees": {
+  "columns": [
+   [
+    "id",
+    "whole number",
+    "unique number for each employee"
+   ],
+   [
+    "name",
+    "text",
+    "first name"
+   ],
+   [
+    "department",
+    "text",
+    "Sales, Engineering, HR or Support"
+   ],
+   [
+    "salary",
+    "whole number",
+    "yearly pay"
+   ],
+   [
+    "manager_id",
+    "whole number or NULL",
+    "the id of this person's manager, or NULL if they have none"
+   ],
+   [
+    "hire_year",
+    "whole number",
+    "year they joined"
+   ]
+  ],
+  "create": "CREATE TABLE employees (id INTEGER PRIMARY KEY, name TEXT, department TEXT, salary INTEGER, manager_id INTEGER, hire_year INTEGER);\nINSERT INTO employees VALUES (1,'Ava','Sales',52000,NULL,2015),(2,'Ben','Sales',48000,1,2018),(3,'Cara','Sales',45000,1,2020),\n(4,'Dev','Engineering',90000,NULL,2014),(5,'Elle','Engineering',82000,4,2017),(6,'Finn','Engineering',76000,4,2019),(7,'Gia','Engineering',71000,4,2021),\n(8,'Hugo','HR',50000,NULL,2016),(9,'Ivy','HR',47000,8,2022),(10,'Jon','Support',41000,NULL,2018),(11,'Kay','Support',39000,10,2020),(12,'Liam','Support',39000,10,2023);"
+ },
+ "customers": {
+  "columns": [
+   [
+    "id",
+    "whole number",
+    "unique number for each customer"
+   ],
+   [
+    "name",
+    "text",
+    "first name"
+   ],
+   [
+    "city",
+    "text",
+    "home city"
+   ],
+   [
+    "joined_year",
+    "whole number",
+    "year they became a customer"
+   ]
+  ],
+  "create": "CREATE TABLE customers (id INTEGER PRIMARY KEY, name TEXT, city TEXT, joined_year INTEGER);\nINSERT INTO customers VALUES (1,'Alice','Austin',2019),(2,'Bruno','Boston',2020),(3,'Chen','Austin',2021),(4,'Dana','Denver',2019),\n(5,'Eli','Boston',2022),(6,'Fay','Chicago',2021),(7,'Gus','Denver',2023),(8,'Hana','Austin',2023);"
+ },
+ "orders": {
+  "columns": [
+   [
+    "id",
+    "whole number",
+    "unique number for each order"
+   ],
+   [
+    "customer_id",
+    "whole number",
+    "the id of the customer who ordered (see customers)"
+   ],
+   [
+    "product",
+    "text",
+    "what was bought"
+   ],
+   [
+    "amount",
+    "whole number",
+    "price in dollars"
+   ],
+   [
+    "order_date",
+    "text",
+    "date as YYYY-MM-DD"
+   ],
+   [
+    "status",
+    "text",
+    "shipped, pending or returned"
+   ]
+  ],
+  "create": "CREATE TABLE orders (id INTEGER PRIMARY KEY, customer_id INTEGER, product TEXT, amount INTEGER, order_date TEXT, status TEXT);\nINSERT INTO orders VALUES (1,1,'Laptop',1200,'2023-01-15','shipped'),(2,1,'Mouse',25,'2023-02-10','shipped'),(3,2,'Desk',300,'2023-02-20','shipped'),\n(4,3,'Chair',150,'2023-03-05','returned'),(5,2,'Monitor',220,'2023-03-18','shipped'),(6,4,'Laptop',1100,'2023-04-02','shipped'),\n(7,5,'Mouse',25,'2023-04-11','pending'),(8,1,'Keyboard',60,'2023-05-07','shipped'),(9,3,'Monitor',230,'2023-05-21','shipped'),\n(10,6,'Desk',310,'2023-06-01','pending'),(11,2,'Mouse',25,'2023-06-14','shipped'),(12,4,'Chair',140,'2023-07-09','shipped'),\n(13,6,'Laptop',1250,'2023-07-30','shipped'),(14,5,'Keyboard',55,'2023-08-15','returned');"
+ },
+ "accounts": {
+  "columns": [
+   [
+    "id",
+    "whole number",
+    "unique number for each account"
+   ],
+   [
+    "customer_id",
+    "whole number",
+    "the id of the customer who owns it (see customers)"
+   ],
+   [
+    "type",
+    "text",
+    "checking or savings"
+   ],
+   [
+    "balance",
+    "whole number",
+    "money in the account, in dollars"
+   ],
+   [
+    "opened_year",
+    "whole number",
+    "year the account was opened"
+   ]
+  ],
+  "create": "CREATE TABLE accounts (id INTEGER PRIMARY KEY, customer_id INTEGER, type TEXT, balance INTEGER, opened_year INTEGER);\nINSERT INTO accounts VALUES (1,1,'checking',2500,2019),(2,1,'savings',8000,2020),(3,2,'checking',150,2020),(4,3,'checking',4200,2021),\n(5,4,'savings',12000,2019),(6,4,'checking',900,2022),(7,5,'savings',300,2022),(8,6,'checking',0,2021);"
+ }
+}

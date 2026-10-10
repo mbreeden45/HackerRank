@@ -1,0 +1,4564 @@
+[
+ {
+  "id": "print_two_lines",
+  "lesson": "print",
+  "title": "Two lines",
+  "difficulty": "Easy",
+  "statement": [
+   "Print the word `Hello` on the first line, and the number `42` on the second line."
+  ],
+  "input_fmt": "There is no input.",
+  "output_fmt": "Two lines: `Hello`, then `42`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "",
+    "output": "Hello\n42",
+    "explanation": "The first print shows the word Hello. The second print shows 42, with no quote marks because it is a number."
+   }
+  ],
+  "prefix": "",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(\"Hello\")\nprint(42)\n",
+  "hints": [
+   "Each print makes its own line.",
+   "You need two print lines. Words need quote marks, numbers do not.",
+   "Line one: print the text Hello. Line two: print the number 42.",
+   "print(\"Hello\") on one line, then print(42) on the next."
+  ],
+  "hidden": [
+   {
+    "input": "",
+    "output": "Hello\n42"
+   }
+  ]
+ },
+ {
+  "id": "print_greeting",
+  "lesson": "print",
+  "title": "A greeting",
+  "difficulty": "Easy",
+  "statement": [
+   "The name has already been read for you and stored in a variable called `name`. A variable is a name that holds a value.",
+   "Print `Hi,` followed by a space and then the name, all on one line."
+  ],
+  "input_fmt": "One line holding a name.",
+  "output_fmt": "One line: `Hi,` then a space, then the name.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "Ana\n",
+    "output": "Hi, Ana",
+    "explanation": "The text Hi, and the name Ana are printed with one space between them."
+   }
+  ],
+  "prefix": "name = input()\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(\"Hi,\", name)\n",
+  "hints": [
+   "print can show two things at once.",
+   "Put a comma between two things inside the print brackets. The comma adds the space for you.",
+   "Print the text \"Hi,\" and the variable name together.",
+   "print(\"Hi,\", name)."
+  ],
+  "hidden": [
+   {
+    "input": "Bo\n",
+    "output": "Hi, Bo"
+   },
+   {
+    "input": "Maria\n",
+    "output": "Hi, Maria"
+   },
+   {
+    "input": "Sam Lee\n",
+    "output": "Hi, Sam Lee"
+   }
+  ]
+ },
+ {
+  "id": "print_pair",
+  "lesson": "print",
+  "title": "Two numbers on one line",
+  "difficulty": "Easy",
+  "statement": [
+   "Two whole numbers have been read for you, stored in `a` and `b`. Print them on one line with a space between."
+  ],
+  "input_fmt": "Two lines, each holding one whole number.",
+  "output_fmt": "One line with the two numbers separated by a space.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n8\n",
+    "output": "3 8",
+    "explanation": "a is 3 and b is 8, so the line shows 3 8."
+   }
+  ],
+  "prefix": "a = int(input())\nb = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(a, b)\n",
+  "hints": [
+   "You can give print more than one thing.",
+   "Write both names inside one print, separated by a comma.",
+   "One print line that holds a and b.",
+   "print(a, b)."
+  ],
+  "hidden": [
+   {
+    "input": "10\n-4\n",
+    "output": "10 -4"
+   },
+   {
+    "input": "0\n0\n",
+    "output": "0 0"
+   },
+   {
+    "input": "123\n456\n",
+    "output": "123 456"
+   }
+  ]
+ },
+ {
+  "id": "var_add",
+  "lesson": "variables",
+  "title": "Add two numbers",
+  "difficulty": "Easy",
+  "statement": [
+   "Two whole numbers are stored in `a` and `b`. Print their sum, meaning `a` plus `b`."
+  ],
+  "input_fmt": "Two lines, each one whole number.",
+  "output_fmt": "One number: the sum.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "2\n5\n",
+    "output": "7",
+    "explanation": "2 plus 5 is 7."
+   }
+  ],
+  "prefix": "a = int(input())\nb = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(a + b)\n",
+  "hints": [
+   "The + sign adds numbers.",
+   "You can do the adding inside the print brackets.",
+   "Print the answer of a plus b.",
+   "print(a + b)."
+  ],
+  "hidden": [
+   {
+    "input": "-3\n3\n",
+    "output": "0"
+   },
+   {
+    "input": "100\n250\n",
+    "output": "350"
+   },
+   {
+    "input": "0\n9\n",
+    "output": "9"
+   }
+  ]
+ },
+ {
+  "id": "var_rectangle",
+  "lesson": "variables",
+  "title": "Area and perimeter",
+  "difficulty": "Easy",
+  "statement": [
+   "The `width` and `height` of a rectangle are stored for you. The area is width times height. The perimeter is the total length around the outside: 2 times (width plus height).",
+   "Print the area on the first line and the perimeter on the second line. The symbol `*` means times."
+  ],
+  "input_fmt": "Two lines: the width, then the height. Both are whole numbers.",
+  "output_fmt": "Two lines: the area, then the perimeter.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n4\n",
+    "output": "12\n14",
+    "explanation": "Area is 3 * 4 = 12. Perimeter is 2 * (3 + 4) = 14."
+   }
+  ],
+  "prefix": "width = int(input())\nheight = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "area = width * height\nperimeter = 2 * (width + height)\nprint(area)\nprint(perimeter)\n",
+  "hints": [
+   "Work out each answer and store it in a name first.",
+   "Make a name called area, and a name called perimeter. Then print each.",
+   "area is width times height. perimeter is 2 times the sum of width and height. Print area, then print perimeter.",
+   "area = width * height; perimeter = 2 * (width + height); print(area); print(perimeter)."
+  ],
+  "hidden": [
+   {
+    "input": "1\n1\n",
+    "output": "1\n4"
+   },
+   {
+    "input": "10\n2\n",
+    "output": "20\n24"
+   },
+   {
+    "input": "7\n9\n",
+    "output": "63\n32"
+   }
+  ]
+ },
+ {
+  "id": "var_swap",
+  "lesson": "variables",
+  "title": "Swap two values",
+  "difficulty": "Medium",
+  "statement": [
+   "The names `a` and `b` hold two numbers. Make `a` hold what `b` held, and `b` hold what `a` held. Then print `a` on the first line and `b` on the second.",
+   "Warning: if you write `a = b` first, the old value of `a` is lost. A third name can hold it safely for a moment."
+  ],
+  "input_fmt": "Two lines, each one whole number.",
+  "output_fmt": "Two lines: the new a, then the new b.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n8\n",
+    "output": "8\n3",
+    "explanation": "After the swap, a holds 8 and b holds 3."
+   }
+  ],
+  "prefix": "a = int(input())\nb = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "temp = a\na = b\nb = temp\nprint(a)\nprint(b)\n",
+  "hints": [
+   "Think of two cups of juice that you want to swap. You need a third empty cup.",
+   "Store the old a in a new name before you change a.",
+   "1. Save a in a new name called temp. 2. Put b into a. 3. Put temp into b. 4. Print a and b.",
+   "temp = a; a = b; b = temp; print(a); print(b)."
+  ],
+  "hidden": [
+   {
+    "input": "1\n2\n",
+    "output": "2\n1"
+   },
+   {
+    "input": "-5\n5\n",
+    "output": "5\n-5"
+   },
+   {
+    "input": "7\n7\n",
+    "output": "7\n7"
+   }
+  ]
+ },
+ {
+  "id": "eq_same",
+  "lesson": "equals",
+  "title": "Are they equal",
+  "difficulty": "Easy",
+  "statement": [
+   "Two numbers are stored in `a` and `b`. Print `True` if they are equal, otherwise print `False`.",
+   "Hint on symbols: `==` asks whether two things are equal and gives back `True` or `False`."
+  ],
+  "input_fmt": "Two lines, each one whole number.",
+  "output_fmt": "`True` or `False`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n4\n",
+    "output": "True",
+    "explanation": "4 is equal to 4."
+   },
+   {
+    "input": "4\n9\n",
+    "output": "False",
+    "explanation": "4 is not equal to 9."
+   }
+  ],
+  "prefix": "a = int(input())\nb = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(a == b)\n",
+  "hints": [
+   "The answer to print is already a True or False answer.",
+   "Ask the question a == b inside the print.",
+   "Print the answer to the question: is a equal to b.",
+   "print(a == b)."
+  ],
+  "hidden": [
+   {
+    "input": "0\n0\n",
+    "output": "True"
+   },
+   {
+    "input": "-1\n1\n",
+    "output": "False"
+   },
+   {
+    "input": "50\n50\n",
+    "output": "True"
+   }
+  ]
+ },
+ {
+  "id": "eq_three",
+  "lesson": "equals",
+  "title": "Three questions",
+  "difficulty": "Easy",
+  "statement": [
+   "Two numbers are stored in `a` and `b`. Print three lines, each the answer to one question:",
+   "Line 1: is `a` equal to `b`. Line 2: is `a` less than `b`. Line 3: is `a` greater than `b`.",
+   "The symbols are `==`, `<` and `>`."
+  ],
+  "input_fmt": "Two lines, each one whole number.",
+  "output_fmt": "Three lines, each `True` or `False`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "2\n5\n",
+    "output": "False\nTrue\nFalse",
+    "explanation": "2 is not equal to 5. 2 is less than 5. 2 is not greater than 5."
+   }
+  ],
+  "prefix": "a = int(input())\nb = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(a == b)\nprint(a < b)\nprint(a > b)\n",
+  "hints": [
+   "Each line is its own print.",
+   "Three print lines. Each holds one question.",
+   "Print a == b. Print a < b. Print a > b.",
+   "print(a == b); print(a < b); print(a > b)."
+  ],
+  "hidden": [
+   {
+    "input": "5\n5\n",
+    "output": "True\nFalse\nFalse"
+   },
+   {
+    "input": "9\n1\n",
+    "output": "False\nFalse\nTrue"
+   },
+   {
+    "input": "-2\n-3\n",
+    "output": "False\nFalse\nTrue"
+   }
+  ]
+ },
+ {
+  "id": "eq_password",
+  "lesson": "equals",
+  "title": "Password check",
+  "difficulty": "Medium",
+  "statement": [
+   "A word is stored in `word`. Print `True` if it is exactly `builder` (all small letters), otherwise `False`.",
+   "Capital letters count as different letters. `Builder` is not the same as `builder`."
+  ],
+  "input_fmt": "One line holding a word.",
+  "output_fmt": "`True` or `False`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "builder\n",
+    "output": "True",
+    "explanation": "Exactly the same."
+   },
+   {
+    "input": "Builder\n",
+    "output": "False",
+    "explanation": "The capital B makes it different."
+   }
+  ],
+  "prefix": "word = input()\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(word == \"builder\")\n",
+  "hints": [
+   "The word you compare against needs quote marks.",
+   "Compare the variable word with the text \"builder\" using two equals signs.",
+   "Print the answer to: is word equal to the text builder.",
+   "print(word == \"builder\")."
+  ],
+  "hidden": [
+   {
+    "input": "build\n",
+    "output": "False"
+   },
+   {
+    "input": "BUILDER\n",
+    "output": "False"
+   },
+   {
+    "input": "builder\n",
+    "output": "True"
+   }
+  ]
+ },
+ {
+  "id": "mod_even",
+  "lesson": "remainder",
+  "title": "Is it even",
+  "difficulty": "Easy",
+  "statement": [
+   "A whole number is stored in `n`. Print `True` if it is even and `False` if it is odd.",
+   "An even number has remainder 0 when divided by 2. The symbol `%` gives the remainder."
+  ],
+  "input_fmt": "One line holding a whole number.",
+  "output_fmt": "`True` or `False`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "10\n",
+    "output": "True",
+    "explanation": "10 % 2 is 0."
+   },
+   {
+    "input": "7\n",
+    "output": "False",
+    "explanation": "7 % 2 is 1."
+   }
+  ],
+  "prefix": "n = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(n % 2 == 0)\n",
+  "hints": [
+   "Use % with the number 2.",
+   "Ask whether the remainder after dividing by 2 equals 0.",
+   "Print the answer to: is n % 2 equal to 0.",
+   "print(n % 2 == 0)."
+  ],
+  "hidden": [
+   {
+    "input": "0\n",
+    "output": "True"
+   },
+   {
+    "input": "1\n",
+    "output": "False"
+   },
+   {
+    "input": "-4\n",
+    "output": "True"
+   },
+   {
+    "input": "99\n",
+    "output": "False"
+   }
+  ]
+ },
+ {
+  "id": "mod_digits",
+  "lesson": "remainder",
+  "title": "Split off the last digit",
+  "difficulty": "Easy",
+  "statement": [
+   "A non-negative whole number is stored in `n`. Print its last digit on the first line. On the second line print the number with its last digit removed (print `0` if nothing is left).",
+   "Hint: `n % 10` is the last digit. `n // 10` divides by 10 and drops the decimal part."
+  ],
+  "input_fmt": "One line holding a whole number.",
+  "output_fmt": "Two lines: the last digit, then the number without it.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "472\n",
+    "output": "2\n47",
+    "explanation": "472 % 10 is 2. 472 // 10 is 47."
+   }
+  ],
+  "prefix": "n = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(n % 10)\nprint(n // 10)\n",
+  "hints": [
+   "Dividing by 10 and looking at the remainder isolates the last digit.",
+   "Use % 10 for the first line and // 10 for the second.",
+   "Print n % 10. Then print n // 10.",
+   "print(n % 10); print(n // 10)."
+  ],
+  "hidden": [
+   {
+    "input": "5\n",
+    "output": "5\n0"
+   },
+   {
+    "input": "100\n",
+    "output": "0\n10"
+   },
+   {
+    "input": "90817\n",
+    "output": "7\n9081"
+   }
+  ]
+ },
+ {
+  "id": "mod_weeks",
+  "lesson": "remainder",
+  "title": "Days to weeks",
+  "difficulty": "Medium",
+  "statement": [
+   "The number of days is stored in `days`. Print the number of whole weeks on the first line and the days left over on the second line. A week has 7 days."
+  ],
+  "input_fmt": "One line holding a whole number of days.",
+  "output_fmt": "Two lines: whole weeks, then leftover days.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "17\n",
+    "output": "2\n3",
+    "explanation": "17 days is 2 whole weeks (14 days) and 3 days left over."
+   }
+  ],
+  "prefix": "days = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(days // 7)\nprint(days % 7)\n",
+  "hints": [
+   "Whole weeks is a division with the decimal part dropped. Leftover days is a remainder.",
+   "Use // 7 for weeks and % 7 for leftover days.",
+   "Print days // 7. Then print days % 7.",
+   "print(days // 7); print(days % 7)."
+  ],
+  "hidden": [
+   {
+    "input": "7\n",
+    "output": "1\n0"
+   },
+   {
+    "input": "6\n",
+    "output": "0\n6"
+   },
+   {
+    "input": "0\n",
+    "output": "0\n0"
+   },
+   {
+    "input": "100\n",
+    "output": "14\n2"
+   }
+  ]
+ },
+ {
+  "id": "if_evenodd",
+  "lesson": "ifelse",
+  "title": "Even or odd",
+  "difficulty": "Easy",
+  "statement": [
+   "A whole number is stored in `n`. Print the word `even` if it is even, otherwise print `odd`."
+  ],
+  "input_fmt": "One line holding a whole number.",
+  "output_fmt": "`even` or `odd`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "8\n",
+    "output": "even",
+    "explanation": "8 % 2 is 0."
+   },
+   {
+    "input": "5\n",
+    "output": "odd",
+    "explanation": "5 % 2 is 1."
+   }
+  ],
+  "prefix": "n = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "if n % 2 == 0:\n    print(\"even\")\nelse:\n    print(\"odd\")\n",
+  "hints": [
+   "You need a choice with two outcomes.",
+   "Use if with the question n % 2 == 0, and else for the other outcome.",
+   "If the remainder after dividing by 2 is 0, print even. Otherwise print odd.",
+   "if n % 2 == 0: print(\"even\"); else: print(\"odd\"). Remember the colons and the indents."
+  ],
+  "hidden": [
+   {
+    "input": "0\n",
+    "output": "even"
+   },
+   {
+    "input": "1\n",
+    "output": "odd"
+   },
+   {
+    "input": "22\n",
+    "output": "even"
+   },
+   {
+    "input": "-3\n",
+    "output": "odd"
+   }
+  ]
+ },
+ {
+  "id": "if_sign",
+  "lesson": "ifelse",
+  "title": "Positive, negative or zero",
+  "difficulty": "Easy",
+  "statement": [
+   "A whole number is stored in `n`. Print `positive` if it is above zero, `negative` if it is below zero, and `zero` if it is zero."
+  ],
+  "input_fmt": "One line holding a whole number.",
+  "output_fmt": "`positive`, `negative` or `zero`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n",
+    "output": "positive",
+    "explanation": "5 is above zero."
+   },
+   {
+    "input": "-2\n",
+    "output": "negative",
+    "explanation": "-2 is below zero."
+   }
+  ],
+  "prefix": "n = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "if n > 0:\n    print(\"positive\")\nelif n < 0:\n    print(\"negative\")\nelse:\n    print(\"zero\")\n",
+  "hints": [
+   "There are three outcomes, so you need more than if and else.",
+   "Use if, then elif, then else.",
+   "If n is above 0 print positive. Else if n is below 0 print negative. Otherwise print zero.",
+   "if n > 0: ...; elif n < 0: ...; else: ..."
+  ],
+  "hidden": [
+   {
+    "input": "0\n",
+    "output": "zero"
+   },
+   {
+    "input": "1\n",
+    "output": "positive"
+   },
+   {
+    "input": "-100\n",
+    "output": "negative"
+   }
+  ]
+ },
+ {
+  "id": "if_fizz",
+  "lesson": "ifelse",
+  "title": "Fizz and Buzz",
+  "difficulty": "Medium",
+  "statement": [
+   "A whole number is stored in `n`. Print:",
+   "`FizzBuzz` if n divides exactly by both 3 and 5; `Fizz` if it divides exactly by 3 only; `Buzz` if it divides exactly by 5 only; otherwise the number itself.",
+   "Hint: divides exactly by 3 means `n % 3 == 0`. The word `and` is True only when both sides are True."
+  ],
+  "input_fmt": "One line holding a whole number.",
+  "output_fmt": "One line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "15\n",
+    "output": "FizzBuzz",
+    "explanation": "15 divides by 3 and by 5."
+   },
+   {
+    "input": "9\n",
+    "output": "Fizz",
+    "explanation": "9 divides by 3 only."
+   },
+   {
+    "input": "7\n",
+    "output": "7",
+    "explanation": "7 divides by neither."
+   }
+  ],
+  "prefix": "n = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "if n % 3 == 0 and n % 5 == 0:\n    print(\"FizzBuzz\")\nelif n % 3 == 0:\n    print(\"Fizz\")\nelif n % 5 == 0:\n    print(\"Buzz\")\nelse:\n    print(n)\n",
+  "hints": [
+   "The order of your questions matters. Which question should be asked first.",
+   "Ask the both-3-and-5 question first. If you ask about 3 first, 15 would print Fizz.",
+   "1. If divisible by 3 and 5, print FizzBuzz. 2. Else if divisible by 3, print Fizz. 3. Else if divisible by 5, print Buzz. 4. Else print n.",
+   "if n % 3 == 0 and n % 5 == 0 ... elif n % 3 == 0 ... elif n % 5 == 0 ... else print(n)."
+  ],
+  "hidden": [
+   {
+    "input": "10\n",
+    "output": "Buzz"
+   },
+   {
+    "input": "30\n",
+    "output": "FizzBuzz"
+   },
+   {
+    "input": "1\n",
+    "output": "1"
+   },
+   {
+    "input": "2\n",
+    "output": "2"
+   },
+   {
+    "input": "27\n",
+    "output": "Fizz"
+   }
+  ]
+ },
+ {
+  "id": "list_build",
+  "lesson": "lists",
+  "title": "Build a list",
+  "difficulty": "Easy",
+  "statement": [
+   "Three numbers are stored in `a`, `b` and `c`. Make a list holding them in that order, add the number `100` to the end, then print the list.",
+   "A list prints with square brackets, for example `[1, 2, 3, 100]`."
+  ],
+  "input_fmt": "Three lines, each one whole number.",
+  "output_fmt": "One line: the list.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "1\n2\n3\n",
+    "output": "[1, 2, 3, 100]",
+    "explanation": "The list starts as [1, 2, 3] and 100 is added at the end."
+   }
+  ],
+  "prefix": "a = int(input())\nb = int(input())\nc = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "items = [a, b, c]\nitems.append(100)\nprint(items)\n",
+  "hints": [
+   "First make the list, then add to it.",
+   "Write square brackets with a, b and c inside, store it in a name, then use .append.",
+   "1. Make a list called items from a, b, c. 2. Append 100. 3. Print items.",
+   "items = [a, b, c]; items.append(100); print(items)."
+  ],
+  "hidden": [
+   {
+    "input": "0\n0\n0\n",
+    "output": "[0, 0, 0, 100]"
+   },
+   {
+    "input": "-1\n5\n9\n",
+    "output": "[-1, 5, 9, 100]"
+   }
+  ]
+ },
+ {
+  "id": "list_grow",
+  "lesson": "lists",
+  "title": "Add two more",
+  "difficulty": "Easy",
+  "statement": [
+   "A list is stored in `nums`, and a whole number is stored in `x`. Add `x` to the end of the list two times, then print the list."
+  ],
+  "input_fmt": "Line 1: the numbers of the list, separated by spaces. Line 2: the number x.",
+  "output_fmt": "One line: the list.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4 5\n9\n",
+    "output": "[4, 5, 9, 9]",
+    "explanation": "9 is added twice at the end."
+   }
+  ],
+  "prefix": "nums = list(map(int, input().split()))\nx = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "nums.append(x)\nnums.append(x)\nprint(nums)\n",
+  "hints": [
+   ".append adds one item at a time.",
+   "You need two append lines.",
+   "Append x. Append x again. Print nums.",
+   "nums.append(x); nums.append(x); print(nums)."
+  ],
+  "hidden": [
+   {
+    "input": "1\n2\n",
+    "output": "[1, 2, 2]"
+   },
+   {
+    "input": "1 2 3 4\n0\n",
+    "output": "[1, 2, 3, 4, 0, 0]"
+   },
+   {
+    "input": "-1 -2\n-3\n",
+    "output": "[-1, -2, -3, -3]"
+   }
+  ]
+ },
+ {
+  "id": "list_stats",
+  "lesson": "lists",
+  "title": "Sum, biggest, smallest",
+  "difficulty": "Medium",
+  "statement": [
+   "A list is stored in `nums`. Three tools help here: `sum(nums)` adds up all the numbers, `max(nums)` gives the biggest number, and `min(nums)` gives the smallest.",
+   "Print the sum, then the biggest, then the smallest, each on its own line."
+  ],
+  "input_fmt": "One line holding the numbers of the list, separated by spaces.",
+  "output_fmt": "Three lines.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3 9 2\n",
+    "output": "14\n9\n2",
+    "explanation": "3 + 9 + 2 is 14. The biggest is 9. The smallest is 2."
+   }
+  ],
+  "prefix": "nums = list(map(int, input().split()))\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(sum(nums))\nprint(max(nums))\nprint(min(nums))\n",
+  "hints": [
+   "The three tools are given to you in the statement.",
+   "Three prints, one for each tool.",
+   "Print sum of nums. Print max of nums. Print min of nums.",
+   "print(sum(nums)); print(max(nums)); print(min(nums))."
+  ],
+  "hidden": [
+   {
+    "input": "5\n",
+    "output": "5\n5\n5"
+   },
+   {
+    "input": "-1 -5 -3\n",
+    "output": "-9\n-1\n-5"
+   },
+   {
+    "input": "10 20 30 40\n",
+    "output": "100\n40\n10"
+   }
+  ]
+ },
+ {
+  "id": "idx_first",
+  "lesson": "indexing",
+  "title": "First item",
+  "difficulty": "Easy",
+  "statement": [
+   "The function `solve` receives a list called `nums`. Return the first item of the list."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n7 8 9\n",
+    "output": "7",
+    "explanation": "The first item sits at position 0."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return nums[0]\n",
+  "hints": [
+   "Positions start at 0.",
+   "Use square brackets after the name of the list.",
+   "Return the item at position 0.",
+   "return nums[0]"
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "4\n-2 0 9 4\n",
+    "output": "-2"
+   },
+   {
+    "input": "2\n100 1\n",
+    "output": "100"
+   }
+  ]
+ },
+ {
+  "id": "idx_last",
+  "lesson": "indexing",
+  "title": "Last item",
+  "difficulty": "Easy",
+  "statement": [
+   "Return the last item of the list `nums`. Negative positions count from the end."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n7 8 9\n",
+    "output": "9",
+    "explanation": "Position -1 is the last item."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return nums[-1]\n",
+  "hints": [
+   "There is a position that always means the last item.",
+   "It is a negative number.",
+   "Return the item at position -1.",
+   "return nums[-1]"
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "4\n-2 0 9 4\n",
+    "output": "4"
+   },
+   {
+    "input": "2\n100 1\n",
+    "output": "1"
+   }
+  ]
+ },
+ {
+  "id": "idx_second",
+  "lesson": "indexing",
+  "title": "Second and second from the end",
+  "difficulty": "Medium",
+  "statement": [
+   "The list `nums` always has at least 4 items. Return the second item plus the second item from the end, added together."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n1 2 3 4\n",
+    "output": "5",
+    "explanation": "The second item is 2 (position 1). The second from the end is 3 (position -2). 2 + 3 is 5."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return nums[1] + nums[-2]\n",
+  "hints": [
+   "Second item means position 1, because counting starts at 0.",
+   "Second from the end is position -2.",
+   "Add the item at position 1 to the item at position -2, and return the total.",
+   "return nums[1] + nums[-2]"
+  ],
+  "hidden": [
+   {
+    "input": "4\n10 20 30 40\n",
+    "output": "50"
+   },
+   {
+    "input": "5\n1 100 3 200 5\n",
+    "output": "300"
+   },
+   {
+    "input": "6\n-1 -2 -3 -4 -5 -6\n",
+    "output": "-7"
+   }
+  ]
+ },
+ {
+  "id": "slice_first3",
+  "lesson": "slicing",
+  "title": "First three",
+  "difficulty": "Easy",
+  "statement": [
+   "Return a list holding the first 3 items of `nums`. The list always has at least 3 items."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One line: the list.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n1 2 3 4 5\n",
+    "output": "[1, 2, 3]",
+    "explanation": "The slice from position 0 up to but not including position 3."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return nums[:3]\n",
+  "hints": [
+   "A slice copies a piece of a list.",
+   "A slice that starts at the beginning can leave the first number empty.",
+   "Use [:3], which means from the start up to but not including position 3.",
+   "return nums[:3]"
+  ],
+  "hidden": [
+   {
+    "input": "3\n9 8 7\n",
+    "output": "[9, 8, 7]"
+   },
+   {
+    "input": "4\n0 0 0 1\n",
+    "output": "[0, 0, 0]"
+   }
+  ]
+ },
+ {
+  "id": "slice_middle",
+  "lesson": "slicing",
+  "title": "Drop the ends",
+  "difficulty": "Medium",
+  "statement": [
+   "Return a list holding everything except the first and the last item of `nums`. The list has at least 2 items, and the answer can be an empty list `[]`."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One line: the list.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n1 2 3 4 5\n",
+    "output": "[2, 3, 4]",
+    "explanation": "Start at position 1 and stop before the last position."
+   },
+   {
+    "input": "2\n7 8\n",
+    "output": "[]",
+    "explanation": "Nothing is left once both ends are dropped."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return nums[1:-1]\n",
+  "hints": [
+   "Start at position 1. For the end, think about negative positions.",
+   "The end of a slice is not included, so stopping at -1 leaves out the last item.",
+   "Return the slice that starts at 1 and ends at -1.",
+   "return nums[1:-1]"
+  ],
+  "hidden": [
+   {
+    "input": "3\n4 5 6\n",
+    "output": "[5]"
+   },
+   {
+    "input": "4\n1 1 1 1\n",
+    "output": "[1, 1]"
+   },
+   {
+    "input": "6\n9 8 7 6 5 4\n",
+    "output": "[8, 7, 6, 5]"
+   }
+  ]
+ },
+ {
+  "id": "slice_reverse",
+  "lesson": "slicing",
+  "title": "Reverse the list",
+  "difficulty": "Easy",
+  "statement": [
+   "Return a copy of `nums` in reverse order."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One line: the list.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n1 2 3 4\n",
+    "output": "[4, 3, 2, 1]",
+    "explanation": "The last item comes first."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return nums[::-1]\n",
+  "hints": [
+   "There is a slice shape that walks backwards.",
+   "A step of -1 walks backwards through the whole list.",
+   "Use the slice with both ends empty and a step of -1.",
+   "return nums[::-1]"
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n",
+    "output": "[5]"
+   },
+   {
+    "input": "3\n3 1 2\n",
+    "output": "[2, 1, 3]"
+   }
+  ]
+ },
+ {
+  "id": "len_count",
+  "lesson": "len",
+  "title": "How many items",
+  "difficulty": "Easy",
+  "statement": [
+   "Return how many items `nums` holds."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n7 8 9\n",
+    "output": "3",
+    "explanation": "There are 3 items."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return len(nums)\n",
+  "hints": [
+   "There is a built-in tool for counting.",
+   "It is called len.",
+   "Return len of nums.",
+   "return len(nums)"
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n",
+    "output": "1"
+   },
+   {
+    "input": "5\n1 2 3 4 5\n",
+    "output": "5"
+   }
+  ]
+ },
+ {
+  "id": "len_lastpos",
+  "lesson": "len",
+  "title": "The last position",
+  "difficulty": "Easy",
+  "statement": [
+   "Return the number of the last position in `nums`. For a list of 4 items the answer is 3, because positions start at 0."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n9 9 9 9\n",
+    "output": "3",
+    "explanation": "Positions are 0, 1, 2, 3, so the last is 3."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return len(nums) - 1\n",
+  "hints": [
+   "The last position is one less than how many items there are.",
+   "Take the length and subtract 1.",
+   "Return len(nums) minus 1.",
+   "return len(nums) - 1"
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n",
+    "output": "0"
+   },
+   {
+    "input": "6\n1 2 3 4 5 6\n",
+    "output": "5"
+   },
+   {
+    "input": "2\n0 0\n",
+    "output": "1"
+   }
+  ]
+ },
+ {
+  "id": "len_middle",
+  "lesson": "len",
+  "title": "The middle item",
+  "difficulty": "Medium",
+  "statement": [
+   "The list `nums` always has an odd number of items. Return the item in the exact middle. For 5 items the middle is at position 2.",
+   "Use `//` to divide and drop the decimal part."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n1 2 3 4 5\n",
+    "output": "3",
+    "explanation": "5 // 2 is 2, and position 2 holds 3."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    return nums[len(nums) // 2]\n",
+  "hints": [
+   "The middle position depends on the length.",
+   "Divide the length by 2 and drop the decimal part to get the position.",
+   "Work out len(nums) // 2 and use it as the position.",
+   "return nums[len(nums) // 2]"
+  ],
+  "hidden": [
+   {
+    "input": "1\n8\n",
+    "output": "8"
+   },
+   {
+    "input": "3\n10 20 30\n",
+    "output": "20"
+   },
+   {
+    "input": "7\n1 2 3 4 5 6 7\n",
+    "output": "4"
+   }
+  ]
+ },
+ {
+  "id": "range_n",
+  "lesson": "range",
+  "title": "Zero up to n",
+  "difficulty": "Easy",
+  "statement": [
+   "A whole number `n` is stored for you. Print a list of the whole numbers from 0 up to `n - 1`. Use `range` and wrap it in `list( )` so the numbers can be printed."
+  ],
+  "input_fmt": "One line holding a whole number n (at least 1).",
+  "output_fmt": "One line: the list.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n",
+    "output": "[0, 1, 2, 3]",
+    "explanation": "range(4) gives 0, 1, 2, 3."
+   }
+  ],
+  "prefix": "n = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(list(range(n)))\n",
+  "hints": [
+   "range(n) stops just before n.",
+   "Wrap range(n) in list so it can be shown.",
+   "Print list of range of n.",
+   "print(list(range(n)))"
+  ],
+  "hidden": [
+   {
+    "input": "1\n",
+    "output": "[0]"
+   },
+   {
+    "input": "2\n",
+    "output": "[0, 1]"
+   },
+   {
+    "input": "8\n",
+    "output": "[0, 1, 2, 3, 4, 5, 6, 7]"
+   }
+  ]
+ },
+ {
+  "id": "range_ab",
+  "lesson": "range",
+  "title": "From a up to b",
+  "difficulty": "Easy",
+  "statement": [
+   "Two whole numbers `a` and `b` are stored for you, with `a` smaller than `b`. Print a list of the whole numbers starting at `a` and stopping just before `b`."
+  ],
+  "input_fmt": "Two lines: a, then b.",
+  "output_fmt": "One line: the list.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "2\n6\n",
+    "output": "[2, 3, 4, 5]",
+    "explanation": "Starts at 2 and stops before 6."
+   }
+  ],
+  "prefix": "a = int(input())\nb = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(list(range(a, b)))\n",
+  "hints": [
+   "range can take two numbers.",
+   "range(a, b) starts at a and stops just before b.",
+   "Print list(range(a, b)).",
+   "print(list(range(a, b)))"
+  ],
+  "hidden": [
+   {
+    "input": "0\n1\n",
+    "output": "[0]"
+   },
+   {
+    "input": "-2\n2\n",
+    "output": "[-2, -1, 0, 1]"
+   },
+   {
+    "input": "10\n13\n",
+    "output": "[10, 11, 12]"
+   }
+  ]
+ },
+ {
+  "id": "range_step",
+  "lesson": "range",
+  "title": "Every third number",
+  "difficulty": "Medium",
+  "statement": [
+   "A whole number `n` is stored for you. Print a list of the numbers 0, 3, 6, 9 and so on that are smaller than `n`.",
+   "A third number inside `range` sets the size of each jump."
+  ],
+  "input_fmt": "One line holding a whole number n (at least 1).",
+  "output_fmt": "One line: the list.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "10\n",
+    "output": "[0, 3, 6, 9]",
+    "explanation": "Jumps of 3 starting at 0, stopping before 10."
+   }
+  ],
+  "prefix": "n = int(input())\n",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "print(list(range(0, n, 3)))\n",
+  "hints": [
+   "range can take three numbers: start, stop, jump.",
+   "Start at 0, stop before n, jump by 3.",
+   "Print list(range(0, n, 3)).",
+   "print(list(range(0, n, 3)))"
+  ],
+  "hidden": [
+   {
+    "input": "1\n",
+    "output": "[0]"
+   },
+   {
+    "input": "3\n",
+    "output": "[0]"
+   },
+   {
+    "input": "4\n",
+    "output": "[0, 3]"
+   },
+   {
+    "input": "30\n",
+    "output": "[0, 3, 6, 9, 12, 15, 18, 21, 24, 27]"
+   }
+  ]
+ },
+ {
+  "id": "for_total",
+  "lesson": "forloops",
+  "title": "Add them up",
+  "difficulty": "Easy",
+  "statement": [
+   "Return the total of all the numbers in `nums`. Do not use `sum`. Use a `for` loop over the values and a name called `total` that starts at 0."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n5 8 3\n",
+    "output": "16",
+    "explanation": "5 + 8 + 3 is 16."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    total = 0\n    for x in nums:\n        total = total + x\n    return total\n",
+  "hints": [
+   "Start with a total of 0 and add each item to it.",
+   "for x in nums gives you each item. Inside the loop, add x to total.",
+   "1. total = 0. 2. For each x in nums, total = total + x. 3. Return total.",
+   "total = 0; for x in nums: total = total + x; return total. Remember the colon and the indent."
+  ],
+  "hidden": [
+   {
+    "input": "1\n7\n",
+    "output": "7"
+   },
+   {
+    "input": "4\n-1 1 -1 1\n",
+    "output": "0"
+   },
+   {
+    "input": "5\n10 20 30 40 50\n",
+    "output": "150"
+   }
+  ]
+ },
+ {
+  "id": "for_countbig",
+  "lesson": "forloops",
+  "title": "Count the big ones",
+  "difficulty": "Easy",
+  "statement": [
+   "Return how many numbers in `nums` are greater than 10. Use a `for` loop over the values and a counter that starts at 0."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n3 12 15 10 40\n",
+    "output": "3",
+    "explanation": "12, 15 and 40 are greater than 10. The 10 is not greater than 10."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    count = 0\n    for x in nums:\n        if x > 10:\n            count = count + 1\n    return count\n",
+  "hints": [
+   "A counter goes up by 1 each time you find a match.",
+   "Inside the loop, use an if to check x > 10.",
+   "1. count = 0. 2. For each x, if x > 10 then add 1 to count. 3. Return count.",
+   "count = 0; for x in nums: if x > 10: count = count + 1; return count."
+  ],
+  "hidden": [
+   {
+    "input": "1\n11\n",
+    "output": "1"
+   },
+   {
+    "input": "3\n1 2 3\n",
+    "output": "0"
+   },
+   {
+    "input": "4\n10 10 10 11\n",
+    "output": "1"
+   }
+  ]
+ },
+ {
+  "id": "for_evenpos",
+  "lesson": "forloops",
+  "title": "Add the even positions",
+  "difficulty": "Medium",
+  "statement": [
+   "Return the total of the items at positions 0, 2, 4 and so on (the even positions). Use `for i in range(len(nums))` so that `i` is the position.",
+   "For `[10, 20, 30, 40, 50]` the answer is 10 + 30 + 50 = 90."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n10 20 30 40 50\n",
+    "output": "90",
+    "explanation": "Positions 0, 2 and 4 hold 10, 30 and 50."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    total = 0\n    for i in range(len(nums)):\n        if i % 2 == 0:\n            total = total + nums[i]\n    return total\n",
+  "hints": [
+   "You need the position, not only the value.",
+   "Loop over positions with range(len(nums)). Check whether i is even using i % 2 == 0.",
+   "1. total = 0. 2. For each position i, if i % 2 == 0, add nums[i] to total. 3. Return total.",
+   "total = 0; for i in range(len(nums)): if i % 2 == 0: total = total + nums[i]; return total."
+  ],
+  "hidden": [
+   {
+    "input": "1\n7\n",
+    "output": "7"
+   },
+   {
+    "input": "2\n5 100\n",
+    "output": "5"
+   },
+   {
+    "input": "4\n1 2 3 4\n",
+    "output": "4"
+   }
+  ]
+ },
+ {
+  "id": "for_rises",
+  "lesson": "forloops",
+  "title": "Count the rises",
+  "difficulty": "Hard",
+  "statement": [
+   "Count how many times an item is smaller than the item right after it. For `[1, 3, 2, 5]` the pairs are (1, 3), (3, 2) and (2, 5), and two of them rise, so the answer is 2.",
+   "Take care at the end. The last item has no neighbour after it, so asking for `nums[i + 1]` there causes an IndexError. Loop over the positions `0` to `len(nums) - 2`."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n1 3 2 5\n",
+    "output": "2",
+    "explanation": "1 is smaller than 3 and 2 is smaller than 5."
+   },
+   {
+    "input": "1\n9\n",
+    "output": "0",
+    "explanation": "A single item has no pairs."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    count = 0\n    for i in range(len(nums) - 1):\n        if nums[i] < nums[i + 1]:\n            count = count + 1\n    return count\n",
+  "hints": [
+   "Each round compares an item with its neighbour on the right.",
+   "Use range(len(nums) - 1) so that i + 1 is always a real position.",
+   "1. count = 0. 2. For each position i from 0 to len(nums) - 2: if nums[i] < nums[i + 1], add 1 to count. 3. Return count.",
+   "count = 0; for i in range(len(nums) - 1): if nums[i] < nums[i + 1]: count = count + 1; return count."
+  ],
+  "hidden": [
+   {
+    "input": "5\n1 2 3 4 5\n",
+    "output": "4"
+   },
+   {
+    "input": "3\n3 2 1\n",
+    "output": "0"
+   },
+   {
+    "input": "4\n5 5 5 5\n",
+    "output": "0"
+   },
+   {
+    "input": "6\n1 0 1 0 1 0\n",
+    "output": "2"
+   }
+  ]
+ },
+ {
+  "id": "fn_square",
+  "lesson": "functions",
+  "title": "Square it",
+  "difficulty": "Easy",
+  "statement": [
+   "The function `solve` receives a number `n`. Return `n` multiplied by itself."
+  ],
+  "input_fmt": "One line holding a whole number.",
+  "output_fmt": "One line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n",
+    "output": "25",
+    "explanation": "5 times 5 is 25."
+   }
+  ],
+  "prefix": "def solve(n):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    print(solve(n))\n",
+  "solution": "    return n * n\n",
+  "hints": [
+   "The answer must be handed back with return.",
+   "Multiply n by n.",
+   "Return n times n.",
+   "return n * n"
+  ],
+  "hidden": [
+   {
+    "input": "0\n",
+    "output": "0"
+   },
+   {
+    "input": "1\n",
+    "output": "1"
+   },
+   {
+    "input": "-3\n",
+    "output": "9"
+   },
+   {
+    "input": "12\n",
+    "output": "144"
+   }
+  ]
+ },
+ {
+  "id": "fn_larger",
+  "lesson": "functions",
+  "title": "The larger of two",
+  "difficulty": "Easy",
+  "statement": [
+   "The function `solve` receives two numbers `a` and `b`. Return the larger one. If they are equal, return either."
+  ],
+  "input_fmt": "Two lines: the number a, then the number b.",
+  "output_fmt": "One line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n9\n",
+    "output": "9",
+    "explanation": "9 is larger than 3."
+   }
+  ],
+  "prefix": "def solve(a, b):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    a = int(input())\n    b = int(input())\n    print(solve(a, b))\n",
+  "solution": "    if a > b:\n        return a\n    return b\n",
+  "hints": [
+   "You need a choice.",
+   "If a is greater than b return a. Otherwise return b.",
+   "if a > b: return a. Then outside the if, return b.",
+   "if a > b: return a; return b."
+  ],
+  "hidden": [
+   {
+    "input": "5\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "-1\n-7\n",
+    "output": "-1"
+   },
+   {
+    "input": "100\n99\n",
+    "output": "100"
+   }
+  ]
+ },
+ {
+  "id": "fn_countevens",
+  "lesson": "functions",
+  "title": "Count the even numbers",
+  "difficulty": "Medium",
+  "statement": [
+   "The function `solve` receives the list `nums`. Return how many of its numbers are even. Remember: `x % 2 == 0` asks whether `x` is even."
+  ],
+  "input_fmt": "The first line holds `n`, the number of items. The second line holds `n` whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n1 2 3 4 6\n",
+    "output": "3",
+    "explanation": "2, 4 and 6 are even."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+  "solution": "    count = 0\n    for x in nums:\n        if x % 2 == 0:\n            count = count + 1\n    return count\n",
+  "hints": [
+   "Combine a loop, a check and a counter.",
+   "For each x, if x % 2 == 0, add 1 to count.",
+   "1. count = 0. 2. Loop over nums. 3. If x is even, add 1. 4. Return count.",
+   "count = 0; for x in nums: if x % 2 == 0: count = count + 1; return count."
+  ],
+  "hidden": [
+   {
+    "input": "1\n7\n",
+    "output": "0"
+   },
+   {
+    "input": "3\n2 4 6\n",
+    "output": "3"
+   },
+   {
+    "input": "4\n0 -2 5 9\n",
+    "output": "2"
+   }
+  ]
+ },
+ {
+  "id": "in_sumline",
+  "lesson": "input",
+  "title": "Sum of one line",
+  "difficulty": "Easy",
+  "statement": [
+   "You read the input yourself this time. One line holds some whole numbers separated by spaces. Print their sum.",
+   "To read it: `nums = list(map(int, input().split()))`. Then `sum(nums)` adds them."
+  ],
+  "input_fmt": "One line of whole numbers separated by spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4 5 6\n",
+    "output": "15",
+    "explanation": "4 + 5 + 6 is 15."
+   }
+  ],
+  "prefix": "",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "nums = list(map(int, input().split()))\nprint(sum(nums))\n",
+  "hints": [
+   "The lesson showed the exact line for reading numbers.",
+   "Read the line into nums, then print sum(nums).",
+   "1. Read the line and turn each piece into a number. 2. Print the sum.",
+   "nums = list(map(int, input().split())); print(sum(nums))."
+  ],
+  "hidden": [
+   {
+    "input": "10\n",
+    "output": "10"
+   },
+   {
+    "input": "-1 1\n",
+    "output": "0"
+   },
+   {
+    "input": "1 2 3 4 5 6 7 8 9 10\n",
+    "output": "55"
+   }
+  ]
+ },
+ {
+  "id": "in_biggest",
+  "lesson": "input",
+  "title": "Biggest number",
+  "difficulty": "Easy",
+  "statement": [
+   "Line 1 holds `n`, how many numbers follow. Line 2 holds those `n` numbers separated by spaces. Print the biggest one.",
+   "You can read `n` with `n = int(input())`, even though you will not need it afterwards."
+  ],
+  "input_fmt": "Line 1: n. Line 2: n whole numbers.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n4 9 2\n",
+    "output": "9",
+    "explanation": "9 is the biggest."
+   }
+  ],
+  "prefix": "",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "n = int(input())\nnums = list(map(int, input().split()))\nprint(max(nums))\n",
+  "hints": [
+   "Two input lines means two reads.",
+   "Read the first line and ignore it, or store it. Read the second line as a list.",
+   "1. Read n. 2. Read the list. 3. Print max of the list.",
+   "n = int(input()); nums = list(map(...)); print(max(nums))."
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "4\n-3 -1 -7 -2\n",
+    "output": "-1"
+   },
+   {
+    "input": "5\n1 1 1 1 1\n",
+    "output": "1"
+   }
+  ]
+ },
+ {
+  "id": "in_average",
+  "lesson": "input",
+  "title": "Whole-number average",
+  "difficulty": "Medium",
+  "statement": [
+   "Line 1 holds `n`. Line 2 holds `n` whole numbers. Print the average, dropping the decimal part. The average is the total divided by how many numbers there are.",
+   "Use `//` for division that drops the decimal part."
+  ],
+  "input_fmt": "Line 1: n. Line 2: n whole numbers.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n1 2 3 5\n",
+    "output": "2",
+    "explanation": "The total is 11. 11 // 4 is 2."
+   }
+  ],
+  "prefix": "",
+  "body": "# Write your code here\n",
+  "suffix": "",
+  "solution": "n = int(input())\nnums = list(map(int, input().split()))\nprint(sum(nums) // n)\n",
+  "hints": [
+   "You need the total and the count.",
+   "The total comes from sum. The count is n.",
+   "1. Read n and the list. 2. Print sum(nums) // n.",
+   "print(sum(nums) // n)"
+  ],
+  "hidden": [
+   {
+    "input": "1\n9\n",
+    "output": "9"
+   },
+   {
+    "input": "3\n10 20 30\n",
+    "output": "20"
+   },
+   {
+    "input": "2\n0 1\n",
+    "output": "0"
+   }
+  ]
+ },
+ {
+  "id": "str_ends",
+  "lesson": "strings",
+  "title": "First and last letter",
+  "difficulty": "Easy",
+  "statement": [
+   "Return the first letter and the last letter of `word` joined together. The symbol `+` joins two pieces of text. The word has at least 2 letters."
+  ],
+  "input_fmt": "One line holding a word of small letters, with no spaces.",
+  "output_fmt": "One line: two letters.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "planet\n",
+    "output": "pt",
+    "explanation": "The first letter is p and the last is t."
+   }
+  ],
+  "prefix": "def solve(word):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    word = input()\n    print(solve(word))\n",
+  "solution": "    return word[0] + word[-1]\n",
+  "hints": [
+   "Text has positions like a list.",
+   "The first letter is at position 0 and the last at position -1.",
+   "Return word[0] joined with word[-1] using +.",
+   "return word[0] + word[-1]"
+  ],
+  "hidden": [
+   {
+    "input": "ab\n",
+    "output": "ab"
+   },
+   {
+    "input": "level\n",
+    "output": "ll"
+   },
+   {
+    "input": "builder\n",
+    "output": "br"
+   }
+  ]
+ },
+ {
+  "id": "str_reverse",
+  "lesson": "strings",
+  "title": "Reverse a word",
+  "difficulty": "Easy",
+  "statement": [
+   "Return `word` written backwards."
+  ],
+  "input_fmt": "One line holding a word of small letters, with no spaces.",
+  "output_fmt": "One line: the reversed word.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "stone\n",
+    "output": "enots",
+    "explanation": "The letters in the opposite order."
+   }
+  ],
+  "prefix": "def solve(word):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    word = input()\n    print(solve(word))\n",
+  "solution": "    return word[::-1]\n",
+  "hints": [
+   "Slices work on text too.",
+   "The backwards slice is the same one as for lists.",
+   "Return word with the step -1 slice.",
+   "return word[::-1]"
+  ],
+  "hidden": [
+   {
+    "input": "a\n",
+    "output": "a"
+   },
+   {
+    "input": "ab\n",
+    "output": "ba"
+   },
+   {
+    "input": "racecar\n",
+    "output": "racecar"
+   }
+  ]
+ },
+ {
+  "id": "str_palindrome",
+  "lesson": "strings",
+  "title": "Same backwards",
+  "difficulty": "Medium",
+  "statement": [
+   "A palindrome reads the same forwards and backwards. Return `True` if `word` is one, otherwise `False`."
+  ],
+  "input_fmt": "One line holding a word of small letters, with no spaces.",
+  "output_fmt": "`True` or `False`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "level\n",
+    "output": "True",
+    "explanation": "level backwards is level."
+   }
+  ],
+  "prefix": "def solve(word):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    word = input()\n    print(solve(word))\n",
+  "solution": "    return word == word[::-1]\n",
+  "hints": [
+   "Compare the word with its reverse.",
+   "A reversed copy is word[::-1]. Ask whether it equals the word.",
+   "Return the answer to: is word equal to word reversed.",
+   "return word == word[::-1]"
+  ],
+  "hidden": [
+   {
+    "input": "abc\n",
+    "output": "False"
+   },
+   {
+    "input": "a\n",
+    "output": "True"
+   },
+   {
+    "input": "noon\n",
+    "output": "True"
+   },
+   {
+    "input": "ab\n",
+    "output": "False"
+   }
+  ]
+ },
+ {
+  "id": "str_vowels",
+  "lesson": "strings",
+  "title": "Count the vowels",
+  "difficulty": "Medium",
+  "statement": [
+   "Return how many letters in `word` are vowels. The vowels are `a`, `e`, `i`, `o` and `u`.",
+   "The word `in` asks whether something is found inside something else. For example `'a' in 'aeiou'` is True."
+  ],
+  "input_fmt": "One line holding a word of small letters, with no spaces.",
+  "output_fmt": "One number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "education\n",
+    "output": "5",
+    "explanation": "e, u, a, i, o are vowels."
+   }
+  ],
+  "prefix": "def solve(word):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    word = input()\n    print(solve(word))\n",
+  "solution": "    count = 0\n    for letter in word:\n        if letter in \"aeiou\":\n            count = count + 1\n    return count\n",
+  "hints": [
+   "A for loop can go through the letters of a word.",
+   "Loop over word. For each letter, check whether it is inside the text aeiou.",
+   "1. count = 0. 2. For each letter in word, if letter in \"aeiou\", add 1 to count. 3. Return count.",
+   "count = 0; for letter in word: if letter in \"aeiou\": count = count + 1; return count."
+  ],
+  "hidden": [
+   {
+    "input": "xyz\n",
+    "output": "0"
+   },
+   {
+    "input": "aeiou\n",
+    "output": "5"
+   },
+   {
+    "input": "builder\n",
+    "output": "3"
+   }
+  ]
+ },
+ {
+  "id": "hm_lookup",
+  "lesson": "hashmaps",
+  "title": "Phone book",
+  "difficulty": "Easy",
+  "statement": [
+   "Each line holds a name and a phone number separated by a space. Build a phone book, then look up the name `query`.",
+   "Print the number for that name. If the name is not in the book, print `not found`. If a name appears twice, the later line wins."
+  ],
+  "input_fmt": "A line with how many lines follow, then that many lines of text, which become the list `lines`. A line holding the text `query`.",
+  "output_fmt": "One line: the number, or `not found`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\nana 555\nbo 777\ncy 123\nbo\n",
+    "output": "777",
+    "explanation": "The book is ana 555, bo 777, cy 123. Looking up bo gives 777."
+   }
+  ],
+  "prefix": "def solve(lines, query):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    lines = [input() for _ in range(count)]\n    query = input()\n    result = solve(lines, query)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    book = {}\n    for line in lines:\n        name, number = line.split()\n        book[name] = number\n    return book.get(query, \"not found\")\n",
+  "hints": [
+   "A dictionary lets you look up a value by name.",
+   "Make an empty dictionary with `{}`. For each line, split it into a name and a number, and store the number under the name.",
+   "Build the dictionary first. Then ask for `query`, using get with a fallback so a missing name does not crash.",
+   "book = {}; for each line: name, number = line.split(); book[name] = number; return book.get(query, \"not found\")."
+  ],
+  "hidden": [
+   {
+    "input": "2\nana 555\nbo 777\nzed\n",
+    "output": "not found"
+   },
+   {
+    "input": "2\nana 1\nana 2\nana\n",
+    "output": "2"
+   },
+   {
+    "input": "1\nx 9\nx\n",
+    "output": "9"
+   }
+  ]
+ },
+ {
+  "id": "hm_distinct",
+  "lesson": "hashmaps",
+  "title": "How many different",
+  "difficulty": "Easy",
+  "statement": [
+   "Count how many different numbers appear in the list. Repeats count once."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n4 4 7 1 7\n",
+    "output": "3",
+    "explanation": "The different numbers are 4, 7 and 1, so the answer is 3."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    seen = {}\n    for x in nums:\n        seen[x] = True\n    return len(seen)\n",
+  "hints": [
+   "A dictionary cannot hold the same key twice.",
+   "If you store every number as a key, repeats land on the same key. Then count the keys.",
+   "Make an empty dictionary. Put each number in as a key. At the end, the number of keys is the answer.",
+   "seen = {}; for x in nums: seen[x] = True; return len(seen)."
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n",
+    "output": "1"
+   },
+   {
+    "input": "4\n2 2 2 2\n",
+    "output": "1"
+   },
+   {
+    "input": "6\n1 2 3 4 5 6\n",
+    "output": "6"
+   },
+   {
+    "input": "5\n9 -9 9 -9 0\n",
+    "output": "3"
+   }
+  ]
+ },
+ {
+  "id": "hm_first_repeat",
+  "lesson": "hashmaps",
+  "title": "First repeat",
+  "difficulty": "Easy",
+  "statement": [
+   "Go through the list from left to right. Print the first number that you have already seen earlier in the list. If no number repeats, print `-1`."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n3 1 4 1 3\n",
+    "output": "1",
+    "explanation": "Going left to right, the second 1 is the first number we have seen before. The second 3 comes later."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    seen = {}\n    for x in nums:\n        if x in seen:\n            return x\n        seen[x] = True\n    return -1\n",
+  "hints": [
+   "You need a memory of what you have already seen.",
+   "A dictionary can be that memory. Before storing a number, ask whether it is already in the dictionary.",
+   "Loop through the numbers. If the number is already a key, that is the answer. Otherwise store it and carry on. If the loop ends, answer -1.",
+   "for x in nums: if x in seen: return x; seen[x] = True. After the loop: return -1."
+  ],
+  "hidden": [
+   {
+    "input": "3\n1 2 3\n",
+    "output": "-1"
+   },
+   {
+    "input": "2\n5 5\n",
+    "output": "5"
+   },
+   {
+    "input": "6\n7 8 9 8 7 9\n",
+    "output": "8"
+   },
+   {
+    "input": "1\n2\n",
+    "output": "-1"
+   }
+  ]
+ },
+ {
+  "id": "hm_most_common",
+  "lesson": "hashmaps",
+  "title": "Most common word",
+  "difficulty": "Medium",
+  "statement": [
+   "Print the word that appears most often. If two words appear the same number of times, print the one that comes first in alphabetical order."
+  ],
+  "input_fmt": "A line of words separated by spaces, which become the list `words`.",
+  "output_fmt": "One word.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "red blue red green blue red\n",
+    "output": "red",
+    "explanation": "red appears 3 times, blue 2 times and green once."
+   },
+   {
+    "input": "b a b a\n",
+    "output": "a",
+    "explanation": "a and b each appear twice, so the alphabetical first, a, wins."
+   }
+  ],
+  "prefix": "def solve(words):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    words = input().split()\n    result = solve(words)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    counts = {}\n    for w in words:\n        counts[w] = counts.get(w, 0) + 1\n    best = None\n    for w in sorted(counts):\n        if best is None or counts[w] > counts[best]:\n            best = w\n    return best\n",
+  "hints": [
+   "First count how often each word appears.",
+   "Count with `counts[w] = counts.get(w, 0) + 1`. Then look for the biggest count. Visiting the words in alphabetical order helps with ties.",
+   "Build the counts. Then go through the words in alphabetical order, and only replace your best word when a word has a strictly bigger count.",
+   "counts = {}; for w in words: counts[w] = counts.get(w, 0) + 1; best = None; for w in sorted(counts): if best is None or counts[w] > counts[best]: best = w."
+  ],
+  "hidden": [
+   {
+    "input": "x\n",
+    "output": "x"
+   },
+   {
+    "input": "z y z y x\n",
+    "output": "y"
+   },
+   {
+    "input": "pear apple pear fig apple fig\n",
+    "output": "apple"
+   },
+   {
+    "input": "one two two three three three\n",
+    "output": "three"
+   }
+  ]
+ },
+ {
+  "id": "hm_two_sum",
+  "lesson": "hashmaps",
+  "title": "Two numbers that add up",
+  "difficulty": "Medium",
+  "statement": [
+   "Find the two positions `i` and `j` (with `i` smaller than `j`) where `nums[i] + nums[j]` equals `target`. Print `i` then `j`, separated by a space.",
+   "Exactly one pair of positions works."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `target`.",
+  "output_fmt": "Two whole numbers separated by a space: the smaller position first.",
+  "constraints": "2 to 1000 numbers.",
+  "samples": [
+   {
+    "input": "4\n2 7 11 15\n9\n",
+    "output": "0 1",
+    "explanation": "nums[0] is 2 and nums[1] is 7, and 2 + 7 is 9."
+   }
+  ],
+  "prefix": "def solve(nums, target):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    target = int(input())\n    result = solve(nums, target)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    seen = {}\n    for i in range(len(nums)):\n        need = target - nums[i]\n        if need in seen:\n            return [seen[need], i]\n        seen[nums[i]] = i\n    return []\n",
+  "hints": [
+   "For each number, there is exactly one other number that would complete the pair.",
+   "If the current number is x, the partner you want is target - x. Keep a dictionary from number to position for the numbers already passed.",
+   "Loop over positions. Work out the partner. If the partner is already in the dictionary, you have the answer. Otherwise store this number with its position.",
+   "for i in range(len(nums)): need = target - nums[i]; if need in seen: return [seen[need], i]; seen[nums[i]] = i."
+  ],
+  "hidden": [
+   {
+    "input": "3\n3 2 4\n6\n",
+    "output": "1 2"
+   },
+   {
+    "input": "2\n3 3\n6\n",
+    "output": "0 1"
+   },
+   {
+    "input": "5\n-1 -2 -3 -4 -5\n-8\n",
+    "output": "2 4"
+   },
+   {
+    "input": "5\n1 5 9 14 20\n29\n",
+    "output": "2 4"
+   },
+   {
+    "input": "4\n8 1 6 3\n4\n",
+    "output": "1 3"
+   }
+  ]
+ },
+ {
+  "id": "hm_anagram",
+  "lesson": "hashmaps",
+  "title": "Same letters",
+  "difficulty": "Medium",
+  "statement": [
+   "Two words are anagrams when they use exactly the same letters the same number of times, in any order. Print `True` if `a` and `b` are anagrams, otherwise print `False`."
+  ],
+  "input_fmt": "A line holding the text `a`. A line holding the text `b`.",
+  "output_fmt": "`True` or `False`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "listen\nsilent\n",
+    "output": "True",
+    "explanation": "Both words have one each of e, i, l, n, s and t."
+   },
+   {
+    "input": "aab\nabb\n",
+    "output": "False",
+    "explanation": "aab has two a and one b, but abb has one a and two b."
+   }
+  ],
+  "prefix": "def solve(a, b):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    a = input()\n    b = input()\n    result = solve(a, b)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    counts_a = {}\n    for ch in a:\n        counts_a[ch] = counts_a.get(ch, 0) + 1\n    counts_b = {}\n    for ch in b:\n        counts_b[ch] = counts_b.get(ch, 0) + 1\n    return counts_a == counts_b\n",
+  "hints": [
+   "Count the letters in each word.",
+   "Make one dictionary of letter counts for each word. Two dictionaries with the same keys and values are equal when you compare them with `==`.",
+   "Build counts for a, build counts for b, and answer whether the two dictionaries are equal.",
+   "counts_a = {}; for ch in a: counts_a[ch] = counts_a.get(ch, 0) + 1; the same for b; return counts_a == counts_b."
+  ],
+  "hidden": [
+   {
+    "input": "abc\nabd\n",
+    "output": "False"
+   },
+   {
+    "input": "aab\naba\n",
+    "output": "True"
+   },
+   {
+    "input": "a\naa\n",
+    "output": "False"
+   },
+   {
+    "input": "stressed\ndesserts\n",
+    "output": "True"
+   }
+  ]
+ },
+ {
+  "id": "hm_group_sum",
+  "lesson": "hashmaps",
+  "title": "Totals per person",
+  "difficulty": "Medium",
+  "statement": [
+   "Each line holds a name and a whole number, separated by a space. Add up the numbers for each name.",
+   "Print one item per name, in alphabetical order of the name, written as `name:total` and separated by spaces."
+  ],
+  "input_fmt": "A line with how many lines follow, then that many lines of text, which become the list `lines`.",
+  "output_fmt": "One line of `name:total` items separated by spaces.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\nbo 5\nana 7\nana 5\n",
+    "output": "ana:12 bo:5",
+    "explanation": "ana has 7 and 5, which makes 12. bo has 5. Alphabetical order puts ana first."
+   }
+  ],
+  "prefix": "def solve(lines):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    lines = [input() for _ in range(count)]\n    result = solve(lines)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    totals = {}\n    for line in lines:\n        name, amount = line.split()\n        totals[name] = totals.get(name, 0) + int(amount)\n    result = []\n    for name in sorted(totals):\n        result.append(name + \":\" + str(totals[name]))\n    return result\n",
+  "hints": [
+   "This is counting, but you add an amount instead of 1.",
+   "Split each line, turn the amount into a number with int, and add it to the total stored under that name.",
+   "Fill a dictionary of totals. Then go through the sorted names and build the text name:total for each.",
+   "totals[name] = totals.get(name, 0) + int(amount); then for name in sorted(totals): result.append(name + \":\" + str(totals[name]))."
+  ],
+  "hidden": [
+   {
+    "input": "1\nz 1\n",
+    "output": "z:1"
+   },
+   {
+    "input": "4\ncy 4\nbo 4\ncy -1\nbo 2\n",
+    "output": "bo:6 cy:3"
+   },
+   {
+    "input": "3\nx 10\nx 10\nx 10\n",
+    "output": "x:30"
+   },
+   {
+    "input": "4\nb 1\na 2\nc 3\nb 4\n",
+    "output": "a:2 b:5 c:3"
+   }
+  ]
+ },
+ {
+  "id": "hm_subarray_sum",
+  "lesson": "hashmaps",
+  "title": "Blocks that add up",
+  "difficulty": "Hard",
+  "statement": [
+   "A block is one or more neighbouring numbers. Count how many blocks have a total exactly equal to `k`."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `k`.",
+  "output_fmt": "One whole number.",
+  "constraints": "Numbers may be negative, so a loop inside a loop is too slow on big lists.",
+  "samples": [
+   {
+    "input": "3\n1 1 1\n2\n",
+    "output": "2",
+    "explanation": "The blocks [1, 1] at positions 0 to 1 and at positions 1 to 2 both total 2."
+   },
+   {
+    "input": "3\n1 2 3\n3\n",
+    "output": "2",
+    "explanation": "The blocks [1, 2] and [3] both total 3."
+   }
+  ],
+  "prefix": "def solve(nums, k):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    k = int(input())\n    result = solve(nums, k)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    counts = {0: 1}\n    running = 0\n    answer = 0\n    for x in nums:\n        running += x\n        answer += counts.get(running - k, 0)\n        counts[running] = counts.get(running, 0) + 1\n    return answer\n",
+  "hints": [
+   "Keep a running total as you go. The total of a block is the difference of two running totals.",
+   "If the running total now is R, a block ending here has total k exactly when an earlier running total was R - k. Count how many times each running total has appeared.",
+   "Start with counts of {0: 1}, meaning the empty start. For each number, update the running total, add how many earlier totals equal running - k, then record the running total.",
+   "counts = {0: 1}; running = 0; answer = 0; for x in nums: running += x; answer += counts.get(running - k, 0); counts[running] = counts.get(running, 0) + 1."
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n5\n",
+    "output": "1"
+   },
+   {
+    "input": "1\n5\n4\n",
+    "output": "0"
+   },
+   {
+    "input": "4\n1 -1 1 -1\n0\n",
+    "output": "4"
+   },
+   {
+    "input": "8\n3 4 7 2 -3 1 4 2\n7\n",
+    "output": "4"
+   },
+   {
+    "input": "3\n0 0 0\n0\n",
+    "output": "6"
+   }
+  ]
+ },
+ {
+  "id": "sort_ascending",
+  "lesson": "sorting",
+  "title": "Smallest to largest",
+  "difficulty": "Easy",
+  "statement": [
+   "Print the numbers in order from smallest to largest, separated by spaces."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "The numbers in order, separated by spaces.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n5 2 9 1\n",
+    "output": "1 2 5 9",
+    "explanation": "Smallest is 1, then 2, then 5, then 9."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    return sorted(nums)\n",
+  "hints": [
+   "Python has a tool that puts a list in order.",
+   "sorted(nums) gives back a new list in order. Remember that solve must return it.",
+   "Return the sorted version of nums.",
+   "return sorted(nums)."
+  ],
+  "hidden": [
+   {
+    "input": "1\n3\n",
+    "output": "3"
+   },
+   {
+    "input": "3\n2 2 1\n",
+    "output": "1 2 2"
+   },
+   {
+    "input": "4\n-4 8 0 -9\n",
+    "output": "-9 -4 0 8"
+   },
+   {
+    "input": "5\n10 9 8 7 6\n",
+    "output": "6 7 8 9 10"
+   }
+  ]
+ },
+ {
+  "id": "sort_top3",
+  "lesson": "sorting",
+  "title": "Top three",
+  "difficulty": "Easy",
+  "statement": [
+   "Print the three biggest numbers, biggest first, separated by spaces. If there are fewer than three numbers, print all of them."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "Up to three numbers, biggest first.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n4 9 1 7 3\n",
+    "output": "9 7 4",
+    "explanation": "In order from biggest the list is 9, 7, 4, 3, 1. The first three are 9, 7 and 4."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    ordered = sorted(nums, reverse=True)\n    return ordered[:3]\n",
+  "hints": [
+   "Sort so that the biggest are at the front.",
+   "sorted(nums, reverse=True) puts biggest first. A slice with [:3] takes the first three items and does not crash on short lists.",
+   "Sort from biggest to smallest, then keep only the first three items.",
+   "ordered = sorted(nums, reverse=True); return ordered[:3]."
+  ],
+  "hidden": [
+   {
+    "input": "2\n1 2\n",
+    "output": "2 1"
+   },
+   {
+    "input": "1\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "4\n3 3 3 3\n",
+    "output": "3 3 3"
+   },
+   {
+    "input": "6\n10 40 30 20 50 60\n",
+    "output": "60 50 40"
+   }
+  ]
+ },
+ {
+  "id": "sort_kth_largest",
+  "lesson": "sorting",
+  "title": "The kth largest",
+  "difficulty": "Easy",
+  "statement": [
+   "Print the `k`th largest number. The 1st largest is the biggest, the 2nd largest is the next one, and so on. The list always has at least `k` numbers. Equal numbers count separately."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `k`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n3 1 5 2 4\n2\n",
+    "output": "4",
+    "explanation": "In order from biggest: 5, 4, 3, 2, 1. The 2nd one is 4."
+   }
+  ],
+  "prefix": "def solve(nums, k):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    k = int(input())\n    result = solve(nums, k)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    ordered = sorted(nums, reverse=True)\n    return ordered[k - 1]\n",
+  "hints": [
+   "Sorting makes the answer easy to find.",
+   "After sorting from biggest to smallest, the 1st largest sits at position 0. So the kth sits at position k - 1.",
+   "Sort biggest first, then return the item at position k - 1.",
+   "return sorted(nums, reverse=True)[k - 1]."
+  ],
+  "hidden": [
+   {
+    "input": "1\n7\n1\n",
+    "output": "7"
+   },
+   {
+    "input": "3\n5 5 3\n2\n",
+    "output": "5"
+   },
+   {
+    "input": "4\n1 2 3 4\n4\n",
+    "output": "1"
+   },
+   {
+    "input": "5\n9 8 7 6 5\n3\n",
+    "output": "7"
+   }
+  ]
+ },
+ {
+  "id": "sort_median",
+  "lesson": "sorting",
+  "title": "The middle value",
+  "difficulty": "Medium",
+  "statement": [
+   "The middle value is the one in the middle after the numbers are put in order. When there are two middle values (an even count), use the lower one.",
+   "Print the middle value."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n9 1 5\n",
+    "output": "5",
+    "explanation": "In order: 1, 5, 9. The middle one is 5."
+   },
+   {
+    "input": "4\n4 1 3 2\n",
+    "output": "2",
+    "explanation": "In order: 1, 2, 3, 4. Two middle values, 2 and 3. The lower one is 2."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    ordered = sorted(nums)\n    return ordered[(len(ordered) - 1) // 2]\n",
+  "hints": [
+   "Sort first, then pick by position.",
+   "With 5 items the middle is position 2. With 4 items the lower middle is position 1. Try (len - 1) // 2, where // divides and drops the remainder.",
+   "Sort. Work out the middle position as (number of items - 1) // 2. Return the item there.",
+   "ordered = sorted(nums); return ordered[(len(ordered) - 1) // 2]."
+  ],
+  "hidden": [
+   {
+    "input": "1\n7\n",
+    "output": "7"
+   },
+   {
+    "input": "2\n2 1\n",
+    "output": "1"
+   },
+   {
+    "input": "6\n5 5 1 9 9 3\n",
+    "output": "5"
+   },
+   {
+    "input": "5\n10 20 30 40 50\n",
+    "output": "30"
+   }
+  ]
+ },
+ {
+  "id": "sort_by_length",
+  "lesson": "sorting",
+  "title": "Shortest words first",
+  "difficulty": "Medium",
+  "statement": [
+   "Sort the words by length, shortest first. Words with the same length go in alphabetical order. Print the words separated by spaces."
+  ],
+  "input_fmt": "A line of words separated by spaces, which become the list `words`.",
+  "output_fmt": "The words in the new order, separated by spaces.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "pear fig apple kiwi\n",
+    "output": "fig kiwi pear apple",
+    "explanation": "fig has 3 letters. kiwi and pear have 4, and kiwi comes first alphabetically. apple has 5."
+   }
+  ],
+  "prefix": "def solve(words):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    words = input().split()\n    result = solve(words)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    return sorted(words, key=lambda w: (len(w), w))\n",
+  "hints": [
+   "A key can return a pair, so ties are broken by the second part.",
+   "Use key=lambda w: (len(w), w). The pair is compared length first, then the word itself.",
+   "Sort with a key that gives (length of the word, the word).",
+   "return sorted(words, key=lambda w: (len(w), w))."
+  ],
+  "hidden": [
+   {
+    "input": "a\n",
+    "output": "a"
+   },
+   {
+    "input": "bb a cc b\n",
+    "output": "a b bb cc"
+   },
+   {
+    "input": "zebra ox cat dog bee\n",
+    "output": "ox bee cat dog zebra"
+   },
+   {
+    "input": "same word mine\n",
+    "output": "mine same word"
+   }
+  ]
+ },
+ {
+  "id": "sort_min_diff",
+  "lesson": "sorting",
+  "title": "Closest two numbers",
+  "difficulty": "Medium",
+  "statement": [
+   "Find the smallest difference between any two numbers in the list and print it. There are at least two numbers. The difference is the bigger number minus the smaller one."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n8 3 15 5\n",
+    "output": "2",
+    "explanation": "In order: 3, 5, 8, 15. The differences between neighbours are 2, 3 and 7. The smallest is 2."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    ordered = sorted(nums)\n    best = ordered[1] - ordered[0]\n    for i in range(1, len(ordered)):\n        gap = ordered[i] - ordered[i - 1]\n        if gap < best:\n            best = gap\n    return best\n",
+  "hints": [
+   "The two closest numbers must sit next to each other once the list is in order.",
+   "Sort the list, then you only need to look at neighbours, not every pair.",
+   "Sort. Start with the first gap as your best. Walk through the list comparing each item with the one before it.",
+   "ordered = sorted(nums); best = ordered[1] - ordered[0]; for i in range(1, len(ordered)): gap = ordered[i] - ordered[i - 1]; keep the smallest."
+  ],
+  "hidden": [
+   {
+    "input": "2\n1 1\n",
+    "output": "0"
+   },
+   {
+    "input": "2\n10 4\n",
+    "output": "6"
+   },
+   {
+    "input": "4\n1 100 50 51\n",
+    "output": "1"
+   },
+   {
+    "input": "5\n-5 0 5 4 -4\n",
+    "output": "1"
+   }
+  ]
+ },
+ {
+  "id": "sort_by_score",
+  "lesson": "sorting",
+  "title": "Leaderboard",
+  "difficulty": "Medium",
+  "statement": [
+   "Each line holds a name and a score, separated by a space. Put the names in order from the highest score to the lowest. If two scores are equal, the name that comes first alphabetically goes first.",
+   "Print the names separated by spaces."
+  ],
+  "input_fmt": "A line with how many lines follow, then that many lines of text, which become the list `lines`.",
+  "output_fmt": "The names, best first, separated by spaces.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\nana 80\nbo 95\ncy 80\n",
+    "output": "bo ana cy",
+    "explanation": "bo has 95. ana and cy both have 80, and ana comes first alphabetically."
+   }
+  ],
+  "prefix": "def solve(lines):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    lines = [input() for _ in range(count)]\n    result = solve(lines)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    people = []\n    for line in lines:\n        name, score = line.split()\n        people.append((int(score), name))\n    people.sort(key=lambda p: (-p[0], p[1]))\n    names = []\n    for score, name in people:\n        names.append(name)\n    return names\n",
+  "hints": [
+   "Sort pairs, and flip the sign of the score so that big scores come first.",
+   "Store (score, name) pairs with the score as a number. In the key, use -score for the high-first part and name for the tie-break.",
+   "Parse each line into a pair. Sort with key=lambda p: (-p[0], p[1]). Collect the names in order.",
+   "people.append((int(score), name)); people.sort(key=lambda p: (-p[0], p[1])); then take the name from each pair."
+  ],
+  "hidden": [
+   {
+    "input": "1\nx 1\n",
+    "output": "x"
+   },
+   {
+    "input": "3\nb 5\na 5\nc 9\n",
+    "output": "c a b"
+   },
+   {
+    "input": "4\nm 10\nn 20\no 30\np 20\n",
+    "output": "o n p m"
+   },
+   {
+    "input": "3\nz 0\ny 0\nx 0\n",
+    "output": "x y z"
+   }
+  ]
+ },
+ {
+  "id": "sort_intervals",
+  "lesson": "sorting",
+  "title": "Overlapping spans",
+  "difficulty": "Hard",
+  "statement": [
+   "Each line holds the start and end of a span, as two whole numbers separated by a space. Two spans overlap when the second starts at or before the point where the first ends. Overlapping spans merge into one bigger span.",
+   "Print how many spans are left after all overlapping spans are merged."
+  ],
+  "input_fmt": "A line with how many lines follow, then that many lines of text, which become the list `lines`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\n1 3\n2 6\n8 10\n15 18\n",
+    "output": "3",
+    "explanation": "1 to 3 and 2 to 6 overlap and merge into 1 to 6. The others stand alone, so 3 spans remain."
+   },
+   {
+    "input": "2\n1 4\n4 5\n",
+    "output": "1",
+    "explanation": "The first ends at 4 and the second starts at 4, so they touch and merge."
+   }
+  ],
+  "prefix": "def solve(lines):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    lines = [input() for _ in range(count)]\n    result = solve(lines)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    spans = []\n    for line in lines:\n        a, b = line.split()\n        spans.append([int(a), int(b)])\n    spans.sort()\n    groups = 0\n    current_end = None\n    for start, end in spans:\n        if current_end is None or start > current_end:\n            groups += 1\n            current_end = end\n        else:\n            current_end = max(current_end, end)\n    return groups\n",
+  "hints": [
+   "If the spans are in order of their start, you only need to compare each one with the group before it.",
+   "Sort the spans by start. Keep track of where the current group ends. A new span either starts after that end (a new group) or reaches into it (it joins, and may push the end further).",
+   "Sort. Walk through. If the span starts after current_end, count a new group and set current_end to its end. Otherwise set current_end to the bigger of the two ends.",
+   "spans.sort(); for start, end in spans: if current_end is None or start > current_end: groups += 1; current_end = end; else: current_end = max(current_end, end)."
+  ],
+  "hidden": [
+   {
+    "input": "1\n5 6\n",
+    "output": "1"
+   },
+   {
+    "input": "3\n1 2\n3 4\n5 6\n",
+    "output": "3"
+   },
+   {
+    "input": "3\n1 10\n2 3\n4 5\n",
+    "output": "1"
+   },
+   {
+    "input": "4\n6 8\n1 9\n2 4\n4 7\n",
+    "output": "1"
+   },
+   {
+    "input": "3\n10 12\n1 3\n2 11\n",
+    "output": "1"
+   }
+  ]
+ },
+ {
+  "id": "st_initials",
+  "lesson": "strtools",
+  "title": "Initials",
+  "difficulty": "Easy",
+  "statement": [
+   "Print the capital initials of the words in the name. For example `ada lovelace byron` gives `ALB`."
+  ],
+  "input_fmt": "A line holding the text `name`.",
+  "output_fmt": "The initials as one word of capital letters.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "ada lovelace byron\n",
+    "output": "ALB",
+    "explanation": "The first letters are a, l and b. Made capital they are A, L and B."
+   }
+  ],
+  "prefix": "def solve(name):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    name = input()\n    result = solve(name)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    words = name.split()\n    letters = \"\"\n    for w in words:\n        letters += w[0].upper()\n    return letters\n",
+  "hints": [
+   "Cut the name into words first.",
+   "name.split() gives a list of words. w[0] is the first letter of w and w[0].upper() makes it capital.",
+   "Split the name. Start with an empty text. For each word, glue its first letter, made capital, on the end.",
+   "words = name.split(); letters = \"\"; for w in words: letters += w[0].upper(); return letters."
+  ],
+  "hidden": [
+   {
+    "input": "grace hopper\n",
+    "output": "GH"
+   },
+   {
+    "input": "x\n",
+    "output": "X"
+   },
+   {
+    "input": "mary jane watson parker\n",
+    "output": "MJWP"
+   },
+   {
+    "input": "Alan Turing\n",
+    "output": "AT"
+   }
+  ]
+ },
+ {
+  "id": "st_clean_spaces",
+  "lesson": "strtools",
+  "title": "Tidy the spaces",
+  "difficulty": "Easy",
+  "statement": [
+   "The text may have extra spaces at the start, at the end, or several spaces in a row between words. Print the text with exactly one space between words and no spaces at the ends."
+  ],
+  "input_fmt": "A line holding the text `text`.",
+  "output_fmt": "The tidy text on one line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "  hello    big   world \n",
+    "output": "hello big world",
+    "explanation": "Splitting on spaces drops the extras. Joining with one space gives hello big world."
+   }
+  ],
+  "prefix": "def solve(text):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    text = input()\n    result = solve(text)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    return \" \".join(text.split())\n",
+  "hints": [
+   "Two tools work together here.",
+   "split() with nothing inside the brackets cuts on any run of spaces and ignores the ends. join glues the pieces back.",
+   "Cut the text into words, then glue the words together with a single space.",
+   "return \" \".join(text.split())."
+  ],
+  "hidden": [
+   {
+    "input": "one\n",
+    "output": "one"
+   },
+   {
+    "input": "a   b\n",
+    "output": "a b"
+   },
+   {
+    "input": "   spaced     out   text   \n",
+    "output": "spaced out text"
+   },
+   {
+    "input": "no extras here\n",
+    "output": "no extras here"
+   }
+  ]
+ },
+ {
+  "id": "st_censor",
+  "lesson": "strtools",
+  "title": "Hide a word",
+  "difficulty": "Easy",
+  "statement": [
+   "Replace every appearance of the word `bad` in `text` with stars. Use one star for each letter of `bad`. Print the new text."
+  ],
+  "input_fmt": "A line holding the text `text`. A line holding the text `bad`.",
+  "output_fmt": "The new text on one line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "the cat sat on the cat mat\ncat\n",
+    "output": "the *** sat on the *** mat",
+    "explanation": "cat has 3 letters, so each cat becomes three stars."
+   }
+  ],
+  "prefix": "def solve(text, bad):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    text = input()\n    bad = input()\n    result = solve(text, bad)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    stars = \"*\" * len(bad)\n    return text.replace(bad, stars)\n",
+  "hints": [
+   "replace swaps one piece of text for another.",
+   "You can repeat text with a number: \"*\" * 3 gives \"***\". Use len(bad) for how many.",
+   "Build the stars first. Then replace bad with the stars.",
+   "stars = \"*\" * len(bad); return text.replace(bad, stars)."
+  ],
+  "hidden": [
+   {
+    "input": "hello world\nlo\n",
+    "output": "hel** world"
+   },
+   {
+    "input": "aaa\na\n",
+    "output": "***"
+   },
+   {
+    "input": "no match here\nzzz\n",
+    "output": "no match here"
+   },
+   {
+    "input": "abcabc\nbc\n",
+    "output": "a**a**"
+   }
+  ]
+ },
+ {
+  "id": "st_longest_word",
+  "lesson": "strtools",
+  "title": "Longest word",
+  "difficulty": "Medium",
+  "statement": [
+   "Print the longest word. If two words are equally long, print the one that comes first in the line."
+  ],
+  "input_fmt": "A line of words separated by spaces, which become the list `words`.",
+  "output_fmt": "One word.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "a quick brown fox\n",
+    "output": "quick",
+    "explanation": "quick and brown both have 5 letters. quick comes first, so it wins."
+   }
+  ],
+  "prefix": "def solve(words):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    words = input().split()\n    result = solve(words)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    best = words[0]\n    for w in words:\n        if len(w) > len(best):\n            best = w\n    return best\n",
+  "hints": [
+   "Keep the best word you have seen so far.",
+   "Start with the first word as your best. Only replace it when a word is strictly longer, not equal.",
+   "Loop over the words. If the current word is longer than best, it becomes the new best.",
+   "best = words[0]; for w in words: if len(w) > len(best): best = w; return best."
+  ],
+  "hidden": [
+   {
+    "input": "x\n",
+    "output": "x"
+   },
+   {
+    "input": "aa b cc\n",
+    "output": "aa"
+   },
+   {
+    "input": "tiny enormous big gigantic\n",
+    "output": "enormous"
+   },
+   {
+    "input": "hi hello world\n",
+    "output": "hello"
+   }
+  ]
+ },
+ {
+  "id": "pa_kv",
+  "lesson": "parsing",
+  "title": "Find a setting",
+  "difficulty": "Easy",
+  "statement": [
+   "A record is written as pairs like `name=Ana;age=30;city=Rome`. Pairs are separated by semicolons, and inside each pair the key and value are separated by an equals sign.",
+   "Print the value for the key `key`. If the key is not in the record, print `missing`."
+  ],
+  "input_fmt": "A line holding the text `record`. A line holding the text `key`.",
+  "output_fmt": "The value, or `missing`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "name=Ana;age=30;city=Rome\nage\n",
+    "output": "30",
+    "explanation": "Cutting at semicolons gives three pairs. The pair age=30 has the key age and the value 30."
+   }
+  ],
+  "prefix": "def solve(record, key):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    record = input()\n    key = input()\n    result = solve(record, key)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    pairs = record.split(\";\")\n    for p in pairs:\n        k, v = p.split(\"=\")\n        if k == key:\n            return v\n    return \"missing\"\n",
+  "hints": [
+   "Cut in two stages: first into pairs, then each pair into key and value.",
+   "record.split(\";\") gives the pairs. Then p.split(\"=\") on one pair gives its two pieces, which you can name k and v.",
+   "Split into pairs. For each pair, split at the equals sign. If the key matches, return the value. If nothing matched, return missing.",
+   "for p in record.split(\";\"): k, v = p.split(\"=\"); if k == key: return v. After the loop: return \"missing\"."
+  ],
+  "hidden": [
+   {
+    "input": "a=1\na\n",
+    "output": "1"
+   },
+   {
+    "input": "a=1;b=2\nc\n",
+    "output": "missing"
+   },
+   {
+    "input": "x=10;y=20;z=30\nz\n",
+    "output": "30"
+   },
+   {
+    "input": "k=v;kk=vv\nkk\n",
+    "output": "vv"
+   }
+  ]
+ },
+ {
+  "id": "pa_csv_total",
+  "lesson": "parsing",
+  "title": "Comma list total",
+  "difficulty": "Easy",
+  "statement": [
+   "The text holds whole numbers separated by commas, such as `3,5,10`. Print their total."
+  ],
+  "input_fmt": "A line holding the text `text`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3,5,10\n",
+    "output": "18",
+    "explanation": "3 + 5 + 10 is 18."
+   }
+  ],
+  "prefix": "def solve(text):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    text = input()\n    result = solve(text)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    total = 0\n    for part in text.split(\",\"):\n        total += int(part)\n    return total\n",
+  "hints": [
+   "The numbers arrive as text pieces.",
+   "text.split(\",\") cuts at commas. Each piece is still text, so convert it with int before adding.",
+   "Start a total at 0. For each piece, convert to a number and add it.",
+   "total = 0; for part in text.split(\",\"): total += int(part); return total."
+  ],
+  "hidden": [
+   {
+    "input": "7\n",
+    "output": "7"
+   },
+   {
+    "input": "1,1,1,1\n",
+    "output": "4"
+   },
+   {
+    "input": "-5,5\n",
+    "output": "0"
+   },
+   {
+    "input": "100,200,300,400\n",
+    "output": "1000"
+   }
+  ]
+ },
+ {
+  "id": "pa_log_errors",
+  "lesson": "parsing",
+  "title": "Count the errors",
+  "difficulty": "Medium",
+  "statement": [
+   "Each line is a log message that starts with a level word, then the message, for example `ERROR disk full`. Count the lines whose level is exactly `ERROR`.",
+   "Be careful: a line such as `ERRORS were fixed` has the first word `ERRORS`, which is not the same as `ERROR`."
+  ],
+  "input_fmt": "A line with how many lines follow, then that many lines of text, which become the list `lines`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "4\nINFO started\nERROR disk full\nWARN slow\nERROR timeout\n",
+    "output": "2",
+    "explanation": "Two lines start with the word ERROR."
+   }
+  ],
+  "prefix": "def solve(lines):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    lines = [input() for _ in range(count)]\n    result = solve(lines)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    count = 0\n    for line in lines:\n        level = line.split()[0]\n        if level == \"ERROR\":\n            count += 1\n    return count\n",
+  "hints": [
+   "Look only at the first word of each line.",
+   "line.split() gives the words. The first word is at position 0, so line.split()[0].",
+   "Loop over the lines. Take the first word. If it equals ERROR, add 1 to a counter.",
+   "count = 0; for line in lines: level = line.split()[0]; if level == \"ERROR\": count += 1; return count."
+  ],
+  "hidden": [
+   {
+    "input": "1\nINFO ok\n",
+    "output": "0"
+   },
+   {
+    "input": "3\nERROR a\nERROR b\nERROR c\n",
+    "output": "3"
+   },
+   {
+    "input": "3\nERRORS fixed\nERROR real\ninfo ERROR\n",
+    "output": "1"
+   },
+   {
+    "input": "2\nWARN x\nINFO y\n",
+    "output": "0"
+   }
+  ]
+ },
+ {
+  "id": "pa_duration",
+  "lesson": "parsing",
+  "title": "Minutes between times",
+  "difficulty": "Medium",
+  "statement": [
+   "Two times are written as `HH:MM` using a 24 hour clock, such as `09:30`. Print how many minutes pass from `start` to `end`. The end is later on the same day."
+  ],
+  "input_fmt": "A line holding the text `start`. A line holding the text `end`.",
+  "output_fmt": "One whole number of minutes.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "09:30\n11:05\n",
+    "output": "95",
+    "explanation": "09:30 is 570 minutes after midnight and 11:05 is 665. The difference is 95."
+   }
+  ],
+  "prefix": "def solve(start, end):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    start = input()\n    end = input()\n    result = solve(start, end)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    sh, sm = start.split(\":\")\n    eh, em = end.split(\":\")\n    start_minutes = int(sh) * 60 + int(sm)\n    end_minutes = int(eh) * 60 + int(em)\n    return end_minutes - start_minutes\n",
+  "hints": [
+   "Turn each time into one number: minutes since midnight.",
+   "Cut at the colon to get hours and minutes. Hours times 60 plus minutes gives minutes since midnight. int(\"09\") works and gives 9.",
+   "Convert both times to minutes since midnight, then subtract.",
+   "sh, sm = start.split(\":\"); start_minutes = int(sh) * 60 + int(sm); the same for end; return end_minutes - start_minutes."
+  ],
+  "hidden": [
+   {
+    "input": "00:00\n00:01\n",
+    "output": "1"
+   },
+   {
+    "input": "12:00\n12:00\n",
+    "output": "0"
+   },
+   {
+    "input": "08:15\n17:45\n",
+    "output": "570"
+   },
+   {
+    "input": "00:00\n23:59\n",
+    "output": "1439"
+   }
+  ]
+ },
+ {
+  "id": "ch_digit_sum",
+  "lesson": "chars",
+  "title": "Add the digits",
+  "difficulty": "Easy",
+  "statement": [
+   "The text mixes letters and digits, such as `a1b22c`. Add up the digits only, treating each digit character as its own number. Print the total."
+  ],
+  "input_fmt": "A line holding the text `text`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "a1b22c\n",
+    "output": "5",
+    "explanation": "The digits are 1, 2 and 2. Together they make 5."
+   }
+  ],
+  "prefix": "def solve(text):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    text = input()\n    result = solve(text)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    total = 0\n    for ch in text:\n        if ch.isdigit():\n            total += int(ch)\n    return total\n",
+  "hints": [
+   "Check each character on its own.",
+   "ch.isdigit() tells you if a character is a digit. int(ch) turns a digit character into a number.",
+   "Loop over the characters. When a character is a digit, add int(ch) to a total.",
+   "total = 0; for ch in text: if ch.isdigit(): total += int(ch); return total."
+  ],
+  "hidden": [
+   {
+    "input": "abc\n",
+    "output": "0"
+   },
+   {
+    "input": "9\n",
+    "output": "9"
+   },
+   {
+    "input": "x9y9z9\n",
+    "output": "27"
+   },
+   {
+    "input": "1234567890\n",
+    "output": "45"
+   }
+  ]
+ },
+ {
+  "id": "ch_caesar",
+  "lesson": "chars",
+  "title": "Shift the letters",
+  "difficulty": "Medium",
+  "statement": [
+   "Shift every lowercase letter forward in the alphabet by `shift` places. After z, wrap round to a. Spaces stay as they are. Print the new text.",
+   "The shift is between 0 and 25."
+  ],
+  "input_fmt": "A line holding the text `text`. A line holding the whole number `shift`.",
+  "output_fmt": "The shifted text on one line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "abc xyz\n2\n",
+    "output": "cde zab",
+    "explanation": "a becomes c, b becomes d, c becomes e. x becomes z, y wraps to a and z wraps to b."
+   }
+  ],
+  "prefix": "def solve(text, shift):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    text = input()\n    shift = int(input())\n    result = solve(text, shift)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    result = \"\"\n    for ch in text:\n        if ch == \" \":\n            result += ch\n        else:\n            place = ord(ch) - ord(\"a\")\n            result += chr((place + shift) % 26 + ord(\"a\"))\n    return result\n",
+  "hints": [
+   "Turn each letter into its place in the alphabet, shift, and turn it back.",
+   "ord(ch) - ord(\"a\") gives the place from 0 to 25. Add the shift, then use % 26 to wrap around. chr(place + ord(\"a\")) goes back to a letter.",
+   "For each character: if it is a space, keep it. Otherwise work out the new place with (place + shift) % 26 and add the matching letter to the result.",
+   "place = ord(ch) - ord(\"a\"); result += chr((place + shift) % 26 + ord(\"a\"))."
+  ],
+  "hidden": [
+   {
+    "input": "a\n0\n",
+    "output": "a"
+   },
+   {
+    "input": "hello world\n13\n",
+    "output": "uryyb jbeyq"
+   },
+   {
+    "input": "zebra\n1\n",
+    "output": "afcsb"
+   },
+   {
+    "input": "the quick brown fox\n25\n",
+    "output": "sgd pthbj aqnvm enw"
+   }
+  ]
+ },
+ {
+  "id": "ch_compress",
+  "lesson": "chars",
+  "title": "Squash repeats",
+  "difficulty": "Medium",
+  "statement": [
+   "Replace each run of the same letter with the letter followed by how long the run is. For example `aaabbc` becomes `a3b2c1`. The text is not empty."
+  ],
+  "input_fmt": "A line holding the text `s`.",
+  "output_fmt": "The squashed text.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "aaabbc\n",
+    "output": "a3b2c1",
+    "explanation": "There are three a, then two b, then one c."
+   }
+  ],
+  "prefix": "def solve(s):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    s = input()\n    result = solve(s)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    result = \"\"\n    count = 1\n    for i in range(1, len(s)):\n        if s[i] == s[i - 1]:\n            count += 1\n        else:\n            result += s[i - 1] + str(count)\n            count = 1\n    result += s[-1] + str(count)\n    return result\n",
+  "hints": [
+   "Compare each character with the one before it.",
+   "Keep a counter for the current run. When the letter changes, write the previous letter and its count, and restart the counter at 1.",
+   "Loop from position 1. If s[i] equals s[i - 1], add 1 to count. Otherwise add the previous letter and the count to the result, and set count back to 1. When the loop ends, the last run is still waiting to be written.",
+   "result += s[i - 1] + str(count) when the letter changes; after the loop, result += s[-1] + str(count)."
+  ],
+  "hidden": [
+   {
+    "input": "a\n",
+    "output": "a1"
+   },
+   {
+    "input": "abc\n",
+    "output": "a1b1c1"
+   },
+   {
+    "input": "aaaa\n",
+    "output": "a4"
+   },
+   {
+    "input": "aabbaa\n",
+    "output": "a2b2a2"
+   },
+   {
+    "input": "zzzzzzzzzzy\n",
+    "output": "z10y1"
+   }
+  ]
+ },
+ {
+  "id": "ch_password",
+  "lesson": "chars",
+  "title": "Check a password",
+  "difficulty": "Medium",
+  "statement": [
+   "A password is `valid` when it has at least 8 characters, at least one digit and at least one capital letter. Print `valid` or `invalid`."
+  ],
+  "input_fmt": "A line holding the text `s`.",
+  "output_fmt": "`valid` or `invalid`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "Passw0rdX\n",
+    "output": "valid",
+    "explanation": "It has 9 characters, a digit 0 and a capital P."
+   },
+   {
+    "input": "password1\n",
+    "output": "invalid",
+    "explanation": "It has a digit and 9 characters, but no capital letter."
+   }
+  ],
+  "prefix": "def solve(s):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    s = input()\n    result = solve(s)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    has_digit = False\n    has_capital = False\n    for ch in s:\n        if ch.isdigit():\n            has_digit = True\n        if ch.isupper():\n            has_capital = True\n    if len(s) >= 8 and has_digit and has_capital:\n        return \"valid\"\n    return \"invalid\"\n",
+  "hints": [
+   "Check three separate rules.",
+   "Use two True or False variables, one for digit and one for capital, both starting as False. Loop over the characters and switch them to True when you find one.",
+   "Loop over the characters, setting has_digit and has_capital. After the loop, test all three rules together with and.",
+   "if len(s) >= 8 and has_digit and has_capital: return \"valid\", otherwise return \"invalid\"."
+  ],
+  "hidden": [
+   {
+    "input": "Ab1\n",
+    "output": "invalid"
+   },
+   {
+    "input": "ABCDEFG1\n",
+    "output": "valid"
+   },
+   {
+    "input": "abcdefgh\n",
+    "output": "invalid"
+   },
+   {
+    "input": "Abcdefg1\n",
+    "output": "valid"
+   },
+   {
+    "input": "12345678\n",
+    "output": "invalid"
+   }
+  ]
+ },
+ {
+  "id": "tp_reverse",
+  "lesson": "twopointers",
+  "title": "Reverse a word",
+  "difficulty": "Easy",
+  "statement": [
+   "Print the word `s` backwards. Use two pointers: swap the first and last letters, then move inward."
+  ],
+  "input_fmt": "A line holding the text `s`.",
+  "output_fmt": "The reversed word.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "hello\n",
+    "output": "olleh",
+    "explanation": "Swapping the ends h and o, then e and l, leaves the middle l alone."
+   }
+  ],
+  "prefix": "def solve(s):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    s = input()\n    result = solve(s)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    chars = list(s)\n    left = 0\n    right = len(chars) - 1\n    while left < right:\n        temp = chars[left]\n        chars[left] = chars[right]\n        chars[right] = temp\n        left += 1\n        right -= 1\n    return \"\".join(chars)\n",
+  "hints": [
+   "Text cannot be changed in place, but a list can.",
+   "list(s) turns the word into a list of letters. Put left at 0 and right at the last position, and swap while left is before right.",
+   "Make a list of letters. Swap the two ends, move both pointers inward, and repeat. Glue the letters back with join.",
+   "chars = list(s); left = 0; right = len(chars) - 1; while left < right: swap chars[left] and chars[right]; left += 1; right -= 1; return \"\".join(chars)."
+  ],
+  "hidden": [
+   {
+    "input": "a\n",
+    "output": "a"
+   },
+   {
+    "input": "ab\n",
+    "output": "ba"
+   },
+   {
+    "input": "racecar\n",
+    "output": "racecar"
+   },
+   {
+    "input": "python\n",
+    "output": "nohtyp"
+   },
+   {
+    "input": "abcde\n",
+    "output": "edcba"
+   }
+  ]
+ },
+ {
+  "id": "tp_mirror",
+  "lesson": "twopointers",
+  "title": "Mirrored pairs",
+  "difficulty": "Easy",
+  "statement": [
+   "Pair up the first number with the last, the second with the second to last, and so on. Count how many pairs hold two equal numbers. A middle number with no partner is not counted."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n1 2 3 2 1\n",
+    "output": "2",
+    "explanation": "The pairs are 1 and 1, then 2 and 2. The 3 in the middle has no partner. Both pairs match, so the answer is 2."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    left = 0\n    right = len(nums) - 1\n    count = 0\n    while left < right:\n        if nums[left] == nums[right]:\n            count += 1\n        left += 1\n        right -= 1\n    return count\n",
+  "hints": [
+   "One pointer starts at each end.",
+   "Compare nums[left] and nums[right], then move both inward. Stop when left is no longer before right.",
+   "Set left to 0 and right to the last position. While left < right, add 1 to a counter if the numbers match, then move both pointers.",
+   "while left < right: if nums[left] == nums[right]: count += 1; left += 1; right -= 1."
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n",
+    "output": "0"
+   },
+   {
+    "input": "2\n1 2\n",
+    "output": "0"
+   },
+   {
+    "input": "2\n4 4\n",
+    "output": "1"
+   },
+   {
+    "input": "6\n1 2 3 4 5 6\n",
+    "output": "0"
+   },
+   {
+    "input": "6\n7 1 8 1 7 9\n",
+    "output": "0"
+   }
+  ]
+ },
+ {
+  "id": "tp_pair_sum_sorted",
+  "lesson": "twopointers",
+  "title": "Pair with a target",
+  "difficulty": "Easy",
+  "statement": [
+   "The numbers are already in order from smallest to largest. Is there a pair of numbers at two different positions that add up to `target`? Print `True` or `False`."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `target`.",
+  "output_fmt": "`True` or `False`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n1 3 4 6 9\n13\n",
+    "output": "True",
+    "explanation": "4 + 9 is 13."
+   },
+   {
+    "input": "5\n1 3 4 6 9\n2\n",
+    "output": "False",
+    "explanation": "The smallest possible total is 1 + 3 = 4, so 2 is not reachable."
+   }
+  ],
+  "prefix": "def solve(nums, target):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    target = int(input())\n    result = solve(nums, target)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    left = 0\n    right = len(nums) - 1\n    while left < right:\n        total = nums[left] + nums[right]\n        if total == target:\n            return True\n        elif total < target:\n            left += 1\n        else:\n            right -= 1\n    return False\n",
+  "hints": [
+   "Because the list is in order, a total that is too big tells you something.",
+   "Start with the smallest and the biggest. If the total is too small, only moving left up can make it bigger. If it is too big, only moving right down can make it smaller.",
+   "Put left at the start and right at the end. Add the two numbers. Equal to target means True. Too small means left += 1. Too big means right -= 1. If the pointers meet, answer False.",
+   "while left < right: total = nums[left] + nums[right]; if total == target: return True; elif total < target: left += 1; else: right -= 1. After the loop: return False."
+  ],
+  "hidden": [
+   {
+    "input": "2\n1 2\n3\n",
+    "output": "True"
+   },
+   {
+    "input": "2\n1 2\n4\n",
+    "output": "False"
+   },
+   {
+    "input": "5\n-3 -1 0 2 5\n1\n",
+    "output": "True"
+   },
+   {
+    "input": "3\n2 2 2\n4\n",
+    "output": "True"
+   },
+   {
+    "input": "4\n1 5 8 20\n28\n",
+    "output": "True"
+   }
+  ]
+ },
+ {
+  "id": "tp_merge_sorted",
+  "lesson": "twopointers",
+  "title": "Merge two ordered lists",
+  "difficulty": "Medium",
+  "statement": [
+   "Both lists are already in order, smallest first. Print all the numbers from both lists together, in order, separated by spaces."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `first`, separated by spaces. A line with how many numbers there are, then a line with the whole numbers for `second`, separated by spaces.",
+  "output_fmt": "All the numbers in order, separated by spaces.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n1 4 7\n3\n2 3 9\n",
+    "output": "1 2 3 4 7 9",
+    "explanation": "Take the smaller front number each time: 1, then 2, then 3, then 4, then 7, then 9."
+   }
+  ],
+  "prefix": "def solve(first, second):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    first = list(map(int, input().split()))\n    count = int(input())\n    second = list(map(int, input().split()))\n    result = solve(first, second)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    i = 0\n    j = 0\n    result = []\n    while i < len(first) and j < len(second):\n        if first[i] <= second[j]:\n            result.append(first[i])\n            i += 1\n        else:\n            result.append(second[j])\n            j += 1\n    result += first[i:]\n    result += second[j:]\n    return result\n",
+  "hints": [
+   "Use one pointer for each list.",
+   "Compare the numbers the two pointers point at. Take the smaller one and move only that pointer. When one list runs out, the rest of the other list can be added in one go.",
+   "Start i and j at 0. While both lists have items left, add the smaller front item to the result and move its pointer. Then add whatever is left over from each list.",
+   "while i < len(first) and j < len(second): if first[i] <= second[j]: append first[i]; i += 1 else: append second[j]; j += 1. Then result += first[i:] and result += second[j:]."
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n1\n1\n",
+    "output": "1 5"
+   },
+   {
+    "input": "3\n1 2 3\n2\n4 5\n",
+    "output": "1 2 3 4 5"
+   },
+   {
+    "input": "2\n2 2\n1\n2\n",
+    "output": "2 2 2"
+   },
+   {
+    "input": "3\n-5 0 10\n4\n-6 1 11 12\n",
+    "output": "-6 -5 0 1 10 11 12"
+   }
+  ]
+ },
+ {
+  "id": "tp_palindrome_clean",
+  "lesson": "twopointers",
+  "title": "Palindrome in a sentence",
+  "difficulty": "Medium",
+  "statement": [
+   "A palindrome reads the same forwards and backwards. For sentences, ignore capital letters and ignore everything that is not a letter or a digit. Print `True` if the text is a palindrome under those rules, otherwise `False`."
+  ],
+  "input_fmt": "A line holding the text `s`.",
+  "output_fmt": "`True` or `False`.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "A man, a plan, a canal: Panama\n",
+    "output": "True",
+    "explanation": "Ignoring spaces, commas and capitals this reads amanaplanacanalpanama, the same both ways."
+   },
+   {
+    "input": "race a car\n",
+    "output": "False",
+    "explanation": "It becomes raceacar, which backwards is racaecar."
+   }
+  ],
+  "prefix": "def solve(s):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    s = input()\n    result = solve(s)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    left = 0\n    right = len(s) - 1\n    while left < right:\n        if not s[left].isalnum():\n            left += 1\n        elif not s[right].isalnum():\n            right -= 1\n        elif s[left].lower() != s[right].lower():\n            return False\n        else:\n            left += 1\n            right -= 1\n    return True\n",
+  "hints": [
+   "Skip over characters that do not count.",
+   "s[left].isalnum() is True for a letter or a digit. If the left character does not count, move left. If the right one does not count, move right. Otherwise compare them in lower case.",
+   "Pointers at both ends. If left is junk, left += 1. Else if right is junk, right -= 1. Else compare the two in lower case: different means False, same means move both.",
+   "while left < right: if not s[left].isalnum(): left += 1; elif not s[right].isalnum(): right -= 1; elif s[left].lower() != s[right].lower(): return False; else: move both. Then return True."
+  ],
+  "hidden": [
+   {
+    "input": "a\n",
+    "output": "True"
+   },
+   {
+    "input": "ab\n",
+    "output": "False"
+   },
+   {
+    "input": "No lemon, no melon\n",
+    "output": "True"
+   },
+   {
+    "input": "..\n",
+    "output": "True"
+   },
+   {
+    "input": "0P\n",
+    "output": "False"
+   }
+  ]
+ },
+ {
+  "id": "tp_remove_dups",
+  "lesson": "twopointers",
+  "title": "Remove repeats",
+  "difficulty": "Medium",
+  "statement": [
+   "The numbers are in order, so equal numbers sit side by side. Print the numbers with every repeat removed, keeping the order."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "The different numbers in order, separated by spaces.",
+  "constraints": "At least one number.",
+  "samples": [
+   {
+    "input": "6\n1 1 2 3 3 3\n",
+    "output": "1 2 3",
+    "explanation": "Each different number is kept once."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    slow = 0\n    for fast in range(1, len(nums)):\n        if nums[fast] != nums[slow]:\n            slow += 1\n            nums[slow] = nums[fast]\n    return nums[:slow + 1]\n",
+  "hints": [
+   "Use a slow pointer for where the next new number goes and a fast pointer that scans ahead.",
+   "Both start at the left. When the fast pointer finds a number that differs from the one at slow, move slow up one and copy the number there.",
+   "Set slow to 0. For fast from 1 to the end: if nums[fast] differs from nums[slow], add 1 to slow and copy nums[fast] into nums[slow]. At the end the good numbers are positions 0 to slow.",
+   "slow = 0; for fast in range(1, len(nums)): if nums[fast] != nums[slow]: slow += 1; nums[slow] = nums[fast]; return nums[:slow + 1]."
+  ],
+  "hidden": [
+   {
+    "input": "1\n4\n",
+    "output": "4"
+   },
+   {
+    "input": "3\n2 2 2\n",
+    "output": "2"
+   },
+   {
+    "input": "3\n1 2 3\n",
+    "output": "1 2 3"
+   },
+   {
+    "input": "10\n0 0 1 1 1 2 2 3 3 4\n",
+    "output": "0 1 2 3 4"
+   }
+  ]
+ },
+ {
+  "id": "tp_container",
+  "lesson": "twopointers",
+  "title": "Most water",
+  "difficulty": "Medium",
+  "statement": [
+   "The numbers are the heights of vertical walls placed one unit apart. Pick two walls. The water between them is as wide as the gap between their positions and as tall as the shorter wall. Print the biggest amount of water that any pair of walls can hold.",
+   "For walls at positions `left` and `right`, the amount is `min(height at left, height at right) * (right - left)`."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `heights`, separated by spaces.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "9\n1 8 6 2 5 4 8 3 7\n",
+    "output": "49",
+    "explanation": "The walls of height 8 (position 1) and 7 (position 8) are 7 apart. The shorter is 7, and 7 times 7 is 49."
+   }
+  ],
+  "prefix": "def solve(heights):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    heights = list(map(int, input().split()))\n    result = solve(heights)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    left = 0\n    right = len(heights) - 1\n    best = 0\n    while left < right:\n        width = right - left\n        height = min(heights[left], heights[right])\n        if width * height > best:\n            best = width * height\n        if heights[left] < heights[right]:\n            left += 1\n        else:\n            right -= 1\n    return best\n",
+  "hints": [
+   "Start as wide as possible, and think about which wall to give up.",
+   "The shorter wall limits the water. Moving the taller wall inward can only make the gap smaller without any chance of a taller limit, so move the shorter one.",
+   "Start with the widest pair. Work out the amount and keep the best. Then move the pointer at the shorter wall inward, and repeat.",
+   "while left < right: amount = min(heights[left], heights[right]) * (right - left); keep the best; if heights[left] < heights[right]: left += 1 else: right -= 1."
+  ],
+  "hidden": [
+   {
+    "input": "2\n1 1\n",
+    "output": "1"
+   },
+   {
+    "input": "5\n4 3 2 1 4\n",
+    "output": "16"
+   },
+   {
+    "input": "3\n1 2 1\n",
+    "output": "2"
+   },
+   {
+    "input": "4\n5 5 5 5\n",
+    "output": "15"
+   },
+   {
+    "input": "7\n2 3 4 5 18 17 6\n",
+    "output": "17"
+   }
+  ]
+ },
+ {
+  "id": "tp_three_sum",
+  "lesson": "twopointers",
+  "title": "Three that cancel out",
+  "difficulty": "Hard",
+  "statement": [
+   "Count the different sets of three numbers, taken from three different positions, whose total is 0. Two sets are the same if they hold the same three numbers, whatever positions they came from."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces.",
+  "output_fmt": "One whole number.",
+  "constraints": "Do not try every set of three: that is too slow for big lists.",
+  "samples": [
+   {
+    "input": "6\n-1 0 1 2 -1 -4\n",
+    "output": "2",
+    "explanation": "The sets are (-1, -1, 2) and (-1, 0, 1). That is 2 different sets."
+   }
+  ],
+  "prefix": "def solve(nums):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    result = solve(nums)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    nums = sorted(nums)\n    count = 0\n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue\n        left = i + 1\n        right = len(nums) - 1\n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            if total == 0:\n                count += 1\n                left += 1\n                while left < right and nums[left] == nums[left - 1]:\n                    left += 1\n            elif total < 0:\n                left += 1\n            else:\n                right -= 1\n    return count\n",
+  "hints": [
+   "Sort first. Then fix one number and look for a pair that cancels it, like the pair-with-a-target problem.",
+   "For each position i, the other two must add up to -nums[i]. Use left = i + 1 and right at the end, moving them as in the pair problem. To avoid counting a set twice, skip a number equal to the one before it. The word continue skips to the next round of the loop.",
+   "Sort. For each i, skip it if it equals the previous number. Then run left and right inward. Total zero: count it and move left past any equal numbers. Total too small: left up. Too big: right down.",
+   "for i in range(len(nums) - 2): if i > 0 and nums[i] == nums[i - 1]: continue; then the left and right loop; on total 0 do count += 1, left += 1, and skip equal numbers."
+  ],
+  "hidden": [
+   {
+    "input": "3\n0 0 0\n",
+    "output": "1"
+   },
+   {
+    "input": "3\n1 2 3\n",
+    "output": "0"
+   },
+   {
+    "input": "4\n0 0 0 0\n",
+    "output": "1"
+   },
+   {
+    "input": "5\n-2 0 1 1 2\n",
+    "output": "2"
+   },
+   {
+    "input": "15\n-4 -2 -2 -2 0 1 2 2 2 3 3 4 4 6 6\n",
+    "output": "6"
+   }
+  ]
+ },
+ {
+  "id": "sw_max_sum_k",
+  "lesson": "slidingwindow",
+  "title": "Best block of k",
+  "difficulty": "Easy",
+  "statement": [
+   "Find the biggest total of `k` neighbouring numbers and print it. The list always has at least `k` numbers."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `k`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "6\n2 1 5 1 3 2\n3\n",
+    "output": "9",
+    "explanation": "The blocks of 3 total 8, 7, 9 and 6. The biggest is 9, from 5, 1, 3."
+   }
+  ],
+  "prefix": "def solve(nums, k):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    k = int(input())\n    result = solve(nums, k)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    window = 0\n    for i in range(k):\n        window += nums[i]\n    best = window\n    for right in range(k, len(nums)):\n        window = window + nums[right] - nums[right - k]\n        if window > best:\n            best = window\n    return best\n",
+  "hints": [
+   "Do not add up every block from scratch.",
+   "Add up the first k numbers. Then slide one step: add the number that enters and take away the number that leaves.",
+   "Total the first k numbers and call that best. For each later position right, window becomes window + nums[right] - nums[right - k]. Keep the biggest.",
+   "for right in range(k, len(nums)): window = window + nums[right] - nums[right - k]; if window > best: best = window."
+  ],
+  "hidden": [
+   {
+    "input": "1\n4\n1\n",
+    "output": "4"
+   },
+   {
+    "input": "4\n1 2 3 4\n4\n",
+    "output": "10"
+   },
+   {
+    "input": "5\n5 -1 -2 6 1\n2\n",
+    "output": "7"
+   },
+   {
+    "input": "6\n1 1 1 1 1 9\n3\n",
+    "output": "11"
+   },
+   {
+    "input": "3\n-3 -2 -1\n2\n",
+    "output": "-3"
+   }
+  ]
+ },
+ {
+  "id": "sw_vowels_k",
+  "lesson": "slidingwindow",
+  "title": "Most vowels in k letters",
+  "difficulty": "Easy",
+  "statement": [
+   "Look at every block of `k` neighbouring letters in the word. Print the biggest number of vowels (a, e, i, o, u) in any one block. The word has at least `k` letters."
+  ],
+  "input_fmt": "A line holding the text `s`. A line holding the whole number `k`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "abciiidef\n3\n",
+    "output": "3",
+    "explanation": "The block iii has three vowels."
+   }
+  ],
+  "prefix": "def solve(s, k):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    s = input()\n    k = int(input())\n    result = solve(s, k)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    vowels = \"aeiou\"\n    window = 0\n    for i in range(k):\n        if s[i] in vowels:\n            window += 1\n    best = window\n    for right in range(k, len(s)):\n        if s[right] in vowels:\n            window += 1\n        if s[right - k] in vowels:\n            window -= 1\n        if window > best:\n            best = window\n    return best\n",
+  "hints": [
+   "Keep a count of vowels in the current block as it slides.",
+   "When the block moves, check the letter that enters. If it is a vowel add 1. Check the letter that leaves. If it is a vowel take away 1.",
+   "Count the vowels in the first k letters. Then for each later position, update the count for the entering and leaving letters, and keep the biggest.",
+   "if s[right] in vowels: window += 1; if s[right - k] in vowels: window -= 1; if window > best: best = window."
+  ],
+  "hidden": [
+   {
+    "input": "a\n1\n",
+    "output": "1"
+   },
+   {
+    "input": "bcd\n2\n",
+    "output": "0"
+   },
+   {
+    "input": "aeiou\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "leetcode\n3\n",
+    "output": "2"
+   },
+   {
+    "input": "rhythms\n3\n",
+    "output": "0"
+   }
+  ]
+ },
+ {
+  "id": "sw_count_windows",
+  "lesson": "slidingwindow",
+  "title": "Blocks that are big enough",
+  "difficulty": "Easy",
+  "statement": [
+   "Count the blocks of `k` neighbouring numbers whose total is at least `t`."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `k`. A line holding the whole number `t`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "6\n2 1 5 1 3 2\n3\n8\n",
+    "output": "2",
+    "explanation": "The blocks of 3 total 8, 7, 9 and 6. Two of them, 8 and 9, are at least 8."
+   }
+  ],
+  "prefix": "def solve(nums, k, t):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    k = int(input())\n    t = int(input())\n    result = solve(nums, k, t)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    window = 0\n    for i in range(k):\n        window += nums[i]\n    count = 0\n    if window >= t:\n        count += 1\n    for right in range(k, len(nums)):\n        window = window + nums[right] - nums[right - k]\n        if window >= t:\n            count += 1\n    return count\n",
+  "hints": [
+   "This is the best-block problem again, but you count instead of keeping the biggest.",
+   "Do not forget the very first block, which is made before the sliding starts.",
+   "Total the first block and count it if it is big enough. Then slide, and count each new block that is big enough.",
+   "if window >= t: count += 1, once for the first block and once inside the loop for each slide."
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n1\n5\n",
+    "output": "1"
+   },
+   {
+    "input": "3\n1 2 3\n2\n100\n",
+    "output": "0"
+   },
+   {
+    "input": "4\n4 4 4 4\n2\n8\n",
+    "output": "3"
+   },
+   {
+    "input": "5\n1 -1 1 -1 1\n2\n0\n",
+    "output": "4"
+   },
+   {
+    "input": "5\n10 1 10 1 10\n3\n21\n",
+    "output": "2"
+   }
+  ]
+ },
+ {
+  "id": "sw_min_len_sum",
+  "lesson": "slidingwindow",
+  "title": "Shortest big enough block",
+  "difficulty": "Medium",
+  "statement": [
+   "All the numbers are positive. Find the length of the shortest block of neighbouring numbers whose total is at least `target`. If no block is big enough, print `0`."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `target`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "6\n2 3 1 2 4 3\n7\n",
+    "output": "2",
+    "explanation": "The block 4, 3 totals 7 and has length 2. No single number reaches 7."
+   }
+  ],
+  "prefix": "def solve(nums, target):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    target = int(input())\n    result = solve(nums, target)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    left = 0\n    total = 0\n    best = 0\n    for right in range(len(nums)):\n        total += nums[right]\n        while total >= target:\n            size = right - left + 1\n            if best == 0 or size < best:\n                best = size\n            total -= nums[left]\n            left += 1\n    return best\n",
+  "hints": [
+   "Grow the window on the right, and shrink it from the left as long as it is still big enough.",
+   "Since all numbers are positive, taking one off the left only makes the total smaller. Keep shrinking while total >= target, and record the size each time.",
+   "For each right, add nums[right] to total. While total >= target, record right - left + 1 if it is the smallest so far, then take nums[left] away and move left up.",
+   "total += nums[right]; while total >= target: size = right - left + 1; update best (0 means none yet); total -= nums[left]; left += 1."
+  ],
+  "hidden": [
+   {
+    "input": "3\n1 1 1\n10\n",
+    "output": "0"
+   },
+   {
+    "input": "1\n5\n5\n",
+    "output": "1"
+   },
+   {
+    "input": "5\n1 2 3 4 5\n11\n",
+    "output": "3"
+   },
+   {
+    "input": "3\n1 4 4\n4\n",
+    "output": "1"
+   },
+   {
+    "input": "6\n2 3 1 2 4 3\n15\n",
+    "output": "6"
+   }
+  ]
+ },
+ {
+  "id": "sw_longest_unique",
+  "lesson": "slidingwindow",
+  "title": "Longest without repeats",
+  "difficulty": "Medium",
+  "statement": [
+   "Find the length of the longest block of neighbouring letters in which no letter appears twice. Print its length."
+  ],
+  "input_fmt": "A line holding the text `s`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "abcabcbb\n",
+    "output": "3",
+    "explanation": "The block abc has no repeats and has length 3. No longer block avoids repeats."
+   }
+  ],
+  "prefix": "def solve(s):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    s = input()\n    result = solve(s)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    last = {}\n    left = 0\n    best = 0\n    for right in range(len(s)):\n        ch = s[right]\n        if ch in last and last[ch] >= left:\n            left = last[ch] + 1\n        last[ch] = right\n        size = right - left + 1\n        if size > best:\n            best = size\n    return best\n",
+  "hints": [
+   "Remember where each letter was last seen.",
+   "Use a dictionary from letter to its latest position. When the new letter was seen inside the current window, move left to just after that earlier position.",
+   "For each right: if its letter was last seen at a position that is at or after left, set left to that position plus 1. Store the new position. Record the size.",
+   "if ch in last and last[ch] >= left: left = last[ch] + 1; last[ch] = right; best = max of best and right - left + 1."
+  ],
+  "hidden": [
+   {
+    "input": "a\n",
+    "output": "1"
+   },
+   {
+    "input": "bbbbb\n",
+    "output": "1"
+   },
+   {
+    "input": "pwwkew\n",
+    "output": "3"
+   },
+   {
+    "input": "abba\n",
+    "output": "2"
+   },
+   {
+    "input": "dvdf\n",
+    "output": "3"
+   },
+   {
+    "input": "abcdefg\n",
+    "output": "7"
+   }
+  ]
+ },
+ {
+  "id": "sw_ones_flip",
+  "lesson": "slidingwindow",
+  "title": "Flip some zeros",
+  "difficulty": "Medium",
+  "statement": [
+   "The list holds only 0 and 1. You may change at most `k` of the zeros into ones. Print the length of the longest block of neighbouring ones you can make."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `k`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "9\n1 1 0 0 1 1 1 0 1\n1\n",
+    "output": "5",
+    "explanation": "Change the last zero to a one, and positions 4 to 8 become five ones in a row."
+   }
+  ],
+  "prefix": "def solve(nums, k):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    k = int(input())\n    result = solve(nums, k)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    left = 0\n    zeros = 0\n    best = 0\n    for right in range(len(nums)):\n        if nums[right] == 0:\n            zeros += 1\n        while zeros > k:\n            if nums[left] == 0:\n                zeros -= 1\n            left += 1\n        size = right - left + 1\n        if size > best:\n            best = size\n    return best\n",
+  "hints": [
+   "Find the longest block that holds at most k zeros.",
+   "Count the zeros inside the window. If the count goes over k, shrink from the left until it is back to k or fewer.",
+   "For each right, add 1 to zeros if it is a zero. While zeros > k, if nums[left] is a zero take 1 off zeros, then move left up. Record the size.",
+   "if nums[right] == 0: zeros += 1; while zeros > k: if nums[left] == 0: zeros -= 1; left += 1; best = max(best, right - left + 1)."
+  ],
+  "hidden": [
+   {
+    "input": "1\n0\n0\n",
+    "output": "0"
+   },
+   {
+    "input": "1\n0\n1\n",
+    "output": "1"
+   },
+   {
+    "input": "3\n1 1 1\n0\n",
+    "output": "3"
+   },
+   {
+    "input": "4\n0 0 0 0\n2\n",
+    "output": "2"
+   },
+   {
+    "input": "7\n1 0 1 0 1 0 1\n2\n",
+    "output": "5"
+   }
+  ]
+ },
+ {
+  "id": "sw_distinct_in_window",
+  "lesson": "slidingwindow",
+  "title": "Most variety in a block",
+  "difficulty": "Medium",
+  "statement": [
+   "Look at every block of `k` neighbouring numbers. Print the biggest number of different values found in any single block. The list has at least `k` numbers."
+  ],
+  "input_fmt": "A line with how many numbers there are, then a line with the whole numbers for `nums`, separated by spaces. A line holding the whole number `k`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "7\n1 2 1 3 4 2 3\n4\n",
+    "output": "4",
+    "explanation": "The block 2, 1, 3, 4 holds four different values."
+   }
+  ],
+  "prefix": "def solve(nums, k):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    count = int(input())\n    nums = list(map(int, input().split()))\n    k = int(input())\n    result = solve(nums, k)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    counts = {}\n    best = 0\n    for right in range(len(nums)):\n        counts[nums[right]] = counts.get(nums[right], 0) + 1\n        if right >= k:\n            old = nums[right - k]\n            counts[old] -= 1\n            if counts[old] == 0:\n                del counts[old]\n        if len(counts) > best:\n            best = len(counts)\n    return best\n",
+  "hints": [
+   "Keep a dictionary of how many times each value is inside the window.",
+   "When a value leaves, take 1 off its count. If the count reaches 0, remove the key so that len(counts) only counts values that are still inside. del counts[key] removes a key.",
+   "Add the entering number. If the window now has more than k items, reduce the count of the leaving number and delete it at 0. After that, len(counts) is the variety.",
+   "counts[nums[right]] = counts.get(nums[right], 0) + 1; if right >= k: remove nums[right - k]; best = max(best, len(counts))."
+  ],
+  "hidden": [
+   {
+    "input": "1\n5\n1\n",
+    "output": "1"
+   },
+   {
+    "input": "4\n1 1 1 1\n2\n",
+    "output": "1"
+   },
+   {
+    "input": "4\n1 2 3 4\n4\n",
+    "output": "4"
+   },
+   {
+    "input": "6\n1 2 1 2 1 2\n3\n",
+    "output": "2"
+   },
+   {
+    "input": "6\n7 7 8 9 9 8\n3\n",
+    "output": "3"
+   }
+  ]
+ },
+ {
+  "id": "sw_at_most_k_distinct",
+  "lesson": "slidingwindow",
+  "title": "Longest with few kinds",
+  "difficulty": "Hard",
+  "statement": [
+   "Find the length of the longest block of neighbouring letters that uses at most `k` different letters. Print its length."
+  ],
+  "input_fmt": "A line holding the text `s`. A line holding the whole number `k`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "eceba\n2\n",
+    "output": "3",
+    "explanation": "The block ece uses only the letters e and c, and has length 3."
+   }
+  ],
+  "prefix": "def solve(s, k):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    s = input()\n    k = int(input())\n    result = solve(s, k)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    counts = {}\n    left = 0\n    best = 0\n    for right in range(len(s)):\n        counts[s[right]] = counts.get(s[right], 0) + 1\n        while len(counts) > k:\n            counts[s[left]] -= 1\n            if counts[s[left]] == 0:\n                del counts[s[left]]\n            left += 1\n        size = right - left + 1\n        if size > best:\n            best = size\n    return best\n",
+  "hints": [
+   "Grow on the right and shrink on the left when the block has too many kinds of letter.",
+   "Keep a dictionary of letter counts inside the window. When len(counts) is bigger than k, shrink from the left. A count that hits 0 must be deleted so it stops counting as a kind.",
+   "For each right, add its letter. While len(counts) > k, take 1 off the leftmost letter's count, delete it at 0, and move left up. Then record the size.",
+   "while len(counts) > k: counts[s[left]] -= 1; if counts[s[left]] == 0: del counts[s[left]]; left += 1; best = max(best, right - left + 1)."
+  ],
+  "hidden": [
+   {
+    "input": "a\n1\n",
+    "output": "1"
+   },
+   {
+    "input": "aaaa\n1\n",
+    "output": "4"
+   },
+   {
+    "input": "abcabc\n2\n",
+    "output": "2"
+   },
+   {
+    "input": "aabacbebebe\n3\n",
+    "output": "7"
+   },
+   {
+    "input": "abaccc\n2\n",
+    "output": "4"
+   }
+  ]
+ },
+ {
+  "id": "gr_sum",
+  "lesson": "grids",
+  "title": "Add up the grid",
+  "difficulty": "Easy",
+  "statement": [
+   "Print the total of all the numbers in the grid."
+  ],
+  "input_fmt": "A line with the number of rows and columns, then one line per row with the numbers separated by spaces, which become the grid `grid`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "2 3\n1 2 3\n4 5 6\n",
+    "output": "21",
+    "explanation": "1 + 2 + 3 + 4 + 5 + 6 is 21."
+   }
+  ],
+  "prefix": "def solve(grid):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    rows, cols = map(int, input().split())\n    grid = [list(map(int, input().split())) for _ in range(rows)]\n    result = solve(grid)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    total = 0\n    for r in range(len(grid)):\n        for c in range(len(grid[0])):\n            total += grid[r][c]\n    return total\n",
+  "hints": [
+   "Visit every cell with a loop inside a loop.",
+   "The outer loop picks a row with range(len(grid)). The inner loop walks across with range(len(grid[0])).",
+   "Start a total at 0. For each row r and each column c, add grid[r][c].",
+   "for r in range(len(grid)): for c in range(len(grid[0])): total += grid[r][c]."
+  ],
+  "hidden": [
+   {
+    "input": "1 1\n7\n",
+    "output": "7"
+   },
+   {
+    "input": "2 2\n1 1\n1 1\n",
+    "output": "4"
+   },
+   {
+    "input": "3 2\n-1 2\n3 -4\n5 6\n",
+    "output": "11"
+   },
+   {
+    "input": "1 3\n0 0 0\n",
+    "output": "0"
+   }
+  ]
+ },
+ {
+  "id": "gr_row_sums",
+  "lesson": "grids",
+  "title": "Total of each row",
+  "difficulty": "Easy",
+  "statement": [
+   "Print the total of each row, from the top row to the bottom row, separated by spaces."
+  ],
+  "input_fmt": "A line with the number of rows and columns, then one line per row with the numbers separated by spaces, which become the grid `grid`.",
+  "output_fmt": "One number for each row, separated by spaces.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "2 3\n1 2 3\n4 5 6\n",
+    "output": "6 15",
+    "explanation": "The first row totals 6 and the second row totals 15."
+   }
+  ],
+  "prefix": "def solve(grid):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    rows, cols = map(int, input().split())\n    grid = [list(map(int, input().split())) for _ in range(rows)]\n    result = solve(grid)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    sums = []\n    for r in range(len(grid)):\n        row_total = 0\n        for c in range(len(grid[0])):\n            row_total += grid[r][c]\n        sums.append(row_total)\n    return sums\n",
+  "hints": [
+   "Restart the total at the beginning of each row.",
+   "Make a new row_total of 0 inside the outer loop, before the inner loop. After the inner loop, save it in a list.",
+   "For each row: set row_total to 0, add every cell of that row, then append row_total to the answer list.",
+   "for r: row_total = 0; for c: row_total += grid[r][c]; sums.append(row_total)."
+  ],
+  "hidden": [
+   {
+    "input": "1 1\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "3 2\n1 2\n3 4\n5 6\n",
+    "output": "3 7 11"
+   },
+   {
+    "input": "2 3\n0 0 0\n1 1 1\n",
+    "output": "0 3"
+   },
+   {
+    "input": "1 2\n-1 -1\n",
+    "output": "-2"
+   }
+  ]
+ },
+ {
+  "id": "gr_col_max",
+  "lesson": "grids",
+  "title": "Biggest in each column",
+  "difficulty": "Medium",
+  "statement": [
+   "Print the biggest number in each column, from left to right, separated by spaces."
+  ],
+  "input_fmt": "A line with the number of rows and columns, then one line per row with the numbers separated by spaces, which become the grid `grid`.",
+  "output_fmt": "One number for each column, separated by spaces.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "2 3\n1 9 3\n4 5 6\n",
+    "output": "4 9 6",
+    "explanation": "Column 0 holds 1 and 4, column 1 holds 9 and 5, column 2 holds 3 and 6."
+   }
+  ],
+  "prefix": "def solve(grid):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    rows, cols = map(int, input().split())\n    grid = [list(map(int, input().split())) for _ in range(rows)]\n    result = solve(grid)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    best = []\n    for c in range(len(grid[0])):\n        biggest = grid[0][c]\n        for r in range(len(grid)):\n            if grid[r][c] > biggest:\n                biggest = grid[r][c]\n        best.append(biggest)\n    return best\n",
+  "hints": [
+   "This time the outer loop goes over columns.",
+   "To read down one column, keep c fixed and let r change. The first number in the column is a good starting value for the biggest.",
+   "For each column c: start biggest at grid[0][c], loop over all rows r, and update biggest if grid[r][c] is larger. Append biggest to the answer.",
+   "for c in range(len(grid[0])): biggest = grid[0][c]; for r in range(len(grid)): compare grid[r][c]; best.append(biggest)."
+  ],
+  "hidden": [
+   {
+    "input": "1 1\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "3 2\n1 2\n3 4\n5 0\n",
+    "output": "5 4"
+   },
+   {
+    "input": "1 3\n-5 -6 -7\n",
+    "output": "-5 -6 -7"
+   },
+   {
+    "input": "3 1\n1\n9\n4\n",
+    "output": "9"
+   }
+  ]
+ },
+ {
+  "id": "gr_diagonal",
+  "lesson": "grids",
+  "title": "Both diagonals",
+  "difficulty": "Easy",
+  "statement": [
+   "The grid is square, meaning it has as many rows as columns. Print two numbers: the total of the main diagonal (top left to bottom right) and the total of the other diagonal (top right to bottom left)."
+  ],
+  "input_fmt": "A line with the number of rows and columns, then one line per row with the numbers separated by spaces, which become the grid `grid`.",
+  "output_fmt": "Two whole numbers separated by a space.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3 3\n1 2 3\n4 5 6\n7 8 9\n",
+    "output": "15 15",
+    "explanation": "Main diagonal: 1 + 5 + 9. Other diagonal: 3 + 5 + 7. Both are 15."
+   },
+   {
+    "input": "2 2\n1 2\n3 4\n",
+    "output": "5 5",
+    "explanation": "Main: 1 + 4. Other: 2 + 3."
+   }
+  ],
+  "prefix": "def solve(grid):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    rows, cols = map(int, input().split())\n    grid = [list(map(int, input().split())) for _ in range(rows)]\n    result = solve(grid)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    n = len(grid)\n    main = 0\n    other = 0\n    for i in range(n):\n        main += grid[i][i]\n        other += grid[i][n - 1 - i]\n    return [main, other]\n",
+  "hints": [
+   "You only need one loop, not two.",
+   "On the main diagonal the row and column are the same: grid[i][i]. On the other diagonal the column counts down from the right: grid[i][n - 1 - i].",
+   "Loop i from 0 to n - 1. Add grid[i][i] to one total and grid[i][n - 1 - i] to the other.",
+   "for i in range(n): main += grid[i][i]; other += grid[i][n - 1 - i]; return [main, other]."
+  ],
+  "hidden": [
+   {
+    "input": "1 1\n5\n",
+    "output": "5 5"
+   },
+   {
+    "input": "2 2\n1 0\n0 1\n",
+    "output": "2 0"
+   },
+   {
+    "input": "3 3\n2 9 1\n4 6 8\n3 7 5\n",
+    "output": "13 10"
+   },
+   {
+    "input": "4 4\n1 2 3 4\n5 6 7 8\n9 1 2 3\n4 5 6 7\n",
+    "output": "16 16"
+   }
+  ]
+ },
+ {
+  "id": "gr_find",
+  "lesson": "grids",
+  "title": "Where is it",
+  "difficulty": "Medium",
+  "statement": [
+   "Search the grid row by row, from the top row down, and left to right inside each row. Print the row and column of the first cell equal to `target`, separated by a space. If it is not there, print `-1 -1`."
+  ],
+  "input_fmt": "A line with the number of rows and columns, then one line per row with the numbers separated by spaces, which become the grid `grid`. A line holding the whole number `target`.",
+  "output_fmt": "Two whole numbers: row then column.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "2 3\n1 2 3\n4 5 6\n5\n",
+    "output": "1 1",
+    "explanation": "5 is in row 1, column 1."
+   },
+   {
+    "input": "2 2\n1 2\n3 4\n9\n",
+    "output": "-1 -1",
+    "explanation": "9 is not in the grid."
+   }
+  ],
+  "prefix": "def solve(grid, target):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    rows, cols = map(int, input().split())\n    grid = [list(map(int, input().split())) for _ in range(rows)]\n    target = int(input())\n    result = solve(grid, target)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    for r in range(len(grid)):\n        for c in range(len(grid[0])):\n            if grid[r][c] == target:\n                return [r, c]\n    return [-1, -1]\n",
+  "hints": [
+   "Check every cell in reading order, and stop at the first match.",
+   "return inside the loops ends the whole function straight away, which is what you want for the first match.",
+   "Loop over rows, then columns. If grid[r][c] equals target, return the pair r and c. If both loops finish, return -1 and -1.",
+   "for r in range(len(grid)): for c in range(len(grid[0])): if grid[r][c] == target: return [r, c]. After the loops: return [-1, -1]."
+  ],
+  "hidden": [
+   {
+    "input": "1 1\n7\n7\n",
+    "output": "0 0"
+   },
+   {
+    "input": "1 1\n7\n8\n",
+    "output": "-1 -1"
+   },
+   {
+    "input": "2 3\n1 2 2\n2 2 2\n2\n",
+    "output": "0 1"
+   },
+   {
+    "input": "3 3\n1 2 3\n4 5 6\n7 8 9\n9\n",
+    "output": "2 2"
+   },
+   {
+    "input": "3 3\n1 2 3\n4 5 6\n7 8 9\n4\n",
+    "output": "1 0"
+   }
+  ]
+ },
+ {
+  "id": "gr_transpose",
+  "lesson": "grids",
+  "title": "Flip rows and columns",
+  "difficulty": "Medium",
+  "statement": [
+   "Print the grid turned on its side, so that each column becomes a row. Print one line per new row, with the numbers separated by spaces."
+  ],
+  "input_fmt": "A line with the number of rows and columns, then one line per row with the numbers separated by spaces, which become the grid `grid`.",
+  "output_fmt": "One line per new row.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "2 3\n1 2 3\n4 5 6\n",
+    "output": "1 4\n2 5\n3 6",
+    "explanation": "The first column 1, 4 becomes the first row. The second column 2, 5 becomes the second row, and so on."
+   }
+  ],
+  "prefix": "def solve(grid):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    rows, cols = map(int, input().split())\n    grid = [list(map(int, input().split())) for _ in range(rows)]\n    result = solve(grid)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    result = []\n    for c in range(len(grid[0])):\n        new_row = []\n        for r in range(len(grid)):\n            new_row.append(grid[r][c])\n        result.append(new_row)\n    return result\n",
+  "hints": [
+   "The new grid has as many rows as the old one has columns.",
+   "Loop over the old columns on the outside. For each one, collect its cells from top to bottom into a new row.",
+   "For each column c: make an empty new_row, add grid[r][c] for every r, then add new_row to the result.",
+   "for c in range(len(grid[0])): new_row = []; for r in range(len(grid)): new_row.append(grid[r][c]); result.append(new_row)."
+  ],
+  "hidden": [
+   {
+    "input": "1 1\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "1 3\n1 2 3\n",
+    "output": "1\n2\n3"
+   },
+   {
+    "input": "3 1\n1\n2\n3\n",
+    "output": "1 2 3"
+   },
+   {
+    "input": "3 2\n1 2\n3 4\n5 6\n",
+    "output": "1 3 5\n2 4 6"
+   }
+  ]
+ },
+ {
+  "id": "gr_neighbors",
+  "lesson": "grids",
+  "title": "Cells with a friend",
+  "difficulty": "Medium",
+  "statement": [
+   "The grid holds only 0 and 1. Count the cells holding 1 that have at least one neighbour holding 1. Neighbours are the cells directly above, below, left and right. Diagonals do not count."
+  ],
+  "input_fmt": "A line with the number of rows and columns, then one line per row with the numbers separated by spaces, which become the grid `grid`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3 3\n1 0 1\n1 0 0\n0 0 1\n",
+    "output": "2",
+    "explanation": "Only the two ones in the first column touch each other. The other ones are alone."
+   }
+  ],
+  "prefix": "def solve(grid):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    rows, cols = map(int, input().split())\n    grid = [list(map(int, input().split())) for _ in range(rows)]\n    result = solve(grid)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    rows = len(grid)\n    cols = len(grid[0])\n    count = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] != 1:\n                continue\n            has_friend = False\n            for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n                nr = r + dr\n                nc = c + dc\n                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:\n                    has_friend = True\n            if has_friend:\n                count += 1\n    return count\n",
+  "hints": [
+   "Use the four neighbour changes from the lesson, and check that each neighbour is on the grid.",
+   "For each cell that holds a 1, look in four directions. A flag called has_friend starts False and turns True when any neighbour is a 1.",
+   "Loop over cells. Skip cells that are not 1 (continue skips to the next round). For a 1, try the four directions with a bounds check. Add 1 to the count if has_friend is True.",
+   "for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]: nr = r + dr; nc = c + dc; if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1: has_friend = True."
+  ],
+  "hidden": [
+   {
+    "input": "1 1\n1\n",
+    "output": "0"
+   },
+   {
+    "input": "2 2\n0 0\n0 0\n",
+    "output": "0"
+   },
+   {
+    "input": "2 2\n1 1\n1 1\n",
+    "output": "4"
+   },
+   {
+    "input": "2 2\n1 0\n0 1\n",
+    "output": "0"
+   },
+   {
+    "input": "3 3\n1 1 0\n0 1 0\n1 0 1\n",
+    "output": "3"
+   }
+  ]
+ },
+ {
+  "id": "gr_islands",
+  "lesson": "grids",
+  "title": "Count the islands",
+  "difficulty": "Hard",
+  "statement": [
+   "The grid holds 0 (water) and 1 (land). An island is a group of land cells joined through their neighbours above, below, left or right. Diagonals do not join cells. Print how many islands there are."
+  ],
+  "input_fmt": "A line with the number of rows and columns, then one line per row with the numbers separated by spaces, which become the grid `grid`.",
+  "output_fmt": "One whole number.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3 4\n1 1 0 0\n1 0 0 1\n0 0 1 1\n",
+    "output": "2",
+    "explanation": "The top left group of three cells is one island. The group of three at the right and bottom is another."
+   }
+  ],
+  "prefix": "def solve(grid):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    rows, cols = map(int, input().split())\n    grid = [list(map(int, input().split())) for _ in range(rows)]\n    result = solve(grid)\n    if isinstance(result, list):\n        if result and isinstance(result[0], list):\n            for row in result:\n                print(*row)\n        else:\n            print(*result)\n    else:\n        print(result)\n",
+  "solution": "    rows = len(grid)\n    cols = len(grid[0])\n    seen = []\n    for r in range(rows):\n        seen.append([False] * cols)\n    islands = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1 and not seen[r][c]:\n                islands += 1\n                stack = [(r, c)]\n                seen[r][c] = True\n                while stack:\n                    cr, cc = stack.pop()\n                    for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n                        nr = cr + dr\n                        nc = cc + dc\n                        if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1 and not seen[nr][nc]:\n                            seen[nr][nc] = True\n                            stack.append((nr, nc))\n    return islands\n",
+  "hints": [
+   "When you find a land cell you have not visited, you have found a new island. Then you must mark the whole island as visited so you do not count it again.",
+   "Keep a second grid called seen, with True for visited cells. To visit a whole island, keep a to-do list called a stack. Take a cell off it, and add its unvisited land neighbours.",
+   "Loop over cells. At a land cell that is not seen: add 1 to islands, mark it seen, and put it on the stack. While the stack has cells, take one off with pop(), check its four neighbours, and mark and add any land neighbour not yet seen.",
+   "seen = a grid of False; for each cell: if grid[r][c] == 1 and not seen[r][c]: islands += 1; stack = [(r, c)]; while stack: cr, cc = stack.pop(); for each direction: if on the grid, land and not seen: seen[nr][nc] = True; stack.append((nr, nc))."
+  ],
+  "hidden": [
+   {
+    "input": "1 1\n0\n",
+    "output": "0"
+   },
+   {
+    "input": "1 1\n1\n",
+    "output": "1"
+   },
+   {
+    "input": "3 3\n1 0 1\n0 1 0\n1 0 1\n",
+    "output": "5"
+   },
+   {
+    "input": "2 3\n1 1 1\n1 1 1\n",
+    "output": "1"
+   },
+   {
+    "input": "4 4\n1 0 1 1\n1 0 0 1\n0 1 0 0\n1 1 0 1\n",
+    "output": "4"
+   }
+  ]
+ }
+]

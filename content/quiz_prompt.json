@@ -1,0 +1,887 @@
+[
+ {
+  "id": "pe01",
+  "topic": "prompt",
+  "difficulty": "Easy",
+  "prompt": "You want a model to pull the customer name and order number out of an email. Which prompt is better?",
+  "options": [
+   "Get the info from this email: {email}",
+   "Extract the customer name and the order number from the email between the triple quotes.\nIf either is missing, write null for it.\nReturn only a JSON object with the keys name and order_number.\n\n\"\"\"\n{email}\n\"\"\"",
+   "Read the email and tell me everything interesting about it, in as much detail as you can: {email}",
+   "Please extract the info very carefully, it is extremely important: {email}"
+  ],
+  "answer": 1,
+  "why": "The second prompt names the task, the two fields, the missing rule, the format and the input boundary. The others leave the model guessing what you want.",
+  "display": "prose"
+ },
+ {
+  "id": "pe02",
+  "topic": "prompt",
+  "difficulty": "Easy",
+  "prompt": "Why do prompts put the input text between marks such as triple quotes or tags?",
+  "options": [
+   "It makes the model run faster",
+   "It separates your instructions from the text to work on, so the model does not mix the two up",
+   "The model refuses to answer without them",
+   "It makes the answer shorter"
+  ],
+  "answer": 1,
+  "why": "Delimiters show where the text starts and ends. That keeps the instructions and the input apart.",
+  "display": "prose"
+ },
+ {
+  "id": "pe03",
+  "topic": "prompt",
+  "difficulty": "Easy",
+  "prompt": "A prompt says only: Summarize this. Which change improves it most?",
+  "options": [
+   "Add: Be really good at it.",
+   "Say who will read it and how long it should be, for example: Summarize in 3 bullet points for a busy manager.",
+   "Say the word summarize a second time",
+   "Ask for as much detail as possible"
+  ],
+  "answer": 1,
+  "why": "A summary depends on its reader and its length. Naming both gives the model something to aim at.",
+  "display": "prose"
+ },
+ {
+  "id": "pe04",
+  "topic": "prompt",
+  "difficulty": "Easy",
+  "prompt": "The text does not state an invoice date. What should an extraction prompt tell the model to do?",
+  "options": [
+   "Make a sensible guess from typical dates",
+   "Write null for that field and do not guess",
+   "Leave the whole answer blank",
+   "Use today's date"
+  ],
+  "answer": 1,
+  "why": "Missing information should be reported as missing. A guess looks like a real answer and can cause harm later.",
+  "display": "prose"
+ },
+ {
+  "id": "pe05",
+  "topic": "prompt",
+  "difficulty": "Easy",
+  "prompt": "Which instruction best reduces invented details in a summary?",
+  "options": [
+   "Make it sound confident",
+   "Use only information stated in the text. If something is not stated, say not stated.",
+   "Be creative",
+   "Write at least 200 words"
+  ],
+  "answer": 1,
+  "why": "A rule that limits the model to the text, and says what to do when the text is silent, cuts down on made-up facts.",
+  "display": "prose"
+ },
+ {
+  "id": "pe06",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "You need support tickets labelled billing, technical or other. Which prompt gives the most consistent labels?",
+  "options": [
+   "Label this ticket.",
+   "Label the ticket with exactly one of: billing, technical, other. Use lower case. Reply with the label only.\n\nTicket: \"\"\"{ticket}\"\"\"",
+   "Label this ticket however you like and add a long explanation.",
+   "Say what kind of ticket this is, in a creative way."
+  ],
+  "answer": 1,
+  "why": "A fixed list of allowed labels, a case rule and a reply-only rule make the output predictable.",
+  "display": "prose"
+ },
+ {
+  "id": "pe07",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "A program reads the model's JSON, but fails because replies start with: Sure, here is the JSON. Which fix is best?",
+  "options": [
+   "Add: Return only the JSON object, with no text before or after it.",
+   "Ask for XML instead",
+   "Add the word please",
+   "Ask for a longer JSON"
+  ],
+  "answer": 0,
+  "why": "The program needs the reply to be nothing but JSON. Say that directly.",
+  "display": "prose"
+ },
+ {
+  "id": "pe08",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "Which output specification is the most reliable for a program to read?",
+  "options": [
+   "Give me the details as a list.",
+   "Return a JSON object with exactly these keys: \"name\" (text), \"age\" (whole number or null), \"city\" (text or null).",
+   "Return a nice summary of the details in sentences.",
+   "Return the details in whatever format you prefer."
+  ],
+  "answer": 1,
+  "why": "Named keys with types, and a rule for missing values, give the same shape every time.",
+  "display": "prose"
+ },
+ {
+  "id": "pe09",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "You must check that a job application message includes a name, an email address and the role applied for. Which prompt is best?",
+  "options": [
+   "Is this application OK?",
+   "Check the message between the triple quotes for three required items: name, email address, role applied for.\nFor each, write present or missing and quote the words that show it.\nWrite complete only if all three are present, otherwise incomplete. Do not guess.\n\n\"\"\"\n{message}\n\"\"\"",
+   "Read the application carefully and think about whether it is a good one.",
+   "List all the information in the application."
+  ],
+  "answer": 1,
+  "why": "It lists the requirements, asks for evidence, sets a clear decision rule and forbids guessing.",
+  "display": "prose"
+ },
+ {
+  "id": "pe10",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "Why ask the model to quote the words that show an item is present?",
+  "options": [
+   "It makes the answer longer so that it looks thorough",
+   "It makes the answer easy to check, because a made-up item has no real words to quote",
+   "It stops the model from using JSON",
+   "It makes the model faster"
+  ],
+  "answer": 1,
+  "why": "Evidence turns a claim into something you can verify against the text.",
+  "display": "prose"
+ },
+ {
+  "id": "pe11",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "A model marks a date field as present when the text says: I will send it soon. Which rule would fix this?",
+  "options": [
+   "Treat vague words such as soon or later as missing. Accept only a real calendar date.",
+   "Accept any text in the field",
+   "Tell the model to be more confident",
+   "Delete the date field from the checklist"
+  ],
+  "answer": 0,
+  "why": "Define what counts as present. A vague phrase does not give a date, so it should count as missing.",
+  "display": "prose"
+ },
+ {
+  "id": "pe12",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "What is the main benefit of adding one or two worked examples to a prompt?",
+  "options": [
+   "They show the exact format and style of answer you expect, so the model follows the pattern",
+   "They make the prompt shorter",
+   "They remove the need for any rules",
+   "They guarantee the model is never wrong"
+  ],
+  "answer": 0,
+  "why": "Examples show the answer shape. They help a lot, but they do not replace clear rules and they do not guarantee correctness.",
+  "display": "prose"
+ },
+ {
+  "id": "pe13",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "Which prompt would you choose to turn meeting notes into action items?",
+  "options": [
+   "Summarize the meeting.",
+   "From the notes between the triple quotes, list every action item as: owner, task, due date.\nIf the owner or due date is not stated, write unassigned or no date.\nDo not add action items that are not in the notes.\n\n\"\"\"\n{notes}\n\"\"\"",
+   "Write a detailed story about the meeting.",
+   "Tell me what you think about the meeting."
+  ],
+  "answer": 1,
+  "why": "It defines the fields, handles missing owners and dates, and forbids invented items.",
+  "display": "prose"
+ },
+ {
+  "id": "pe14",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "A validation prompt says: Check if the data is good. What is wrong with it?",
+  "options": [
+   "The word good is not defined. List the exact rules to check and what to report.",
+   "It is too long",
+   "It uses the word check",
+   "Nothing is wrong with it"
+  ],
+  "answer": 0,
+  "why": "Words like good or valid need a definition. A numbered list of rules gives the model something concrete to test.",
+  "display": "prose"
+ },
+ {
+  "id": "pe15",
+  "topic": "prompt",
+  "difficulty": "Medium",
+  "prompt": "Your JSON has a price field. The text says: twelve dollars fifty. Which instruction gives the most useful, consistent value?",
+  "options": [
+   "price is a number in dollars with no currency symbol, for example 12.5, or null if not stated",
+   "price can be written in any way",
+   "price must be a full sentence",
+   "price must be written in words"
+  ],
+  "answer": 0,
+  "why": "A program can add up numbers but cannot add up sentences. Choose one clear style for each value.",
+  "display": "prose"
+ },
+ {
+  "id": "pe16",
+  "topic": "prompt",
+  "difficulty": "Hard",
+  "prompt": "Your prompt asks for a summary in 3 bullet points, but the model sometimes gives 5. Which change is most likely to fix it?",
+  "options": [
+   "State the limit as a rule: Exactly 3 bullet points. Do not write more than 3.",
+   "Remove the number",
+   "Ask for a few bullet points",
+   "Write the prompt in capital letters"
+  ],
+  "answer": 0,
+  "why": "A precise, checkable rule works better than a vague or emphatic one.",
+  "display": "prose"
+ },
+ {
+  "id": "pe17",
+  "topic": "prompt",
+  "difficulty": "Hard",
+  "prompt": "The input has two different delivery dates. What is the best instruction for this case?",
+  "options": [
+   "Pick whichever date comes first without saying anything",
+   "Report both dates and set a conflict field to true, rather than choosing silently",
+   "Average the two dates",
+   "Ignore the delivery date field"
+  ],
+  "answer": 1,
+  "why": "A silent choice hides a problem. Reporting the conflict lets a person or program decide.",
+  "display": "prose"
+ },
+ {
+  "id": "pe18",
+  "topic": "prompt",
+  "difficulty": "Hard",
+  "prompt": "Why mark the input with delimiters and say to treat it only as data when it comes from users?",
+  "options": [
+   "Delimiters encrypt the text",
+   "The text might contain instructions such as ignore your earlier rules. Marking where it starts and ends, and saying to treat it as data, helps the model not follow them.",
+   "Delimiters hide the text from the model",
+   "Delimiters make the model run faster"
+  ],
+  "answer": 1,
+  "why": "User text can try to change the model's behaviour. Clear boundaries and a data-only rule reduce that risk.",
+  "display": "prose"
+ },
+ {
+  "id": "pe19",
+  "topic": "prompt",
+  "difficulty": "Hard",
+  "prompt": "The same prompt gives a different answer shape each time. Which change should you try first?",
+  "options": [
+   "Make the output format and rules more specific, and add an example",
+   "Run it ten times and pick the answer you like",
+   "Add more friendly words",
+   "Make the input text longer"
+  ],
+  "answer": 0,
+  "why": "Variation usually means the prompt leaves room for choices. Closing those gaps with exact formats, rules and an example makes answers more consistent. Lowering a temperature setting, where available, also helps.",
+  "display": "prose"
+ },
+ {
+  "id": "pe20",
+  "topic": "prompt",
+  "difficulty": "Hard",
+  "prompt": "What does it mean to be specific about the output format?",
+  "options": [
+   "Use long sentences",
+   "Say exactly what shape the answer must take, such as the keys of a JSON object or the number of bullet points",
+   "Ask the model to choose a format",
+   "Write the prompt in capital letters"
+  ],
+  "answer": 1,
+  "why": "A specific format says what the parts are, what types they have and what to do when something is missing.",
+  "display": "prose"
+ },
+ {
+  "id": "pw01",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Easy",
+  "prompt": "Write a prompt that extracts the sender name, the date and the total amount from a pasted receipt.",
+  "model": "Extract three fields from the receipt between the triple quotes: the sender name, the date, and the total amount.\nReturn only a JSON object with the keys \"sender\" (text), \"date\" (YYYY-MM-DD) and \"total\" (a number with no currency symbol).\nIf a field is not stated in the receipt, use null. Do not guess.\n\n\"\"\"\n{receipt}\n\"\"\"",
+  "rubric": [
+   {
+    "point": "Names the task and the three fields (sender name, date, total).",
+    "keywords": [
+     "sender",
+     "name",
+     "total",
+     "date"
+    ]
+   },
+   {
+    "point": "Marks the receipt text with delimiters or tags.",
+    "keywords": [
+     "\"\"\"",
+     "triple",
+     "delimiter",
+     "tag",
+     "<receipt",
+     "---"
+    ]
+   },
+   {
+    "point": "Says what to do when a field is missing, such as null, and not to guess.",
+    "keywords": [
+     "null",
+     "missing",
+     "not stated",
+     "guess",
+     "blank"
+    ]
+   },
+   {
+    "point": "Gives a clear output format, such as JSON with named keys.",
+    "keywords": [
+     "json",
+     "keys",
+     "format",
+     "object"
+    ]
+   },
+   {
+    "point": "Sets value styles, for example the date as YYYY-MM-DD and the total as a number.",
+    "keywords": [
+     "yyyy",
+     "iso",
+     "number",
+     "symbol",
+     "decimal"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw02",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Medium",
+  "prompt": "Write a prompt that summarizes a customer review in one sentence for a product manager, without inventing details.",
+  "model": "Summarize the customer review between the triple quotes in exactly one sentence, for a product manager.\nMention the main praise and the main complaint if there are any.\nUse only what the review says. Do not add facts that are not in it.\n\n\"\"\"\n{review}\n\"\"\"",
+  "rubric": [
+   {
+    "point": "Names the reader, a product manager.",
+    "keywords": [
+     "product manager",
+     "manager",
+     "audience",
+     "for a"
+    ]
+   },
+   {
+    "point": "Sets the length: exactly one sentence.",
+    "keywords": [
+     "one sentence",
+     "single sentence",
+     "1 sentence",
+     "exactly one"
+    ]
+   },
+   {
+    "point": "Limits the model to the review text and forbids invented details.",
+    "keywords": [
+     "only",
+     "do not add",
+     "not in",
+     "invent",
+     "based on"
+    ]
+   },
+   {
+    "point": "Says what to keep, such as the main praise and the main complaint.",
+    "keywords": [
+     "praise",
+     "complaint",
+     "positive",
+     "negative",
+     "main"
+    ]
+   },
+   {
+    "point": "Marks the review with delimiters.",
+    "keywords": [
+     "\"\"\"",
+     "triple",
+     "delimiter",
+     "tag",
+     "---"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw03",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Medium",
+  "prompt": "Write a prompt that checks whether a bug report contains steps to reproduce, the expected result and the actual result. The reply should say complete or incomplete.",
+  "model": "A bug report is complete only if it contains all three of these:\n1. Steps to reproduce\n2. The expected result\n3. The actual result\nCheck the report between the triple quotes. For each item write present or missing, and quote the words that show it.\nThen write the final line as result: complete if all three are present, otherwise result: incomplete.\nDo not guess. If an item is only hinted at, mark it missing.\n\n\"\"\"\n{report}\n\"\"\"",
+  "rubric": [
+   {
+    "point": "Lists the three required items explicitly.",
+    "keywords": [
+     "steps",
+     "expected",
+     "actual",
+     "three",
+     "1."
+    ]
+   },
+   {
+    "point": "Asks for present or missing for each item.",
+    "keywords": [
+     "present",
+     "missing",
+     "each",
+     "per item"
+    ]
+   },
+   {
+    "point": "Asks for a quote or other evidence.",
+    "keywords": [
+     "quote",
+     "evidence",
+     "words that show"
+    ]
+   },
+   {
+    "point": "Gives a clear final decision rule: complete only if all three are present.",
+    "keywords": [
+     "only if",
+     "all three",
+     "all",
+     "complete",
+     "incomplete"
+    ]
+   },
+   {
+    "point": "Forbids guessing or treats hints as missing.",
+    "keywords": [
+     "do not guess",
+     "guess",
+     "hinted",
+     "assume"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw04",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Medium",
+  "prompt": "Explain why a prompt that only says return JSON may still give output a program cannot read, and say what you would add.",
+  "model": "The model may add friendly text before or after the JSON, wrap it in a code fence, use single quotes, or invent its own key names. Any of these makes parsing fail.\nI would add: the exact keys and their types, a rule to use null for missing values, a rule to return only the JSON with nothing before or after it, and a short example of a correct answer. I would also remind it to use double quotes and no trailing commas.",
+  "rubric": [
+   {
+    "point": "Says extra text or code fences around the JSON can break parsing.",
+    "keywords": [
+     "extra text",
+     "before or after",
+     "fence",
+     "sure",
+     "markdown",
+     "explanation"
+    ]
+   },
+   {
+    "point": "Says to name the exact keys and types.",
+    "keywords": [
+     "keys",
+     "types",
+     "schema",
+     "fields"
+    ]
+   },
+   {
+    "point": "Says to return only the JSON and nothing else.",
+    "keywords": [
+     "only",
+     "nothing",
+     "no text"
+    ]
+   },
+   {
+    "point": "Suggests a rule for missing values, such as null.",
+    "keywords": [
+     "null",
+     "missing"
+    ]
+   },
+   {
+    "point": "Suggests a worked example or valid JSON rules (double quotes, no trailing commas).",
+    "keywords": [
+     "example",
+     "double quote",
+     "trailing",
+     "valid"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw05",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Hard",
+  "prompt": "Write a prompt that extracts every action item from meeting notes as JSON. Handle missing owners, missing due dates, and notes with no action items.",
+  "model": "Read the meeting notes between the triple quotes and find every action item that is clearly stated. Do not invent any.\nReturn only a JSON list. Each entry is an object with the keys \"owner\" (text or null), \"task\" (text) and \"due\" (YYYY-MM-DD or null).\nIf the owner or due date is not stated, use null. If there are no action items, return an empty list: []\nWrite nothing before or after the JSON.\n\n\"\"\"\n{notes}\n\"\"\"",
+  "rubric": [
+   {
+    "point": "Asks for a JSON list of objects with named keys (owner, task, due).",
+    "keywords": [
+     "json",
+     "list",
+     "array",
+     "owner",
+     "task",
+     "due"
+    ]
+   },
+   {
+    "point": "Says to use null or a stated word for a missing owner or due date.",
+    "keywords": [
+     "null",
+     "unassigned",
+     "not stated",
+     "missing"
+    ]
+   },
+   {
+    "point": "Only includes action items that are stated and forbids invented ones.",
+    "keywords": [
+     "do not invent",
+     "only",
+     "clearly stated",
+     "not in the notes",
+     "explicit"
+    ]
+   },
+   {
+    "point": "Says what to return when there are no action items, such as an empty list.",
+    "keywords": [
+     "empty",
+     "[]",
+     "none",
+     "no action"
+    ]
+   },
+   {
+    "point": "Returns only the JSON and marks the notes with delimiters.",
+    "keywords": [
+     "only",
+     "nothing before",
+     "triple",
+     "\"\"\"",
+     "delimiter"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw06",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Medium",
+  "prompt": "A summary keeps including facts that are not in the article. Name three changes you would make to the prompt.",
+  "model": "1. Add a rule: use only information stated in the article, and if something is not stated, leave it out or say not stated.\n2. Ask the model to keep to the main points and set a length limit, so it has no room to pad with extra material.\n3. Mark the article with delimiters and, if useful, ask for a short supporting quote for each claim so each fact can be checked. Lowering the temperature setting, where available, can also help.",
+  "rubric": [
+   {
+    "point": "Adds a rule to use only the article or text provided.",
+    "keywords": [
+     "only",
+     "stated",
+     "article",
+     "based on",
+     "do not add"
+    ]
+   },
+   {
+    "point": "Says what to do when information is missing, such as say not stated or leave it out.",
+    "keywords": [
+     "not stated",
+     "leave out",
+     "omit",
+     "unknown",
+     "say so"
+    ]
+   },
+   {
+    "point": "Sets a length limit or focus so there is less room for padding.",
+    "keywords": [
+     "length",
+     "limit",
+     "short",
+     "sentences",
+     "bullet",
+     "focus"
+    ]
+   },
+   {
+    "point": "Asks for quotes or evidence so claims can be checked.",
+    "keywords": [
+     "quote",
+     "evidence",
+     "support",
+     "cite"
+    ]
+   },
+   {
+    "point": "Marks the article with delimiters, or lowers temperature.",
+    "keywords": [
+     "delimiter",
+     "triple",
+     "temperature",
+     "\"\"\"",
+     "tag"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw07",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Medium",
+  "prompt": "Rewrite this weak prompt so that it is much stronger: Tell me if this form is filled in right.",
+  "model": "A form is filled in correctly only if: the name is not blank, the email has the shape name@domain, and the date is a real calendar date written as YYYY-MM-DD.\nCheck the form between the triple quotes. For each of the three fields write ok or problem, and give a short reason for any problem.\nTreat blank, N/A and vague values such as soon as a problem. Do not guess what was meant.\nOn the last line write valid if all three are ok, otherwise invalid.\n\n\"\"\"\n{form}\n\"\"\"",
+  "rubric": [
+   {
+    "point": "Defines what filled in right means with an explicit list of rules or fields.",
+    "keywords": [
+     "only if",
+     "rules",
+     "name",
+     "email",
+     "date",
+     "fields"
+    ]
+   },
+   {
+    "point": "Describes accepted formats, for example email shape or date format.",
+    "keywords": [
+     "format",
+     "yyyy",
+     "name@",
+     "shape",
+     "calendar"
+    ]
+   },
+   {
+    "point": "Asks for a result per field with a reason for problems.",
+    "keywords": [
+     "each",
+     "per field",
+     "ok",
+     "problem",
+     "reason"
+    ]
+   },
+   {
+    "point": "Handles tricky cases such as blank, N/A or vague values.",
+    "keywords": [
+     "blank",
+     "n/a",
+     "vague",
+     "soon",
+     "empty"
+    ]
+   },
+   {
+    "point": "Gives a clear final answer format and forbids guessing.",
+    "keywords": [
+     "valid",
+     "invalid",
+     "last line",
+     "do not guess",
+     "guess"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw08",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Hard",
+  "prompt": "Write a prompt that labels a message as urgent, normal or low and returns JSON with the label and a one-sentence reason. Say how to handle unclear messages.",
+  "model": "Classify the message between the triple quotes.\nThe label must be exactly one of: urgent (needs action today), normal (needs action this week), low (no action needed).\nIf the message is unclear or does not fit, use normal.\nReturn only a JSON object with the keys \"label\" (one of the three words, lower case) and \"reason\" (one sentence that points to words in the message).\nWrite nothing before or after the JSON.\n\n\"\"\"\n{message}\n\"\"\"",
+  "rubric": [
+   {
+    "point": "Limits the label to exactly the three allowed words.",
+    "keywords": [
+     "exactly one",
+     "one of",
+     "urgent",
+     "normal",
+     "low",
+     "lower case"
+    ]
+   },
+   {
+    "point": "Defines what each label means.",
+    "keywords": [
+     "needs action",
+     "today",
+     "this week",
+     "means",
+     "definition",
+     "no action"
+    ]
+   },
+   {
+    "point": "Names the JSON keys, for example label and reason, with a one-sentence reason.",
+    "keywords": [
+     "label",
+     "reason",
+     "json",
+     "one sentence",
+     "keys"
+    ]
+   },
+   {
+    "point": "Gives an explicit fallback for unclear messages.",
+    "keywords": [
+     "unclear",
+     "does not fit",
+     "ambiguous",
+     "fallback",
+     "default",
+     "not sure"
+    ]
+   },
+   {
+    "point": "Says to return only the JSON and marks the message with delimiters.",
+    "keywords": [
+     "only",
+     "nothing before",
+     "triple",
+     "\"\"\"",
+     "delimiter"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw09",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Easy",
+  "prompt": "List four things that a strong extraction prompt should include.",
+  "model": "1. The task and the exact fields to extract.\n2. Delimiters around the input text.\n3. A rule for missing information, such as write null and do not guess.\n4. The output format, such as a JSON object with named keys.\nAn example of a correct answer is a useful fifth thing.",
+  "rubric": [
+   {
+    "point": "The task and the exact fields to extract.",
+    "keywords": [
+     "task",
+     "fields",
+     "extract",
+     "name"
+    ]
+   },
+   {
+    "point": "Delimiters or clear marks around the input text.",
+    "keywords": [
+     "delimiter",
+     "triple",
+     "tag",
+     "quotes",
+     "mark"
+    ]
+   },
+   {
+    "point": "A rule for missing information.",
+    "keywords": [
+     "missing",
+     "null",
+     "not stated",
+     "guess"
+    ]
+   },
+   {
+    "point": "A clear output format.",
+    "keywords": [
+     "format",
+     "json",
+     "keys",
+     "structure",
+     "shape"
+    ]
+   },
+   {
+    "point": "An example, or value styles such as date format.",
+    "keywords": [
+     "example",
+     "yyyy",
+     "format of",
+     "few-shot"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pw10",
+  "topic": "prompt",
+  "type": "written",
+  "difficulty": "Hard",
+  "prompt": "Describe how you would test a prompt before using it on real data.",
+  "model": "I would run it on a small set of examples where I already know the right answer. The set should include normal cases and awkward ones: a missing field, an empty input, a very long input and an input with conflicting values.\nI would compare each result with the expected answer, and for JSON I would check that it can be parsed, for example with json.loads.\nI would run it several times to see whether the answers stay the same. When something fails I would change one thing at a time and run the set again.",
+  "rubric": [
+   {
+    "point": "Uses a set of examples where the correct answer is known.",
+    "keywords": [
+     "examples",
+     "known",
+     "expected",
+     "test set",
+     "sample"
+    ]
+   },
+   {
+    "point": "Includes edge cases such as missing, empty, long or conflicting input.",
+    "keywords": [
+     "edge",
+     "missing",
+     "empty",
+     "long",
+     "conflict",
+     "awkward"
+    ]
+   },
+   {
+    "point": "Compares results with the expected answers.",
+    "keywords": [
+     "compare",
+     "expected",
+     "check"
+    ]
+   },
+   {
+    "point": "Checks that the output format can be parsed, for example with json.loads.",
+    "keywords": [
+     "parse",
+     "json.loads",
+     "valid json",
+     "format"
+    ]
+   },
+   {
+    "point": "Runs it more than once and changes one thing at a time.",
+    "keywords": [
+     "several times",
+     "again",
+     "one thing at a time",
+     "repeat",
+     "consistent"
+    ]
+   }
+  ]
+ }
+]

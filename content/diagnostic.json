@@ -1,0 +1,160 @@
+{
+ "questions": [
+  {
+   "lesson": "print",
+   "prompt": "What does this print?",
+   "code": "print(\"a\")\nprint(\"b\", 3)",
+   "options": [
+    "a\nb 3",
+    "a b 3",
+    "a\nb\n3"
+   ],
+   "answer": 0,
+   "why": "Each print starts a new line, and the comma puts one space between b and 3."
+  },
+  {
+   "lesson": "variables",
+   "prompt": "What does this print?",
+   "code": "a = 2\nb = a * 3\na = 10\nprint(b)",
+   "options": [
+    "6",
+    "30",
+    "10"
+   ],
+   "answer": 0,
+   "why": "b was worked out as 2 times 3, which is 6, and it stays 6 when a changes later."
+  },
+  {
+   "lesson": "equals",
+   "prompt": "What does this print?",
+   "code": "x = 8\nprint(x == 8)\nprint(x != 8)",
+   "options": [
+    "True\nFalse",
+    "8\n8",
+    "True\nTrue"
+   ],
+   "answer": 0,
+   "why": "== asks if equal and != asks if different. x is 8, so the first is True and the second is False."
+  },
+  {
+   "lesson": "remainder",
+   "prompt": "What does this print?",
+   "code": "print(17 % 5)",
+   "options": [
+    "2",
+    "3",
+    "3.4"
+   ],
+   "answer": 0,
+   "why": "5 goes into 17 three times (15) and 2 is left over."
+  },
+  {
+   "lesson": "ifelse",
+   "prompt": "What does this print?",
+   "code": "n = 10\nif n % 2 == 0:\n    print(\"A\")\nelse:\n    print(\"B\")",
+   "options": [
+    "A",
+    "B",
+    "A\nB"
+   ],
+   "answer": 0,
+   "why": "10 divides by 2 with remainder 0, so the if question is True and A prints."
+  },
+  {
+   "lesson": "lists",
+   "prompt": "What does this print?",
+   "code": "items = [1, 2]\nitems.append(3)\nprint(items)",
+   "options": [
+    "[1, 2, 3]",
+    "[3, 1, 2]",
+    "[1, 2]"
+   ],
+   "answer": 0,
+   "why": "append adds to the end of the list."
+  },
+  {
+   "lesson": "indexing",
+   "prompt": "What does this print?",
+   "code": "nums = [7, 8, 9]\nprint(nums[0])\nprint(nums[-1])",
+   "options": [
+    "7\n9",
+    "8\n9",
+    "7\n8"
+   ],
+   "answer": 0,
+   "why": "Position 0 is the first item and position -1 is the last item."
+  },
+  {
+   "lesson": "slicing",
+   "prompt": "What does this print?",
+   "code": "nums = [0, 1, 2, 3, 4, 5]\nprint(nums[1:4])",
+   "options": [
+    "[1, 2, 3]",
+    "[1, 2, 3, 4]",
+    "[0, 1, 2, 3]"
+   ],
+   "answer": 0,
+   "why": "The slice starts at position 1 and stops before position 4, so the item at position 4 is left out."
+  },
+  {
+   "lesson": "len",
+   "prompt": "What does this print?",
+   "code": "nums = [4, 5, 6, 7, 8]\nprint(len(nums))\nprint(nums[len(nums) - 1])",
+   "options": [
+    "5\n8",
+    "5\n7",
+    "4\n8"
+   ],
+   "answer": 0,
+   "why": "There are 5 items, so the last position is 4, and it holds 8."
+  },
+  {
+   "lesson": "range",
+   "prompt": "What does this print?",
+   "code": "print(list(range(2, 6)))",
+   "options": [
+    "[2, 3, 4, 5]",
+    "[2, 3, 4, 5, 6]",
+    "[3, 4, 5, 6]"
+   ],
+   "answer": 0,
+   "why": "range starts at 2 and stops before 6."
+  },
+  {
+   "lesson": "forloops",
+   "prompt": "What does this print?",
+   "code": "nums = [10, 20, 30]\nfor i in range(len(nums)):\n    print(i)",
+   "options": [
+    "0\n1\n2",
+    "10\n20\n30",
+    "1\n2\n3"
+   ],
+   "answer": 0,
+   "why": "i is the position, not the item. The positions are 0, 1 and 2."
+  },
+  {
+   "lesson": "functions",
+   "prompt": "What does this print?",
+   "code": "def f(a, b):\n    return a - b\n\nprint(f(9, 4))",
+   "options": [
+    "5",
+    "13",
+    "None"
+   ],
+   "answer": 0,
+   "why": "The function hands back 9 minus 4, which is 5."
+  },
+  {
+   "lesson": "strings",
+   "prompt": "What does this print?",
+   "code": "w = \"stone\"\nprint(w[1:3])\nprint(w[::-1])",
+   "options": [
+    "to\nenots",
+    "to\nstone",
+    "ton\nenots"
+   ],
+   "answer": 0,
+   "why": "Positions 1 and 2 hold t and o. Reversing the whole word gives enots."
+  }
+ ]
+}

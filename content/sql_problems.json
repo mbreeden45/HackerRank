@@ -1,0 +1,1555 @@
+[
+ {
+  "id": "sql_all_employees",
+  "lesson": "sql_select",
+  "title": "Everything about employees",
+  "difficulty": "Easy",
+  "statement": [
+   "Show every column and every row of the `employees` table."
+  ],
+  "solution": "SELECT * FROM employees;",
+  "hints": [
+   "SELECT chooses columns and FROM chooses the table.",
+   "The star * means all columns.",
+   "Write SELECT, then the star, then FROM, then the table name.",
+   "SELECT * FROM employees;"
+  ],
+  "expect_count": 12,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "id",
+   "name",
+   "department",
+   "salary",
+   "manager_id",
+   "hire_year"
+  ],
+  "expected": [
+   [
+    1,
+    "Ava",
+    "Sales",
+    52000,
+    null,
+    2015
+   ],
+   [
+    2,
+    "Ben",
+    "Sales",
+    48000,
+    1,
+    2018
+   ],
+   [
+    3,
+    "Cara",
+    "Sales",
+    45000,
+    1,
+    2020
+   ],
+   [
+    4,
+    "Dev",
+    "Engineering",
+    90000,
+    null,
+    2014
+   ],
+   [
+    5,
+    "Elle",
+    "Engineering",
+    82000,
+    4,
+    2017
+   ],
+   [
+    6,
+    "Finn",
+    "Engineering",
+    76000,
+    4,
+    2019
+   ],
+   [
+    7,
+    "Gia",
+    "Engineering",
+    71000,
+    4,
+    2021
+   ],
+   [
+    8,
+    "Hugo",
+    "HR",
+    50000,
+    null,
+    2016
+   ],
+   [
+    9,
+    "Ivy",
+    "HR",
+    47000,
+    8,
+    2022
+   ],
+   [
+    10,
+    "Jon",
+    "Support",
+    41000,
+    null,
+    2018
+   ],
+   [
+    11,
+    "Kay",
+    "Support",
+    39000,
+    10,
+    2020
+   ],
+   [
+    12,
+    "Liam",
+    "Support",
+    39000,
+    10,
+    2023
+   ]
+  ]
+ },
+ {
+  "id": "sql_customer_names",
+  "lesson": "sql_select",
+  "title": "Customer names",
+  "difficulty": "Easy",
+  "statement": [
+   "Show only the `name` column of the `customers` table."
+  ],
+  "solution": "SELECT name FROM customers;",
+  "hints": [
+   "Name the column instead of using a star.",
+   "After SELECT, write the column name you want.",
+   "SELECT the name column FROM the customers table.",
+   "SELECT name FROM customers;"
+  ],
+  "expect_count": 8,
+  "ordered": false,
+  "tables": [
+   "customers"
+  ],
+  "columns": [
+   "name"
+  ],
+  "expected": [
+   [
+    "Alice"
+   ],
+   [
+    "Bruno"
+   ],
+   [
+    "Chen"
+   ],
+   [
+    "Dana"
+   ],
+   [
+    "Eli"
+   ],
+   [
+    "Fay"
+   ],
+   [
+    "Gus"
+   ],
+   [
+    "Hana"
+   ]
+  ]
+ },
+ {
+  "id": "sql_sales_staff",
+  "lesson": "sql_select",
+  "title": "Sales team",
+  "difficulty": "Easy",
+  "statement": [
+   "Show the `name` and `salary` of employees in the Sales department."
+  ],
+  "solution": "SELECT name, salary FROM employees WHERE department = 'Sales';",
+  "hints": [
+   "WHERE keeps only rows that match a condition.",
+   "Text values go in single quotes. A single = compares in SQL.",
+   "SELECT the two columns, FROM employees, WHERE department equals Sales.",
+   "SELECT name, salary FROM employees WHERE department = 'Sales';"
+  ],
+  "expect_count": 3,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "name",
+   "salary"
+  ],
+  "expected": [
+   [
+    "Ava",
+    52000
+   ],
+   [
+    "Ben",
+    48000
+   ],
+   [
+    "Cara",
+    45000
+   ]
+  ]
+ },
+ {
+  "id": "sql_high_earners",
+  "lesson": "sql_select",
+  "title": "High earners",
+  "difficulty": "Easy",
+  "statement": [
+   "Show the `name` of every employee who earns more than 70000."
+  ],
+  "solution": "SELECT name FROM employees WHERE salary > 70000;",
+  "hints": [
+   "You need a comparison on the salary column.",
+   "Numbers do not need quotes. The symbol > means greater than.",
+   "SELECT name FROM employees, keeping rows WHERE salary is greater than 70000.",
+   "SELECT name FROM employees WHERE salary > 70000;"
+  ],
+  "expect_count": 4,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "name"
+  ],
+  "expected": [
+   [
+    "Dev"
+   ],
+   [
+    "Elle"
+   ],
+   [
+    "Finn"
+   ],
+   [
+    "Gia"
+   ]
+  ]
+ },
+ {
+  "id": "sql_eng_under_80",
+  "lesson": "sql_select",
+  "title": "Engineers below 80000",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the `name` and `salary` of employees who work in Engineering and earn less than 80000."
+  ],
+  "solution": "SELECT name, salary FROM employees WHERE department = 'Engineering' AND salary < 80000;",
+  "hints": [
+   "Two conditions must both be true.",
+   "Join the two conditions with AND.",
+   "WHERE department equals Engineering AND salary is less than 80000.",
+   "SELECT name, salary FROM employees WHERE department = 'Engineering' AND salary < 80000;"
+  ],
+  "expect_count": 2,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "name",
+   "salary"
+  ],
+  "expected": [
+   [
+    "Finn",
+    76000
+   ],
+   [
+    "Gia",
+    71000
+   ]
+  ]
+ },
+ {
+  "id": "sql_mouse_keyboard",
+  "lesson": "sql_select",
+  "title": "Mice and keyboards",
+  "difficulty": "Easy",
+  "statement": [
+   "Show the `id` and `product` of every order for a Mouse or a Keyboard."
+  ],
+  "solution": "SELECT id, product FROM orders WHERE product IN ('Mouse', 'Keyboard');",
+  "hints": [
+   "You could write two conditions with OR, but there is a shorter way.",
+   "IN lets you list several allowed values in brackets.",
+   "WHERE product IN, then the two product names in quotes inside brackets.",
+   "SELECT id, product FROM orders WHERE product IN ('Mouse', 'Keyboard');"
+  ],
+  "expect_count": 5,
+  "ordered": false,
+  "tables": [
+   "orders"
+  ],
+  "columns": [
+   "id",
+   "product"
+  ],
+  "expected": [
+   [
+    2,
+    "Mouse"
+   ],
+   [
+    7,
+    "Mouse"
+   ],
+   [
+    8,
+    "Keyboard"
+   ],
+   [
+    11,
+    "Mouse"
+   ],
+   [
+    14,
+    "Keyboard"
+   ]
+  ]
+ },
+ {
+  "id": "sql_name_ends_a",
+  "lesson": "sql_select",
+  "title": "Names ending in a",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the `name` of customers whose name ends with the letter a."
+  ],
+  "solution": "SELECT name FROM customers WHERE name LIKE '%a';",
+  "hints": [
+   "LIKE compares text to a pattern.",
+   "In a pattern, the percent sign % stands for any run of characters, including none.",
+   "The pattern for ends with a is a percent sign followed by a, in quotes.",
+   "SELECT name FROM customers WHERE name LIKE '%a';"
+  ],
+  "expect_count": 2,
+  "ordered": false,
+  "tables": [
+   "customers"
+  ],
+  "columns": [
+   "name"
+  ],
+  "expected": [
+   [
+    "Dana"
+   ],
+   [
+    "Hana"
+   ]
+  ]
+ },
+ {
+  "id": "sql_no_manager",
+  "lesson": "sql_select",
+  "title": "People without a manager",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the `name` of employees who have no manager. In the table this means `manager_id` is NULL."
+  ],
+  "solution": "SELECT name FROM employees WHERE manager_id IS NULL;",
+  "hints": [
+   "NULL means a missing value.",
+   "You cannot compare with = NULL. There is a special phrase for it.",
+   "WHERE manager_id IS NULL.",
+   "SELECT name FROM employees WHERE manager_id IS NULL;"
+  ],
+  "expect_count": 4,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "name"
+  ],
+  "expected": [
+   [
+    "Ava"
+   ],
+   [
+    "Dev"
+   ],
+   [
+    "Hugo"
+   ],
+   [
+    "Jon"
+   ]
+  ]
+ },
+ {
+  "id": "sql_mid_orders",
+  "lesson": "sql_select",
+  "title": "Mid-priced orders",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the `id` and `amount` of orders with an amount from 100 to 300, including both 100 and 300."
+  ],
+  "solution": "SELECT id, amount FROM orders WHERE amount BETWEEN 100 AND 300;",
+  "hints": [
+   "A range with both ends included has a short form.",
+   "BETWEEN a AND b includes both a and b.",
+   "WHERE amount BETWEEN 100 AND 300.",
+   "SELECT id, amount FROM orders WHERE amount BETWEEN 100 AND 300;"
+  ],
+  "expect_count": 5,
+  "ordered": false,
+  "tables": [
+   "orders"
+  ],
+  "columns": [
+   "id",
+   "amount"
+  ],
+  "expected": [
+   [
+    3,
+    300
+   ],
+   [
+    4,
+    150
+   ],
+   [
+    5,
+    220
+   ],
+   [
+    9,
+    230
+   ],
+   [
+    12,
+    140
+   ]
+  ]
+ },
+ {
+  "id": "sql_cities",
+  "lesson": "sql_select",
+  "title": "Which cities",
+  "difficulty": "Medium",
+  "statement": [
+   "Show each city where at least one customer lives, once each, with no repeats."
+  ],
+  "solution": "SELECT DISTINCT city FROM customers;",
+  "hints": [
+   "Several customers share a city, so a plain SELECT repeats it.",
+   "DISTINCT removes repeated rows.",
+   "SELECT DISTINCT, then the city column, FROM customers.",
+   "SELECT DISTINCT city FROM customers;"
+  ],
+  "expect_count": 4,
+  "ordered": false,
+  "tables": [
+   "customers"
+  ],
+  "columns": [
+   "city"
+  ],
+  "expected": [
+   [
+    "Austin"
+   ],
+   [
+    "Boston"
+   ],
+   [
+    "Denver"
+   ],
+   [
+    "Chicago"
+   ]
+  ]
+ },
+ {
+  "id": "sql_pay_list",
+  "lesson": "sql_order",
+  "title": "Pay list",
+  "difficulty": "Easy",
+  "statement": [
+   "Show the `name` and `salary` of every employee, with the highest salary first. If two people earn the same, put the name that comes first alphabetically first."
+  ],
+  "solution": "SELECT name, salary FROM employees ORDER BY salary DESC, name;",
+  "hints": [
+   "ORDER BY sorts the result.",
+   "DESC means biggest first. Add a second column after a comma to break ties.",
+   "ORDER BY salary DESC, then name.",
+   "SELECT name, salary FROM employees ORDER BY salary DESC, name;"
+  ],
+  "expect_count": 12,
+  "ordered": true,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "name",
+   "salary"
+  ],
+  "expected": [
+   [
+    "Dev",
+    90000
+   ],
+   [
+    "Elle",
+    82000
+   ],
+   [
+    "Finn",
+    76000
+   ],
+   [
+    "Gia",
+    71000
+   ],
+   [
+    "Ava",
+    52000
+   ],
+   [
+    "Hugo",
+    50000
+   ],
+   [
+    "Ben",
+    48000
+   ],
+   [
+    "Ivy",
+    47000
+   ],
+   [
+    "Cara",
+    45000
+   ],
+   [
+    "Jon",
+    41000
+   ],
+   [
+    "Kay",
+    39000
+   ],
+   [
+    "Liam",
+    39000
+   ]
+  ]
+ },
+ {
+  "id": "sql_top3_paid",
+  "lesson": "sql_order",
+  "title": "Top three paid",
+  "difficulty": "Easy",
+  "statement": [
+   "Show the `name` and `salary` of the three highest paid employees, highest first."
+  ],
+  "solution": "SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 3;",
+  "hints": [
+   "Sort first, then keep only the top rows.",
+   "LIMIT 3 keeps the first three rows, and it goes last in the query.",
+   "ORDER BY salary DESC, then LIMIT 3.",
+   "SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 3;"
+  ],
+  "expect_count": 3,
+  "ordered": true,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "name",
+   "salary"
+  ],
+  "expected": [
+   [
+    "Dev",
+    90000
+   ],
+   [
+    "Elle",
+    82000
+   ],
+   [
+    "Finn",
+    76000
+   ]
+  ]
+ },
+ {
+  "id": "sql_dept_pay",
+  "lesson": "sql_order",
+  "title": "Pay inside each department",
+  "difficulty": "Medium",
+  "statement": [
+   "Show `department`, `name` and `salary` for every employee. Sort by department A to Z. Inside a department, highest salary first, and for equal salaries the name A to Z."
+  ],
+  "solution": "SELECT department, name, salary FROM employees ORDER BY department, salary DESC, name;",
+  "hints": [
+   "You need to sort by three things in order of importance.",
+   "List them after ORDER BY, separated by commas. Each can have its own DESC.",
+   "ORDER BY department, then salary DESC, then name.",
+   "SELECT department, name, salary FROM employees ORDER BY department, salary DESC, name;"
+  ],
+  "expect_count": 12,
+  "ordered": true,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "department",
+   "name",
+   "salary"
+  ],
+  "expected": [
+   [
+    "Engineering",
+    "Dev",
+    90000
+   ],
+   [
+    "Engineering",
+    "Elle",
+    82000
+   ],
+   [
+    "Engineering",
+    "Finn",
+    76000
+   ],
+   [
+    "Engineering",
+    "Gia",
+    71000
+   ],
+   [
+    "HR",
+    "Hugo",
+    50000
+   ],
+   [
+    "HR",
+    "Ivy",
+    47000
+   ],
+   [
+    "Sales",
+    "Ava",
+    52000
+   ],
+   [
+    "Sales",
+    "Ben",
+    48000
+   ],
+   [
+    "Sales",
+    "Cara",
+    45000
+   ],
+   [
+    "Support",
+    "Jon",
+    41000
+   ],
+   [
+    "Support",
+    "Kay",
+    39000
+   ],
+   [
+    "Support",
+    "Liam",
+    39000
+   ]
+  ]
+ },
+ {
+  "id": "sql_newest_hires",
+  "lesson": "sql_order",
+  "title": "Newest two hires",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the `name` and `hire_year` of the two most recently hired employees, newest first."
+  ],
+  "solution": "SELECT name, hire_year FROM employees ORDER BY hire_year DESC LIMIT 2;",
+  "hints": [
+   "Newest means the biggest hire_year.",
+   "Sort so the biggest year comes first, then keep two rows.",
+   "ORDER BY hire_year DESC LIMIT 2.",
+   "SELECT name, hire_year FROM employees ORDER BY hire_year DESC LIMIT 2;"
+  ],
+  "expect_count": 2,
+  "ordered": true,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "name",
+   "hire_year"
+  ],
+  "expected": [
+   [
+    "Liam",
+    2023
+   ],
+   [
+    "Ivy",
+    2022
+   ]
+  ]
+ },
+ {
+  "id": "sql_latest_orders",
+  "lesson": "sql_order",
+  "title": "Latest orders",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the `id` and `order_date` of the three most recent orders, newest first. Dates are text written as YYYY-MM-DD, which sort correctly."
+  ],
+  "solution": "SELECT id, order_date FROM orders ORDER BY order_date DESC LIMIT 3;",
+  "hints": [
+   "Dates in this form sort the same way as text.",
+   "DESC puts the latest date first.",
+   "ORDER BY order_date DESC, then LIMIT 3.",
+   "SELECT id, order_date FROM orders ORDER BY order_date DESC LIMIT 3;"
+  ],
+  "expect_count": 3,
+  "ordered": true,
+  "tables": [
+   "orders"
+  ],
+  "columns": [
+   "id",
+   "order_date"
+  ],
+  "expected": [
+   [
+    14,
+    "2023-08-15"
+   ],
+   [
+    13,
+    "2023-07-30"
+   ],
+   [
+    12,
+    "2023-07-09"
+   ]
+  ]
+ },
+ {
+  "id": "sql_low_balances",
+  "lesson": "sql_order",
+  "title": "Two lowest balances",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the `id` and `balance` of the two accounts with the lowest balance, lowest first."
+  ],
+  "solution": "SELECT id, balance FROM accounts ORDER BY balance ASC LIMIT 2;",
+  "hints": [
+   "Lowest first is the normal sort direction.",
+   "ASC is the default, so you may leave it out.",
+   "ORDER BY balance, then LIMIT 2.",
+   "SELECT id, balance FROM accounts ORDER BY balance ASC LIMIT 2;"
+  ],
+  "expect_count": 2,
+  "ordered": true,
+  "tables": [
+   "accounts"
+  ],
+  "columns": [
+   "id",
+   "balance"
+  ],
+  "expected": [
+   [
+    8,
+    0
+   ],
+   [
+    3,
+    150
+   ]
+  ]
+ },
+ {
+  "id": "sql_orders_with_names",
+  "lesson": "sql_join",
+  "title": "Orders with customer names",
+  "difficulty": "Easy",
+  "statement": [
+   "Show the customer `name`, the order `product` and the order `amount` for every order."
+  ],
+  "solution": "SELECT c.name, o.product, o.amount FROM orders o JOIN customers c ON o.customer_id = c.id;",
+  "hints": [
+   "The customer name lives in a different table from the order.",
+   "JOIN customers ON the order's customer_id equals the customer's id.",
+   "FROM orders, JOIN customers ON orders.customer_id = customers.id. Aliases o and c save typing.",
+   "SELECT c.name, o.product, o.amount FROM orders o JOIN customers c ON o.customer_id = c.id;"
+  ],
+  "expect_count": 14,
+  "ordered": false,
+  "tables": [
+   "orders",
+   "customers"
+  ],
+  "columns": [
+   "name",
+   "product",
+   "amount"
+  ],
+  "expected": [
+   [
+    "Alice",
+    "Laptop",
+    1200
+   ],
+   [
+    "Alice",
+    "Mouse",
+    25
+   ],
+   [
+    "Bruno",
+    "Desk",
+    300
+   ],
+   [
+    "Chen",
+    "Chair",
+    150
+   ],
+   [
+    "Bruno",
+    "Monitor",
+    220
+   ],
+   [
+    "Dana",
+    "Laptop",
+    1100
+   ],
+   [
+    "Eli",
+    "Mouse",
+    25
+   ],
+   [
+    "Alice",
+    "Keyboard",
+    60
+   ],
+   [
+    "Chen",
+    "Monitor",
+    230
+   ],
+   [
+    "Fay",
+    "Desk",
+    310
+   ],
+   [
+    "Bruno",
+    "Mouse",
+    25
+   ],
+   [
+    "Dana",
+    "Chair",
+    140
+   ],
+   [
+    "Fay",
+    "Laptop",
+    1250
+   ],
+   [
+    "Eli",
+    "Keyboard",
+    55
+   ]
+  ]
+ },
+ {
+  "id": "sql_austin_orders",
+  "lesson": "sql_join",
+  "title": "Orders from Austin",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the customer `name` and the order `product` for orders placed by customers who live in Austin."
+  ],
+  "solution": "SELECT c.name, o.product FROM orders o JOIN customers c ON o.customer_id = c.id WHERE c.city = 'Austin';",
+  "hints": [
+   "First join, then filter.",
+   "After the JOIN, a WHERE can use columns from either table.",
+   "Join orders to customers, then WHERE the customer's city equals Austin.",
+   "SELECT c.name, o.product FROM orders o JOIN customers c ON o.customer_id = c.id WHERE c.city = 'Austin';"
+  ],
+  "expect_count": 5,
+  "ordered": false,
+  "tables": [
+   "orders",
+   "customers"
+  ],
+  "columns": [
+   "name",
+   "product"
+  ],
+  "expected": [
+   [
+    "Alice",
+    "Laptop"
+   ],
+   [
+    "Alice",
+    "Mouse"
+   ],
+   [
+    "Chen",
+    "Chair"
+   ],
+   [
+    "Alice",
+    "Keyboard"
+   ],
+   [
+    "Chen",
+    "Monitor"
+   ]
+  ]
+ },
+ {
+  "id": "sql_customer_accounts",
+  "lesson": "sql_join",
+  "title": "Customers and their accounts",
+  "difficulty": "Easy",
+  "statement": [
+   "Show the customer `name`, the account `type` and the account `balance` for every account."
+  ],
+  "solution": "SELECT c.name, a.type, a.balance FROM accounts a JOIN customers c ON a.customer_id = c.id;",
+  "hints": [
+   "Accounts hold a customer_id.",
+   "Join accounts to customers where the ids match.",
+   "FROM accounts, JOIN customers ON accounts.customer_id = customers.id.",
+   "SELECT c.name, a.type, a.balance FROM accounts a JOIN customers c ON a.customer_id = c.id;"
+  ],
+  "expect_count": 8,
+  "ordered": false,
+  "tables": [
+   "accounts",
+   "customers"
+  ],
+  "columns": [
+   "name",
+   "type",
+   "balance"
+  ],
+  "expected": [
+   [
+    "Alice",
+    "checking",
+    2500
+   ],
+   [
+    "Alice",
+    "savings",
+    8000
+   ],
+   [
+    "Bruno",
+    "checking",
+    150
+   ],
+   [
+    "Chen",
+    "checking",
+    4200
+   ],
+   [
+    "Dana",
+    "savings",
+    12000
+   ],
+   [
+    "Dana",
+    "checking",
+    900
+   ],
+   [
+    "Eli",
+    "savings",
+    300
+   ],
+   [
+    "Fay",
+    "checking",
+    0
+   ]
+  ]
+ },
+ {
+  "id": "sql_never_ordered",
+  "lesson": "sql_join",
+  "title": "Customers who never ordered",
+  "difficulty": "Hard",
+  "statement": [
+   "Show the `name` of every customer who has not placed any order."
+  ],
+  "solution": "SELECT c.name FROM customers c LEFT JOIN orders o ON o.customer_id = c.id WHERE o.id IS NULL;",
+  "hints": [
+   "An ordinary JOIN loses customers with no orders. You need a different kind.",
+   "LEFT JOIN keeps every customer, and fills the order columns with NULL when there is no match.",
+   "LEFT JOIN orders ON the ids match, then keep rows WHERE the order id IS NULL.",
+   "SELECT c.name FROM customers c LEFT JOIN orders o ON o.customer_id = c.id WHERE o.id IS NULL;"
+  ],
+  "expect_count": 2,
+  "ordered": false,
+  "tables": [
+   "customers",
+   "orders"
+  ],
+  "columns": [
+   "name"
+  ],
+  "expected": [
+   [
+    "Gus"
+   ],
+   [
+    "Hana"
+   ]
+  ]
+ },
+ {
+  "id": "sql_returned_customers",
+  "lesson": "sql_join",
+  "title": "Customers with a return",
+  "difficulty": "Medium",
+  "statement": [
+   "Show the `name` of each customer who has at least one order with status returned. List each name once."
+  ],
+  "solution": "SELECT DISTINCT c.name FROM customers c JOIN orders o ON o.customer_id = c.id WHERE o.status = 'returned';",
+  "hints": [
+   "A customer with two returned orders would appear twice.",
+   "DISTINCT removes repeated rows.",
+   "Join customers to orders, keep status returned, and use DISTINCT.",
+   "SELECT DISTINCT c.name FROM customers c JOIN orders o ON o.customer_id = c.id WHERE o.status = 'returned';"
+  ],
+  "expect_count": 2,
+  "ordered": false,
+  "tables": [
+   "customers",
+   "orders"
+  ],
+  "columns": [
+   "name"
+  ],
+  "expected": [
+   [
+    "Chen"
+   ],
+   [
+    "Eli"
+   ]
+  ]
+ },
+ {
+  "id": "sql_employee_manager",
+  "lesson": "sql_join",
+  "title": "Employee and manager",
+  "difficulty": "Hard",
+  "statement": [
+   "Show each employee's name as `employee` and their manager's name as `manager`. Leave out employees who have no manager."
+  ],
+  "solution": "SELECT e.name AS employee, m.name AS manager FROM employees e JOIN employees m ON e.manager_id = m.id;",
+  "hints": [
+   "The manager is another row in the same table.",
+   "Use the table twice with two different aliases, one for the employee and one for the manager.",
+   "Join employees e to employees m where e.manager_id equals m.id.",
+   "SELECT e.name AS employee, m.name AS manager FROM employees e JOIN employees m ON e.manager_id = m.id;"
+  ],
+  "expect_count": 8,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "employee",
+   "manager"
+  ],
+  "expected": [
+   [
+    "Ben",
+    "Ava"
+   ],
+   [
+    "Cara",
+    "Ava"
+   ],
+   [
+    "Elle",
+    "Dev"
+   ],
+   [
+    "Finn",
+    "Dev"
+   ],
+   [
+    "Gia",
+    "Dev"
+   ],
+   [
+    "Ivy",
+    "Hugo"
+   ],
+   [
+    "Kay",
+    "Jon"
+   ],
+   [
+    "Liam",
+    "Jon"
+   ]
+  ]
+ },
+ {
+  "id": "sql_savers_orders",
+  "lesson": "sql_join",
+  "title": "Orders of savers",
+  "difficulty": "Hard",
+  "statement": [
+   "Show the customer `name` and the order `product` for customers who own a savings account. A customer who owns a savings account and has three orders should give three rows."
+  ],
+  "solution": "SELECT c.name, o.product FROM customers c JOIN accounts a ON a.customer_id = c.id JOIN orders o ON o.customer_id = c.id WHERE a.type = 'savings';",
+  "hints": [
+   "You need three tables: customers, accounts and orders.",
+   "A second JOIN can follow the first. Both join back to customers.",
+   "customers JOIN accounts ON the ids match, JOIN orders ON the ids match, WHERE the account type equals savings.",
+   "SELECT c.name, o.product FROM customers c JOIN accounts a ON a.customer_id = c.id JOIN orders o ON o.customer_id = c.id WHERE a.type = 'savings';"
+  ],
+  "expect_count": 7,
+  "ordered": false,
+  "tables": [
+   "customers",
+   "accounts",
+   "orders"
+  ],
+  "columns": [
+   "name",
+   "product"
+  ],
+  "expected": [
+   [
+    "Alice",
+    "Keyboard"
+   ],
+   [
+    "Alice",
+    "Laptop"
+   ],
+   [
+    "Alice",
+    "Mouse"
+   ],
+   [
+    "Dana",
+    "Chair"
+   ],
+   [
+    "Dana",
+    "Laptop"
+   ],
+   [
+    "Eli",
+    "Keyboard"
+   ],
+   [
+    "Eli",
+    "Mouse"
+   ]
+  ]
+ },
+ {
+  "id": "sql_headcount",
+  "lesson": "sql_group",
+  "title": "Headcount per department",
+  "difficulty": "Easy",
+  "statement": [
+   "Show each `department` and the number of employees in it, as a column called `headcount`."
+  ],
+  "solution": "SELECT department, COUNT(*) AS headcount FROM employees GROUP BY department;",
+  "hints": [
+   "You want one row per department, not one per employee.",
+   "GROUP BY department makes one pile per department. COUNT(*) counts rows in each pile.",
+   "SELECT department and COUNT(*) AS headcount, FROM employees, GROUP BY department.",
+   "SELECT department, COUNT(*) AS headcount FROM employees GROUP BY department;"
+  ],
+  "expect_count": 4,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "department",
+   "headcount"
+  ],
+  "expected": [
+   [
+    "Engineering",
+    4
+   ],
+   [
+    "HR",
+    2
+   ],
+   [
+    "Sales",
+    3
+   ],
+   [
+    "Support",
+    3
+   ]
+  ]
+ },
+ {
+  "id": "sql_avg_pay",
+  "lesson": "sql_group",
+  "title": "Average pay",
+  "difficulty": "Medium",
+  "statement": [
+   "Show each `department` and its average salary, rounded to the nearest whole number, as a column called `average_pay`."
+  ],
+  "solution": "SELECT department, ROUND(AVG(salary)) AS average_pay FROM employees GROUP BY department;",
+  "hints": [
+   "AVG works out an average.",
+   "ROUND(value) rounds to a whole number. Put AVG inside ROUND.",
+   "SELECT department, ROUND(AVG(salary)) AS average_pay, FROM employees, GROUP BY department.",
+   "SELECT department, ROUND(AVG(salary)) AS average_pay FROM employees GROUP BY department;"
+  ],
+  "expect_count": 4,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "department",
+   "average_pay"
+  ],
+  "expected": [
+   [
+    "Engineering",
+    79750.0
+   ],
+   [
+    "HR",
+    48500.0
+   ],
+   [
+    "Sales",
+    48333.0
+   ],
+   [
+    "Support",
+    39667.0
+   ]
+  ]
+ },
+ {
+  "id": "sql_big_departments",
+  "lesson": "sql_group",
+  "title": "Big departments",
+  "difficulty": "Medium",
+  "statement": [
+   "Show each `department` that has more than 3 employees, with its `headcount`."
+  ],
+  "solution": "SELECT department, COUNT(*) AS headcount FROM employees GROUP BY department HAVING COUNT(*) > 3;",
+  "hints": [
+   "WHERE cannot filter on a count, because the count does not exist until after grouping.",
+   "HAVING filters groups, and it comes after GROUP BY.",
+   "Group by department, then HAVING COUNT(*) greater than 3.",
+   "SELECT department, COUNT(*) AS headcount FROM employees GROUP BY department HAVING COUNT(*) > 3;"
+  ],
+  "expect_count": 1,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "department",
+   "headcount"
+  ],
+  "expected": [
+   [
+    "Engineering",
+    4
+   ]
+  ]
+ },
+ {
+  "id": "sql_shipped_totals",
+  "lesson": "sql_group",
+  "title": "Shipped totals",
+  "difficulty": "Medium",
+  "statement": [
+   "For orders with status shipped only, show each `customer_id` and the total of their `amount` as `total`."
+  ],
+  "solution": "SELECT customer_id, SUM(amount) AS total FROM orders WHERE status = 'shipped' GROUP BY customer_id;",
+  "hints": [
+   "Filter the rows before you group them.",
+   "WHERE comes before GROUP BY. SUM adds up a column.",
+   "SELECT customer_id and SUM(amount) AS total, FROM orders, WHERE status equals shipped, GROUP BY customer_id.",
+   "SELECT customer_id, SUM(amount) AS total FROM orders WHERE status = 'shipped' GROUP BY customer_id;"
+  ],
+  "expect_count": 5,
+  "ordered": false,
+  "tables": [
+   "orders"
+  ],
+  "columns": [
+   "customer_id",
+   "total"
+  ],
+  "expected": [
+   [
+    1,
+    1285
+   ],
+   [
+    2,
+    545
+   ],
+   [
+    3,
+    230
+   ],
+   [
+    4,
+    1240
+   ],
+   [
+    6,
+    1250
+   ]
+  ]
+ },
+ {
+  "id": "sql_big_spenders",
+  "lesson": "sql_group",
+  "title": "Big spenders",
+  "difficulty": "Hard",
+  "statement": [
+   "Show the `name` and total spent (as `total`) for each customer whose orders add up to 1000 or more, counting all orders whatever their status."
+  ],
+  "solution": "SELECT c.name, SUM(o.amount) AS total FROM customers c JOIN orders o ON o.customer_id = c.id GROUP BY c.name HAVING SUM(o.amount) >= 1000;",
+  "hints": [
+   "You need a join for the name, a group for the totals and a filter on the totals.",
+   "Join customers to orders, GROUP BY the name, and use HAVING for the total test.",
+   "SELECT name and SUM(amount) AS total, FROM customers JOIN orders, GROUP BY name, HAVING SUM(amount) at least 1000.",
+   "SELECT c.name, SUM(o.amount) AS total FROM customers c JOIN orders o ON o.customer_id = c.id GROUP BY c.name HAVING SUM(o.amount) >= 1000;"
+  ],
+  "expect_count": 3,
+  "ordered": false,
+  "tables": [
+   "customers",
+   "orders"
+  ],
+  "columns": [
+   "name",
+   "total"
+  ],
+  "expected": [
+   [
+    "Alice",
+    1285
+   ],
+   [
+    "Dana",
+    1240
+   ],
+   [
+    "Fay",
+    1560
+   ]
+  ]
+ },
+ {
+  "id": "sql_top_pay_dept",
+  "lesson": "sql_group",
+  "title": "Top pay in each department",
+  "difficulty": "Medium",
+  "statement": [
+   "Show each `department` and its highest salary, as a column called `top_pay`."
+  ],
+  "solution": "SELECT department, MAX(salary) AS top_pay FROM employees GROUP BY department;",
+  "hints": [
+   "MAX gives the biggest value in a group.",
+   "Group by department.",
+   "SELECT department and MAX(salary) AS top_pay, FROM employees, GROUP BY department.",
+   "SELECT department, MAX(salary) AS top_pay FROM employees GROUP BY department;"
+  ],
+  "expect_count": 4,
+  "ordered": false,
+  "tables": [
+   "employees"
+  ],
+  "columns": [
+   "department",
+   "top_pay"
+  ],
+  "expected": [
+   [
+    "Engineering",
+    90000
+   ],
+   [
+    "HR",
+    50000
+   ],
+   [
+    "Sales",
+    52000
+   ],
+   [
+    "Support",
+    41000
+   ]
+  ]
+ },
+ {
+  "id": "sql_status_counts",
+  "lesson": "sql_group",
+  "title": "Orders by status",
+  "difficulty": "Hard",
+  "statement": [
+   "Show each order `status` and the number of orders with that status, as `n`. Put the status with the most orders first. If two statuses have the same number, put the one that comes first alphabetically first."
+  ],
+  "solution": "SELECT status, COUNT(*) AS n FROM orders GROUP BY status ORDER BY n DESC, status;",
+  "hints": [
+   "Count per group, then sort the groups.",
+   "ORDER BY comes after GROUP BY, and it can use the name you gave with AS.",
+   "GROUP BY status, then ORDER BY n DESC, then status.",
+   "SELECT status, COUNT(*) AS n FROM orders GROUP BY status ORDER BY n DESC, status;"
+  ],
+  "expect_count": 3,
+  "ordered": true,
+  "tables": [
+   "orders"
+  ],
+  "columns": [
+   "status",
+   "n"
+  ],
+  "expected": [
+   [
+    "shipped",
+    10
+   ],
+   [
+    "pending",
+    2
+   ],
+   [
+    "returned",
+    2
+   ]
+  ]
+ },
+ {
+  "id": "sql_rich_types",
+  "lesson": "sql_group",
+  "title": "Account types with a high average",
+  "difficulty": "Hard",
+  "statement": [
+   "Show each account `type` whose average balance is above 5000, with the average rounded to 2 decimal places as `average_balance`."
+  ],
+  "solution": "SELECT type, ROUND(AVG(balance), 2) AS average_balance FROM accounts GROUP BY type HAVING AVG(balance) > 5000;",
+  "hints": [
+   "The test is on an average, so it belongs in HAVING.",
+   "ROUND takes a second value: how many decimal places to keep.",
+   "Group by type. HAVING AVG(balance) greater than 5000. SELECT the rounded average.",
+   "SELECT type, ROUND(AVG(balance), 2) AS average_balance FROM accounts GROUP BY type HAVING AVG(balance) > 5000;"
+  ],
+  "expect_count": 1,
+  "ordered": false,
+  "tables": [
+   "accounts"
+  ],
+  "columns": [
+   "type",
+   "average_balance"
+  ],
+  "expected": [
+   [
+    "savings",
+    6766.67
+   ]
+  ]
+ },
+ {
+  "id": "sql_repeat_buyers",
+  "lesson": "sql_group",
+  "title": "Repeat buyers",
+  "difficulty": "Hard",
+  "statement": [
+   "Show the `name` of each customer with at least 3 orders, and their number of orders as `n`."
+  ],
+  "solution": "SELECT c.name, COUNT(*) AS n FROM customers c JOIN orders o ON o.customer_id = c.id GROUP BY c.name HAVING COUNT(*) >= 3;",
+  "hints": [
+   "You need names from customers and a count from orders.",
+   "Join, group by the name, and filter the count with HAVING.",
+   "Join customers to orders. GROUP BY name. HAVING COUNT(*) at least 3.",
+   "SELECT c.name, COUNT(*) AS n FROM customers c JOIN orders o ON o.customer_id = c.id GROUP BY c.name HAVING COUNT(*) >= 3;"
+  ],
+  "expect_count": 2,
+  "ordered": false,
+  "tables": [
+   "customers",
+   "orders"
+  ],
+  "columns": [
+   "name",
+   "n"
+  ],
+  "expected": [
+   [
+    "Alice",
+    3
+   ],
+   [
+    "Bruno",
+    3
+   ]
+  ]
+ }
+]
