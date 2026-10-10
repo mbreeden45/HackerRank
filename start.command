@@ -20,4 +20,4 @@ fi
 echo "Builder Prep is starting at http://localhost:$PORT"
 echo "Leave this window open while you study. Close it to stop."
 (sleep 1; open -a "Google Chrome" "http://localhost:$PORT" 2>/dev/null || open "http://localhost:$PORT") &
-python3 -m http.server $PORT --bind 127.0.0.1
+python3 tools/serve.py $PORT
