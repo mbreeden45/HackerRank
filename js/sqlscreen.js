@@ -29,8 +29,8 @@ BP.sqlscreen = (function () {
     const st = opts.exam ? {} : BP.store.problem(P.id);
     const lessonTitle = (C.study.find((l) => l.id === P.lesson) || {}).title || '';
     const expected = { columns: P.columns, rows: P.expected };
-    main.innerHTML = '<div class="split"><div class="left"><div class="card">' +
-      (opts.exam ? '' : BP.practice.flowBar(P, 'sql') + '<div class="mute">' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
+    main.innerHTML = (opts.exam ? '' : BP.practice.flowBar(P, 'sql')) + '<div class="split"><div class="left"><div class="card">' +
+      (opts.exam ? '' : '<div class="mute">' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
       '<span class="pill ' + P.difficulty + '">' + P.difficulty + '</span> ' + (st.solved ? '<span class="pill done">solved</span>' : '') +
       P.statement.map((p) => '<p>' + fmt(p) + '</p>').join('') +
       '<h3>Tables you can use</h3>' + schemaHtml(P.tables, C.sqlTables) +
@@ -39,7 +39,7 @@ BP.sqlscreen = (function () {
       '</div></div><div class="right"><div class="card"><div class="row" style="margin-bottom:8px"><b>SQL</b><span class="mute">The database runs in your browser. Nothing is sent anywhere.</span></div>' +
       '<textarea id="code"></textarea><div class="row" style="margin-top:8px"><button id="run">Run query</button><button class="primary" id="check">Check my answer</button><button id="reset">Reset</button></div>' +
       '<div class="results" id="res"></div></div>' +
-      (allowHints ? '<div class="card"><h2>Need help</h2><p class="mute">Open one hint at a time. Each one gives away a little more.</p><div id="hints"></div><button id="hintbtn">Show hint 1: Nudge</button></div>' : '') + '</div></div>';
+      (allowHints ? '<div class="card"><h2>Need help</h2><p class="mute">Open one hint at a time. Each one gives away a little more.</p><div id="hints"></div><button id="hintbtn">Show hint 1: Nudge</button></div>' : '') + '</div></div>' + (opts.exam ? '' : BP.practice.flowBar(P, 'sql', true));
     const start = '-- Write your query here\n';
     const cm = CodeMirror.fromTextArea(main.querySelector('#code'), { mode: 'text/x-sqlite', lineNumbers: true, indentUnit: 2, indentWithTabs: false, extraKeys: { Tab: (c) => c.replaceSelection('  ') } });
     cm.setValue((opts.exam ? opts.initial : st.draft) || start);

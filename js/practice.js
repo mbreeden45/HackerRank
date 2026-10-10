@@ -16,11 +16,12 @@ BP.practice = (function () {
     const lessonHref = (sql ? '#/study/' : '#/lesson/') + P.lesson, nl = lessons[li + 1];
     return { sibs, i, url, L, lessonHref, nextLesson: nl ? { href: (sql ? '#/study/' : '#/lesson/') + nl.id, title: nl.title } : null, list: sql ? '#/sql' : '#/practice' };
   }
-  function flowBar(P, kind) {
+  // Strip across the top (and again at the bottom): lesson on the left, position in the middle, previous and next on the right.
+  function flowBar(P, kind, foot) {
     const f = flow(P, kind), prev = f.sibs[f.i - 1], next = f.sibs[f.i + 1];
-    return '<div class="flowbar"><a class="btn" href="' + f.lessonHref + '">&larr; Back to the lesson</a><span class="flowpos">Problem ' + (f.i + 1) + ' of ' + f.sibs.length + '</span>' +
-      (prev ? '<a class="btn" href="' + f.url(prev) + '">&larr; Previous</a>' : '') + (next ? '<a class="btn" href="' + f.url(next) + '">Next problem &rarr;</a>' : '') +
-      '<a class="flowall" href="' + f.list + '">All practice</a></div>';
+    return '<div class="flowbar' + (foot ? ' foot' : '') + '"><div class="fl"><a class="btn" href="' + f.lessonHref + '">&larr; Lesson</a><a class="flowall" href="' + f.list + '">All practice</a></div>' +
+      '<div class="fc"><span class="flowpos">Problem ' + (f.i + 1) + ' of ' + f.sibs.length + '</span></div>' +
+      '<div class="fr">' + (prev ? '<a class="btn" href="' + f.url(prev) + '">&larr; Previous</a>' : '') + (next ? '<a class="btn primary" href="' + f.url(next) + '">Next &rarr;</a>' : (f.nextLesson ? '<a class="btn primary" href="' + f.nextLesson.href + '">Next lesson &rarr;</a>' : '')) + '</div></div>';
   }
   function flowDone(P, kind) {
     const f = flow(P, kind), next = f.sibs[f.i + 1];
@@ -34,8 +35,8 @@ BP.practice = (function () {
     allowHints = allowHints !== false;
     const lessonTitle = (lessons.find((l) => l.id === P.lesson) || {}).title || '';
     const st = opts.exam ? {} : BP.store.problem(P.id);
-    let h = '<div class="split"><div class="left"><div class="card">' +
-      (opts.exam ? '' : flowBar(P, 'py') + '<div class="mute">' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
+    let h = (opts.exam ? '' : flowBar(P, 'py')) + '<div class="split"><div class="left"><div class="card">' +
+      (opts.exam ? '' : '<div class="mute">' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
       '<span class="pill ' + P.difficulty + '">' + P.difficulty + '</span> ' + (st.solved ? '<span class="pill done">solved</span>' : '') +
       P.statement.map((p) => '<p>' + fmt(p) + '</p>').join('') +
       '<h3>Input format</h3><p>' + fmt(P.input_fmt) + '</p><h3>Output format</h3><p>' + fmt(P.output_fmt) + '</p>' +
@@ -48,6 +49,7 @@ BP.practice = (function () {
       '<div id="lineinfo"></div><div class="results" id="res"></div></div>' +
       (allowHints ? '<div class="card"><h2>Need help</h2><p class="mute">Open one hint at a time. Each one gives away a little more.</p><div id="hints"></div><button id="hintbtn">Show hint 1: Nudge</button></div>' : '') +
       '</div></div>';
+    if (!opts.exam) h += flowBar(P, 'py', true);
     main.innerHTML = h;
 
     const np = P.prefix ? P.prefix.replace(/\n$/, '').split('\n').length : 0;
