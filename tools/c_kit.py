@@ -1,6 +1,6 @@
 # Shared helper for authoring function-style problems. Each parameter has a type that decides
 # how it is written as input text and how the locked "main" block reads it.
-STUB = "    # Write your code here\n    pass\n"
+STUB = "    # Write your code here\n"
 
 def _enc(t, v):
     if t == 'int': return '%d\n' % v

@@ -35,7 +35,10 @@
    ],
    "answer": 1,
    "why": "Each print starts a new line. The quote marks are not shown, they only tell Python the thing is text. The comma adds one space."
-  }
+  },
+  "concepts": [
+   "print()"
+  ]
  },
  {
   "id": "variables",
@@ -73,7 +76,11 @@
    ],
    "answer": 1,
    "why": "`y` was worked out when x held 5, so y became 7. Changing x later does not change y."
-  }
+  },
+  "concepts": [
+   "assign",
+   "arith"
+  ]
  },
  {
   "id": "equals",
@@ -81,7 +88,7 @@
   "idea": [
    "`=` stores a value. `==` asks a question: are these two things equal. The answer is `True` or `False`.",
    "Mixing them up is one of the most common mistakes. Say it aloud: one equals means put it in, two equals means is it the same.",
-   "`!=` asks the opposite question: are these different. `<` means less than and `>` means greater than."
+   "`!=` asks the opposite question: are these different. `<` means less than and `>` means greater than. `<=` means less than or equal to, and `>=` means greater than or equal to."
   ],
   "symbols": [
    [
@@ -99,6 +106,10 @@
    [
     "<  >",
     "less than, greater than"
+   ],
+   [
+    "<=  >=",
+    "less than or equal to, greater than or equal to"
    ],
    [
     "True  False",
@@ -119,7 +130,10 @@
    ],
    "answer": 0,
    "why": "n holds 4, so asking n == 4 gives True. Asking n == 5 gives False."
-  }
+  },
+  "concepts": [
+   "compare"
+  ]
  },
  {
   "id": "remainder",
@@ -157,7 +171,11 @@
    ],
    "answer": 0,
    "why": "4 goes into 10 twice (8) leaving 2, so 10 % 4 is 2 and 10 // 4 is 2. 12 divides exactly by 4, so 12 % 4 is 0."
-  }
+  },
+  "concepts": [
+   "mod",
+   "floordiv"
+  ]
  },
  {
   "id": "ifelse",
@@ -165,7 +183,8 @@
   "idea": [
    "An `if` line asks a yes or no question. If the answer is True, Python runs the indented lines under it. If False, it skips them.",
    "`else` is the plan B. It runs only when the `if` question was False. `elif` means else if: another question, asked only when the earlier ones were False.",
-   "The colon `:` at the end of the line and the indent (4 spaces) are required. The indent shows which lines belong to the choice."
+   "The colon `:` at the end of the line and the indent (4 spaces) are required. The indent shows which lines belong to the choice.",
+   "You can join two questions into one. `and` is True only when both sides are True. `or` is True when at least one side is True. `not` flips an answer: `not True` is `False`."
   ],
   "symbols": [
    [
@@ -183,12 +202,28 @@
    [
     "else",
     "run the lines below when nothing above was True"
+   ],
+   [
+    "and",
+    "True only when both sides are True"
+   ],
+   [
+    "or",
+    "True when at least one side is True"
+   ],
+   [
+    "not",
+    "flips True to False and False to True"
    ]
   ],
   "visuals": [],
   "example": {
    "caption": "Follow which lines get highlighted. Lines inside a choice that was not taken are skipped.",
    "code": "n = 7\nif n % 2 == 0:\n    print(\"even\")\nelif n > 5:\n    print(\"odd and big\")\nelse:\n    print(\"odd and small\")\n"
+  },
+  "example2": {
+   "caption": "Two questions joined with and. The line only runs when both are True. Here 15 divides exactly by 3 and by 5.",
+   "code": "n = 15\nif n % 3 == 0 and n % 5 == 0:\n    print(\"both\")\nelse:\n    print(\"not both\")\n"
   },
   "predict": {
    "code": "n = 3\nif n > 5:\n    print(\"A\")\nelif n > 1:\n    print(\"B\")\nelse:\n    print(\"C\")",
@@ -199,7 +234,13 @@
    ],
    "answer": 1,
    "why": "n > 5 is False, so A is skipped. n > 1 is True, so B prints. After one choice is taken, the rest are skipped, so C does not print."
-  }
+  },
+  "concepts": [
+   "if",
+   "and",
+   "or",
+   "not"
+  ]
  },
  {
   "id": "lists",
@@ -207,7 +248,8 @@
   "idea": [
    "A list holds several values in order, written inside square brackets with commas between them.",
    "Each value sits in its own box, and each box has a number called its position (also called its index). The first box is position 0, not 1.",
-   "`append` adds a new value to the end of the list."
+   "`append` adds a new value to the end of the list.",
+   "Three handy tools work on a list of numbers. `sum(nums)` adds them all up. `max(nums)` gives the biggest. `min(nums)` gives the smallest."
   ],
   "symbols": [
    [
@@ -221,6 +263,14 @@
    [
     ".append( )",
     "add one value to the end of a list"
+   ],
+   [
+    "sum( )",
+    "add up all the numbers in a list"
+   ],
+   [
+    "max( )  min( )",
+    "the biggest and the smallest number in a list"
    ]
   ],
   "visuals": [
@@ -236,7 +286,7 @@
   ],
   "example": {
    "caption": "Watch the row of boxes. Position numbers are shown above each box.",
-   "code": "nums = [4, 9, 2]\nnums.append(7)\nnums.append(1)\nprint(nums)\n",
+   "code": "nums = [4, 9, 2]\nnums.append(7)\nnums.append(1)\nprint(nums)\nprint(sum(nums))\nprint(max(nums))\nprint(min(nums))\n",
    "show": [
     "nums"
    ]
@@ -250,7 +300,14 @@
    ],
    "answer": 0,
    "why": "append puts the new value at the end."
-  }
+  },
+  "concepts": [
+   "list",
+   ".append()",
+   "sum()",
+   "max()",
+   "min()"
+  ]
  },
  {
   "id": "indexing",
@@ -308,7 +365,10 @@
    ],
    "answer": 0,
    "why": "Position 1 is the second box, which holds 6. Position -2 is second from the end, which holds 9."
-  }
+  },
+  "concepts": [
+   "index"
+  ]
  },
  {
   "id": "slicing",
@@ -369,7 +429,10 @@
    ],
    "answer": 0,
    "why": "nums[2:5] starts at position 2 (value 3) and stops before position 5, so it holds 3, 4, 5. nums[:2] is positions 0 and 1."
-  }
+  },
+  "concepts": [
+   "slice"
+  ]
  },
  {
   "id": "len",
@@ -424,7 +487,10 @@
    ],
    "answer": 0,
    "why": "There are 3 items so len is 3. The last position is 3 - 1 = 2, which holds 6. Writing nums[len(nums)] would be an IndexError."
-  }
+  },
+  "concepts": [
+   "len()"
+  ]
  },
  {
   "id": "range",
@@ -478,7 +544,11 @@
    ],
    "answer": 0,
    "why": "range(3) is 0, 1, 2. range(1, 4) starts at 1 and stops before 4, so 1, 2, 3."
-  }
+  },
+  "concepts": [
+   "range()",
+   "list()"
+  ]
  },
  {
   "id": "forloops",
@@ -486,7 +556,8 @@
   "idea": [
    "A `for` loop repeats the indented lines. The name after `for` takes the next thing each time around.",
    "There are two common shapes. Shape one, over values: `for x in nums:` gives you each item itself. Shape two, over positions: `for i in range(len(nums)):` gives you 0, 1, 2 and so on, and you write `nums[i]` to get the item.",
-   "Use shape one when you only need the items. Use shape two when you need to know where you are, or to look at neighbours like `nums[i + 1]`."
+   "Use shape one when you only need the items. Use shape two when you need to know where you are, or to look at neighbours like `nums[i + 1]`.",
+   "A shortcut you will see everywhere: `total += x` means the same as `total = total + x`. It adds x to total and stores the result back in total."
   ],
   "symbols": [
    [
@@ -500,6 +571,10 @@
    [
     "nums[i]",
     "the item at position i"
+   ],
+   [
+    "+=",
+    "add the right side to the name and store it back: total += x"
    ]
   ],
   "visuals": [],
@@ -526,7 +601,11 @@
    ],
    "answer": 0,
    "why": "i is the position, not the item. A list of 2 items has positions 0 and 1. To print the items you would write print(nums[i])."
-  }
+  },
+  "concepts": [
+   "for",
+   "augassign"
+  ]
  },
  {
   "id": "functions",
@@ -534,7 +613,8 @@
   "idea": [
    "A function is a named set of steps you can use again. You make one with `def`. The names in brackets are the inputs it receives, called parameters.",
    "`return` sends an answer back to whoever used the function, and stops the function right there.",
-   "Printing and returning are different. Print shows something on the screen. Return hands a value back so other code can use it. HackerRank functions almost always return."
+   "Printing and returning are different. Print shows something on the screen. Return hands a value back so other code can use it. HackerRank functions almost always return. If you print inside a function instead of returning, the code that called it receives nothing, and nothing prints as `None`.",
+   "From this lesson on, most problems come with starter code like the starter code on HackerRank. The next card, Reading the starter code, explains every line of it."
   ],
   "symbols": [
    [
@@ -555,6 +635,91 @@
    "caption": "The function does not run when it is defined. It runs on the line that uses it.",
    "code": "def add(a, b):\n    result = a + b\n    return result\n\nanswer = add(3, 4)\nprint(answer)\n"
   },
+  "example2": {
+   "caption": "The most common slip: printing inside the function instead of returning. The function shows 5, but it hands back nothing, so the name result holds None.",
+   "code": "def show(n):\n    print(n)\n\nresult = show(5)\nprint(result)\n"
+  },
+  "starter": {
+   "title": "Reading the starter code",
+   "intro": [
+    "Starter code is the code that is already written when a problem opens. Some lines are locked (they show in grey) and you only write in the open part. Here is a complete example with the open part filled in. Read it from the top, one line at a time."
+   ],
+   "blocks": [
+    {
+     "code": "def solve(n):\n    return n * 2\n\nif __name__ == \"__main__\":\n    n = int(input())\n    print(solve(n))\n",
+     "stdin": "5\n",
+     "output": "10",
+     "rows": [
+      [
+       "def solve(n):",
+       "Makes a function called solve. The name in brackets, n, is the value it receives. This line is locked."
+      ],
+      [
+       "    return n * 2",
+       "The open part. This is the only line you write. return hands the answer back. Do not print here: the locked lines below print for you."
+      ],
+      [
+       "if __name__ == \"__main__\":",
+       "Read this as: start here. Python runs the indented lines below when the file is started. It is the real beginning of the program."
+      ],
+      [
+       "    n = int(input())",
+       "input() reads one line that was typed, as text. int( ) turns the text into a whole number. The result is stored in n. HackerRank supplies the typed lines."
+      ],
+      [
+       "    print(solve(n))",
+       "Uses your function, giving it n, and prints whatever your function returned."
+      ]
+     ]
+    },
+    {
+     "code": "    count = int(input())\n    nums = list(map(int, input().split()))\n    print(solve(nums))\n",
+     "static": true,
+     "title": "When the input is a list of numbers",
+     "rows": [
+      [
+       "    count = int(input())",
+       "The first typed line says how many numbers follow."
+      ],
+      [
+       "    nums = list(map(int, input().split()))",
+       "The second typed line looks like 3 1 4. split cuts it at the spaces into pieces of text. map applies int to every piece, which turns each into a number. list collects the numbers into a list stored in nums."
+      ],
+      [
+       "    print(solve(nums))",
+       "Uses your function on the list and prints what it returned."
+      ]
+     ]
+    },
+    {
+     "code": "    rows, cols = map(int, input().split())\n    lines = [input() for _ in range(count)]\n    result = solve(nums)\n    if isinstance(result, list):\n        print(*result)\n    else:\n        print(result)\n",
+     "static": true,
+     "title": "Other shapes you will meet later",
+     "rows": [
+      [
+       "    rows, cols = map(int, input().split())",
+       "Two numbers on one line, given two names in one step: the first goes to rows and the second to cols."
+      ],
+      [
+       "    lines = [input() for _ in range(count)]",
+       "Reads count typed lines into a list. The name _ stands for a value you do not need. The shape [ ... for ... in ... ] builds a list by repeating the part at the front."
+      ],
+      [
+       "    if isinstance(result, list):",
+       "Asks whether result is a list."
+      ],
+      [
+       "        print(*result)",
+       "The star spreads a list out into separate things, so [1, 2] shows as 1 2 on one line."
+      ],
+      [
+       "    else:",
+       "If result is not a list, print the value as it is."
+      ]
+     ]
+    }
+   ]
+  },
   "predict": {
    "code": "def double(n):\n    return n * 2\n\nprint(double(5) + 1)",
    "options": [
@@ -564,13 +729,28 @@
    ],
    "answer": 0,
    "why": "double(5) hands back 10, and then 10 + 1 is 11."
-  }
+  },
+  "concepts": [
+   "def",
+   "return",
+   "main_guard",
+   "input()",
+   "int()",
+   ".split()",
+   "map()"
+  ],
+  "starter_concepts": [
+   "isinstance()",
+   "starred",
+   "listcomp",
+   "tuple"
+  ]
  },
  {
   "id": "input",
   "title": "Reading input the HackerRank way",
   "idea": [
-   "On HackerRank, the test data does not live in your code. It arrives as typed lines. `input()` reads one line, always as text.",
+   "On HackerRank, the test data does not live in your code. It arrives as typed lines. `input()` reads one line, always as text. You have already read these lines in the starter code. This time you write them yourself.",
    "To turn text into a whole number use `int( )`. To read a line like `3 1 4` as a list of numbers, use `list(map(int, input().split()))`. Read it in pieces: `input()` gets the line, `.split()` cuts it at spaces into separate pieces of text, `int` turns each piece into a number, and `list` collects them.",
    "The first line often tells you how many items follow. You usually read that line and then read the next one."
   ],
@@ -614,7 +794,8 @@
    ],
    "answer": 0,
    "why": "split cuts the text into pieces, but the pieces are still text, so they keep their quote marks. int would turn them into numbers."
-  }
+  },
+  "concepts": []
  },
  {
   "id": "strings",
@@ -670,7 +851,12 @@
    ],
    "answer": 0,
    "why": "code has 4 letters. Position 1 is the second letter, o. The letter d is inside code, so the answer is True."
-  }
+  },
+  "concepts": [
+   "in",
+   ".upper()",
+   ".lower()"
+  ]
  },
  {
   "id": "hashmaps",
@@ -683,7 +869,8 @@
    "`ages[\"cy\"] = 40` adds a new entry, or replaces the old value if the key already exists. `\"ana\" in ages` asks whether the key exists and answers True or False.",
    "Counting is the most common use. For each item, add one to its count. The first time you meet an item it has no count yet, so `counts.get(item, 0) + 1` starts it at 0 and adds one.",
    "`for key in counts:` visits each key in turn, and `counts[key]` gives its value. `sorted(counts)` gives the keys in order, which is useful when a question wants a stable answer.",
-   "Why bother: Python finds a key almost instantly however big the dictionary is. Looking for a value inside a list means checking items one by one. A dictionary lets you avoid a loop inside a loop."
+   "Why bother: Python finds a key almost instantly however big the dictionary is. Looking for a value inside a list means checking items one by one. A dictionary lets you avoid a loop inside a loop.",
+   "Four small tools show up in dictionary problems. `name, number = line.split()` cuts a line into two pieces and gives each piece a name in one step. `None` is Python's word for nothing yet, and you test for it with `best is None`. `str(31)` turns the number 31 into the text \"31\", so it can be glued to other text with +. `del ages[\"bo\"]` removes an entry."
   ],
   "symbols": [
    [
@@ -709,6 +896,22 @@
    [
     "sorted(d)",
     "the keys of d in order"
+   ],
+   [
+    "a, b = line.split()",
+    "cut a line into two pieces and name them in one step"
+   ],
+   [
+    "x is None",
+    "True when x holds nothing yet"
+   ],
+   [
+    "str(n)",
+    "turn the number n into text"
+   ],
+   [
+    "del d[key]",
+    "remove the entry for key"
    ]
   ],
   "visuals": [
@@ -750,7 +953,16 @@
    ],
    "answer": 0,
    "why": "There is no key b yet, so get gives the fallback 10. Adding 5 makes 15, and that is stored under b."
-  }
+  },
+  "concepts": [
+   "dict",
+   ".get()",
+   "sorted()",
+   "tuple",
+   "is",
+   "str()",
+   "del"
+  ]
  },
  {
   "id": "sorting",
@@ -841,7 +1053,11 @@
    ],
    "answer": 0,
    "why": "Longest first. bb and dd tie on length, and Python keeps tied items in the order they started, so bb stays before dd."
-  }
+  },
+  "concepts": [
+   ".sort()",
+   "lambda"
+  ]
  },
  {
   "id": "twopointers",
@@ -854,7 +1070,8 @@
    "Always move at least one pointer every round. If neither moves, the loop never ends and the program times out.",
    "Why it helps: checking every pair of items needs a loop inside a loop. With two pointers on a sorted list, each step safely rules something out, so one pass is enough.",
    "A second style has both pointers start at the left. A slow pointer marks where the next good value goes, and a fast pointer scans ahead. Problems about removing duplicates use that style.",
-   "Shaky spot to watch: `left < right` stops when they meet. `left <= right` would also test the single middle item. For mirrored pairs, `<` is usually right."
+   "Shaky spot to watch: `left < right` stops when they meet. `left <= right` would also test the single middle item. For mirrored pairs, `<` is usually right.",
+   "Three small tools help here. `continue` skips the rest of this round and goes straight to the next one. `\"\".join(letters)` glues a list of letters into one text with nothing between them. `ch.isalnum()` is True when ch is a letter or a digit."
   ],
   "symbols": [
    [
@@ -880,6 +1097,18 @@
    [
     "break",
     "stop the loop right now"
+   ],
+   [
+    "continue",
+    "skip the rest of this round, go to the next"
+   ],
+   [
+    "\"\".join(x)",
+    "glue a list of letters into one text"
+   ],
+   [
+    "ch.isalnum()",
+    "True for a letter or a digit"
    ]
   ],
   "visuals": [
@@ -922,7 +1151,14 @@
    ],
    "answer": 0,
    "why": "Round one: 1 and 2. Round two: 2 and 1. Now left is not less than right, so the loop stops with 2 and 1."
-  }
+  },
+  "concepts": [
+   "while",
+   "break",
+   "continue",
+   ".join()",
+   ".isalnum()"
+  ]
  },
  {
   "id": "slidingwindow",
@@ -1016,7 +1252,8 @@
    ],
    "answer": 0,
    "why": "The window starts as 1 + 2 = 3. Sliding adds the new item 3 and drops the old item 1, so 3 + 3 - 1 = 5, which is 2 + 3."
-  }
+  },
+  "concepts": []
  },
  {
   "id": "grids",
@@ -1029,6 +1266,7 @@
    "To visit every cell use a loop inside a loop: `for r in range(len(grid)):` then `for c in range(len(grid[0])):`.",
    "Neighbours: the cell above is row `r - 1`, below is `r + 1`, left is column `c - 1`, right is `c + 1`. A list of four changes does the work: `for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:`. Here dr means change in row and dc means change in column.",
    "Before reading a neighbour, check that it is on the grid: `0 <= nr < rows and 0 <= nc < cols`. Without it, you get an IndexError at the edges, or worse, a negative position quietly wraps around to the far side.",
+   "Two small tools help with grids. `[False] * 3` makes the list `[False, False, False]`, so a list times a number repeats it. `stack.pop()` removes the last item of a list and hands it back.",
    "In the pictures the yellow cell is the one at row `r`, column `c`."
   ],
   "symbols": [
@@ -1055,6 +1293,14 @@
    [
     "nr, nc",
     "row and column of the neighbour"
+   ],
+   [
+    "[0] * 3",
+    "a list times a number repeats it: [0, 0, 0]"
+   ],
+   [
+    "stack.pop()",
+    "remove the last item of a list and hand it back"
    ]
   ],
   "visuals": [
@@ -1100,7 +1346,10 @@
    ],
    "answer": 0,
    "why": "There are 3 rows and each row has 2 numbers. Row 2 is [5, 6], and its first item is 5."
-  }
+  },
+  "concepts": [
+   ".pop()"
+  ]
  },
  {
   "id": "strtools",
@@ -1112,7 +1361,8 @@
    "`split()` cuts text into a list of words at the spaces. `split(\",\")` cuts at commas instead. `\" \".join(words)` does the reverse: it glues a list of words together with a space between each.",
    "`strip()` removes spaces from both ends. `lower()` and `upper()` change the case. `replace(\"cat\", \"dog\")` swaps every `cat` for `dog`.",
    "`\"big\" in line` is True when `big` appears anywhere inside line. `line.startswith(\"ab\")` is True when line begins with ab.",
-   "A very handy pair: `\" \".join(line.split())` squeezes any run of spaces down to a single space and removes spaces at the ends."
+   "A very handy pair: `\" \".join(line.split())` squeezes any run of spaces down to a single space and removes spaces at the ends.",
+   "Text times a number repeats the text: `\"*\" * 3` is `***`."
   ],
   "symbols": [
    [
@@ -1169,7 +1419,12 @@
    ],
    "answer": 0,
    "why": "split with a dash cuts at each dash into three pieces. join with a plus glues the three pieces back with a plus between each."
-  }
+  },
+  "concepts": [
+   ".replace()",
+   ".strip()",
+   ".startswith()"
+  ]
  },
  {
   "id": "parsing",
@@ -1239,7 +1494,10 @@
    ],
    "answer": 0,
    "why": "Without int, the two pieces are text, so plus glues them: 410. After int they are numbers, so plus adds: 14."
-  }
+  },
+  "concepts": [
+   "listcomp"
+  ]
  },
  {
   "id": "chars",
@@ -1309,7 +1567,15 @@
    ],
    "answer": 0,
    "why": "y is place 24. Adding 3 gives 27. The remainder of 27 divided by 26 is 1, which is the letter b."
-  }
+  },
+  "concepts": [
+   "ord()",
+   "chr()",
+   ".isdigit()",
+   ".isalpha()",
+   ".isupper()",
+   ".islower()"
+  ]
  },
  {
   "id": "bigo",
@@ -1403,6 +1669,7 @@
   "practice_link": {
    "href": "#/quiz/bigo",
    "text": "Practice with the Big O questions"
-  }
+  },
+  "concepts": []
  }
 ]

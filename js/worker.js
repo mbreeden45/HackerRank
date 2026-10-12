@@ -81,6 +81,8 @@ self.onmessage = async (ev) => {
     await ready;
     if (m.type === 'run') {
       self.postMessage({ id: m.id, ok: true, results: m.inputs.map((inp) => runOne(m.code, inp)) });
+    } else if (m.type === 'runmany') {
+      self.postMessage({ id: m.id, ok: true, results: m.items.map((it) => runOne(it.code, it.stdin)) });
     } else if (m.type === 'trace') {
       setIO(m.stdin, [], []);
       const f = py.globals.get('bp_trace');

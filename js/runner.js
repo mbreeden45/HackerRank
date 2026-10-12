@@ -31,6 +31,8 @@ BP.runner = (function () {
   return {
     // inputs: array of stdin strings. Returns {ok, results:[{stdout,error}]} or {timeout:true}
     run(code, inputs) { return call({ type: 'run', code, inputs }, 4000 + 2500 * inputs.length); },
+    // items: array of {code, stdin}, one program per test. Returns {ok, results:[{stdout,error}]} or {timeout:true}
+    runMany(items) { return call({ type: 'runmany', items }, 4000 + 2500 * items.length); },
     trace(code, stdin) { return call({ type: 'trace', code, stdin: stdin || '' }, 8000); },
     isReady() { return isReady; },
     whenReady,

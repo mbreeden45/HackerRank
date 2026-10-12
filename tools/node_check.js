@@ -1,6 +1,7 @@
 // Loads the real js/worker.js in Node with a tiny shim, and runs a few jobs through the same Pyodide files the app ships.
 const path = require('path'), fs = require('fs');
 const root = path.join(__dirname, '..');
+const programs = require(path.join(root, 'js/programs.js'));
 const msgs = [];
 global.self = { location: { href: 'file://' + root + '/js/worker.js' }, postMessage: (m) => msgs.push(m) };
 const py = require(path.join(root, 'vendor/pyodide/pyodide.js'));
@@ -15,7 +16,10 @@ const send = (m) => new Promise((res) => { const n = msgs.length; self.onmessage
   const probs = process.argv[2] === 'all' ? problems : problems.filter((p, i) => i % 6 === 0);
   for (const p of probs) {
     const tests = p.samples.map((s) => [s.input, s.output]).concat(p.hidden.map((h) => [h.input, h.output]));
-    const r = await send({ id: ++n, type: 'run', code: p.prefix + p.solution + p.suffix, inputs: tests.map((t) => t[0]) });
+    // preset problems: the test input is the starting-data lines, nothing is typed. Others: the input is typed.
+    // same builder as the browser (js/programs.js), fed with the editor text a learner would have after typing the solution
+    const items = tests.map((t) => programs.forTest(p, p.prefix + p.solution + p.suffix, t[0]));
+    const r = await send({ id: ++n, type: 'runmany', items });
     r.results.forEach((x, i) => { const ok = !x.error && x.stdout.trim() === tests[i][1].trim(); if (!ok) { bad++; console.log('FAIL', p.id, JSON.stringify(tests[i][0]), JSON.stringify(x)); } });
     console.log('ran', p.id, r.results.length, 'tests');
   }

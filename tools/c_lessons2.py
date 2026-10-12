@@ -8,8 +8,9 @@ LESSONS = [
         "`ages[\"cy\"] = 40` adds a new entry, or replaces the old value if the key already exists. `\"ana\" in ages` asks whether the key exists and answers True or False.",
         "Counting is the most common use. For each item, add one to its count. The first time you meet an item it has no count yet, so `counts.get(item, 0) + 1` starts it at 0 and adds one.",
         "`for key in counts:` visits each key in turn, and `counts[key]` gives its value. `sorted(counts)` gives the keys in order, which is useful when a question wants a stable answer.",
-        "Why bother: Python finds a key almost instantly however big the dictionary is. Looking for a value inside a list means checking items one by one. A dictionary lets you avoid a loop inside a loop."],
-  symbols=[["{ }", "curly brackets: make a dictionary"], [":", "separates a key from its value"], ["d[key]", "the value stored under key"], ["d.get(key, fallback)", "the value under key, or the fallback when the key is missing"], ["key in d", "True when the key exists in d"], ["sorted(d)", "the keys of d in order"]],
+        "Why bother: Python finds a key almost instantly however big the dictionary is. Looking for a value inside a list means checking items one by one. A dictionary lets you avoid a loop inside a loop.",
+        "Four small tools show up in dictionary problems. `name, number = line.split()` cuts a line into two pieces and gives each piece a name in one step. `None` is Python's word for nothing yet, and you test for it with `best is None`. `str(31)` turns the number 31 into the text \"31\", so it can be glued to other text with +. `del ages[\"bo\"]` removes an entry."],
+  symbols=[["{ }", "curly brackets: make a dictionary"], [":", "separates a key from its value"], ["d[key]", "the value stored under key"], ["d.get(key, fallback)", "the value under key, or the fallback when the key is missing"], ["key in d", "True when the key exists in d"], ["sorted(d)", "the keys of d in order"], ["a, b = line.split()", "cut a line into two pieces and name them in one step"], ["x is None", "True when x holds nothing yet"], ["str(n)", "turn the number n into text"], ["del d[key]", "remove the entry for key"]],
   visuals=[dict(type="dict", title="ages = {\"ana\": 31, \"bo\": 27}. Keys on the left, values on the right.", pairs=[["ana", 31], ["bo", 27]])],
   example=dict(caption="Count how often each letter appears in banana. Watch the table: each letter gets a row, and its count goes up each time the letter is seen.",
     code='word = "banana"\ncounts = {}\nfor letter in word:\n    counts[letter] = counts.get(letter, 0) + 1\nprint(counts)\n', show=['counts']),
@@ -40,8 +41,9 @@ LESSONS = [
         "Always move at least one pointer every round. If neither moves, the loop never ends and the program times out.",
         "Why it helps: checking every pair of items needs a loop inside a loop. With two pointers on a sorted list, each step safely rules something out, so one pass is enough.",
         "A second style has both pointers start at the left. A slow pointer marks where the next good value goes, and a fast pointer scans ahead. Problems about removing duplicates use that style.",
-        "Shaky spot to watch: `left < right` stops when they meet. `left <= right` would also test the single middle item. For mirrored pairs, `<` is usually right."],
-  symbols=[["left, right", "two variables that hold positions"], ["len(nums) - 1", "the last position"], ["while left < right:", "repeat while left is still before right"], ["left += 1", "add 1 to left"], ["right -= 1", "take 1 away from right"], ["break", "stop the loop right now"]],
+        "Shaky spot to watch: `left < right` stops when they meet. `left <= right` would also test the single middle item. For mirrored pairs, `<` is usually right.",
+        "Three small tools help here. `continue` skips the rest of this round and goes straight to the next one. `\"\".join(letters)` glues a list of letters into one text with nothing between them. `ch.isalnum()` is True when ch is a letter or a digit."],
+  symbols=[["left, right", "two variables that hold positions"], ["len(nums) - 1", "the last position"], ["while left < right:", "repeat while left is still before right"], ["left += 1", "add 1 to left"], ["right -= 1", "take 1 away from right"], ["break", "stop the loop right now"], ["continue", "skip the rest of this round, go to the next"], ["\"\".join(x)", "glue a list of letters into one text"], ["ch.isalnum()", "True for a letter or a digit"]],
   visuals=[dict(type="boxes", title="Pointers start at the two ends and walk inward.", items=[1, 3, 4, 6, 9], pointers={"left": 0, "right": 4})],
   example=dict(caption="Reverse a row of letters by swapping the two ends and moving inward. Watch left and right walk toward each other.",
     code='letters = ["a", "b", "c", "d", "e"]\nleft = 0\nright = len(letters) - 1\nwhile left < right:\n    temp = letters[left]\n    letters[left] = letters[right]\n    letters[right] = temp\n    left += 1\n    right -= 1\nprint(letters)\n', show=['letters']),
@@ -72,8 +74,9 @@ LESSONS = [
         "To visit every cell use a loop inside a loop: `for r in range(len(grid)):` then `for c in range(len(grid[0])):`.",
         "Neighbours: the cell above is row `r - 1`, below is `r + 1`, left is column `c - 1`, right is `c + 1`. A list of four changes does the work: `for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:`. Here dr means change in row and dc means change in column.",
         "Before reading a neighbour, check that it is on the grid: `0 <= nr < rows and 0 <= nc < cols`. Without it, you get an IndexError at the edges, or worse, a negative position quietly wraps around to the far side.",
+        "Two small tools help with grids. `[False] * 3` makes the list `[False, False, False]`, so a list times a number repeats it. `stack.pop()` removes the last item of a list and hands it back.",
         "In the pictures the yellow cell is the one at row `r`, column `c`."],
-  symbols=[["grid[r][c]", "the cell in row r, column c"], ["len(grid)", "number of rows"], ["len(grid[0])", "number of columns"], ["dr, dc", "change in row, change in column"], ["0 <= nr < rows", "nr is on the grid (a chained comparison)"], ["nr, nc", "row and column of the neighbour"]],
+  symbols=[["grid[r][c]", "the cell in row r, column c"], ["len(grid)", "number of rows"], ["len(grid[0])", "number of columns"], ["dr, dc", "change in row, change in column"], ["0 <= nr < rows", "nr is on the grid (a chained comparison)"], ["nr, nc", "row and column of the neighbour"], ["[0] * 3", "a list times a number repeats it: [0, 0, 0]"], ["stack.pop()", "remove the last item of a list and hand it back"]],
   visuals=[dict(type="grid", title="grid[1][2] is the yellow cell, which holds 6", rows=[[1, 2, 3], [4, 5, 6]], r=1, c=2)],
   example=dict(caption="Add up every cell. The outer loop picks a row, the inner loop walks across it. The yellow cell shows where r and c are.",
     code='grid = [[1, 2, 3], [4, 5, 6]]\ntotal = 0\nfor r in range(len(grid)):\n    for c in range(len(grid[0])):\n        total += grid[r][c]\nprint(total)\n', show=['grid']),
@@ -87,7 +90,8 @@ LESSONS = [
         "`split()` cuts text into a list of words at the spaces. `split(\",\")` cuts at commas instead. `\" \".join(words)` does the reverse: it glues a list of words together with a space between each.",
         "`strip()` removes spaces from both ends. `lower()` and `upper()` change the case. `replace(\"cat\", \"dog\")` swaps every `cat` for `dog`.",
         "`\"big\" in line` is True when `big` appears anywhere inside line. `line.startswith(\"ab\")` is True when line begins with ab.",
-        "A very handy pair: `\" \".join(line.split())` squeezes any run of spaces down to a single space and removes spaces at the ends."],
+        "A very handy pair: `\" \".join(line.split())` squeezes any run of spaces down to a single space and removes spaces at the ends.",
+        "Text times a number repeats the text: `\"*\" * 3` is `***`."],
   symbols=[["s.split()", "cut s into a list of words"], ["s.split(\",\")", "cut s at every comma"], ["\" \".join(words)", "glue words together with a space"], ["s.strip()", "remove spaces at both ends"], ["s.replace(a, b)", "swap every a for b"], ["a in s", "True when a appears in s"]],
   visuals=[dict(type="boxes", title="\"hi you\".split() gives a list of two words", items=["hi", "you"])],
   example=dict(caption="Tidy a messy line: cut it into words, glue it back together with single spaces, and test for a word.",
@@ -144,3 +148,19 @@ LESSONS = [
   practice_link=dict(href="#/quiz/bigo", text="Practice with the Big O questions"),
  ),
 ]
+
+
+# Concepts each lesson teaches (see c_lessons.CONCEPTS for the earlier ones).
+CONCEPTS = {
+ "hashmaps": ["dict", ".get()", "sorted()", "tuple", "is", "str()", "del"],
+ "sorting": [".sort()", "lambda"],
+ "twopointers": ["while", "break", "continue", ".join()", ".isalnum()"],
+ "slidingwindow": [],
+ "grids": [".pop()"],
+ "strtools": [".replace()", ".strip()", ".startswith()"],
+ "parsing": ["listcomp"],
+ "chars": ["ord()", "chr()", ".isdigit()", ".isalpha()", ".isupper()", ".islower()"],
+ "bigo": [],
+}
+for _l in LESSONS:
+    _l["concepts"] = CONCEPTS[_l["id"]]

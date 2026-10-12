@@ -105,7 +105,7 @@ BP.mock = (function () {
       else if (it.kind === 'py') {
         const P = it.item, code = a || (P.prefix + P.body + P.suffix);
         const tests = P.samples.map((x) => ({ input: x.input, output: x.output })).concat(P.hidden);
-        const r = await BP.runner.run(code, tests.map((t) => t.input));
+        const r = await BP.runner.runMany(tests.map((t) => BP.programs.forTest(P, code, t.input)));
         if (!r.ok) { s = 0; note = r.timeout ? 'ran out of time' : 'could not run'; }
         else { const pass = r.results.filter((x, i) => !x.error && BP.practice.norm(x.stdout) === BP.practice.norm(tests[i].output)).length; s = pass / tests.length; note = pass + ' of ' + tests.length + ' test cases passed'; }
       } else {

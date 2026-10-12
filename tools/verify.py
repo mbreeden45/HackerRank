@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Runs every reference solution against its own test cases, and checks the content rules.
 Usage: python3 tools/verify.py      (exit code 0 means everything passed)"""
-import ast, json, os, re, sqlite3, subprocess, sys, tempfile
+import ast, json, os, re, sqlite3, subprocess, sys, tempfile, textwrap
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from concepts import detect, program, written_code, locked_code
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C = os.path.join(ROOT, 'content')
 fails, checks = [], 0
@@ -60,44 +62,132 @@ def check_mc(file, label, options, answer, code=None):
         ok(len(matches) == 1, '%s: %d options match the real output %r (need exactly 1)' % (label, len(matches), so))
         ok(matches == [answer], '%s: marked answer %r but code really prints %r' % (label, options[answer] if isinstance(answer, int) and 0 <= answer < len(options) else answer, so))
 
+def stub_program(p):
+    """What the editor shows at the start, made runnable: a def needs one line under it, so a pass is added for the check only."""
+    needs_pass = p['prefix'].rstrip().endswith(':')
+    return p['body'] + ('    pass\n' if needs_pass else '')
+
 def check_problems(problems):
-    print('\n== Coding problems: %d ==' % len(problems))
+    print('\n== Coding problems: %d (%d preset, %d with starter code) ==' % (len(problems), sum(1 for p in problems if p.get('mode') == 'preset'), sum(1 for p in problems if p.get('mode') != 'preset')))
     for p in problems:
         pid = p['id']
-        full = p['prefix'] + p['solution'] + p['suffix']
+        preset = p.get('mode') == 'preset'
+        ok(p.get('mode') in ('preset', 'stdin'), '%s: mode must be preset or stdin' % pid)
         tests = [(s['input'], s['output'], 'sample') for s in p['samples']] + [(h['input'], h['output'], 'hidden') for h in p['hidden']]
         bad = []
         for inp, exp, kind in tests:
-            rc, so, se = run_py(full, inp)
+            code, stdin = program(p, p['solution'], inp)
+            rc, so, se = run_py(code, stdin)
             if rc != 0 or norm(so) != norm(exp): bad.append('%s test: input=%r expected=%r got=%r %s' % (kind, inp, exp, so, se.strip()[-120:]))
         ok(not bad, '%s: solution fails: %s' % (pid, bad[:1]))
+        # every test must bring its own input. The only exception is a problem with no input at all (for example print Hello),
+        # which can only have one possible answer.
+        inputs = [t[0] for t in tests]
+        if all(i == '' for i in inputs):
+            ok(len(tests) == 2, '%s: has no input at all, so it should have one sample and one hidden test, not %d' % (pid, len(tests)))
+        else:
+            ok(len(set(inputs)) > 1, '%s: all %d test cases have the same input' % (pid, len(tests)))
+        if preset and len(set(inputs)) > 1:
+            # each hidden test runs with ITS OWN starting data in place of the grey lines (this is what the browser does)
+            hid_bad = []
+            for h in p['hidden']:
+                code, stdin = program(p, p['solution'], h['input'])
+                rc, so, se = run_py(code, stdin)
+                if rc != 0 or norm(so) != norm(h['output']): hid_bad.append(h['input'])
+            ok(not hid_bad, '%s: reference solution fails hidden tests when their own starting data replaces the grey lines: %r' % (pid, hid_bad[:1]))
+            # and the tests must really depend on that swap: keeping the sample's grey lines for every test must fail at least one
+            stuck = [run_py(p['prefix'] + p['solution'] + p['suffix'], '') for _ in [0]][0]
+            ok(any(norm(stuck[1]) != norm(h['output']) for h in p['hidden']), '%s: hidden tests would pass even without swapping in their data, so they test nothing new' % pid)
         ok(len(p['samples']) >= 1 and len(p['hidden']) >= 1, '%s: needs 1+ sample and 1+ hidden test' % pid)
         ok(p['difficulty'] in ('Easy', 'Medium', 'Hard'), '%s: bad difficulty' % pid)
         ok(len(p['hints']) == 4 and all(h.strip() for h in p['hints']), '%s: needs 4 hints' % pid)
         ok(all(s['explanation'].strip() for s in p['samples']), '%s: sample explanation missing' % pid)
-        stub = p['prefix'] + p['body'] + p['suffix']
-        syntax_ok(pid + ' starting stub', stub)
-        syntax_ok(pid + ' solution', full)
-        # the open section must be a clear Write-your-code-here area with no solution in it, and no solution line may sit in the locked parts
+        if preset:
+            ok(p['suffix'] == '', '%s: a preset problem has no locked bottom part' % pid)
+            ok(p['prefix'] == p['samples'][0]['input'], '%s: the locked starting data must equal sample 0' % pid)
+            lens = {t[0].count('\n') for t in tests}
+            ok(len(lens) == 1, '%s: every test needs the same number of starting-data lines (so error line numbers match)' % pid)
+            for t in tests:
+                try: ast.parse(t[0])
+                except SyntaxError as e: ok(False, '%s: starting data is not valid Python: %r' % (pid, t[0]))
+                ok('input(' not in t[0] and 'def ' not in t[0], '%s: preset starting data must not use input or def' % pid)
+            ok('input(' not in p['solution'] and 'def ' not in p['solution'] and 'return' not in p['solution'], '%s: preset solution must be plain print lines, no input, def or return' % pid)
+        # the open section must hold only the Write-your-code-here comment
         body_lines = [l.strip() for l in p['body'].split('\n') if l.strip()]
         ok('# Write your code here' in body_lines, '%s: the open section needs a "# Write your code here" line' % pid)
-        ok(all(l == 'pass' or l.startswith('#') for l in body_lines), '%s: the open section contains code: %r' % (pid, body_lines))
+        ok(all(l.startswith('#') for l in body_lines), '%s: the open section must hold only the comment, but has code: %r' % (pid, body_lines))
+        stub_full = p['prefix'] + p['body'] + p['suffix']
+        syntax_ok(pid + ' starting stub', p['prefix'] + stub_program(p) + p['suffix'])
+        syntax_ok(pid + ' solution', program(p, p['solution'], p['samples'][0]['input'])[0])
         locked = {l.strip() for l in (p['prefix'] + p['suffix']).split('\n') if l.strip()}
         leaked = [l.strip() for l in p['solution'].split('\n') if l.strip() and l.strip() in locked and l.strip() not in ('else:', 'pass')]
         ok(not leaked, '%s: a solution line is already in the locked part: %r' % (pid, leaked[:2]))
         # with the open section empty, the program must not already pass every test
-        empty = p['prefix'] + ('    pass\n' if p['body'].startswith('    ') else '') + p['suffix']
-        empty_pass = sum(1 for inp, exp, kind in tests if (lambda r: r[0] == 0 and norm(r[1]) == norm(exp))(run_py(empty, inp)))
+        empty_pass = 0
+        for inp, exp, kind in tests:
+            code, stdin = program(p, stub_program(p), inp)
+            r = run_py(code, stdin)
+            if r[0] == 0 and norm(r[1]) == norm(exp): empty_pass += 1
         ok(empty_pass < len(tests), '%s: with the open section empty, the program already passes every test' % pid)
         ok(len(set(h['output'] for h in p['hidden']) | set(s['output'] for s in p['samples'])) >= 2 or len(p['hidden']) <= 2, '%s: all tests have the same answer, a hard-coded print would pass' % pid)
-        # the untouched stub must NOT already pass everything
-        passed = 0
-        for inp, exp, kind in tests:
-            rc, so, se = run_py(stub, inp)
-            if rc == 0 and norm(so) == norm(exp): passed += 1
-        ok(passed < len(tests), '%s: the starting stub already passes all tests' % pid)
+        # the hints must not use Python 2 style print (print x) and must read as Python 3
+        names = {n.id for n in ast.walk(ast.parse(textwrap.dedent(written_code(p)))) if isinstance(n, ast.Name)}
+        for hint in p['hints']:
+            plain = re.sub(r'`[^`]*`', '', hint)
+            for m in re.finditer(r'\bprint\s+(\S+)', plain):
+                tok = m.group(1).strip('.,;:')
+                ok(not (tok in names or tok[:1] in '"\'' or tok[:1].isdigit()), '%s: hint looks like Python 2 print: %r' % (pid, hint[:70]))
         prose_ok(pid, [p['title'], p['input_fmt'], p['output_fmt']] + p['statement'] + p['hints'] + [s['explanation'] for s in p['samples']])
-        print('  %s  %-22s %d tests' % ('PASS' if not bad else 'FAIL', pid, len(tests)))
+        print('  %s  %-22s %-6s %d tests' % ('PASS' if not bad else 'FAIL', pid, 'preset' if preset else 'stdin', len(tests)))
+
+def check_concepts(problems, lessons, diag):
+    """A problem may only use ideas that its own lesson or an earlier lesson teaches."""
+    print('\n== Concepts: nothing is used before it is taught ==')
+    taught, acc, first = {}, set(), {}
+    for i, L in enumerate(lessons):
+        ok(isinstance(L.get('concepts'), list), '%s: lesson has no concepts list' % L['id'])
+        for c in L.get('concepts', []): first.setdefault(c, L['id'])
+        acc = acc | set(L.get('concepts', []))
+        taught[L['id']] = set(acc)
+    starter = set(next((L.get('starter_concepts', []) for L in lessons if L['id'] == 'functions'), []))
+    def explain(c, lesson):
+        return '%s (%s)' % (c, ('first taught in lesson "%s", which comes later' % first[c]) if c in first else 'no lesson teaches it')
+    per_lesson = {}
+    for L in lessons:
+        for key in ('example', 'example2', 'predict'):
+            if key in L:
+                bad = detect(L[key]['code']) - taught[L['id']]
+                ok(not bad, 'lesson %s %s uses ideas not yet taught: %s' % (L['id'], key, ', '.join(explain(c, L['id']) for c in sorted(bad))))
+        if 'starter' in L:
+            for i, blk in enumerate(L['starter']['blocks']):
+                if blk.get('static'): continue
+                bad = detect(blk['code']) - taught[L['id']] - starter
+                ok(not bad, 'lesson %s starter block %d uses ideas not yet taught: %s' % (L['id'], i, sorted(bad)))
+                rc, so, se = run_py(blk['code'], blk.get('stdin', ''))
+                ok(rc == 0 and norm(so) == norm(blk['output']), 'lesson %s starter block %d prints %r, says %r' % (L['id'], i, so, blk['output']))
+            for blk in L['starter']['blocks']:
+                for line, meaning in blk['rows']: prose_ok(L['id'], meaning)
+    for i, q in enumerate(diag['questions']):
+        bad = detect(q['code']) - taught.get(q['lesson'], set())
+        ok(not bad, 'diagnostic Q%d (%s) uses ideas not yet taught: %s' % (i + 1, q['lesson'], ', '.join(explain(c, q['lesson']) for c in sorted(bad))))
+    for p in problems:
+        lid = p['lesson']
+        ok(lid in taught, '%s: unknown lesson %s' % (p['id'], lid))
+        if lid not in taught: continue
+        decl = p.get('concepts')
+        ok(isinstance(decl, list) and decl, '%s: problem has no concepts list' % p['id'])
+        det = detect(written_code(p))
+        ok(det == set(decl or []), '%s: concepts list is out of date (rebuild content). code uses %s, list says %s' % (p['id'], sorted(det), sorted(decl or [])))
+        bad = det - taught[lid]
+        ok(not bad, '%s (lesson %s) uses ideas not yet taught: %s' % (p['id'], lid, ', '.join(explain(c, lid) for c in sorted(bad))))
+        if p.get('mode') != 'preset':
+            lbad = detect(locked_code(p)) - taught[lid] - starter
+            ok(not lbad, '%s: locked starter code uses ideas not explained in "Reading the starter code": %s' % (p['id'], sorted(lbad)))
+        per_lesson.setdefault(lid, [0, set()])
+        per_lesson[lid][0] += 1; per_lesson[lid][1] |= det
+    for L in lessons:
+        n, used = per_lesson.get(L['id'], [0, set()])
+        print('  PASS  %-14s teaches %-48s %2d problems' % (L['id'], ' '.join(L.get('concepts', [])) or '(nothing new)', n))
 
 def run_snippet_output(code, stdin=''):
     rc, so, se = run_py(code, stdin)
@@ -264,7 +354,9 @@ def check_cards(cards):
 def main():
     problems = load('problems.json', [])
     check_problems(problems)
-    check_lessons(load('lessons.json', []), load('diagnostic.json', {'questions': []}))
+    lessons = load('lessons.json', []); diag = load('diagnostic.json', {'questions': []})
+    check_lessons(lessons, diag)
+    check_concepts(problems, lessons, diag)
     check_errors(load('errors.json', []))
     for name in ('quiz_bigo.json', 'quiz_prompt.json'):
         d = load(name)

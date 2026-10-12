@@ -35,17 +35,19 @@ BP.practice = (function () {
     allowHints = allowHints !== false;
     const lessonTitle = (lessons.find((l) => l.id === P.lesson) || {}).title || '';
     const st = opts.exam ? {} : BP.store.problem(P.id);
+    const preset = P.mode === 'preset';
+    const inLabel = preset ? 'Starting data (the grey lines for this test)' : 'Input';
     let h = (opts.exam ? '' : flowBar(P, 'py')) + '<div class="split"><div class="left"><div class="card">' +
       (opts.exam ? '' : '<div class="mute">' + esc(lessonTitle) + '</div>') + '<h1>' + esc(P.title) + '</h1>' +
       '<span class="pill ' + P.difficulty + '">' + P.difficulty + '</span> ' + (st.solved ? '<span class="pill done">solved</span>' : '') +
       P.statement.map((p) => '<p>' + fmt(p) + '</p>').join('') +
       '<h3>Input format</h3><p>' + fmt(P.input_fmt) + '</p><h3>Output format</h3><p>' + fmt(P.output_fmt) + '</p>' +
       (P.constraints ? '<h3>Constraints</h3><p>' + fmt(P.constraints) + '</p>' : '') +
-      P.samples.map((s, i) => '<h3>Sample ' + i + '</h3><div class="lbl">Input</div><pre>' + esc(s.input) + '</pre><div class="lbl">Output</div><pre>' + esc(s.output) + '</pre><p><b>Explanation.</b> ' + fmt(s.explanation) + '</p>').join('') +
+      P.samples.map((s, i) => '<h3>Sample ' + i + '</h3><div class="lbl">' + inLabel + '</div><pre>' + esc(s.input) + '</pre><div class="lbl">Output</div><pre>' + esc(s.output) + '</pre><p><b>Explanation.</b> ' + fmt(s.explanation) + '</p>').join('') +
       '</div></div><div class="right"><div class="card"><div class="row" style="margin-bottom:8px"><b>Python 3</b><span class="mute">Grey lines are locked. Write inside the open part.</span></div>' +
       '<textarea id="code"></textarea>' +
       '<div class="row" style="margin-top:8px"><button id="run">Run Code</button><button class="primary" id="all">Run all test cases</button><button id="cust">Custom Input</button><button id="expl">What does this line mean</button><button id="reset">Reset code</button></div>' +
-      '<div id="custbox" style="display:none;margin-top:8px"><div class="lbl">Custom input (what you would type)</div><textarea class="custom" id="custin"></textarea><button id="custrun" style="margin-top:6px">Run with this input</button></div>' +
+      '<div id="custbox" style="display:none;margin-top:8px"><div class="lbl">' + (preset ? 'Your own starting data (it replaces the grey lines for this run)' : 'Custom input (what you would type)') + '</div><textarea class="custom" id="custin">' + (preset ? esc(P.prefix) : '') + '</textarea><button id="custrun" style="margin-top:6px">Run with this input</button></div>' +
       '<div id="lineinfo"></div><div class="results" id="res"></div></div>' +
       (allowHints ? '<div class="card"><h2>Need help</h2><p class="mute">Open one hint at a time. Each one gives away a little more.</p><div id="hints"></div><button id="hintbtn">Show hint 1: Nudge</button></div>' : '') +
       '</div></div>';
@@ -86,7 +88,7 @@ BP.practice = (function () {
         const hidden = t.hidden;
         out += '<div class="tc ' + (ok ? 'pass' : 'fail') + '" data-i="' + i + '"><span class="dot">' + (ok ? '&#10003;' : '&#10007;') + '</span><b>' + (hidden ? 'Hidden test case ' + (i) : 'Test case ' + i) + '</b><span class="mute">' + (ok ? 'Passed' : 'Failed') + '</span></div>';
         if (!hidden) {
-          out += '<div class="tcd" id="d' + i + '" style="display:' + (ok ? 'none' : 'block') + '"><div class="lbl">Input</div><pre>' + esc(t.input) + '</pre><div class="lbl">Your output</div><pre>' + esc(r.error ? '(no output: your code stopped with an error)' : r.stdout) + '</pre><div class="lbl">Expected output</div><pre>' + esc(t.output) + '</pre>' + (r.error ? BP.explain.errorHtml(r.error) : '') + '</div>';
+          out += '<div class="tcd" id="d' + i + '" style="display:' + (ok ? 'none' : 'block') + '"><div class="lbl">' + inLabel + '</div><pre>' + esc(t.input) + '</pre><div class="lbl">Your output</div><pre>' + esc(r.error ? '(no output: your code stopped with an error)' : r.stdout) + '</pre><div class="lbl">Expected output</div><pre>' + esc(t.output) + '</pre>' + (r.error ? BP.explain.errorHtml(r.error) : '') + '</div>';
         } else if (r.error) {
           out += '<div class="tcd">' + BP.explain.errorHtml(r.error) + '</div>';
         } else if (!ok) {
@@ -101,7 +103,7 @@ BP.practice = (function () {
     }
     async function runTests(tests, label, record) {
       res.innerHTML = '<div class="mute">Running. The first run can take a few seconds while Python wakes up.</div>';
-      const r = await BP.runner.run(cm.getValue(), tests.map((t) => t.input));
+      const r = await BP.runner.runMany(tests.map((t) => BP.programs.forTest(P, cm.getValue(), t.input)));
       if (!r.ok) { res.innerHTML = '<div class="bad">' + (r.timeout ? '<b>Time limit exceeded.</b> Your code ran for too long. This usually means a loop that never ends. Check that the loop variable changes each round.' : esc(r.error)) + '</div>'; if (record) record(0, tests.length); return; }
       const pass = showResults(r.results, tests, label);
       if (record) record(pass, tests.length);
@@ -121,7 +123,7 @@ BP.practice = (function () {
     main.querySelector('#cust').onclick = () => { const b = main.querySelector('#custbox'); b.style.display = b.style.display === 'none' ? 'block' : 'none'; };
     main.querySelector('#custrun').onclick = async () => {
       res.innerHTML = '<div class="mute">Running.</div>';
-      const r = await BP.runner.run(cm.getValue(), [main.querySelector('#custin').value]);
+      const r = await BP.runner.runMany([BP.programs.forTest(P, cm.getValue(), main.querySelector('#custin').value)]);
       if (!r.ok) { res.innerHTML = '<div class="bad">' + (r.timeout ? '<b>Time limit exceeded.</b>' : esc(r.error)) + '</div>'; return; }
       const x = r.results[0];
       res.innerHTML = '<h3>Custom input result</h3><div class="lbl">Your output</div><pre>' + esc(x.stdout || '(nothing printed)') + '</pre>' + (x.error ? BP.explain.errorHtml(x.error) : '');

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Builder Prep: browser check</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font:15px/1.5 -apple-system,Helvetica,Arial,sans-serif;margin:20px;background:#fff;color:#111}
+pre{font:13px ui-monospace,Menlo,monospace;background:#f4f4f4;padding:10px;white-space:pre-wrap}
+.fail{color:#b3261e;font-weight:700}.pass{color:#1a7f4b;font-weight:700}
+</style>
+</head>
+<body>
+<h1>Browser check</h1>
+<p>Runs every Python problem's reference solution in this browser, through the same code the practice screen uses: the editor text goes through <code>BP.programs.forTest</code> (which swaps each test's starting data into the grey lines for preset problems) and then the Pyodide worker. It is the browser twin of <code>tools/verify.py</code>. Open it at <code>http://localhost:8765/verify.html</code>.</p>
+<p id="status">Loading Python. This takes a few seconds.</p>
+<pre id="out"></pre>
+<script src="js/programs.js"></script>
+<script src="js/runner.js"></script>
+<script>
+(async () => {
+  const out = document.getElementById('out'), status = document.getElementById('status');
+  const log = (s) => { out.textContent += s + '\n'; };
+  const norm = (s) => String(s).split('\n').map((l) => l.replace(/\s+$/, '')).join('\n').replace(/\n+$/, '');
+  const problems = await fetch('content/problems.json', { cache: 'no-store' }).then((r) => r.json());
+  await BP.runner.whenReady();
+  status.textContent = 'Running ' + problems.length + ' problems.';
+  let checks = 0, fails = [];
+  const ok = (cond, msg) => { checks++; if (!cond) fails.push(msg); return cond; };
+  const preset = problems.filter((p) => p.mode === 'preset').length;
+  log('== Coding problems: ' + problems.length + ' (' + preset + ' preset, ' + (problems.length - preset) + ' with starter code) ==');
+  for (const p of problems) {
+    const tests = p.samples.map((s) => ({ input: s.input, output: s.output, kind: 'sample' })).concat(p.hidden.map((h) => ({ input: h.input, output: h.output, kind: 'hidden' })));
+    const editor = p.prefix + p.solution + p.suffix;   // what the editor holds after the learner types the solution
+    const r = await BP.runner.runMany(tests.map((t) => BP.programs.forTest(p, editor, t.input)));
+    const bad = [];
+    if (!r.ok) bad.push(r.timeout ? 'timed out' : r.error);
+    else r.results.forEach((x, i) => { if (x.error || norm(x.stdout) !== norm(tests[i].output)) bad.push(tests[i].kind + ' test ' + i + ': input=' + JSON.stringify(tests[i].input) + ' expected=' + JSON.stringify(tests[i].output) + ' got=' + JSON.stringify(x.error || x.stdout)); });
+    ok(!bad.length, p.id + ': ' + bad[0]);
+    let note = '';
+    if (p.mode === 'preset' && new Set(tests.map((t) => t.input)).size > 1) {
+      // the substitution must really happen: the program for each hidden test must start with that test's own data
+      p.hidden.forEach((h) => ok(BP.programs.forTest(p, editor, h.input).code.startsWith(h.input), p.id + ': hidden test data was not swapped into the grey lines'));
+      note = 'data swapped per test';
+    }
+    log('  ' + (bad.length ? 'FAIL' : 'PASS') + '  ' + p.id.padEnd(22) + ' ' + (p.mode || 'stdin').padEnd(6) + ' ' + tests.length + ' tests' + (note ? '  (' + note + ')' : ''));
+  }
+  log('\n' + checks + ' checks run, ' + fails.length + ' failed.');
+  fails.forEach((f) => log('  FAIL: ' + f));
+  log('RESULT: ' + (fails.length ? 'FAILURES FOUND' : 'ALL PASSED'));
+  status.innerHTML = fails.length ? '<span class="fail">' + fails.length + ' failures</span>' : '<span class="pass">All passed</span>';
+  window.__verify = { checks, fails };
+})();
+</script>
+</body>
+</html>

@@ -49,6 +49,7 @@ node tools/node_check.js all        # every Python solution, lesson trace and fl
 node tools/node_sql_check.js        # every SQL solution, lesson query and SQL card through the shipped sql.js
 node tools/test_adaptive.js && node tools/test_cards.js && node tools/test_explain.js
 python3 tools/brute_check.py        # hard solutions against slow brute-force versions on random input
+# browser twin of verify.py: open http://localhost:8765/verify.html (runs every problem through js/programs.js and the worker)
 ```
 Last result: 4056 verify checks, 0 failed. 96 Python problems, 32 SQL problems, 71 multiple-choice items checked, 88 flashcards, 18 mock exam items.
 verify.py fails on: duplicate option text, fewer than 3 options, not exactly one correct answer, options that mention other options, predict answers that differ from what the code really prints, exclamation marks in prose, starting stubs that already pass, solutions that fail their own tests, written items without 4 to 6 rubric points with keywords, SQL row counts that differ from the hand count, flashcards that do not read "I want to ... so I write ...", flashcard examples that do not print what the card says, mock exam items that do not exist.

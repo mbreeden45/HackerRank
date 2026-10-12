@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Builds content/*.json from the tools/c_*.py files. Hidden-test outputs come from running the reference solutions."""
 import json, os, subprocess, sys, tempfile
+from concepts import detect, program, written_code
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -31,10 +32,12 @@ def main():
     ids = [p['id'] for p in problems]
     assert len(ids) == len(set(ids)), 'duplicate problem ids: %s' % sorted({i for i in ids if ids.count(i) > 1})
     for p in problems:
-        full = p['prefix'] + p['solution'] + p['suffix']
+        p.setdefault('mode', 'stdin')
+        p['concepts'] = sorted(detect(written_code(p)))
         p['hidden'] = []
         for inp in p.pop('hidden_inputs'):
-            rc, so, se = run_py(full, inp)
+            code, stdin = program(p, p['solution'], inp)
+            rc, so, se = run_py(code, stdin)
             if rc != 0: sys.exit('Reference solution crashed for %s on %r: %s' % (p['id'], inp, se))
             p['hidden'].append(dict(input=inp, output=so.rstrip('\n')))
     json.dump(lessons, open(os.path.join(out, 'lessons.json'), 'w'), indent=1)
