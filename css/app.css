@@ -128,3 +128,5 @@ header#top{flex-wrap:wrap}
 table.resgrid,.tt{display:block;max-width:100%;overflow-x:auto}
 /* iOS zooms the page when a text field under 16px gets focus and never zooms back out */
 @media(max-width:700px){.CodeMirror,textarea,input,select{font-size:16px}}
+/* backstop: nothing inside the page may push it wider than the screen (clip, unlike hidden, keeps the sticky header working) */
+main{overflow-x:clip}
