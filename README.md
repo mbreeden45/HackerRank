@@ -35,4 +35,4 @@ node tools/node_sql_check.js
 node tools/test_adaptive.js && node tools/test_cards.js && node tools/test_explain.js
 python3 tools/brute_check.py
 ```
-See `HANDOFF.md` and `DECISIONS.md` for how it is put together and why.
+`verify.py` also runs `tools/order_check.py`: nothing may be tested before a lesson teaches it. See `HANDOFF.md` and `DECISIONS.md` for how it is put together and why.

@@ -299,6 +299,12 @@ def main():
                 if s['kind'] == 'sql': ok(i in sids, 'mock exam: %s is not a SQL problem' % i)
         ok(len(seen_items) == len(set(seen_items)), 'mock exam lists an item twice')
         print('  PASS  %d items across %d sections' % (len(seen_items), len(mock['sections'])))
+    print('\n== Lesson order: nothing is tested before it is taught ==')
+    import order_check
+    order_bad = order_check.find()
+    ok(not order_bad, 'lesson order: nothing may be used before it is taught')
+    for b in order_bad: fails.append('lesson order: ' + b)
+    if not order_bad: print('  PASS  problems, lesson examples, predict and placement questions, flashcards, Big O and SQL')
     print('\n== Multiple-choice items checked, by file ==')
     for k in sorted(MC_COUNT): print('  %-26s %d items' % (k, MC_COUNT[k]))
     print('  %-26s %d items' % ('TOTAL', sum(MC_COUNT.values())))

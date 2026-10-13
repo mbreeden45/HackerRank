@@ -55,6 +55,10 @@
     "add two numbers"
    ],
    [
+    "-",
+    "take the second number away from the first"
+   ],
+   [
     "*",
     "multiply two numbers"
    ]
@@ -103,6 +107,10 @@
    [
     "True  False",
     "the two answers to a yes or no question"
+   ],
+   [
+    "<=  >=",
+    "less than or equal to, greater than or equal to"
    ]
   ],
   "visuals": [],
@@ -183,6 +191,18 @@
    [
     "else",
     "run the lines below when nothing above was True"
+   ],
+   [
+    "and",
+    "both sides must be True"
+   ],
+   [
+    "or",
+    "at least one side must be True"
+   ],
+   [
+    "not",
+    "flips True to False and False to True"
    ]
   ],
   "visuals": [],
@@ -221,6 +241,14 @@
    [
     ".append( )",
     "add one value to the end of a list"
+   ],
+   [
+    "sum(nums)  max(nums)  min(nums)",
+    "add up every item, the biggest item, the smallest item"
+   ],
+   [
+    ".pop()",
+    "remove the last item and hand it back"
    ]
   ],
   "visuals": [
@@ -273,6 +301,10 @@
    [
     "name(3, 4)",
     "use the function, giving it 3 and 4"
+   ],
+   [
+    "x is None",
+    "ask whether x holds nothing yet. None means no value at all"
    ]
   ],
   "visuals": [],
@@ -543,6 +575,14 @@
    [
     "nums[i]",
     "the item at position i"
+   ],
+   [
+    "total += x",
+    "short for total = total + x"
+   ],
+   [
+    "continue",
+    "skip the rest of this round and go straight to the next one"
    ]
   ],
   "visuals": [],
@@ -599,6 +639,14 @@
    [
     "list( )",
     "collect the results into a list"
+   ],
+   [
+    "a, b = line.split()",
+    "a line with two pieces: the first goes in a, the second in b"
+   ],
+   [
+    "str(n)",
+    "turn a number into text"
    ]
   ],
   "visuals": [],
@@ -645,6 +693,14 @@
    [
     ".upper()  .lower()",
     "capital or small letters"
+   ],
+   [
+    "\"\".join(letters)",
+    "glue a list of letters back into one piece of text"
+   ],
+   [
+    ".isalnum()",
+    "True when the character is a letter or a digit"
    ]
   ],
   "visuals": [
@@ -714,6 +770,10 @@
    [
     "sorted(d)",
     "the keys of d in order"
+   ],
+   [
+    "del d[key]",
+    "remove that key and its value from the dictionary"
    ]
   ],
   "visuals": [

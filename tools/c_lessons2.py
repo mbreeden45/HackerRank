@@ -9,7 +9,7 @@ LESSONS = [
         "Counting is the most common use. For each item, add one to its count. The first time you meet an item it has no count yet, so `counts.get(item, 0) + 1` starts it at 0 and adds one.",
         "`for key in counts:` visits each key in turn, and `counts[key]` gives its value. `sorted(counts)` gives the keys in order, which is useful when a question wants a stable answer.",
         "Why bother: Python finds a key almost instantly however big the dictionary is. Looking for a value inside a list means checking items one by one. A dictionary lets you avoid a loop inside a loop."],
-  symbols=[["{ }", "curly brackets: make a dictionary"], [":", "separates a key from its value"], ["d[key]", "the value stored under key"], ["d.get(key, fallback)", "the value under key, or the fallback when the key is missing"], ["key in d", "True when the key exists in d"], ["sorted(d)", "the keys of d in order"]],
+  symbols=[["{ }", "curly brackets: make a dictionary"], [":", "separates a key from its value"], ["d[key]", "the value stored under key"], ["d.get(key, fallback)", "the value under key, or the fallback when the key is missing"], ["key in d", "True when the key exists in d"], ["sorted(d)", "the keys of d in order"], ["del d[key]", "remove that key and its value from the dictionary"]],
   visuals=[dict(type="dict", title="ages = {\"ana\": 31, \"bo\": 27}. Keys on the left, values on the right.", pairs=[["ana", 31], ["bo", 27]])],
   example=dict(caption="Count how often each letter appears in banana. Watch the table: each letter gets a row, and its count goes up each time the letter is seen.",
     code='word = "banana"\ncounts = {}\nfor letter in word:\n    counts[letter] = counts.get(letter, 0) + 1\nprint(counts)\n', show=['counts']),
