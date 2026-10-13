@@ -80,7 +80,7 @@ textarea.custom{width:100%;height:80px;font-family:ui-monospace,monospace;font-s
 .opt.right{background:var(--accent2);border-color:var(--accent)}.opt.wrong{background:var(--bad2);border-color:var(--bad)}
 .hint{background:#fffbe9;border:1px solid #e6d58a;border-radius:8px;padding:8px 12px;margin:6px 0}
 .bar{height:10px;background:#e6e9ee;border-radius:6px;overflow:hidden}.bar>i{display:block;height:100%;background:var(--accent)}
-@media(max-width:900px){.trace,.split{grid-template-columns:1fr}.left{position:static;max-height:none}}
+@media(max-width:900px){.trace,.split{grid-template-columns:minmax(0,1fr)}.left{position:static;max-height:none}}
 @media print{header#top{display:none}}
 
 /* phase 2 */
@@ -100,7 +100,7 @@ pre.wrap{white-space:pre-wrap;word-break:break-word}
 textarea.sqled{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:6px;margin:4px 0}
 .cmpgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 table.resgrid td{font-family:ui-monospace,Menlo,monospace}
-@media(max-width:900px){.cmp,.cmpgrid{grid-template-columns:1fr}}
+@media(max-width:900px){.cmp,.cmpgrid{grid-template-columns:minmax(0,1fr)}}
 /* mock exam */
 .examtop{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:12px;position:sticky;top:50px;z-index:4}
 .examtop button{margin-left:auto}
@@ -115,7 +115,7 @@ table.resgrid td{font-family:ui-monospace,Menlo,monospace}
 .line60{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
 .line60.inline{position:static;display:inline-block;height:14px;vertical-align:middle;margin-right:6px}
 .mkey{font-size:13px;color:var(--mute)}
-@media(max-width:900px){.examgrid{grid-template-columns:1fr}.examnav{position:static}.mlabel{width:110px}}
+@media(max-width:900px){.examgrid{grid-template-columns:minmax(0,1fr)}.examnav{position:static}.mlabel{width:110px}}
 /* flashcards */
 .fcfront{font-size:22px;margin:16px 0;line-height:1.4}
 .fcback{font-size:18px;margin:10px 0;padding:10px 14px;background:#f7faf8;border:1px solid #cfe5d8;border-radius:8px}
@@ -123,3 +123,8 @@ table.resgrid td{font-family:ui-monospace,Menlo,monospace}
 .grade.again{border-color:#e6a19c}.grade.hard{border-color:#e6c874}.grade.good{border-color:#9fd3b8}.grade.easy{border-color:#8fb4e8}
 pre.out{background:#111827;color:#e5e7eb;border-color:#111827}
 header#top{flex-wrap:wrap}
+/* grid and flex children may shrink below their content width, so wide code, tables and diagrams scroll inside their box instead of widening the page on phones */
+.split>*,.trace>*,.cmp>*,.cmpgrid>*,.examgrid>*{min-width:0}
+table.resgrid,.tt{display:block;max-width:100%;overflow-x:auto}
+/* iOS zooms the page when a text field under 16px gets focus and never zooms back out */
+@media(max-width:700px){.CodeMirror,textarea,input,select{font-size:16px}}
