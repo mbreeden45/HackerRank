@@ -81,7 +81,8 @@ def check_problems(problems):
         # the open section must be a clear Write-your-code-here area with no solution in it, and no solution line may sit in the locked parts
         body_lines = [l.strip() for l in p['body'].split('\n') if l.strip()]
         ok('# Write your code here' in body_lines, '%s: the open section needs a "# Write your code here" line' % pid)
-        ok(all(l == 'pass' or l.startswith('#') for l in body_lines), '%s: the open section contains code: %r' % (pid, body_lines))
+        # a fixme problem starts with deliberately wrong code to repair; the untouched-stub check below still makes sure it fails as given
+        ok(p.get('fixme') or all(l == 'pass' or l.startswith('#') for l in body_lines), '%s: the open section contains code: %r' % (pid, body_lines))
         locked = {l.strip() for l in (p['prefix'] + p['suffix']).split('\n') if l.strip()}
         leaked = [l.strip() for l in p['solution'].split('\n') if l.strip() and l.strip() in locked and l.strip() not in ('else:', 'pass')]
         ok(not leaked, '%s: a solution line is already in the locked part: %r' % (pid, leaked[:2]))

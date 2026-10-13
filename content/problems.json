@@ -830,6 +830,141 @@
   ]
  },
  {
+  "id": "fn_square",
+  "lesson": "functions",
+  "title": "Square it",
+  "difficulty": "Easy",
+  "statement": [
+   "The function `solve` receives a number `n`. Return `n` multiplied by itself."
+  ],
+  "input_fmt": "One line holding a whole number.",
+  "output_fmt": "One line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n",
+    "output": "25",
+    "explanation": "5 times 5 is 25."
+   }
+  ],
+  "prefix": "def solve(n):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    print(solve(n))\n",
+  "solution": "    return n * n\n",
+  "hints": [
+   "The answer must be handed back with return.",
+   "Multiply n by n.",
+   "Return n times n.",
+   "return n * n"
+  ],
+  "hidden": [
+   {
+    "input": "0\n",
+    "output": "0"
+   },
+   {
+    "input": "1\n",
+    "output": "1"
+   },
+   {
+    "input": "-3\n",
+    "output": "9"
+   },
+   {
+    "input": "12\n",
+    "output": "144"
+   }
+  ]
+ },
+ {
+  "id": "fn_larger",
+  "lesson": "functions",
+  "title": "The larger of two",
+  "difficulty": "Easy",
+  "statement": [
+   "The function `solve` receives two numbers `a` and `b`. Return the larger one. If they are equal, return either."
+  ],
+  "input_fmt": "Two lines: the number a, then the number b.",
+  "output_fmt": "One line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "3\n9\n",
+    "output": "9",
+    "explanation": "9 is larger than 3."
+   }
+  ],
+  "prefix": "def solve(a, b):\n",
+  "body": "    # Write your code here\n    pass\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    a = int(input())\n    b = int(input())\n    print(solve(a, b))\n",
+  "solution": "    if a > b:\n        return a\n    return b\n",
+  "hints": [
+   "You need a choice.",
+   "If a is greater than b return a. Otherwise return b.",
+   "if a > b: return a. Then outside the if, return b.",
+   "if a > b: return a; return b."
+  ],
+  "hidden": [
+   {
+    "input": "5\n5\n",
+    "output": "5"
+   },
+   {
+    "input": "-1\n-7\n",
+    "output": "-1"
+   },
+   {
+    "input": "100\n99\n",
+    "output": "100"
+   }
+  ]
+ },
+ {
+  "id": "fn_fix_print",
+  "lesson": "functions",
+  "title": "Return, do not print",
+  "difficulty": "Easy",
+  "statement": [
+   "The starter code prints its answer instead of returning it. Run it as it is first: you will see the right number, then a line saying `None`, and the test fails.",
+   "Fix `solve` so it returns `n + 10` instead of printing it."
+  ],
+  "input_fmt": "One line holding a whole number.",
+  "output_fmt": "One line.",
+  "constraints": null,
+  "samples": [
+   {
+    "input": "5\n",
+    "output": "15",
+    "explanation": "5 plus 10 is 15. Only 15 should appear, with no None line."
+   }
+  ],
+  "prefix": "def solve(n):\n",
+  "body": "    # Write your code here\n    # This line prints instead of returning. Fix it.\n    print(n + 10)\n",
+  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    print(solve(n))\n",
+  "solution": "    return n + 10\n",
+  "hints": [
+   "Print shows a value. Return hands it back to the line that called solve.",
+   "That line already prints whatever solve hands back, so solve itself should not print.",
+   "Change the word print to return, and drop the brackets.",
+   "return n + 10"
+  ],
+  "fixme": true,
+  "hidden": [
+   {
+    "input": "0\n",
+    "output": "10"
+   },
+   {
+    "input": "-10\n",
+    "output": "0"
+   },
+   {
+    "input": "990\n",
+    "output": "1000"
+   }
+  ]
+ },
+ {
   "id": "idx_first",
   "lesson": "indexing",
   "title": "First item",
@@ -1528,98 +1663,8 @@
   ]
  },
  {
-  "id": "fn_square",
-  "lesson": "functions",
-  "title": "Square it",
-  "difficulty": "Easy",
-  "statement": [
-   "The function `solve` receives a number `n`. Return `n` multiplied by itself."
-  ],
-  "input_fmt": "One line holding a whole number.",
-  "output_fmt": "One line.",
-  "constraints": null,
-  "samples": [
-   {
-    "input": "5\n",
-    "output": "25",
-    "explanation": "5 times 5 is 25."
-   }
-  ],
-  "prefix": "def solve(n):\n",
-  "body": "    # Write your code here\n    pass\n",
-  "suffix": "\nif __name__ == \"__main__\":\n    n = int(input())\n    print(solve(n))\n",
-  "solution": "    return n * n\n",
-  "hints": [
-   "The answer must be handed back with return.",
-   "Multiply n by n.",
-   "Return n times n.",
-   "return n * n"
-  ],
-  "hidden": [
-   {
-    "input": "0\n",
-    "output": "0"
-   },
-   {
-    "input": "1\n",
-    "output": "1"
-   },
-   {
-    "input": "-3\n",
-    "output": "9"
-   },
-   {
-    "input": "12\n",
-    "output": "144"
-   }
-  ]
- },
- {
-  "id": "fn_larger",
-  "lesson": "functions",
-  "title": "The larger of two",
-  "difficulty": "Easy",
-  "statement": [
-   "The function `solve` receives two numbers `a` and `b`. Return the larger one. If they are equal, return either."
-  ],
-  "input_fmt": "Two lines: the number a, then the number b.",
-  "output_fmt": "One line.",
-  "constraints": null,
-  "samples": [
-   {
-    "input": "3\n9\n",
-    "output": "9",
-    "explanation": "9 is larger than 3."
-   }
-  ],
-  "prefix": "def solve(a, b):\n",
-  "body": "    # Write your code here\n    pass\n",
-  "suffix": "\nif __name__ == \"__main__\":\n    a = int(input())\n    b = int(input())\n    print(solve(a, b))\n",
-  "solution": "    if a > b:\n        return a\n    return b\n",
-  "hints": [
-   "You need a choice.",
-   "If a is greater than b return a. Otherwise return b.",
-   "if a > b: return a. Then outside the if, return b.",
-   "if a > b: return a; return b."
-  ],
-  "hidden": [
-   {
-    "input": "5\n5\n",
-    "output": "5"
-   },
-   {
-    "input": "-1\n-7\n",
-    "output": "-1"
-   },
-   {
-    "input": "100\n99\n",
-    "output": "100"
-   }
-  ]
- },
- {
   "id": "fn_countevens",
-  "lesson": "functions",
+  "lesson": "forloops",
   "title": "Count the even numbers",
   "difficulty": "Medium",
   "statement": [

@@ -138,6 +138,24 @@ script("lists", "list_stats", "Sum, biggest, smallest", "Medium",
  'print(sum(nums))\nprint(max(nums))\nprint(min(nums))\n',
  ["The three tools are given to you in the statement.", "Three prints, one for each tool.", "Print sum of nums. Print max of nums. Print min of nums.", "print(sum(nums)); print(max(nums)); print(min(nums))."])
 
+# ---------- 6b functions (comes before indexing, the first lesson whose problems need return) ----------
+def intfn(lesson, id, title, diff, statement, sample, hidden, solution, hints, sig="def solve(n):\n", reads="    n = int(input())\n", call="solve(n)", infmt="One line holding a whole number."):
+    add(lesson, id, title, diff, statement, infmt, "One line.", [sample], hidden, sig, STUB, '\nif __name__ == "__main__":\n' + reads + '    print(' + call + ')\n', solution, hints)
+intfn("functions", "fn_square", "Square it", "Easy", ["The function `solve` receives a number `n`. Return `n` multiplied by itself."],
+ ("5\n", "25", "5 times 5 is 25."), ["0\n", "1\n", "-3\n", "12\n"], '    return n * n\n',
+ ["The answer must be handed back with return.", "Multiply n by n.", "Return n times n.", "return n * n"])
+intfn("functions", "fn_larger", "The larger of two", "Easy", ["The function `solve` receives two numbers `a` and `b`. Return the larger one. If they are equal, return either."],
+ ("3\n9\n", "9", "9 is larger than 3."), ["5\n5\n", "-1\n-7\n", "100\n99\n"],
+ '    if a > b:\n        return a\n    return b\n',
+ ["You need a choice.", "If a is greater than b return a. Otherwise return b.", "if a > b: return a. Then outside the if, return b.", "if a > b: return a; return b."],
+ sig="def solve(a, b):\n", reads="    a = int(input())\n    b = int(input())\n", call="solve(a, b)", infmt="Two lines: the number a, then the number b.")
+add("functions", "fn_fix_print", "Return, do not print", "Easy",
+ ["The starter code prints its answer instead of returning it. Run it as it is first: you will see the right number, then a line saying `None`, and the test fails.", "Fix `solve` so it returns `n + 10` instead of printing it."],
+ "One line holding a whole number.", "One line.", [("5\n", "15", "5 plus 10 is 15. Only 15 should appear, with no None line.")], ["0\n", "-10\n", "990\n"],
+ "def solve(n):\n", "    # Write your code here\n    # This line prints instead of returning. Fix it.\n    print(n + 10)\n", '\nif __name__ == "__main__":\n    n = int(input())\n    print(solve(n))\n', "    return n + 10\n",
+ ["Print shows a value. Return hands it back to the line that called solve.", "That line already prints whatever solve hands back, so solve itself should not print.", "Change the word print to return, and drop the brackets.", "return n + 10"])
+PROBLEMS[-1]["fixme"] = True
+
 # ---------- 7 indexing ----------
 listfn("indexing", "idx_first", "First item", "Easy",
  ["The function `solve` receives a list called `nums`. Return the first item of the list."], "One number.",
@@ -231,18 +249,7 @@ listfn("forloops", "for_rises", "Count the rises", "Hard",
  '    count = 0\n    for i in range(len(nums) - 1):\n        if nums[i] < nums[i + 1]:\n            count = count + 1\n    return count\n',
  ["Each round compares an item with its neighbour on the right.", "Use range(len(nums) - 1) so that i + 1 is always a real position.", "1. count = 0. 2. For each position i from 0 to len(nums) - 2: if nums[i] < nums[i + 1], add 1 to count. 3. Return count.", "count = 0; for i in range(len(nums) - 1): if nums[i] < nums[i + 1]: count = count + 1; return count."])
 
-# ---------- 12 functions ----------
-def intfn(lesson, id, title, diff, statement, sample, hidden, solution, hints, sig="def solve(n):\n", reads="    n = int(input())\n", call="solve(n)", infmt="One line holding a whole number."):
-    add(lesson, id, title, diff, statement, infmt, "One line.", [sample], hidden, sig, STUB, '\nif __name__ == "__main__":\n' + reads + '    print(' + call + ')\n', solution, hints)
-intfn("functions", "fn_square", "Square it", "Easy", ["The function `solve` receives a number `n`. Return `n` multiplied by itself."],
- ("5\n", "25", "5 times 5 is 25."), ["0\n", "1\n", "-3\n", "12\n"], '    return n * n\n',
- ["The answer must be handed back with return.", "Multiply n by n.", "Return n times n.", "return n * n"])
-intfn("functions", "fn_larger", "The larger of two", "Easy", ["The function `solve` receives two numbers `a` and `b`. Return the larger one. If they are equal, return either."],
- ("3\n9\n", "9", "9 is larger than 3."), ["5\n5\n", "-1\n-7\n", "100\n99\n"],
- '    if a > b:\n        return a\n    return b\n',
- ["You need a choice.", "If a is greater than b return a. Otherwise return b.", "if a > b: return a. Then outside the if, return b.", "if a > b: return a; return b."],
- sig="def solve(a, b):\n", reads="    a = int(input())\n    b = int(input())\n", call="solve(a, b)", infmt="Two lines: the number a, then the number b.")
-listfn("functions", "fn_countevens", "Count the even numbers", "Medium",
+listfn("forloops", "fn_countevens", "Count the even numbers", "Medium",
  ["The function `solve` receives the list `nums`. Return how many of its numbers are even. Remember: `x % 2 == 0` asks whether `x` is even."], "One number.",
  [("5\n1 2 3 4 6\n", "3", "2, 4 and 6 are even.")], ["1\n7\n", "3\n2 4 6\n", "4\n0 -2 5 9\n"],
  '    count = 0\n    for x in nums:\n        if x % 2 == 0:\n            count = count + 1\n    return count\n',

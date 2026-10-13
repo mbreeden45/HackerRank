@@ -4,7 +4,7 @@ An offline study app that takes a complete beginner (Python 3, no coding backgro
 
 ## What is in it
 - Placement check, then lessons with step-by-step traces: Python basics, patterns (hashmaps, sorting, two pointers, sliding window, 2D grids), strings and parsing, Big O
-- 96 Python problems and 32 SQL problems (Easy, Medium, Hard, 4 hints each), run in the browser with Pyodide and sql.js
+- 97 Python problems and 32 SQL problems (Easy, Medium, Hard, 4 hints each), run in the browser with Pyodide and sql.js
 - Prompt Engineering lessons and 30 questions, including written answers checked against a model answer
 - "Next best question" adaptive practice, with missed items coming back after 1, 3 and 7 days
 - 90 minute mock exam with a score report and a line at 60 percent

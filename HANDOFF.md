@@ -31,7 +31,7 @@ tools/  authoring: c_lessons.py c_problems1.py (Phase 1), c_kit.py c_lessons2.py
         checks:    build_content.py verify.py node_check.js node_sql_check.js brute_check.py test_adaptive.js test_cards.js
 vendor/  pyodide/ sqljs/ codemirror/
 ```
-Content counts: 23 Python lessons (14 basics, 5 patterns, 3 strings and parsing, 1 Big O), 7 reading lessons (3 Prompt Engineering, 4 SQL), 96 Python problems, 32 SQL problems, 15 Big O questions, 30 Prompt Engineering items (10 written with checklist rubrics), 88 flashcards, 18-item mock exam, 13 placement questions.
+Content counts: 23 Python lessons (14 basics, 5 patterns, 3 strings and parsing, 1 Big O), 7 reading lessons (3 Prompt Engineering, 4 SQL), 97 Python problems, 32 SQL problems, 15 Big O questions, 30 Prompt Engineering items (10 written with checklist rubrics), 88 flashcards, 18-item mock exam, 13 placement questions.
 
 How things fit together:
 - `tools/c_kit.py` builds function-style Python problems from a list of typed parameters (ints, int, str, words, lines, grid). The locked main block, input format text and test input encoding are generated from that list.
@@ -50,7 +50,7 @@ node tools/node_sql_check.js        # every SQL solution, lesson query and SQL c
 node tools/test_adaptive.js && node tools/test_cards.js && node tools/test_explain.js
 python3 tools/brute_check.py        # hard solutions against slow brute-force versions on random input
 ```
-Last result: 4056 verify checks, 0 failed. 96 Python problems, 32 SQL problems, 71 multiple-choice items checked, 88 flashcards, 18 mock exam items.
+Last result: 4792 verify checks, 0 failed. 97 Python problems, 32 SQL problems, 71 multiple-choice items checked, 88 flashcards, 18 mock exam items.
 verify.py fails on: duplicate option text, fewer than 3 options, not exactly one correct answer, options that mention other options, predict answers that differ from what the code really prints, exclamation marks in prose, starting stubs that already pass, solutions that fail their own tests, written items without 4 to 6 rubric points with keywords, SQL row counts that differ from the hand count, flashcards that do not read "I want to ... so I write ...", flashcard examples that do not print what the card says, mock exam items that do not exist.
 
 ## Known lessons learned
